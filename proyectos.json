@@ -72,7 +72,7 @@
             "Windows",
             "Hosts"
           ],
-          "img": "img/focus.jpg?v=1788118387"
+          "img": "img/focus.jpg?v=1788120769"
         },
         {
           "nombre": "Flash",
@@ -85,7 +85,7 @@
             "Portable",
             "Single file"
           ],
-          "img": "img/flash.jpg?v=1788118387"
+          "img": "img/flash.jpg?v=1788120769"
         },
         {
           "nombre": "DevAtlas",
@@ -98,7 +98,7 @@
             "SQLite",
             "React + Vite"
           ],
-          "img": "img/devatlas.jpg?v=1788118387"
+          "img": "img/devatlas.jpg?v=1788120769"
         },
         {
           "nombre": "Azarium",
@@ -146,11 +146,11 @@
             "Offline",
             "Sin backend"
           ],
-          "img": "img/paid.jpg?v=1788118387",
+          "img": "img/paid.jpg?v=1788120770",
           "imgs": [
-            "img/paid.jpg?v=1788118387",
-            "img/paid-2.jpg?v=1788118387",
-            "img/paid-3.jpg?v=1788118387"
+            "img/paid.jpg?v=1788120770",
+            "img/paid-2.jpg?v=1788120770",
+            "img/paid-3.jpg?v=1788120770"
           ],
           "url": "https://fnguerrero.github.io/paid/"
         }
@@ -164,20 +164,20 @@
           "nombre": "Los juegos de Valen",
           "sigla": "JV",
           "color": "#4A63D8",
-          "tag": "Seis juegos para 2 a 4 años",
-          "que": "Hecho para mi sobrino: seis juegos táctiles sin una sola palabra que haya que leer y sin forma de perder. Explotar globos, tocar animales que suenan y dicen su nombre, un piano de colores, pintar con el dedo, un memotest de tres pares y atrapar frutas con una cesta. Los sonidos de los animales están sintetizados con osciladores, así que no hay ni un archivo de audio.",
+          "tag": "Ocho juegos para los más chiquitos",
+          "que": "Hecho para mi sobrino: ocho juegos táctiles sin una sola palabra que haya que leer y sin forma de perder. Explotar globos, animales que suenan y dicen su nombre, un piano de colores, pintar con el dedo, un memotest, atrapar frutas, la familia y los números. Se instala como app, anda sin internet y la música está sintetizada con osciladores.",
           "chips": [
             "Canvas",
             "WebAudio",
-            "Sin dependencias"
+            "PWA"
           ],
           "url": "https://fnguerrero.github.io/juegos-valentin/",
           "repo": "https://github.com/fnguerrero/juegos-valentin",
-          "img": "img/los-juegos-de-valen.jpg?v=1788118387",
+          "img": "img/los-juegos-de-valen.jpg?v=1788120770",
           "imgs": [
-            "img/los-juegos-de-valen.jpg?v=1788118387",
-            "img/los-juegos-de-valen-2.jpg?v=1788118387",
-            "img/los-juegos-de-valen-3.jpg?v=1788118387"
+            "img/los-juegos-de-valen.jpg?v=1788120770",
+            "img/los-juegos-de-valen-2.jpg?v=1788120770",
+            "img/los-juegos-de-valen-3.jpg?v=1788120770"
           ]
         },
         {
@@ -367,7 +367,7 @@
             "scrcpy",
             "PowerShell"
           ],
-          "img": "img/celconnect.jpg?v=1788118387"
+          "img": "img/celconnect.jpg?v=1788120770"
         }
       ]
     }
