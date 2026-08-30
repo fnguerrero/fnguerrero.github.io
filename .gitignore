@@ -1,0 +1,35 @@
+# Registro del trabajo y config local: no van a la pagina publica
+.nonstop/
+.claude/
+
+# La home del navegador es local: lleva los puertos de mi maquina, no va a la pagina publica
+home.html
+
+# Los proyectos privados y sus portadas: se ven solo en la home local.
+# Con comodin porque cada uno tiene su galeria (nombre-2.jpg, -3, -4): sin eso, las
+# capturas de adentro de una app privada terminaban publicadas igual.
+privados.json
+img/consorcia*.jpg
+img/voice-assistant*.jpg
+img/devdesk*.jpg
+img/chequeo-de-horas*.jpg
+img/security-dashboard*.jpg
+
+# La copia .js de los privados tampoco se publica
+privados.js
+
+# Portadas de los backends: solo se ven en la home
+img/consorcia-api*.jpg
+img/devatlas-api*.jpg
+
+# Capturas crudas del capturador: son el insumo de las portadas, no van al sitio
+img/raw-*.png
+
+# Cache de Python de las herramientas
+tools/__pycache__/
+
+# Las capturas crudas que deja Nico son el insumo de las portadas, no el sitio. Van
+# ignoradas enteras: ahi caen tal cual salieron de la pantalla, con lo que sea que
+# hubiera abierto, y una portada ya sale de ahi procesada.
+capturas-tuyas/*
+!capturas-tuyas/LEEME.md

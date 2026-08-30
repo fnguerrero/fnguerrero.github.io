@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="es" data-tema="neon">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>El taller de Nico</title>
+<meta name="description" content="Herramientas, apps y juegos que construyo con IA: qué hace cada uno y cuáles se pueden probar ahora.">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="taller.css?v=17">
+</head>
+<body>
+
+<div class="wrap">
+
+  <div class="franja" id="franja">
+    <div class="dato" id="reloj"></div>
+  </div>
+
+  <header class="hero">
+    <h1>Algunas de mis herramientas</h1>
+  </header>
+
+  <main id="filas"></main>
+
+  <footer class="foot">
+    <p class="stack">.NET · C# · Python · React · Next.js · TypeScript · EF Core · SQLite · PostgreSQL · MySQL · MCP · LiveKit · PWA · Windows</p>
+  </footer>
+
+</div>
+
+<script src="temas.js?v=17"></script>
+<script src="taller.js?v=17"></script>
+<script src="franja.js?v=17"></script>
+<script>
+"use strict";
+
+// Los proyectos viven en proyectos.json: la misma fuente que usa la home local.
+// Para agregar o cambiar algo se edita ese archivo, no este.
+
+fetch("proyectos.json", {cache: "no-cache"})
+  .then(function (r) {
+    if (!r.ok) throw new Error(r.status);
+    return r.json();
+  })
+  .then(function (datos) {
+    Taller.filas(document.getElementById("filas"), datos.grupos);
+  })
+  .catch(function () {
+    var p = document.createElement("p");
+    p.className = "aviso";
+    p.textContent = "No se pudo cargar la lista de proyectos. Probá recargar la página.";
+    document.getElementById("filas").appendChild(p);
+  });
+</script>
+</body>
+</html>
