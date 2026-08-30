@@ -1,0 +1,348 @@
+/* ═══════════════════════════════════════════════════════════════════════
+   Estilos del taller. Los usan las dos páginas: index.html (la pública) y
+   home.html (la del navegador). Están en un solo archivo para que las dos
+   se vean igual: lo que se cambia acá cambia en las dos.
+
+   La idea visual es un editor de código: todo en monoespaciada, los
+   títulos como comentarios, los rótulos con # y los datos entre corchetes.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+:root{
+  --bg:#F4F5F1; --surface:#FBFCF8; --surface-2:#E7E9E2;
+  --ink:#22272B; --ink-soft:#5A6570; --ink-faint:#8B96A0;
+  --rule:#D8DCD4;
+  --accent:#1F7A4C;        /* verde: lo que se puede abrir */
+  --cadena:#B45309;        /* naranja: valores, como un string */
+  --clave:#7C3AED;         /* violeta: palabras clave */
+  --comentario:#7A8691;
+  --on:#1F7A4C; --off:#B9BEB6;
+  --n1:14%; --n2:10%; --n3:12%;
+  --vidrio:82%;
+  --sombra:0 1px 2px rgba(16,24,40,.05), 0 10px 24px -14px rgba(16,24,40,.24);
+  --fm:"IBM Plex Mono",ui-monospace,"SF Mono",Consolas,monospace;
+  --fb:"IBM Plex Sans",ui-sans-serif,system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#0D1117; --surface:#141A21; --surface-2:#1C232B;
+    --ink:#D5DEE7; --ink-soft:#9AA7B2; --ink-faint:#6B7681;
+    --rule:#232C35;
+    --accent:#4EC9A0;
+    --cadena:#CE9178;
+    --clave:#C586C0;
+    --comentario:#6A9955;
+    --on:#4EC9A0; --off:#39424C;
+    --n1:22%; --n2:14%; --n3:16%;
+    --vidrio:74%;
+    --sombra:0 1px 2px rgba(0,0,0,.4), 0 10px 24px -14px rgba(0,0,0,.7);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0D1117; --surface:#141A21; --surface-2:#1C232B;
+  --ink:#D5DEE7; --ink-soft:#9AA7B2; --ink-faint:#6B7681;
+  --rule:#232C35; --accent:#4EC9A0; --cadena:#CE9178; --clave:#C586C0;
+  --comentario:#6A9955; --on:#4EC9A0; --off:#39424C;
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;color:var(--ink);font-family:var(--fm);
+  font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased;
+  min-height:100vh;
+  background:
+    radial-gradient(1100px 700px at 8% -10%,  color-mix(in srgb,var(--accent) var(--n1),transparent), transparent 58%),
+    radial-gradient(900px 620px at 95% 2%,    color-mix(in srgb,var(--cadena) var(--n2),transparent), transparent 60%),
+    radial-gradient(1000px 800px at 55% 108%, color-mix(in srgb,var(--clave) var(--n3),transparent), transparent 58%),
+    var(--bg);
+  background-attachment:fixed;
+}
+.wrap{max-width:1240px;margin:0 auto;padding:0 32px}
+a{color:inherit}
+
+/* ---------- encabezado ---------- */
+.hero{padding:46px 0 2px}
+.eyebrow{font-size:11.5px;letter-spacing:.1em;text-transform:lowercase;
+  color:var(--comentario);margin:0 0 10px}
+h1{font-family:var(--fm);font-weight:500;font-size:clamp(1.2rem,3vw,1.75rem);
+  line-height:1.25;letter-spacing:-.01em;margin:0;color:var(--ink)}
+.hero .sub{color:var(--ink-soft);font-size:.88rem;margin:10px 0 0;max-width:66ch}
+.hero .sub a{color:var(--accent);text-decoration:none}
+.hero .sub a:hover{text-decoration:underline}
+
+/* ---------- franja de datos ----------
+   Un renglon discreto, sin cajas: fecha, feriado, dolar y clima separados
+   por puntos. Esta para consultarlo, no para llamar la atencion.          */
+.franja{display:flex;flex-wrap:wrap;align-items:baseline;gap:0 6px;
+  padding:26px 0 0;font-size:11px;color:var(--ink-faint);line-height:1.9}
+.dato{display:inline-flex;align-items:baseline;gap:5px;padding:0;border:0;background:none}
+.dato + .dato::before{content:"·";margin-right:5px;opacity:.5}
+/* Las cotizaciones se van al margen derecho; si no entran, bajan solas al
+   renglon de abajo y quedan igual alineadas a la derecha. */
+.dato.derecha{margin-left:auto}
+.dato.derecha::before{content:none}
+.dato .k{color:var(--ink-faint)}
+.dato .v{color:var(--ink-soft);font-weight:500;font-variant-numeric:tabular-nums}
+.dato .x{color:var(--ink-faint);opacity:.75}
+#reloj .v{color:var(--ink-soft)}
+#reloj .x{color:var(--ink-faint);opacity:.75}
+
+/* ---------- fila ---------- */
+.fila{padding:26px 0 0;position:relative}
+.flabel{display:flex;align-items:baseline;gap:10px;margin:0 0 10px;
+  font-size:.92rem;font-weight:500;letter-spacing:.02em;color:var(--ink)}
+.flabel s{text-decoration:none;font-size:11px;font-weight:400;
+  color:var(--ink-faint);font-variant-numeric:tabular-nums}
+
+.pista{display:grid;gap:14px 12px;padding:6px 2px 10px;
+  grid-template-columns:repeat(auto-fill,minmax(230px,1fr))}
+
+
+/* ---------- tarjeta ---------- */
+.carta{cursor:pointer;transition:transform .14s ease}
+.carta:hover,.carta:focus-visible{transform:translateY(-3px);outline:none}
+.carta .marco{position:relative;border-radius:8px;overflow:hidden;
+  border:1px solid var(--rule);background:var(--surface-2);
+  aspect-ratio:16/9;box-shadow:var(--sombra)}
+.carta:hover .marco,.carta:focus-visible .marco{border-color:var(--accent)}
+.carta img{width:100%;height:100%;object-fit:cover;display:block}
+.carta .sinfoto{--c:var(--accent);width:100%;height:100%;display:grid;place-items:center;
+  font-size:2.1rem;font-weight:500;letter-spacing:.06em;color:color-mix(in srgb,var(--c) 62%,#fff);
+  background:linear-gradient(140deg,color-mix(in srgb,var(--c) 26%,var(--surface)) 0%,
+                                    color-mix(in srgb,var(--c) 8%,var(--surface)) 70%)}
+.carta .velo{position:absolute;inset:0;display:flex;align-items:flex-end;justify-content:flex-end;
+  padding:8px;opacity:0;transition:opacity .16s;pointer-events:none;
+  background:linear-gradient(to top,rgba(6,10,14,.76),rgba(6,10,14,0) 55%)}
+.carta:hover .velo,.carta:focus-within .velo{opacity:1;pointer-events:auto}
+.carta .velo a{font-size:10.5px;color:#DCE6EE;background:rgba(6,10,14,.62);
+  border:1px solid rgba(220,230,238,.24);padding:4px 10px;border-radius:5px;
+  text-decoration:none;transition:background .14s,border-color .14s}
+.carta .velo a:hover{background:var(--accent);color:var(--bg);border-color:var(--accent)}
+.carta .velo a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.carta .pie{padding:8px 2px 0;display:grid;grid-template-columns:1fr auto;
+  grid-template-rows:auto auto;column-gap:7px;height:46px;align-content:start}
+.carta .pie b{grid-column:1;font-weight:500;font-size:.85rem;line-height:1.25;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.carta .pie i{grid-column:1;font-style:normal;font-size:10px;color:var(--comentario);
+  line-height:1.3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.carta .pie .luz{grid-column:2;grid-row:1;width:7px;height:7px;border-radius:2px;
+  background:var(--off);flex:none;transition:background .3s;align-self:center}
+.carta .pie .luz.viva{background:var(--on);
+  box-shadow:0 0 0 3px color-mix(in srgb,var(--on) 22%,transparent)}
+
+/* ---------- ficha (la ventana de detalle) ---------- */
+dialog{border:0;padding:0;background:none;max-width:520px;width:calc(100% - 32px);
+  max-height:90vh}
+dialog::backdrop{background:rgba(6,10,14,.7);backdrop-filter:blur(3px)}
+.ficha{background:var(--surface);border:1px solid var(--rule);border-radius:10px;
+  overflow:hidden;box-shadow:0 24px 60px -20px rgba(0,0,0,.55);
+  display:flex;flex-direction:column;max-height:90vh}
+
+.galeria{position:relative;background:var(--surface-2)}
+.galeria{flex:none}
+.galeria .grande{width:100%;display:block;aspect-ratio:16/9;object-fit:cover;max-height:40vh}
+.galeria .paso{position:absolute;top:50%;transform:translateY(-50%);
+  width:26px;height:26px;border-radius:6px;border:1px solid rgba(220,230,238,.22);cursor:pointer;
+  background:rgba(6,10,14,.6);color:#DCE6EE;font-family:var(--fm);font-size:15px;line-height:1;
+  display:grid;place-items:center;transition:background .15s}
+.galeria .paso:hover{background:rgba(6,10,14,.86)}
+.galeria .paso.izq{left:9px}
+.galeria .paso.der{right:9px}
+.galeria .puntos{position:absolute;bottom:9px;left:0;right:0;
+  display:flex;justify-content:center;gap:5px}
+.galeria .puntos b{width:16px;height:3px;border-radius:1px;background:rgba(220,230,238,.4);
+  cursor:pointer;transition:background .15s}
+.galeria .puntos b.activo{background:var(--accent)}
+
+.ficha .texto{padding:14px 16px 16px;overflow:auto}
+.ficha h2{font-family:var(--fm);font-weight:500;font-size:.98rem;margin:0 0 2px;color:var(--ink)}
+.ficha .tag{font-size:10.5px;color:var(--comentario);display:block;margin-bottom:9px}
+.ficha p{margin:0 0 11px;color:var(--ink-soft);font-family:var(--fb);font-size:.88rem;line-height:1.5}
+.chips{display:flex;flex-wrap:wrap;gap:5px;align-items:center;margin-bottom:12px}
+.chip{font-size:10px;padding:3px 8px;border-radius:5px;
+  background:var(--surface-2);color:var(--ink-soft);border:1px solid var(--rule)}
+.acciones{display:flex;gap:9px;align-items:center;flex-wrap:wrap}
+.btn{font-family:var(--fm);font-size:11px;text-decoration:none;padding:6px 13px;border-radius:6px;
+  background:var(--accent);color:var(--bg);border:0;cursor:pointer;transition:opacity .15s}
+.btn:hover{opacity:.86}
+.btn.suave{background:none;border:1px solid var(--rule);color:var(--ink-soft)}
+.btn.suave:hover{border-color:var(--accent);color:var(--accent);opacity:1}
+.cerrar{margin-left:auto;background:none;border:0;color:var(--ink-faint);cursor:pointer;
+  font-family:var(--fm);font-size:11.5px;padding:7px}
+.cerrar:hover{color:var(--ink)}
+
+/* ---------- pie ---------- */
+.foot{margin:40px 0 56px;padding-top:18px;border-top:1px solid var(--rule);overflow-x:auto}
+.stack{font-size:11px;color:var(--comentario);margin:0;white-space:nowrap}
+.nota{font-size:11px;color:var(--ink-faint);line-height:1.8;margin:0;white-space:normal}
+.nota b{color:var(--ink-soft);font-weight:500}
+.nota .viejo{color:var(--cadena)}
+.aviso{font-size:12px;color:var(--ink-faint);padding:40px 0}
+
+@media (max-width:640px){
+  .wrap{padding:0 18px}
+  .pista{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px 10px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   Temas. El de arriba es el que viene por defecto ("editor"): sigue el
+   claro/oscuro del sistema. Los de acá abajo se eligen a mano desde el
+   selector y quedan guardados en el navegador.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* ── TERMINAL ── una sesion de consola: prompt, cursor y nada redondeado. */
+:root[data-tema="terminal"]{
+  --bg:#05090A; --surface:#0A1114; --surface-2:#0F181C;
+  --ink:#CFE8DD; --ink-soft:#8FBDAE; --ink-faint:#5B837A;
+  --rule:#173029;
+  --accent:#2BE58B; --cadena:#E5C07B; --clave:#56B6C2; --comentario:#5B837A;
+  --on:#2BE58B; --off:#1B332C;
+  --n1:16%; --n2:0%; --n3:0%; --vidrio:88%;
+  --sombra:none;
+}
+:root[data-tema="terminal"] .carta .marco,
+:root[data-tema="terminal"] .dato,
+:root[data-tema="terminal"] .ficha,
+:root[data-tema="terminal"] .btn,
+:root[data-tema="terminal"] .chip,
+:root[data-tema="terminal"] .flecha{border-radius:0}
+:root[data-tema="terminal"] h1::before{content:"~/nico $ ";color:var(--accent)}
+:root[data-tema="terminal"] h1::after{content:"_";color:var(--accent);
+  animation:parpadeo 1.05s step-end infinite}
+:root[data-tema="terminal"] .flabel::before{content:"> ";color:var(--accent)}
+:root[data-tema="terminal"] .eyebrow::before{content:"# "}
+@keyframes parpadeo{50%{opacity:0}}
+
+/* ── CRT ── monitor de fosforo ambar, con brillo y lineas de barrido. */
+:root[data-tema="crt"]{
+  --bg:#0B0703; --surface:#150D05; --surface-2:#1F1408;
+  --ink:#FFC46B; --ink-soft:#C08F45; --ink-faint:#8A6531;
+  --rule:#3A2611;
+  --accent:#FFA023; --cadena:#FFD79A; --clave:#FF7A18; --comentario:#8A6531;
+  --on:#FFA023; --off:#3A2611;
+  --n1:20%; --n2:14%; --n3:0%; --vidrio:80%;
+  --sombra:0 0 18px -6px rgba(255,160,35,.35);
+}
+:root[data-tema="crt"] h1,
+:root[data-tema="crt"] .flabel,
+:root[data-tema="crt"] .carta .pie b{text-shadow:0 0 9px color-mix(in srgb,var(--accent) 55%,transparent)}
+:root[data-tema="crt"] .carta img{filter:saturate(.55) sepia(.35) contrast(1.05)}
+:root[data-tema="crt"] body::after,
+:root[data-tema="crt"]::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:60;
+  background:repeating-linear-gradient(to bottom,
+    rgba(0,0,0,.22) 0px, rgba(0,0,0,.22) 1px, transparent 1px, transparent 3px)}
+
+/* ── NEON ── oscuro con bordes que brillan, violeta y cian. */
+:root[data-tema="neon"]{
+  --bg:#0A0618; --surface:#140C2B; --surface-2:#1C1240;
+  --ink:#EFE7FF; --ink-soft:#B9A6E8; --ink-faint:#8574B8;
+  --rule:#2E1F5C;
+  --accent:#22E3FF; --cadena:#FF4FD8; --clave:#B07BFF; --comentario:#8574B8;
+  --on:#22E3FF; --off:#2E1F5C;
+  --n1:34%; --n2:30%; --n3:28%; --vidrio:70%;
+  --sombra:0 0 22px -8px rgba(34,227,255,.5);
+}
+:root[data-tema="neon"] h1{text-shadow:0 0 14px color-mix(in srgb,var(--accent) 65%,transparent);
+  letter-spacing:.04em}
+:root[data-tema="neon"] .flabel{color:var(--cadena);
+  text-shadow:0 0 12px color-mix(in srgb,var(--cadena) 55%,transparent)}
+:root[data-tema="neon"] .carta:hover .marco,
+:root[data-tema="neon"] .carta:focus-visible .marco{
+  box-shadow:0 0 0 1px var(--accent), 0 0 26px -6px var(--accent)}
+:root[data-tema="neon"] .btn{box-shadow:0 0 18px -6px var(--accent)}
+
+/* ── TECNICO ── claro y sobrio: lineas finas, sin sombras, mucho aire. */
+:root[data-tema="tecnico"]{
+  --bg:#FFFFFF; --surface:#FFFFFF; --surface-2:#F2F4F6;
+  --ink:#1A1D21; --ink-soft:#585F68; --ink-faint:#8B939C;
+  --rule:#DFE3E8;
+  --accent:#12674A; --cadena:#8A5218; --clave:#3D4EA8; --comentario:#8B939C;
+  --on:#12674A; --off:#CBD2D9;
+  --n1:0%; --n2:0%; --n3:0%; --vidrio:100%;
+  --sombra:none;
+}
+:root[data-tema="tecnico"] .carta .marco,
+:root[data-tema="tecnico"] .dato,
+:root[data-tema="tecnico"] .ficha,
+:root[data-tema="tecnico"] .chip,
+:root[data-tema="tecnico"] .btn,
+:root[data-tema="tecnico"] .flecha{border-radius:3px}
+:root[data-tema="tecnico"] .carta:hover{transform:none}
+:root[data-tema="tecnico"] .carta:hover .marco{border-color:var(--ink)}
+:root[data-tema="tecnico"] .flabel{border-bottom:1px solid var(--rule);padding-bottom:8px}
+:root[data-tema="tecnico"] .fila{padding-top:34px}
+
+
+/* ── MATRIX ── verde de pantalla infectada, sobre negro absoluto. */
+:root[data-tema="matrix"]{
+  --bg:#000400; --surface:#020A04; --surface-2:#04140A;
+  --ink:#8CFFA9; --ink-soft:#3FD974; --ink-faint:#218F47;
+  --rule:#0B3D1E;
+  --accent:#00FF41; --cadena:#8CFFA9; --clave:#00C853; --comentario:#218F47;
+  --on:#00FF41; --off:#0B3D1E;
+  --n1:24%; --n2:0%; --n3:0%; --vidrio:82%;
+  --sombra:0 0 20px -8px rgba(0,255,65,.45);
+}
+:root[data-tema="matrix"] h1,
+:root[data-tema="matrix"] .flabel,
+:root[data-tema="matrix"] .carta .pie b,
+:root[data-tema="matrix"] .dato .v{
+  text-shadow:0 0 8px color-mix(in srgb,var(--accent) 70%,transparent)}
+:root[data-tema="matrix"] .carta .marco,
+:root[data-tema="matrix"] .dato,
+:root[data-tema="matrix"] .ficha,
+:root[data-tema="matrix"] .btn,
+:root[data-tema="matrix"] .chip{border-radius:0}
+:root[data-tema="matrix"] .carta img{filter:hue-rotate(58deg) saturate(.45) brightness(.92) contrast(1.08)}
+:root[data-tema="matrix"] .carta:hover .marco{box-shadow:0 0 0 1px var(--accent),0 0 24px -6px var(--accent)}
+
+/* ── NORD ── azules frios, apagados. */
+:root[data-tema="nord"]{
+  --bg:#2E3440; --surface:#343C4A; --surface-2:#3B4252;
+  --ink:#ECEFF4; --ink-soft:#C2CBD8; --ink-faint:#8A94A6;
+  --rule:#434C5E;
+  --accent:#88C0D0; --cadena:#EBCB8B; --clave:#B48EAD; --comentario:#7A8698;
+  --on:#A3BE8C; --off:#4C566A;
+  --n1:20%; --n2:14%; --n3:16%; --vidrio:78%;
+}
+
+/* ── PAPEL ── claro y calido, con tinta en vez de negro. */
+:root[data-tema="papel"]{
+  --bg:#F6F1E6; --surface:#FDFAF3; --surface-2:#EBE4D5;
+  --ink:#2B2620; --ink-soft:#5C544A; --ink-faint:#8C8375;
+  --rule:#DCD3C2;
+  --accent:#7A5C2E; --cadena:#A8551F; --clave:#6B4E8F; --comentario:#8C8375;
+  --on:#4E7A3A; --off:#C9C0AE;
+  --n1:12%; --n2:10%; --n3:8%; --vidrio:84%;
+}
+
+/* ---------- selector de tema ---------- */
+.temas{position:fixed;top:14px;right:16px;z-index:50}
+.temas-boton{display:grid;place-items:center;cursor:pointer;
+  width:32px;height:32px;padding:0;border-radius:8px;border:1px solid var(--rule);
+  background:color-mix(in srgb,var(--surface) 90%,transparent);
+  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  color:var(--ink-soft);font-family:var(--fm);font-size:11.5px;box-shadow:var(--sombra)}
+.temas-boton:hover{color:var(--ink);border-color:var(--accent)}
+.temas-boton .rueda{width:15px;height:15px;border-radius:50%;flex:none;
+  background:conic-gradient(var(--accent),var(--cadena),var(--clave),var(--accent))}
+
+.temas-lista{position:absolute;top:calc(100% + 7px);right:0;min-width:232px;
+  margin:0;padding:5px;list-style:none;border-radius:9px;border:1px solid var(--rule);
+  background:color-mix(in srgb,var(--surface) 96%,transparent);
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  box-shadow:0 18px 40px -18px rgba(0,0,0,.6)}
+.temas-lista[hidden]{display:none}
+.temas-lista button{display:flex;align-items:center;gap:9px;width:100%;cursor:pointer;
+  padding:7px 9px;border:0;border-radius:6px;background:none;color:var(--ink-soft);
+  font-family:var(--fm);font-size:11.5px;text-align:left}
+.temas-lista button:hover{background:var(--surface-2);color:var(--ink)}
+.temas-lista button[aria-current="true"]{color:var(--accent)}
+.temas-lista .muestra{width:15px;height:15px;border-radius:4px;flex:none;
+  border:1px solid rgba(128,128,128,.35)}
+.temas-lista .tilde{margin-left:auto;color:var(--accent);opacity:0}
+.temas-lista button[aria-current="true"] .tilde{opacity:1}
+
+@media (max-width:640px){
+  .temas{top:10px;right:10px}
+}

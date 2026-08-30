@@ -1,0 +1,355 @@
+{
+  "_comentario": "Proyectos que se muestran en https://fnguerrero.github.io. Los privados NO estan aca: viven en privados.json, que no se publica. Para agregar o cambiar algo se edita este archivo y se pushea.",
+  "actualizado": "2026-08-28",
+  "grupos": [
+    {
+      "titulo": "Aplicaciones",
+      "items": [
+        {
+          "nombre": "Déficit",
+          "sigla": "Df",
+          "color": "#1F7A4C",
+          "tag": "Calorías por foto",
+          "que": "Le sacás una foto a la comida y te dice las calorías y los macros. Se instala como app en el celular y funciona sin conexión.",
+          "chips": [
+            "Claude Vision",
+            "PWA",
+            "Sin build"
+          ],
+          "url": "https://fnguerrero.github.io/deficit/",
+          "repo": "https://github.com/fnguerrero/deficit",
+          "img": "img/deficit.jpg?v=1787954410",
+          "imgs": [
+            "img/deficit.jpg?v=1787954410",
+            "img/deficit-2.jpg?v=1787954410",
+            "img/deficit-3.jpg?v=1787954410",
+            "img/deficit-4.jpg?v=1787954410"
+          ]
+        },
+        {
+          "nombre": "Álbum Panini 2026",
+          "sigla": "AP",
+          "color": "#D2691E",
+          "tag": "Figuritas del Mundial",
+          "que": "El álbum en el celular: qué figuritas tenés, cuáles te faltan y qué repetidas podés cambiar. Con login opcional, se sincroniza entre dispositivos.",
+          "chips": [
+            "HTML",
+            "Sin dependencias",
+            "Supabase"
+          ],
+          "url": "https://fnguerrero.github.io/album-panini-2026/",
+          "repo": "https://github.com/fnguerrero/album-panini-2026",
+          "img": "img/album-panini-2026.jpg?v=1787954411",
+          "imgs": [
+            "img/album-panini-2026.jpg?v=1787954411",
+            "img/album-panini-2026-2.jpg?v=1787954411"
+          ]
+        },
+        {
+          "nombre": "Multimarket",
+          "sigla": "Mm",
+          "color": "#8A5A2B",
+          "tag": "Precio real de una compra",
+          "que": "El precio de vidriera no dice nada: la misma heladera sale distinto al contado que en tres cuotas, y cuál conviene depende de la inflación y de qué tarjeta tengas. Lleva todos los pagos a valor presente, les resta las promociones que te aplican, y recién ahí compara ocho tiendas. Después las sigue vigilando todos los días.",
+          "chips": [
+            ".NET",
+            "Scraping",
+            "8 tiendas"
+          ],
+          "img": "img/multimarket.jpg?v=1787949962",
+          "imgs": [
+            "img/multimarket.jpg?v=1787949962",
+            "img/multimarket-2.jpg?v=1787949963"
+          ]
+        },
+        {
+          "nombre": "Focus",
+          "sigla": "Fo",
+          "color": "#1E9C93",
+          "tag": "Modo concentración",
+          "que": "Durante un bloque de tiempo cierra las apps que distraen, bloquea los sitios de la lista negra, silencia las notificaciones y le pone No molestar al celular.",
+          "chips": [
+            "Windows",
+            "Hosts"
+          ],
+          "img": "img/focus.jpg?v=1787991037"
+        },
+        {
+          "nombre": "Flash",
+          "sigla": "Fl",
+          "color": "#E8B10C",
+          "tag": "Limpieza de Windows",
+          "que": "Limpieza y rendimiento en un solo ejecutable portable: se copia a cualquier máquina y corre sin instalar nada, ni siquiera .NET. Analiza el equipo y lista solo lo que conviene hacer ahí.",
+          "chips": [
+            ".NET",
+            "Portable",
+            "Single file"
+          ],
+          "img": "img/flash.jpg?v=1787991037"
+        },
+        {
+          "nombre": "DevAtlas",
+          "sigla": "DA",
+          "color": "#2C5FCC",
+          "tag": "Catálogo de aplicaciones",
+          "que": "Registro de todas mis aplicaciones de desarrollo con stack, repo, notas y URLs por ambiente, para buscarlas en vez de acordarme dónde estaba cada cosa.",
+          "chips": [
+            ".NET",
+            "SQLite",
+            "React + Vite"
+          ],
+          "img": "img/devatlas.jpg?v=1787991037"
+        },
+        {
+          "nombre": "Azarium",
+          "sigla": "Az",
+          "color": "#6B4E9E",
+          "tag": "Estadística de azar",
+          "que": "Laboratorio estadístico de quiniela, loto y ruleta. No vende un sistema para ganar: mide si hay alguna estructura explotable y cuantifica cuánto cuesta jugar.",
+          "chips": [
+            "Python",
+            "informes HTML"
+          ],
+          "url": "https://fnguerrero.github.io/azarium/",
+          "repo": "https://github.com/fnguerrero/azarium",
+          "img": "img/azarium.jpg?v=1787954411",
+          "imgs": [
+            "img/azarium.jpg?v=1787954411",
+            "img/azarium-2.jpg?v=1787954411"
+          ]
+        },
+        {
+          "nombre": "Figumatch",
+          "sigla": "Fg",
+          "color": "#B8455E",
+          "tag": "Intercambio de figuritas",
+          "que": "La otra mitad del álbum: cruza repetidas con faltantes entre varias personas para armar los intercambios que convienen.",
+          "chips": [
+            "Next.js",
+            "React",
+            "PostgreSQL"
+          ],
+          "img": "img/figumatch.jpg?v=1787953808",
+          "imgs": [
+            "img/figumatch.jpg?v=1787953808",
+            "img/figumatch-2.jpg?v=1787951500"
+          ]
+        },
+        {
+          "nombre": "Paid",
+          "sigla": "Pd",
+          "color": "#1D2B36",
+          "tag": "Facturas de servicios",
+          "que": "Luz, gas, agua, internet, expensas y municipales de varias propiedades: qué vence, cuánto se gastó y en qué se fue la plata. Guarda todo en el dispositivo, sin servidor ni cuentas: lo que cargues queda en tu navegador y no lo ve nadie más.",
+          "chips": [
+            "PWA",
+            "Offline",
+            "Sin backend"
+          ],
+          "img": "img/paid.jpg?v=1787991037",
+          "imgs": [
+            "img/paid.jpg?v=1787991037",
+            "img/paid-2.jpg?v=1787991037",
+            "img/paid-3.jpg?v=1787991037"
+          ],
+          "url": "https://fnguerrero.github.io/paid/"
+        }
+      ]
+    },
+    {
+      "titulo": "Juegos",
+      "verbo": "Jugar",
+      "items": [
+        {
+          "nombre": "SIMA-7",
+          "sigla": "S7",
+          "color": "#414A4F",
+          "tag": "Run and gun · colonia minera",
+          "que": "Run and gun 2D en una colonia minera abandonada. Enemigos que se cubren, modo horda y música propia.",
+          "chips": [
+            "HTML + JS puro",
+            "sin dependencias"
+          ],
+          "url": "https://fnguerrero.github.io/sima7/",
+          "repo": "https://github.com/fnguerrero/sima7",
+          "img": "img/sima-7.jpg?v=1787954411",
+          "imgs": [
+            "img/sima-7.jpg?v=1787954411",
+            "img/sima-7-2.jpg?v=1787954411",
+            "img/sima-7-3.jpg?v=1787954411"
+          ]
+        },
+        {
+          "nombre": "NIMBO",
+          "sigla": "Ni",
+          "color": "#4A7C2F",
+          "tag": "Plataformas 2D · 10 niveles",
+          "que": "Juego de plataformas con diez niveles y controles táctiles para jugar desde el celular. Los gráficos están dibujados por código y el sonido es sintetizado con WebAudio: no hay un solo archivo de imagen ni de audio en todo el proyecto. Antes se llamaba Plataformero.",
+          "chips": [
+            "Canvas",
+            "WebAudio",
+            "Sin dependencias"
+          ],
+          "url": "https://fnguerrero.github.io/nimbo/",
+          "repo": "https://github.com/fnguerrero/nimbo",
+          "img": "img/nimbo.jpg?v=1787954411",
+          "imgs": [
+            "img/nimbo.jpg?v=1787954411",
+            "img/nimbo-2.jpg?v=1787954411",
+            "img/nimbo-3.jpg?v=1787954411"
+          ]
+        },
+        {
+          "nombre": "Kermés",
+          "sigla": "Ke",
+          "color": "#A0522D",
+          "tag": "Una feria vacía de noche",
+          "que": "Bel vuelve caminando por el baldío de siempre y esta noche hay una feria: abierta, encendida y sin nadie. En la boletería vacía hay tres cartas boca abajo.",
+          "chips": [
+            "Canvas",
+            "HTML + JS puro",
+            "Sin dependencias"
+          ],
+          "url": "https://fnguerrero.github.io/kermes/",
+          "repo": "https://github.com/fnguerrero/kermes",
+          "img": "img/kermes.jpg?v=1787954411",
+          "imgs": [
+            "img/kermes.jpg?v=1787954411",
+            "img/kermes-2.jpg?v=1787954411",
+            "img/kermes-3.jpg?v=1787954412"
+          ]
+        },
+        {
+          "nombre": "Duermevela",
+          "sigla": "Du",
+          "color": "#3B3E7A",
+          "tag": "Otra noche de Bel",
+          "que": "Continúa la historia de Bel, la de Kermés, entre arcanos y figuras. En desarrollo.",
+          "chips": [
+            "Canvas",
+            "HTML + JS puro"
+          ],
+          "url": "https://fnguerrero.github.io/duermevela/",
+          "repo": "https://github.com/fnguerrero/duermevela",
+          "img": "img/duermevela.jpg?v=1787954412",
+          "imgs": [
+            "img/duermevela.jpg?v=1787954412",
+            "img/duermevela-2.jpg?v=1787954412",
+            "img/duermevela-3.jpg?v=1787954412"
+          ]
+        },
+        {
+          "nombre": "Dragon Ball — El Ki de Paozu",
+          "sigla": "DB",
+          "color": "#E8891C",
+          "tag": "Plataformas estilo Mega Drive",
+          "que": "Ocho sagas, ocho jefes, siete esferas del dragón por nivel y Shenlong al final. HTML y JavaScript puro, sin build ni dependencias.",
+          "chips": [
+            "Canvas",
+            "HTML + JS puro",
+            "Sin dependencias"
+          ],
+          "url": "https://fnguerrero.github.io/el-ki-de-paozu/",
+          "repo": "https://github.com/fnguerrero/el-ki-de-paozu",
+          "img": "img/dragon-ball-el-ki-de-paozu.jpg?v=1787954412",
+          "imgs": [
+            "img/dragon-ball-el-ki-de-paozu.jpg?v=1787954412",
+            "img/dragon-ball-el-ki-de-paozu-2.jpg?v=1787954412",
+            "img/dragon-ball-el-ki-de-paozu-3.jpg?v=1787954412"
+          ]
+        },
+        {
+          "nombre": "Vía Combusta",
+          "sigla": "VC",
+          "color": "#4B3F8C",
+          "tag": "Puzzles sobre tu carta natal",
+          "que": "Las pruebas salen de tu carta natal calculada de verdad, con efemérides VSOP87: ninguna respuesta está escrita a mano. Cada una deja una explicación, así errar también enseña algo.",
+          "chips": [
+            "VSOP87",
+            "HTML",
+            "Sin dependencias"
+          ],
+          "url": "https://fnguerrero.github.io/via-combusta/",
+          "repo": "https://github.com/fnguerrero/via-combusta",
+          "img": "img/via-combusta.jpg?v=1787954412"
+        },
+        {
+          "nombre": "TETRIS",
+          "sigla": "Te",
+          "color": "#B8455E",
+          "tag": "Con reglas modernas",
+          "que": "Rotación SRS con wall kicks, bolsa de 7 piezas, pieza fantasma, hold, niveles que aceleran la caída y récord guardado. También se juega desde el celular, con controles táctiles.",
+          "chips": [
+            "Canvas",
+            "WebAudio",
+            "Sin dependencias"
+          ],
+          "url": "https://fnguerrero.github.io/tetris/",
+          "repo": "https://github.com/fnguerrero/tetris",
+          "img": "img/tetris.jpg?v=1787954412",
+          "imgs": [
+            "img/tetris.jpg?v=1787954412",
+            "img/tetris-2.jpg?v=1787954412",
+            "img/tetris-3.jpg?v=1787954412"
+          ]
+        },
+        {
+          "nombre": "Pac-Man",
+          "sigla": "PM",
+          "color": "#E8B10C",
+          "tag": "Un solo archivo HTML",
+          "que": "El laberinto completo, los cuatro fantasmas con sus personalidades, pastillas de poder, frutas, túneles laterales y niveles que se ponen más difíciles. Todo en un solo archivo.",
+          "chips": [
+            "Canvas",
+            "Un solo HTML",
+            "Sin dependencias"
+          ],
+          "url": "https://fnguerrero.github.io/pacman/",
+          "repo": "https://github.com/fnguerrero/pacman",
+          "img": "img/pac-man.jpg?v=1787954412",
+          "imgs": [
+            "img/pac-man.jpg?v=1787954412",
+            "img/pac-man-2.jpg?v=1787954412",
+            "img/pac-man-3.jpg?v=1787954413"
+          ]
+        }
+      ]
+    },
+    {
+      "titulo": "Uso personal",
+      "items": [
+        {
+          "nombre": "Visor /nonstop",
+          "sigla": "Vn",
+          "color": "#2E7D8C",
+          "tag": "Trabajos largos de un agente",
+          "que": "Cuando dejo a un agente trabajando horas en algo, esto muestra cómo va sin abrir tres archivos a mano: la spec, el checklist y la bitácora en una sola vista. Se arrastran los archivos adentro y listo, no hay servidor.",
+          "chips": [
+            "HTML",
+            "Sin servidor",
+            "Sin dependencias"
+          ],
+          "url": "https://fnguerrero.github.io/visor-nonstop/",
+          "repo": "https://github.com/fnguerrero/visor-nonstop",
+          "img": "img/visor-nonstop.jpg?v=1787954413",
+          "imgs": [
+            "img/visor-nonstop.jpg?v=1787954413",
+            "img/visor-nonstop-2.jpg?v=1787954413"
+          ]
+        },
+        {
+          "nombre": "CelConnect",
+          "sigla": "CC",
+          "color": "#3B4650",
+          "tag": "Espejado del celular",
+          "que": "Espeja el celular en la pantalla de la PC por WiFi con un doble clic, y lo manejo con mouse y teclado sin cables ni terminal.",
+          "chips": [
+            "scrcpy",
+            "PowerShell"
+          ],
+          "img": "img/celconnect.jpg?v=1787991037"
+        }
+      ]
+    }
+  ]
+}
