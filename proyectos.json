@@ -72,7 +72,7 @@
             "Windows",
             "Hosts"
           ],
-          "img": "img/focus.jpg?v=1788114310"
+          "img": "img/focus.jpg?v=1788118387"
         },
         {
           "nombre": "Flash",
@@ -85,7 +85,7 @@
             "Portable",
             "Single file"
           ],
-          "img": "img/flash.jpg?v=1788114310"
+          "img": "img/flash.jpg?v=1788118387"
         },
         {
           "nombre": "DevAtlas",
@@ -98,7 +98,7 @@
             "SQLite",
             "React + Vite"
           ],
-          "img": "img/devatlas.jpg?v=1788114310"
+          "img": "img/devatlas.jpg?v=1788118387"
         },
         {
           "nombre": "Azarium",
@@ -146,11 +146,11 @@
             "Offline",
             "Sin backend"
           ],
-          "img": "img/paid.jpg?v=1788114310",
+          "img": "img/paid.jpg?v=1788118387",
           "imgs": [
-            "img/paid.jpg?v=1788114310",
-            "img/paid-2.jpg?v=1788114310",
-            "img/paid-3.jpg?v=1788114310"
+            "img/paid.jpg?v=1788118387",
+            "img/paid-2.jpg?v=1788118387",
+            "img/paid-3.jpg?v=1788118387"
           ],
           "url": "https://fnguerrero.github.io/paid/"
         }
@@ -173,11 +173,11 @@
           ],
           "url": "https://fnguerrero.github.io/juegos-valentin/",
           "repo": "https://github.com/fnguerrero/juegos-valentin",
-          "img": "img/los-juegos-de-valen.jpg?v=1788114310",
+          "img": "img/los-juegos-de-valen.jpg?v=1788118387",
           "imgs": [
-            "img/los-juegos-de-valen.jpg?v=1788114310",
-            "img/los-juegos-de-valen-2.jpg?v=1788114310",
-            "img/los-juegos-de-valen-3.jpg?v=1788114310"
+            "img/los-juegos-de-valen.jpg?v=1788118387",
+            "img/los-juegos-de-valen-2.jpg?v=1788118387",
+            "img/los-juegos-de-valen-3.jpg?v=1788118387"
           ]
         },
         {
@@ -367,7 +367,7 @@
             "scrcpy",
             "PowerShell"
           ],
-          "img": "img/celconnect.jpg?v=1788114310"
+          "img": "img/celconnect.jpg?v=1788118387"
         }
       ]
     }
