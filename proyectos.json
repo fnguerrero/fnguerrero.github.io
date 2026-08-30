@@ -1,6 +1,6 @@
 {
   "_comentario": "Proyectos que se muestran en https://fnguerrero.github.io. Los privados NO estan aca: viven en privados.json, que no se publica. Para agregar o cambiar algo se edita este archivo y se pushea.",
-  "actualizado": "2026-08-28",
+  "actualizado": "2026-08-30",
   "grupos": [
     {
       "titulo": "Aplicaciones",
@@ -72,7 +72,7 @@
             "Windows",
             "Hosts"
           ],
-          "img": "img/focus.jpg?v=1787991037"
+          "img": "img/focus.jpg?v=1788114310"
         },
         {
           "nombre": "Flash",
@@ -85,7 +85,7 @@
             "Portable",
             "Single file"
           ],
-          "img": "img/flash.jpg?v=1787991037"
+          "img": "img/flash.jpg?v=1788114310"
         },
         {
           "nombre": "DevAtlas",
@@ -98,7 +98,7 @@
             "SQLite",
             "React + Vite"
           ],
-          "img": "img/devatlas.jpg?v=1787991037"
+          "img": "img/devatlas.jpg?v=1788114310"
         },
         {
           "nombre": "Azarium",
@@ -146,11 +146,11 @@
             "Offline",
             "Sin backend"
           ],
-          "img": "img/paid.jpg?v=1787991037",
+          "img": "img/paid.jpg?v=1788114310",
           "imgs": [
-            "img/paid.jpg?v=1787991037",
-            "img/paid-2.jpg?v=1787991037",
-            "img/paid-3.jpg?v=1787991037"
+            "img/paid.jpg?v=1788114310",
+            "img/paid-2.jpg?v=1788114310",
+            "img/paid-3.jpg?v=1788114310"
           ],
           "url": "https://fnguerrero.github.io/paid/"
         }
@@ -160,6 +160,26 @@
       "titulo": "Juegos",
       "verbo": "Jugar",
       "items": [
+        {
+          "nombre": "Los juegos de Valen",
+          "sigla": "JV",
+          "color": "#4A63D8",
+          "tag": "Seis juegos para 2 a 4 años",
+          "que": "Hecho para mi sobrino: seis juegos táctiles sin una sola palabra que haya que leer y sin forma de perder. Explotar globos, tocar animales que suenan y dicen su nombre, un piano de colores, pintar con el dedo, un memotest de tres pares y atrapar frutas con una cesta. Los sonidos de los animales están sintetizados con osciladores, así que no hay ni un archivo de audio.",
+          "chips": [
+            "Canvas",
+            "WebAudio",
+            "Sin dependencias"
+          ],
+          "url": "https://fnguerrero.github.io/juegos-valentin/",
+          "repo": "https://github.com/fnguerrero/juegos-valentin",
+          "img": "img/los-juegos-de-valen.jpg?v=1788114310",
+          "imgs": [
+            "img/los-juegos-de-valen.jpg?v=1788114310",
+            "img/los-juegos-de-valen-2.jpg?v=1788114310",
+            "img/los-juegos-de-valen-3.jpg?v=1788114310"
+          ]
+        },
         {
           "nombre": "SIMA-7",
           "sigla": "S7",
@@ -347,7 +367,7 @@
             "scrcpy",
             "PowerShell"
           ],
-          "img": "img/celconnect.jpg?v=1787991037"
+          "img": "img/celconnect.jpg?v=1788114310"
         }
       ]
     }
