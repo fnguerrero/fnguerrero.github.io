@@ -124,6 +124,9 @@ h1{font-family:var(--fm);font-weight:500;font-size:clamp(1.2rem,3vw,1.75rem);
   white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .carta .pie i{grid-column:1;font-style:normal;font-size:10px;color:var(--comentario);
   line-height:1.3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+/* Abajo a la derecha, en la fila de la bajada: hace cuanto se toco el proyecto. */
+.carta .pie .tocado{grid-column:2;grid-row:2;align-self:center;
+  font-size:10px;color:var(--comentario);white-space:nowrap;font-variant-numeric:tabular-nums}
 .carta .pie .luz{grid-column:2;grid-row:1;width:7px;height:7px;border-radius:2px;
   background:var(--off);flex:none;transition:background .3s;align-self:center}
 .carta .pie .luz.viva{background:var(--on);
@@ -172,7 +175,9 @@ dialog::backdrop{background:rgba(6,10,14,.7);backdrop-filter:blur(3px)}
 
 /* ---------- pie ---------- */
 .foot{margin:40px 0 56px;padding-top:18px;border-top:1px solid var(--rule);overflow-x:auto}
-.stack{font-size:11px;color:var(--comentario);margin:0;white-space:nowrap}
+/* Sin nowrap: en pantallas chicas la lista no entra en una linea y se cortaba a la
+   mitad. Que baje de renglon. */
+.stack{font-size:11px;color:var(--comentario);margin:0;line-height:1.9}
 .nota{font-size:11px;color:var(--ink-faint);line-height:1.8;margin:0;white-space:normal}
 .nota b{color:var(--ink-soft);font-weight:500}
 .nota .viejo{color:var(--cadena)}
@@ -181,6 +186,17 @@ dialog::backdrop{background:rgba(6,10,14,.7);backdrop-filter:blur(3px)}
 @media (max-width:640px){
   .wrap{padding:0 18px}
   .pista{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px 10px}
+}
+
+/* En el telefono, una sola columna.
+   Las portadas son capturas de pantallas de escritorio: a dos columnas quedan de 170 px
+   y no se lee nada, que es justo lo que la portada tenia que resolver. A una columna se
+   ven, y de paso entran los nombres largos sin cortarse con puntos suspensivos. */
+@media (max-width:520px){
+  .pista{grid-template-columns:1fr;gap:16px}
+  .carta .pie{height:auto;row-gap:2px;padding-bottom:2px}
+  .carta .pie b{white-space:normal;font-size:.95rem}
+  .carta .pie i{white-space:normal;font-size:11px}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 
@@ -345,4 +361,24 @@ dialog::backdrop{background:rgba(6,10,14,.7);backdrop-filter:blur(3px)}
 
 @media (max-width:640px){
   .temas{top:10px;right:10px}
+}
+
+/* ---------- buscador ---------- */
+
+/* Aparece solo cuando hay muchas tarjetas (lo decide taller.js). Filtra mientras se
+   escribe, sin boton: la tecla / lo enfoca y Escape lo limpia. */
+.buscar{display:flex;align-items:center;gap:10px;margin:0 0 18px;padding:0 2px}
+.buscar input{
+  flex:1;max-width:340px;padding:7px 12px;border-radius:8px;
+  background:color-mix(in srgb,var(--ink) 5%,transparent);
+  border:1px solid color-mix(in srgb,var(--ink) 14%,transparent);
+  color:var(--ink);font:inherit;font-size:.85rem;
+  transition:border-color .15s,background .15s}
+.buscar input::placeholder{color:var(--comentario)}
+.buscar input:focus{outline:none;border-color:var(--accent);
+  background:color-mix(in srgb,var(--ink) 8%,transparent)}
+.cuenta-busqueda{font-size:11px;color:var(--comentario);font-variant-numeric:tabular-nums}
+
+@media (max-width:520px){
+  .buscar input{max-width:none}
 }

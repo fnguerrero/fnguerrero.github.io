@@ -24,7 +24,8 @@
             "img/deficit-2.jpg?v=1787954410",
             "img/deficit-3.jpg?v=1787954410",
             "img/deficit-4.jpg?v=1787954410"
-          ]
+          ],
+          "tocado": "2026-08-31"
         },
         {
           "nombre": "Álbum Panini 2026",
@@ -43,7 +44,8 @@
           "imgs": [
             "img/album-panini-2026.jpg?v=1787954411",
             "img/album-panini-2026-2.jpg?v=1787954411"
-          ]
+          ],
+          "tocado": "2026-08-26"
         },
         {
           "nombre": "Multimarket",
@@ -60,7 +62,8 @@
           "imgs": [
             "img/multimarket.jpg?v=1787949962",
             "img/multimarket-2.jpg?v=1787949963"
-          ]
+          ],
+          "tocado": "2026-08-28"
         },
         {
           "nombre": "Focus",
@@ -72,7 +75,8 @@
             "Windows",
             "Hosts"
           ],
-          "img": "img/focus.jpg?v=1788228250"
+          "img": "img/focus.jpg?v=1788228250",
+          "tocado": "2026-08-31"
         },
         {
           "nombre": "Flash",
@@ -85,7 +89,8 @@
             "Portable",
             "Single file"
           ],
-          "img": "img/flash.jpg?v=1788228250"
+          "img": "img/flash.jpg?v=1788228250",
+          "tocado": "2026-08-26"
         },
         {
           "nombre": "DevAtlas",
@@ -98,7 +103,8 @@
             "SQLite",
             "React + Vite"
           ],
-          "img": "img/devatlas.jpg?v=1788228250"
+          "img": "img/devatlas.jpg?v=1788228250",
+          "tocado": "2026-08-26"
         },
         {
           "nombre": "Azarium",
@@ -116,7 +122,8 @@
           "imgs": [
             "img/azarium.jpg?v=1787954411",
             "img/azarium-2.jpg?v=1787954411"
-          ]
+          ],
+          "tocado": "2026-08-26"
         },
         {
           "nombre": "Figumatch",
@@ -133,7 +140,8 @@
           "imgs": [
             "img/figumatch.jpg?v=1787953808",
             "img/figumatch-2.jpg?v=1787951500"
-          ]
+          ],
+          "tocado": "2026-08-26"
         },
         {
           "nombre": "Paid",
@@ -152,7 +160,8 @@
             "img/paid-2.jpg?v=1788228250",
             "img/paid-3.jpg?v=1788228250"
           ],
-          "url": "https://fnguerrero.github.io/paid/"
+          "url": "https://fnguerrero.github.io/paid/",
+          "tocado": "2026-08-29"
         }
       ]
     },
@@ -178,7 +187,8 @@
             "img/los-juegos-de-valen.jpg?v=1788228250",
             "img/los-juegos-de-valen-2.jpg?v=1788228250",
             "img/los-juegos-de-valen-3.jpg?v=1788228250"
-          ]
+          ],
+          "tocado": "2026-08-30"
         },
         {
           "nombre": "SIMA-7",
@@ -197,7 +207,8 @@
             "img/sima-7.jpg?v=1787954411",
             "img/sima-7-2.jpg?v=1787954411",
             "img/sima-7-3.jpg?v=1787954411"
-          ]
+          ],
+          "tocado": "2026-08-31"
         },
         {
           "nombre": "NIMBO",
@@ -217,7 +228,8 @@
             "img/nimbo.jpg?v=1787954411",
             "img/nimbo-2.jpg?v=1787954411",
             "img/nimbo-3.jpg?v=1787954411"
-          ]
+          ],
+          "tocado": "2026-08-31"
         },
         {
           "nombre": "Kermés",
@@ -237,7 +249,8 @@
             "img/kermes.jpg?v=1787954411",
             "img/kermes-2.jpg?v=1787954411",
             "img/kermes-3.jpg?v=1787954412"
-          ]
+          ],
+          "tocado": "2026-08-31"
         },
         {
           "nombre": "El segundo de más",
@@ -277,7 +290,8 @@
             "img/dragon-ball-el-ki-de-paozu.jpg?v=1787954412",
             "img/dragon-ball-el-ki-de-paozu-2.jpg?v=1787954412",
             "img/dragon-ball-el-ki-de-paozu-3.jpg?v=1787954412"
-          ]
+          ],
+          "tocado": "2026-08-31"
         },
         {
           "nombre": "Vía Combusta",
@@ -292,7 +306,8 @@
           ],
           "url": "https://fnguerrero.github.io/via-combusta/",
           "repo": "https://github.com/fnguerrero/via-combusta",
-          "img": "img/via-combusta.jpg?v=1787954412"
+          "img": "img/via-combusta.jpg?v=1787954412",
+          "tocado": "2026-08-27"
         },
         {
           "nombre": "TETRIS",
@@ -312,7 +327,8 @@
             "img/tetris.jpg?v=1787954412",
             "img/tetris-2.jpg?v=1787954412",
             "img/tetris-3.jpg?v=1787954412"
-          ]
+          ],
+          "tocado": "2026-08-31"
         },
         {
           "nombre": "Pac-Man",
@@ -332,7 +348,8 @@
             "img/pac-man.jpg?v=1787954412",
             "img/pac-man-2.jpg?v=1787954412",
             "img/pac-man-3.jpg?v=1787954413"
-          ]
+          ],
+          "tocado": "2026-08-27"
         }
       ]
     },
@@ -356,7 +373,8 @@
           "imgs": [
             "img/visor-nonstop.jpg?v=1787954413",
             "img/visor-nonstop-2.jpg?v=1787954413"
-          ]
+          ],
+          "tocado": "2026-08-26"
         },
         {
           "nombre": "CelConnect",

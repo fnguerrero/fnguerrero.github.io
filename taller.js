@@ -47,6 +47,24 @@ var Taller = (function () {
     return null;
   }
 
+  /* "hace 3 dias" a partir de la fecha del ultimo commit.
+
+     Se muestra en la tarjeta porque distingue de un vistazo lo que esta vivo de lo que
+     quedo congelado, que mirando una grilla de portadas no se nota. */
+  function haceCuanto(iso) {
+    if (!iso) return null;
+    var cuando = new Date(iso + "T12:00:00");
+    if (isNaN(cuando)) return null;
+    var dias = Math.floor((Date.now() - cuando) / 86400000);
+    if (dias <= 0) return "hoy";
+    if (dias === 1) return "ayer";
+    if (dias < 30) return "hace " + dias + " días";
+    var meses = Math.round(dias / 30.44);
+    if (meses < 12) return "hace " + meses + (meses === 1 ? " mes" : " meses");
+    var anios = Math.round(dias / 365.25);
+    return "hace " + anios + (anios === 1 ? " año" : " años");
+  }
+
   function imagenes(p) {
     var lista = [];
     if (p.imgs && p.imgs.length) lista = p.imgs.slice();
@@ -199,6 +217,14 @@ var Taller = (function () {
       pie.appendChild(luz);
     }
 
+    var cuando = haceCuanto(p.tocado);
+    if (cuando) {
+      var t = el("time", "tocado", cuando);
+      t.dateTime = p.tocado;
+      t.title = "Último cambio: " + p.tocado;
+      pie.appendChild(t);
+    }
+
     b.appendChild(marco);
     b.appendChild(pie);
     b.addEventListener("click", function () { ficha(p, verbo); });
@@ -232,10 +258,68 @@ var Taller = (function () {
     return sec;
   }
 
+  // Las secciones dibujadas, para que el buscador pueda esconder y volver a mostrar sin
+  // repintar nada.
+  var secciones = [];
+
+  /* Todo el texto por el que se puede encontrar un proyecto. */
+  function buscable(p) {
+    return [p.nombre, p.tag, p.que].concat(p.chips || []).join(" ").toLowerCase();
+  }
+
+  function filtrar(texto) {
+    var q = (texto || "").trim().toLowerCase();
+    var total = 0;
+    secciones.forEach(function (s) {
+      var visibles = 0;
+      s.cartas.forEach(function (carta, i) {
+        var entra = !q || buscable(s.items[i]).indexOf(q) !== -1;
+        carta.style.display = entra ? "" : "none";
+        if (entra) visibles++;
+      });
+      s.sec.style.display = visibles ? "" : "none";
+      s.contador.textContent = visibles;
+      total += visibles;
+    });
+    return total;
+  }
+
+  /* El buscador. Se arma solo, para no repetir el markup en las dos paginas. */
+  function armarBuscador() {
+    var caja = el("div", "buscar");
+    var input = document.createElement("input");
+    input.type = "search";
+    input.placeholder = "Buscar…";
+    input.setAttribute("aria-label", "Buscar entre los proyectos");
+    var cuenta = el("span", "cuenta-busqueda", "");
+
+    input.addEventListener("input", function () {
+      var n = filtrar(input.value);
+      cuenta.textContent = input.value.trim()
+        ? (n === 0 ? "nada" : n === 1 ? "1 resultado" : n + " resultados")
+        : "";
+    });
+    input.addEventListener("keydown", function (ev) {
+      if (ev.key === "Escape") { input.value = ""; filtrar(""); cuenta.textContent = ""; }
+    });
+
+    // Barra inclinada para buscar, como en cualquier lado. Enter no hace falta: filtra
+    // mientras se escribe.
+    document.addEventListener("keydown", function (ev) {
+      var enUnCampo = /^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement.tagName);
+      if (ev.key === "/" && !enUnCampo) { ev.preventDefault(); input.focus(); }
+    });
+
+    caja.appendChild(input);
+    caja.appendChild(cuenta);
+    return caja;
+  }
+
   function filas(cont, grupos, opciones) {
     opciones = opciones || {};
     if (opciones.base) base = opciones.base;
     cont.textContent = "";
+    secciones = [];
 
     var conLuz = [];
 
@@ -245,13 +329,20 @@ var Taller = (function () {
       if (!items.length) return;
       var sec = fila(g.titulo, items, g.verbo);
       cont.appendChild(sec);
+      secciones.push({sec: sec, items: items, cartas: sec.cartas,
+                      contador: sec.rotuloContador});
       sec.cartas.forEach(function (c, i) {
         if (c.luz) conLuz.push({puerto: items[i].puerto, luz: c.luz});
       });
     });
 
+    // Con pocas tarjetas se encuentra todo con el ojo; el buscador recien suma cuando la
+    // lista no entra de un vistazo.
+    var cuantos = secciones.reduce(function (n, s) { return n + s.cartas.length; }, 0);
+    if (cuantos >= 10) cont.insertBefore(armarBuscador(), cont.firstChild);
+
     return conLuz;
   }
 
-  return {filas: filas, ficha: ficha, linkSeguro: linkSeguro};
+  return {filas: filas, ficha: ficha, filtrar: filtrar, linkSeguro: linkSeguro};
 })();
