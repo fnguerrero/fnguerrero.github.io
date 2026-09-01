@@ -72,7 +72,7 @@
             "Windows",
             "Hosts"
           ],
-          "img": "img/focus.jpg?v=1788120769"
+          "img": "img/focus.jpg?v=1788228250"
         },
         {
           "nombre": "Flash",
@@ -85,7 +85,7 @@
             "Portable",
             "Single file"
           ],
-          "img": "img/flash.jpg?v=1788120769"
+          "img": "img/flash.jpg?v=1788228250"
         },
         {
           "nombre": "DevAtlas",
@@ -98,7 +98,7 @@
             "SQLite",
             "React + Vite"
           ],
-          "img": "img/devatlas.jpg?v=1788120769"
+          "img": "img/devatlas.jpg?v=1788228250"
         },
         {
           "nombre": "Azarium",
@@ -146,11 +146,11 @@
             "Offline",
             "Sin backend"
           ],
-          "img": "img/paid.jpg?v=1788120770",
+          "img": "img/paid.jpg?v=1788228250",
           "imgs": [
-            "img/paid.jpg?v=1788120770",
-            "img/paid-2.jpg?v=1788120770",
-            "img/paid-3.jpg?v=1788120770"
+            "img/paid.jpg?v=1788228250",
+            "img/paid-2.jpg?v=1788228250",
+            "img/paid-3.jpg?v=1788228250"
           ],
           "url": "https://fnguerrero.github.io/paid/"
         }
@@ -173,11 +173,11 @@
           ],
           "url": "https://fnguerrero.github.io/juegos-valentin/",
           "repo": "https://github.com/fnguerrero/juegos-valentin",
-          "img": "img/los-juegos-de-valen.jpg?v=1788120770",
+          "img": "img/los-juegos-de-valen.jpg?v=1788228250",
           "imgs": [
-            "img/los-juegos-de-valen.jpg?v=1788120770",
-            "img/los-juegos-de-valen-2.jpg?v=1788120770",
-            "img/los-juegos-de-valen-3.jpg?v=1788120770"
+            "img/los-juegos-de-valen.jpg?v=1788228250",
+            "img/los-juegos-de-valen-2.jpg?v=1788228250",
+            "img/los-juegos-de-valen-3.jpg?v=1788228250"
           ]
         },
         {
@@ -240,22 +240,23 @@
           ]
         },
         {
-          "nombre": "Duermevela",
-          "sigla": "Du",
+          "nombre": "El segundo de más",
+          "sigla": "Sm",
           "color": "#3B3E7A",
-          "tag": "Otra noche de Bel",
-          "que": "Continúa la historia de Bel, la de Kermés, entre arcanos y figuras. En desarrollo.",
+          "tag": "Un sueño de Bel, con tarot",
+          "que": "Jugás un arcano y eso transforma lo que tenés delante: esa cosa nueva es donde estás ahora. Mientras las piezas vuelan hay un instante para mirar, y lo que llegues a ver decide cómo termina. Continúa la historia de Bel, la de Kermés. En desarrollo.",
           "chips": [
             "Canvas",
-            "HTML + JS puro"
+            "HTML + JS puro",
+            "Audio sintetizado"
           ],
-          "url": "https://fnguerrero.github.io/duermevela/",
-          "repo": "https://github.com/fnguerrero/duermevela",
-          "img": "img/duermevela.jpg?v=1787954412",
+          "url": "https://fnguerrero.github.io/el-segundo-de-mas/",
+          "repo": "https://github.com/fnguerrero/el-segundo-de-mas",
+          "img": "img/el-segundo-de-mas.jpg?v=1788136399",
           "imgs": [
-            "img/duermevela.jpg?v=1787954412",
-            "img/duermevela-2.jpg?v=1787954412",
-            "img/duermevela-3.jpg?v=1787954412"
+            "img/el-segundo-de-mas.jpg?v=1788136399",
+            "img/el-segundo-de-mas-2.jpg?v=1788135111",
+            "img/el-segundo-de-mas-3.jpg?v=1788135111"
           ]
         },
         {
@@ -367,7 +368,7 @@
             "scrcpy",
             "PowerShell"
           ],
-          "img": "img/celconnect.jpg?v=1788120770"
+          "img": "img/celconnect.jpg?v=1788228250"
         }
       ]
     }
