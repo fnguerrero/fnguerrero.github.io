@@ -40,39 +40,6 @@ PANTALLAS = {
             ("Docs internas", "Astro · docs", "local", GRIS),
         ],
     },
-    "DevDesk": {
-        "seccion": "Servicios",
-        "titulo": "Lo que está levantado",
-        "columnas": ("SERVICIO", "DÓNDE", "ESTADO"),
-        "filas": [
-            ("API de facturación", ":5178 · dotnet watch", "arriba", VERDE),
-            ("Base de datos", "postgres · :5432", "arriba", VERDE),
-            ("Worker de colas", "rabbit · consumidor", "caído", ROJO),
-            ("Front del portal", ":5173 · vite", "arriba", VERDE),
-        ],
-    },
-    "Chequeo de Horas": {
-        "seccion": "Semana",
-        "titulo": "Horas cargadas",
-        "columnas": ("DÍA", "CARGADO", "CONTRA LO ESPERADO"),
-        "filas": [
-            ("lunes 24", "8:00 de 8:00", "completo", VERDE),
-            ("martes 25", "6:30 de 8:00", "faltan 1:30", AMBAR),
-            ("miércoles 26", "8:00 de 8:00", "completo", VERDE),
-            ("jueves 27", "0:00 de 8:00", "sin cargar", ROJO),
-        ],
-    },
-    "Security Dashboard": {
-        "seccion": "ASVS",
-        "titulo": "Controles contra la API",
-        "columnas": ("CONTROL", "REQUEST", "RESULTADO"),
-        "filas": [
-            ("V2.1.1 · largo de clave", "POST /auth/login", "pasa", VERDE),
-            ("V3.3.1 · vence la sesión", "GET /yo", "pasa", VERDE),
-            ("V5.3.4 · inyección SQL", "GET /clientes?q=", "falla", ROJO),
-            ("V7.1.1 · logs sin secretos", "manual", "revisar", AMBAR),
-        ],
-    },
 }
 
 
