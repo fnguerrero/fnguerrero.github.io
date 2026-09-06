@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sitios web · Nico Guerrero</title>
+<meta name="description" content="Cinco sitios de muestra: café, estudio contable, gimnasio, inmobiliaria y marca de producto. Diseño y desarrollo web.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --papel:#F7F6F3; --blanco:#fff; --tinta:#15171A; --gris:#6E727A;
+    --linea:#E3E2DD; --acento:#1B4F8C;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--papel);color:var(--tinta);
+       font:400 16.5px/1.65 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  img{max-width:100%;display:block}
+  a{color:inherit}
+  .wrap{max-width:1200px;margin:0 auto;padding:0 32px}
+  .serif{font-family:"Instrument Serif",Georgia,serif;font-weight:400;letter-spacing:-.01em}
+
+  header{padding:64px 0 60px}
+  .volver{display:inline-flex;align-items:center;gap:8px;font-size:14px;color:var(--gris);
+          text-decoration:none;margin-bottom:44px;transition:color .2s}
+  .volver:hover{color:var(--acento)}
+  .kicker{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--acento);
+          display:flex;align-items:center;gap:13px;margin-bottom:24px}
+  .kicker::before{content:"";width:32px;height:1px;background:var(--acento)}
+  h1{font-size:clamp(42px,6vw,72px);line-height:1.05;max-width:17ch}
+  h1 em{font-style:italic;color:var(--acento)}
+  header p{color:var(--gris);font-size:19px;max-width:60ch;margin-top:26px;font-weight:300}
+  .nota{margin-top:34px;padding:16px 20px;background:var(--blanco);border:1px solid var(--linea);
+        border-radius:5px;font-size:14.5px;color:var(--gris);max-width:66ch}
+  .nota b{color:var(--tinta);font-weight:500}
+
+  .lista{padding-bottom:40px}
+  .sitio{display:grid;grid-template-columns:1fr 1fr;gap:0;background:var(--blanco);
+         border:1px solid var(--linea);border-radius:8px;overflow:hidden;margin-bottom:32px;
+         transition:box-shadow .35s,transform .35s}
+  .sitio:hover{box-shadow:0 20px 50px rgba(21,23,26,.09);transform:translateY(-3px)}
+  .sitio:nth-child(even) .captura{order:2}
+  .captura{position:relative;background:#EDECE8;overflow:hidden;min-height:330px}
+  .captura img{width:100%;height:100%;object-fit:cover;object-position:top center;
+               transition:transform 4s ease}
+  .sitio:hover .captura img{transform:translateY(-8%)}
+  .captura .marco{position:absolute;inset:0;box-shadow:inset 0 0 0 1px rgba(21,23,26,.07)}
+  .texto{padding:46px 48px;display:flex;flex-direction:column;justify-content:center}
+  .rubro{font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--acento);margin-bottom:16px}
+  .sitio h2{font-size:33px;line-height:1.15;margin-bottom:14px}
+  .sitio > .texto > p{color:var(--gris);font-size:16px;font-weight:300}
+  .tags{display:flex;flex-wrap:wrap;gap:8px;margin:26px 0 30px}
+  .tag{font-size:12.5px;color:var(--gris);border:1px solid var(--linea);border-radius:100px;padding:5px 13px}
+  .acciones{display:flex;gap:12px;flex-wrap:wrap}
+  .btn{display:inline-block;background:var(--tinta);color:#fff;text-decoration:none;
+       padding:13px 24px;border-radius:4px;font-size:14.5px;font-weight:500;transition:background .25s}
+  .btn:hover{background:var(--acento)}
+  .btn.hueca{background:transparent;color:var(--tinta);border:1px solid var(--linea)}
+  .btn.hueca:hover{background:var(--papel);border-color:var(--tinta)}
+
+  .cierre{background:var(--tinta);color:#fff;border-radius:8px;padding:72px 60px;margin:32px 0 90px;
+          display:grid;grid-template-columns:1.1fr .9fr;gap:64px;align-items:center}
+  .cierre h2{font-size:clamp(30px,4vw,44px);line-height:1.1;margin-bottom:18px}
+  .cierre p{color:rgba(255,255,255,.68);font-weight:300;font-size:17.5px}
+  .cierre .btn{background:#fff;color:var(--tinta)}
+  .cierre .btn:hover{background:rgba(255,255,255,.86)}
+  .incluye{list-style:none;font-size:15.5px}
+  .incluye li{padding:13px 0;border-bottom:1px solid rgba(255,255,255,.14);
+              display:flex;gap:13px;color:rgba(255,255,255,.88)}
+  .incluye li::before{content:"→";color:#7FA9DC;flex:none}
+  .incluye li:last-child{border-bottom:0}
+
+  footer{padding:34px 0 60px;border-top:1px solid var(--linea);font-size:13.5px;color:var(--gris);
+         display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+
+  .js .rev{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+  .js .rev.on{opacity:1;transform:none}
+
+  @media(max-width:900px){
+    .sitio{grid-template-columns:1fr}
+    .sitio:nth-child(even) .captura{order:0}
+    .captura{aspect-ratio:16/10;min-height:0}
+    .texto{padding:34px 30px 38px}
+    .cierre{grid-template-columns:1fr;gap:40px;padding:48px 32px}
+    header{padding:64px 0 48px}
+  }
+</style>
+<script>document.documentElement.className="js"</script>
+</head>
+<body>
+
+<div class="wrap">
+  <header>
+    <a class="volver" href="../">← El taller de Nico</a>
+    <p class="kicker">Diseño y desarrollo web</p>
+    <h1 class="serif">Cinco sitios, cinco <em>maneras</em> de resolverlo</h1>
+    <p>Cada uno está pensado para un rubro distinto y resuelto con un lenguaje visual propio. No son plantillas con el color cambiado: cambian la tipografía, la estructura, el ritmo y lo que el visitante tiene que poder hacer.</p>
+    <p class="nota"><b>Son demos.</b> Los nombres, textos, precios y datos de contacto son inventados. Los formularios validan y responden, pero no envían nada — en un sitio real llegan a tu casilla o a WhatsApp.</p>
+  </header>
+
+  <div class="lista">
+
+    <article class="sitio rev">
+      <div class="captura"><img src="../img/sitio-cafe.jpg" alt="Sitio del café Origen"><div class="marco"></div></div>
+      <div class="texto">
+        <p class="rubro">Gastronomía</p>
+        <h2 class="serif">Origen · Café de especialidad</h2>
+        <p>Foto grande, carta legible sin hacer scroll infinito y una reserva que se completa en cuatro campos. Lo que un café necesita que la gente haga: ver el menú y sentarse.</p>
+        <div class="tags">
+          <span class="tag">Cálido y editorial</span><span class="tag">Carta con precios</span>
+          <span class="tag">Reserva de mesa</span><span class="tag">Galería</span>
+        </div>
+        <div class="acciones"><a class="btn" href="cafe/">Ver el sitio</a></div>
+      </div>
+    </article>
+
+    <article class="sitio rev">
+      <div class="captura"><img src="../img/sitio-estudio.jpg" alt="Sitio del estudio contable"><div class="marco"></div></div>
+      <div class="texto">
+        <p class="rubro">Servicios profesionales</p>
+        <h2 class="serif">Vidal &amp; Asociados · Estudio contable</h2>
+        <p>Acá el trabajo del diseño es generar confianza. Mucho aire, grilla firme, cifras que respaldan y las preguntas incómodas contestadas antes de que las haga.</p>
+        <div class="tags">
+          <span class="tag">Sobrio e institucional</span><span class="tag">Preguntas frecuentes</span>
+          <span class="tag">Equipo</span><span class="tag">Formulario de consulta</span>
+        </div>
+        <div class="acciones"><a class="btn" href="estudio/">Ver el sitio</a></div>
+      </div>
+    </article>
+
+    <article class="sitio rev">
+      <div class="captura"><img src="../img/sitio-gimnasio.jpg" alt="Sitio del gimnasio Vértice"><div class="marco"></div></div>
+      <div class="texto">
+        <p class="rubro">Fitness</p>
+        <h2 class="serif">VÉRTICE · Entrenamiento funcional</h2>
+        <p>Alto contraste, tipografía pesada y una sola cosa para hacer: reservar la clase gratis. Los planes se comparan de un vistazo y el precio no está escondido.</p>
+        <div class="tags">
+          <span class="tag">Oscuro y enérgico</span><span class="tag">Tabla de planes</span>
+          <span class="tag">Horarios</span><span class="tag">Reserva de clase</span>
+        </div>
+        <div class="acciones"><a class="btn" href="gimnasio/">Ver el sitio</a></div>
+      </div>
+    </article>
+
+    <article class="sitio rev">
+      <div class="captura"><img src="../img/sitio-inmobiliaria.jpg" alt="Sitio de la inmobiliaria"><div class="marco"></div></div>
+      <div class="texto">
+        <p class="rubro">Inmobiliaria</p>
+        <h2 class="serif">Norte Propiedades · Zona norte</h2>
+        <p>El más parecido a una aplicación: doce propiedades con buscador por operación, zona, dormitorios y precio, orden por valor o superficie, y ficha ampliada. Los filtros funcionan de verdad.</p>
+        <div class="tags">
+          <span class="tag">Catálogo filtrable</span><span class="tag">Orden dinámico</span>
+          <span class="tag">Ficha en ventana</span><span class="tag">Pedido de tasación</span>
+        </div>
+        <div class="acciones"><a class="btn" href="inmobiliaria/">Ver el sitio</a></div>
+      </div>
+    </article>
+
+    <article class="sitio rev">
+      <div class="captura"><img src="../img/sitio-producto.jpg" alt="Landing del producto NODO"><div class="marco"></div></div>
+      <div class="texto">
+        <p class="rubro">Producto / e-commerce</p>
+        <h2 class="serif">NODO One · Auriculares</h2>
+        <p>Una sola página que cuenta un producto de arriba a abajo. El selector de color cambia la foto y tiñe el sitio entero, y la ficha técnica está completa para el que quiere el detalle.</p>
+        <div class="tags">
+          <span class="tag">Landing de una página</span><span class="tag">Selector de color</span>
+          <span class="tag">Ficha técnica</span><span class="tag">Reserva</span>
+        </div>
+        <div class="acciones"><a class="btn" href="producto/">Ver el sitio</a></div>
+      </div>
+    </article>
+
+  </div>
+
+  <section class="cierre rev">
+    <div>
+      <h2 class="serif">¿Querés uno para lo tuyo?</h2>
+      <p>Arrancamos con una charla de media hora para entender qué tiene que lograr el sitio. De ahí sale una propuesta con alcance, plazo y precio cerrado.</p>
+      <div class="acciones" style="margin-top:28px">
+        <a class="btn" href="mailto:nass.ia9000@gmail.com?subject=Consulta%20por%20un%20sitio%20web">Escribime</a>
+      </div>
+    </div>
+    <ul class="incluye">
+      <li>Diseño propio, no una plantilla comprada</li>
+      <li>Anda igual en celular, tablet y computadora</li>
+      <li>Carga rápido: sin frameworks pesados de más</li>
+      <li>Formulario que llega a donde vos quieras</li>
+      <li>Textos y fotos, si no los tenés</li>
+      <li>Te lo dejo publicado y andando</li>
+    </ul>
+  </section>
+
+  <footer>
+    <span>© 2026 Nico Guerrero</span>
+    <span><a href="../" style="text-decoration:none">Volver al taller</a></span>
+  </footer>
+</div>
+
+<script>
+  const io = new IntersectionObserver(es => {
+    es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); } });
+  }, {threshold:.08});
+  document.querySelectorAll('.rev').forEach(el => io.observe(el));
+</script>
+</body>
+</html>

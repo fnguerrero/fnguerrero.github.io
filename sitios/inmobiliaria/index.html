@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Norte Propiedades · Venta y alquiler en zona norte</title>
+<meta name="description" content="Inmobiliaria en San Isidro, Vicente López y Martínez. Casas, departamentos y PH en venta y alquiler.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --papel:#FBFAF8; --blanco:#fff; --tinta:#17241F; --verde:#1F5F4E;
+    --cobre:#A8703C; --gris:#6C7671; --linea:#E4E3DE;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--papel);color:var(--tinta);
+       font:400 16px/1.6 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  img{max-width:100%;display:block}
+  a{color:inherit}
+  .wrap{max-width:1280px;margin:0 auto;padding:0 30px}
+  .serif{font-family:Newsreader,Georgia,serif;font-weight:300;letter-spacing:-.01em}
+
+  nav{position:sticky;top:0;z-index:60;background:rgba(251,250,248,.92);
+      backdrop-filter:blur(10px);border-bottom:1px solid var(--linea)}
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:76px}
+  .marca{display:flex;align-items:center;gap:11px;font:500 19px Inter;letter-spacing:-.01em}
+  .marca .rombo{width:22px;height:22px;background:var(--verde);transform:rotate(45deg);
+                position:relative;flex:none}
+  .marca .rombo::after{content:"";position:absolute;inset:6px;background:var(--papel)}
+  .links{display:flex;gap:30px;font-size:15px}
+  .links a{text-decoration:none;color:var(--gris);transition:color .2s}
+  .links a:hover{color:var(--verde)}
+  .btn{display:inline-block;background:var(--verde);color:#fff;text-decoration:none;border:0;
+       padding:12px 22px;border-radius:3px;font:500 14.5px Inter;cursor:pointer;transition:background .25s}
+  .btn:hover{background:#174A3D}
+  .btn.hueca{background:transparent;color:var(--verde);border:1px solid var(--linea)}
+  .btn.hueca:hover{background:#fff;border-color:var(--verde)}
+
+  header{position:relative;padding:96px 0 0}
+  .htexto{max-width:36ch}
+  .kicker{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--cobre);margin-bottom:20px}
+  h1{font-size:clamp(40px,5.4vw,64px);line-height:1.08;max-width:22ch}
+  h1 em{font-style:italic;color:var(--verde)}
+  header>.wrap>p{color:var(--gris);font-size:18px;margin-top:22px;max-width:50ch;font-weight:300}
+  .hfoto{margin-top:56px;height:44vh;min-height:300px;border-radius:6px;overflow:hidden}
+  .hfoto img{width:100%;height:100%;object-fit:cover}
+
+  /* buscador */
+  .buscador{background:var(--blanco);border:1px solid var(--linea);border-radius:6px;
+            padding:22px;margin-top:-46px;position:relative;z-index:5;
+            box-shadow:0 12px 40px rgba(23,36,31,.09);
+            display:grid;grid-template-columns:repeat(5,1fr) auto;gap:16px;align-items:end}
+  .campo label{display:block;font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;
+               color:var(--gris);margin-bottom:7px}
+  .campo select,.campo input{width:100%;border:0;border-bottom:1px solid var(--linea);
+    background:transparent;font:400 15.5px Inter,sans-serif;color:var(--tinta);padding:8px 0;
+    transition:border-color .2s}
+  .campo select:focus,.campo input:focus{outline:0;border-color:var(--verde)}
+
+  section{padding:88px 0}
+  .cabecera{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;
+            flex-wrap:wrap;margin-bottom:34px}
+  h2{font-size:clamp(28px,3.6vw,40px);line-height:1.15}
+  .conteo{font-size:14.5px;color:var(--gris)}
+  .conteo b{color:var(--verde);font-weight:600}
+  .orden{display:flex;align-items:center;gap:10px;font-size:14px;color:var(--gris)}
+  .orden select{border:1px solid var(--linea);border-radius:3px;background:#fff;
+                padding:9px 12px;font:400 14px Inter;color:var(--tinta)}
+
+  .grilla{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+  .prop{background:#fff;border:1px solid var(--linea);border-radius:6px;overflow:hidden;
+        cursor:pointer;transition:transform .3s,box-shadow .3s;display:flex;flex-direction:column}
+  .prop:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(23,36,31,.1)}
+  .foto{position:relative;aspect-ratio:4/3;overflow:hidden;background:#EDECE8}
+  .foto img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
+  .prop:hover .foto img{transform:scale(1.045)}
+  .chip{position:absolute;top:14px;left:14px;background:rgba(255,255,255,.94);
+        font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;padding:6px 11px;border-radius:2px;
+        font-weight:500}
+  .chip.alq{color:var(--cobre)}
+  .chip.ven{color:var(--verde)}
+  .cuerpo{padding:22px 22px 24px;display:flex;flex-direction:column;flex:1}
+  .barrio{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--gris);margin-bottom:9px}
+  .prop h3{font-family:Newsreader,serif;font-weight:400;font-size:22px;line-height:1.25;margin-bottom:8px}
+  .precio{font:600 20px Inter;color:var(--verde);margin:6px 0 16px;font-variant-numeric:tabular-nums}
+  .precio small{font-weight:400;font-size:13px;color:var(--gris);margin-left:5px}
+  .datos{display:flex;gap:18px;font-size:14px;color:var(--gris);padding-top:16px;
+         border-top:1px solid var(--linea);margin-top:auto}
+  .datos span{display:flex;align-items:center;gap:6px}
+  .vacio{grid-column:1/-1;text-align:center;padding:70px 20px;color:var(--gris);
+         border:1px dashed var(--linea);border-radius:6px}
+
+  /* modal */
+  .modal{position:fixed;inset:0;z-index:90;display:none;align-items:center;justify-content:center;padding:24px}
+  .modal.ver{display:flex}
+  .fondo{position:absolute;inset:0;background:rgba(23,36,31,.55);backdrop-filter:blur(3px)}
+  .caja{position:relative;background:#fff;border-radius:8px;max-width:880px;width:100%;
+        max-height:88vh;overflow:auto;animation:entra .35s ease}
+  @keyframes entra{from{opacity:0;transform:translateY(18px) scale(.98)}to{opacity:1;transform:none}}
+  .caja img{width:100%;aspect-ratio:16/9;object-fit:cover}
+  .caja .txt{padding:34px 38px 40px}
+  .cerrar{position:absolute;top:16px;right:16px;background:rgba(255,255,255,.94);border:0;
+          width:38px;height:38px;border-radius:50%;font-size:20px;cursor:pointer;line-height:1;color:var(--tinta)}
+  .caja h3{font-family:Newsreader,serif;font-weight:400;font-size:30px;margin:6px 0 10px}
+  .caja .precio{font-size:26px;margin:14px 0 22px}
+  .fichas{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--linea);
+          border:1px solid var(--linea);border-radius:4px;overflow:hidden;margin:24px 0 26px}
+  .ficha{background:#fff;padding:18px 16px}
+  .ficha b{display:block;font-size:19px;font-weight:600}
+  .ficha span{font-size:12px;color:var(--gris);letter-spacing:.08em;text-transform:uppercase}
+
+  /* contacto */
+  #contacto{background:var(--verde);color:#fff}
+  #contacto h2,#contacto .kicker{color:#fff}
+  #contacto .kicker{color:rgba(255,255,255,.6)}
+  .cgrid{display:grid;grid-template-columns:1.05fr .95fr;gap:70px;align-items:start;margin-top:44px}
+  #contacto p.sub{color:rgba(255,255,255,.7);font-size:18px;font-weight:300;max-width:48ch}
+  form{display:grid;gap:20px}
+  .fila{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  form label{display:block;font-size:12px;color:rgba(255,255,255,.6);margin-bottom:7px}
+  form input,form select,form textarea{width:100%;background:rgba(255,255,255,.08);
+    border:1px solid rgba(255,255,255,.16);border-radius:3px;color:#fff;
+    font:400 15.5px Inter,sans-serif;padding:12px 14px}
+  form input:focus,form select:focus,form textarea:focus{outline:0;border-color:rgba(255,255,255,.55)}
+  form select option{background:var(--verde)}
+  form textarea{resize:vertical;min-height:104px}
+  form button{background:#fff;color:var(--verde);justify-self:start;padding:14px 30px;border-radius:3px;
+              border:0;font:500 15px Inter;cursor:pointer}
+  .ok{background:rgba(255,255,255,.13);border-left:2px solid #fff;padding:18px 22px;
+      font-size:15.5px;display:none}
+  .ok.ver{display:block;animation:sube .45s ease}
+  @keyframes sube{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  .info div{margin-bottom:30px}
+  .info strong{display:block;font-size:12px;letter-spacing:.14em;text-transform:uppercase;
+               color:rgba(255,255,255,.55);font-weight:500;margin-bottom:7px}
+  .info p{color:rgba(255,255,255,.9);font-weight:300}
+
+  footer{padding:34px 0;font-size:13.5px;color:var(--gris);display:flex;
+         justify-content:space-between;gap:16px;flex-wrap:wrap;border-top:1px solid var(--linea)}
+
+  @media(max-width:1040px){
+    .buscador{grid-template-columns:1fr 1fr 1fr;margin-top:24px}
+    .grilla{grid-template-columns:1fr 1fr}
+  }
+  @media(max-width:760px){
+    .links{display:none}
+    .buscador{grid-template-columns:1fr}
+    .grilla{grid-template-columns:1fr}
+    .cgrid{grid-template-columns:1fr;gap:40px}
+    .fila,.fichas{grid-template-columns:1fr 1fr}
+    section{padding:60px 0}
+    .caja .txt{padding:26px 24px 32px}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="marca"><span class="rombo"></span> Norte Propiedades</div>
+    <div class="links">
+      <a href="#listado">Propiedades</a>
+      <a href="#contacto">Tasaciones</a>
+      <a href="#contacto">Contacto</a>
+    </div>
+    <a href="#contacto" class="btn">Tasar mi propiedad</a>
+  </div>
+</nav>
+
+<header>
+  <div class="wrap">
+    <p class="kicker">San Isidro · Vicente López · Martínez</p>
+    <h1 class="serif">Cuarenta años <em>en las mismas</em> ocho cuadras</h1>
+    <p>Vendemos y alquilamos en zona norte desde 1986. Conocemos las casas antes de que salgan a la venta, porque casi siempre ya las vendimos una vez.</p>
+    <div class="hfoto">
+      <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=1800&q=80" alt="Casa en zona norte">
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="buscador">
+    <div class="campo"><label for="fop">Operación</label>
+      <select id="fop"><option value="">Todas</option><option>Venta</option><option>Alquiler</option></select></div>
+    <div class="campo"><label for="ftipo">Tipo</label>
+      <select id="ftipo"><option value="">Todos</option><option>Casa</option><option>Departamento</option><option>PH</option><option>Lote</option></select></div>
+    <div class="campo"><label for="fbarrio">Zona</label>
+      <select id="fbarrio"><option value="">Todas</option><option>San Isidro</option><option>Martínez</option><option>Vicente López</option><option>Olivos</option><option>Beccar</option></select></div>
+    <div class="campo"><label for="famb">Dormitorios</label>
+      <select id="famb"><option value="">Cualquiera</option><option value="1">1 o más</option><option value="2">2 o más</option><option value="3">3 o más</option><option value="4">4 o más</option></select></div>
+    <div class="campo"><label for="fmax">Precio máximo (USD)</label>
+      <input id="fmax" type="number" min="0" step="10000" placeholder="Sin tope"></div>
+    <button class="btn" id="limpiar" type="button">Limpiar</button>
+  </div>
+</div>
+
+<section id="listado">
+  <div class="wrap">
+    <div class="cabecera">
+      <div>
+        <h2 class="serif">Propiedades disponibles</h2>
+        <p class="conteo" id="conteo"></p>
+      </div>
+      <div class="orden">
+        <label for="ord">Ordenar por</label>
+        <select id="ord">
+          <option value="rec">Más recientes</option>
+          <option value="asc">Precio: menor a mayor</option>
+          <option value="desc">Precio: mayor a menor</option>
+          <option value="m2">Superficie</option>
+        </select>
+      </div>
+    </div>
+    <div class="grilla" id="grilla"></div>
+  </div>
+</section>
+
+<section id="contacto">
+  <div class="wrap">
+    <p class="kicker">Tasaciones</p>
+    <h2 class="serif">¿Cuánto vale tu propiedad hoy?</h2>
+    <p class="sub">La tasación es sin cargo y no te compromete a nada. Vamos, la vemos y te damos un rango con las tres operaciones comparables más cercanas.</p>
+    <div class="cgrid">
+      <form id="form" novalidate>
+        <div class="fila">
+          <div><label for="nom">Nombre</label><input id="nom" required></div>
+          <div><label for="tel">Teléfono</label><input id="tel" type="tel" required></div>
+        </div>
+        <div class="fila">
+          <div><label for="mail">Email</label><input id="mail" type="email" required></div>
+          <div><label for="ttipo">Tipo de propiedad</label>
+            <select id="ttipo"><option>Casa</option><option>Departamento</option><option>PH</option><option>Lote</option></select></div>
+        </div>
+        <div><label for="dir">Dirección aproximada</label><input id="dir" placeholder="Calle y altura, o entre qué calles"></div>
+        <div><label for="msj">Algo más que sirva</label><textarea id="msj" placeholder="Metros, año de construcción, si está alquilada…"></textarea></div>
+        <button type="submit">Pedir tasación</button>
+        <div class="ok" id="ok"></div>
+      </form>
+      <div class="info">
+        <div><strong>Oficina</strong><p>Av. del Libertador 15.320<br>San Isidro, Buenos Aires</p></div>
+        <div><strong>Teléfonos</strong><p>011 4747 3300<br>11 6060 2211 (WhatsApp)</p></div>
+        <div><strong>Email</strong><p>info@nortepropiedades.com.ar</p></div>
+        <div><strong>Atención</strong><p>Lunes a viernes de 9 a 18 h<br>Sábados de 10 a 13 h</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+  <footer>
+    <span>© 2026 Norte Propiedades · Mat. CUCICBA 4482</span>
+    <span>Instagram · WhatsApp · Trabajá con nosotros</span>
+  </footer>
+</div>
+
+<div class="modal" id="modal">
+  <div class="fondo" data-cerrar></div>
+  <div class="caja" id="caja"></div>
+</div>
+
+<script>
+const props = [
+  {id:1, op:'Venta', tipo:'Casa', barrio:'San Isidro', titulo:'Casa sobre lote propio con parque y pileta',
+   precio:485000, amb:4, ban:3, m2:280, coch:2, nueva:5,
+   img:'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=900&q=80',
+   txt:'Casa de dos plantas en el bajo de San Isidro, a seis cuadras de la estación. Living con hogar, comedor independiente y cocina con office. Arriba cuatro dormitorios, el principal en suite con vestidor. Parque de 400 m² con pileta y quincho cubierto.'},
+  {id:2, op:'Venta', tipo:'Departamento', barrio:'Vicente López', titulo:'Tres ambientes al frente con balcón corrido',
+   precio:198000, amb:2, ban:2, m2:96, coch:1, nueva:12,
+   img:'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=900&q=80',
+   txt:'Piso alto con vista abierta al río en un edificio de 2018. Living comedor con balcón corrido a todo el frente, dos dormitorios con placares, baño completo y toilette. Amenities: pileta, gimnasio y SUM. Cochera cubierta con baulera.'},
+  {id:3, op:'Alquiler', tipo:'Departamento', barrio:'Martínez', titulo:'Dos ambientes luminoso a estrenar',
+   precio:850, amb:1, ban:1, m2:52, coch:0, nueva:2,
+   img:'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=900&q=80',
+   txt:'Unidad a estrenar sobre calle tranquila, a tres cuadras de Panamericana. Living comedor integrado con cocina, dormitorio con placar empotrado y balcón al contrafrente. Apto profesional. Expensas aproximadas $95.000.'},
+  {id:4, op:'Venta', tipo:'PH', barrio:'Olivos', titulo:'PH reciclado con patio y terraza propia',
+   precio:265000, amb:3, ban:2, m2:134, coch:0, nueva:8,
+   img:'https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=900&q=80',
+   txt:'PH al fondo, sin expensas, reciclado a nuevo en 2023. Planta baja con living, cocina abierta y patio con parrilla. Arriba tres dormitorios y terraza con vista despejada. Instalación eléctrica y cañerías nuevas.'},
+  {id:5, op:'Venta', tipo:'Casa', barrio:'Beccar', titulo:'Casa estilo americano en zona residencial',
+   precio:395000, amb:3, ban:3, m2:210, coch:2, nueva:20,
+   img:'https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=900&q=80',
+   txt:'Sobre lote de 12 x 40 en el corazón de Beccar. Living con doble altura, escritorio independiente y galería vidriada. Tres dormitorios, dos baños completos más toilette de recepción. Jardín con riego automático.'},
+  {id:6, op:'Alquiler', tipo:'Casa', barrio:'San Isidro', titulo:'Casa en barrio cerrado, amoblada',
+   precio:2400, amb:4, ban:3, m2:245, coch:2, nueva:15,
+   img:'https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=900&q=80',
+   txt:'Alquiler temporario o anual dentro de barrio cerrado con seguridad 24 horas. Totalmente amoblada y equipada. Cuatro dormitorios, family room, parrilla y acceso a club house, canchas de tenis y pileta.'},
+  {id:7, op:'Venta', tipo:'Departamento', barrio:'Martínez', titulo:'Semipiso con dependencia y doble balcón',
+   precio:310000, amb:3, ban:2, m2:142, coch:1, nueva:30,
+   img:'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=900&q=80',
+   txt:'Semipiso en edificio de categoría sobre avenida arbolada. Recepción, living comedor de 42 m², tres dormitorios, dependencia de servicio con baño. Dos balcones, uno al frente y otro al contrafrente. Cochera fija.'},
+  {id:8, op:'Alquiler', tipo:'Departamento', barrio:'Vicente López', titulo:'Monoambiente con amenities completo',
+   precio:620, amb:1, ban:1, m2:38, coch:0, nueva:3,
+   img:'https://images.unsplash.com/photo-1567496898669-ee935f5f647a?w=900&q=80',
+   txt:'Monoambiente dividido, ideal para una persona o pareja. Cocina completa integrada, balcón francés y placar de piso a techo. El edificio tiene laundry, sala de coworking, gimnasio y solárium en el último piso.'},
+  {id:9, op:'Venta', tipo:'Lote', barrio:'Beccar', titulo:'Lote de 800 m² apto para construir',
+   precio:175000, amb:0, ban:0, m2:800, coch:0, nueva:25,
+   img:'https://images.unsplash.com/photo-1449844908441-8829872d2607?w=900&q=80',
+   txt:'Terreno esquina de 20 x 40 con todos los servicios en la puerta. FOT que permite hasta 480 m² cubiertos en dos plantas. Zona de casas bajas, a diez cuadras del centro de Beccar. Escritura al día.'},
+  {id:10, op:'Venta', tipo:'Departamento', barrio:'Olivos', titulo:'Cuatro ambientes con vista al río',
+   precio:420000, amb:3, ban:3, m2:165, coch:2, nueva:7,
+   img:'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=900&q=80',
+   txt:'Piso 14 con vista permanente al Río de la Plata. Living comedor con salida a balcón aterrazado de 18 m², cocina con isla, tres dormitorios en suite. Dos cocheras cubiertas. Amenities de categoría.'},
+  {id:11, op:'Alquiler', tipo:'PH', barrio:'Martínez', titulo:'PH al frente con jardín, apto mascotas',
+   precio:1100, amb:2, ban:1, m2:88, coch:1, nueva:10,
+   img:'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=900&q=80',
+   txt:'PH al frente con entrada independiente y jardín delantero. Dos dormitorios, living comedor con hogar a leña y cocina separada. Cochera descubierta. Admite mascotas. Contrato a 3 años con ajuste semestral.'},
+  {id:12, op:'Venta', tipo:'Casa', barrio:'Vicente López', titulo:'Casa de arquitecto sobre lote angosto',
+   precio:520000, amb:4, ban:4, m2:290, coch:1, nueva:1,
+   img:'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=900&q=80',
+   txt:'Proyecto de estudio local terminado en 2025. Tres niveles resueltos alrededor de un patio central que da luz a toda la casa. Hormigón visto, carpinterías de piso a techo y climatización por conductos.'}
+];
+
+const $ = s => document.querySelector(s);
+const grilla = $('#grilla'), conteo = $('#conteo');
+const filtros = ['#fop','#ftipo','#fbarrio','#famb','#fmax','#ord'].map($);
+
+const plata = (p,op) => op === 'Alquiler'
+  ? 'USD ' + p.toLocaleString('es-AR') + '<small>por mes</small>'
+  : 'USD ' + p.toLocaleString('es-AR');
+
+function filtrar(){
+  const [op,tipo,barrio,amb,max,ord] = filtros.map(f => f.value);
+  let r = props.filter(p =>
+    (!op || p.op === op) &&
+    (!tipo || p.tipo === tipo) &&
+    (!barrio || p.barrio === barrio) &&
+    (!amb || p.amb >= +amb) &&
+    (!max || p.precio <= +max)
+  );
+  if (ord === 'asc') r.sort((a,b) => a.precio - b.precio);
+  else if (ord === 'desc') r.sort((a,b) => b.precio - a.precio);
+  else if (ord === 'm2') r.sort((a,b) => b.m2 - a.m2);
+  else r.sort((a,b) => a.nueva - b.nueva);
+  pintar(r);
+}
+
+function pintar(r){
+  conteo.innerHTML = r.length
+    ? `<b>${r.length}</b> ${r.length === 1 ? 'propiedad disponible' : 'propiedades disponibles'}`
+    : 'Ninguna propiedad coincide con lo que buscás';
+  grilla.innerHTML = r.length ? r.map(p => `
+    <article class="prop" data-id="${p.id}">
+      <div class="foto">
+        <img src="${p.img}" alt="${p.titulo}" loading="lazy">
+        <span class="chip ${p.op === 'Venta' ? 'ven' : 'alq'}">${p.op}</span>
+      </div>
+      <div class="cuerpo">
+        <p class="barrio">${p.tipo} · ${p.barrio}</p>
+        <h3>${p.titulo}</h3>
+        <p class="precio">${plata(p.precio, p.op)}</p>
+        <div class="datos">
+          ${p.amb ? `<span>${p.amb} dorm.</span><span>${p.ban} baños</span>` : '<span>Terreno</span>'}
+          <span>${p.m2} m²</span>
+          ${p.coch ? `<span>${p.coch} coch.</span>` : ''}
+        </div>
+      </div>
+    </article>`).join('')
+  : `<div class="vacio">Probá ampliando la zona o subiendo el precio máximo.<br>
+     También podés <a href="#contacto" style="color:var(--verde)">contarnos qué buscás</a> y te avisamos cuando entre algo.</div>`;
+}
+
+filtros.forEach(f => f.addEventListener('input', filtrar));
+$('#limpiar').addEventListener('click', () => {
+  filtros.forEach(f => f.value = f.id === 'ord' ? 'rec' : '');
+  filtrar();
+});
+
+// ficha
+const modal = $('#modal'), caja = $('#caja');
+grilla.addEventListener('click', ev => {
+  const art = ev.target.closest('.prop');
+  if (!art) return;
+  const p = props.find(x => x.id === +art.dataset.id);
+  caja.innerHTML = `
+    <button class="cerrar" data-cerrar aria-label="Cerrar">×</button>
+    <img src="${p.img}" alt="${p.titulo}">
+    <div class="txt">
+      <p class="barrio">${p.op} · ${p.tipo} · ${p.barrio}</p>
+      <h3>${p.titulo}</h3>
+      <p class="precio">${plata(p.precio, p.op)}</p>
+      <p style="color:var(--gris)">${p.txt}</p>
+      <div class="fichas">
+        <div class="ficha"><b>${p.m2}</b><span>m² totales</span></div>
+        <div class="ficha"><b>${p.amb || '—'}</b><span>dormitorios</span></div>
+        <div class="ficha"><b>${p.ban || '—'}</b><span>baños</span></div>
+        <div class="ficha"><b>${p.coch || '—'}</b><span>cocheras</span></div>
+      </div>
+      <a href="#contacto" class="btn" data-cerrar>Pedir una visita</a>
+      <a href="#contacto" class="btn hueca" data-cerrar style="margin-left:10px">Consultar por WhatsApp</a>
+    </div>`;
+  modal.classList.add('ver');
+  document.body.style.overflow = 'hidden';
+});
+modal.addEventListener('click', ev => {
+  if (ev.target.closest('[data-cerrar]')) cerrar();
+});
+addEventListener('keydown', ev => { if (ev.key === 'Escape') cerrar(); });
+function cerrar(){ modal.classList.remove('ver'); document.body.style.overflow = ''; }
+
+// contacto
+const form = $('#form'), ok = $('#ok');
+form.addEventListener('submit', ev => {
+  ev.preventDefault();
+  const nom = $('#nom'), mail = $('#mail'), tel = $('#tel');
+  if (!nom.value.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(mail.value) || !tel.value.trim()) {
+    ok.textContent = 'Necesitamos nombre, teléfono y un email válido para poder contestarte.';
+    ok.classList.add('ver'); return;
+  }
+  ok.textContent = `Gracias ${nom.value.trim().split(' ')[0]}. Un tasador te va a contactar al ${tel.value} para coordinar la visita. Las tasaciones se hacen dentro de los 3 días hábiles.`;
+  ok.classList.add('ver');
+  form.querySelector('button').textContent = 'Pedido enviado';
+});
+
+filtrar();
+</script>
+</body>
+</html>

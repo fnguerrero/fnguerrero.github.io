@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NODO One · Auriculares inalámbricos</title>
+<meta name="description" content="NODO One: auriculares inalámbricos con cancelación adaptativa, 42 horas de batería y tres años de garantía.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --noche:#08080F; --carbon:#101019; --nube:#F2F2F7; --gris:#8E8EA0;
+    --acento:#6C63FF; --acento2:#A78BFA;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--noche);color:var(--nube);
+       font:300 16.5px/1.7 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  img{max-width:100%;display:block}
+  a{color:inherit}
+  .wrap{max-width:1160px;margin:0 auto;padding:0 30px}
+  .g{font-family:"Space Grotesk",sans-serif}
+
+  nav{position:fixed;inset:0 0 auto;z-index:60;background:rgba(8,8,15,.72);
+      backdrop-filter:blur(18px);border-bottom:1px solid rgba(242,242,247,.07)}
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:70px}
+  .marca{font:500 20px/1 "Space Grotesk";letter-spacing:.14em}
+  .marca i{color:var(--acento);font-style:normal;transition:color .5s}
+  .links{display:flex;gap:32px;font-size:14.5px;color:var(--gris)}
+  .links a{text-decoration:none;transition:color .2s}
+  .links a:hover{color:var(--nube)}
+  .btn{display:inline-block;background:var(--acento);color:#fff;text-decoration:none;border:0;
+       padding:13px 26px;border-radius:100px;font:500 14.5px Inter;cursor:pointer;
+       transition:background .5s,transform .2s,box-shadow .3s}
+  .btn:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(108,99,255,.35)}
+  .btn.hueca{background:transparent;border:1px solid rgba(242,242,247,.2);color:var(--nube);box-shadow:none}
+  .btn.hueca:hover{border-color:var(--acento)}
+
+  /* hero */
+  header{position:relative;min-height:100vh;display:grid;place-items:center;
+         padding:120px 0 60px;text-align:center;overflow:hidden}
+  .aura{position:absolute;width:min(900px,120vw);aspect-ratio:1;border-radius:50%;
+        background:radial-gradient(circle,var(--acento) 0%,transparent 62%);
+        opacity:.24;filter:blur(60px);top:-10%;animation:flota 14s ease-in-out infinite alternate;
+        transition:background .6s}
+  @keyframes flota{from{transform:translate(-6%,0) scale(1)}to{transform:translate(6%,4%) scale(1.1)}}
+  .hero{position:relative;z-index:2}
+  .pill{display:inline-flex;align-items:center;gap:9px;border:1px solid rgba(242,242,247,.16);
+        border-radius:100px;padding:7px 17px;font-size:13px;color:var(--gris);margin-bottom:30px}
+  .pill b{color:var(--acento);font-weight:500;transition:color .5s}
+  .hero h1{font:300 clamp(46px,8vw,92px)/1.02 "Space Grotesk";letter-spacing:-.035em;max-width:15ch;margin:0 auto}
+  .hero h1 b{font-weight:500;
+    background:linear-gradient(100deg,var(--acento),var(--acento2));
+    -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+    transition:background .6s}
+  .hero p{color:var(--gris);font-size:19px;max-width:50ch;margin:28px auto 36px}
+  .acciones{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+  /* el producto se tiñe con el color elegido: duotono por mezcla */
+  .producto{position:relative;z-index:2;margin-top:54px;max-width:600px;border-radius:20px;
+            overflow:hidden;background:linear-gradient(155deg,var(--acento) 0%,color-mix(in srgb,var(--acento) 55%,#0C0C14) 55%,#0C0C14 100%);
+            box-shadow:0 40px 90px rgba(0,0,0,.6);transition:background .6s}
+  .producto::after{content:"";position:absolute;inset:0;
+    background:linear-gradient(180deg,transparent 55%,rgba(8,8,15,.6) 100%)}
+  .producto img{mix-blend-mode:luminosity;filter:contrast(1.12) brightness(.94);
+                opacity:.92;transition:opacity .3s}
+
+  /* colores */
+  .colores{display:flex;gap:14px;justify-content:center;margin-top:34px;position:relative;z-index:3}
+  .color{width:38px;height:38px;border-radius:50%;border:2px solid transparent;cursor:pointer;
+         padding:0;position:relative;transition:transform .25s,border-color .25s}
+  .color:hover{transform:scale(1.12)}
+  .color[aria-pressed="true"]{border-color:var(--nube)}
+  .color span{position:absolute;inset:4px;border-radius:50%}
+
+  section{padding:120px 0;position:relative}
+  .eyebrow{font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--acento);
+           margin-bottom:18px;transition:color .5s}
+  h2{font:300 clamp(32px,5vw,54px)/1.08 "Space Grotesk";letter-spacing:-.03em;margin-bottom:20px}
+  .lead{color:var(--gris);font-size:18.5px;max-width:56ch}
+
+  /* numeros */
+  .numeros{display:grid;grid-template-columns:repeat(4,1fr);gap:30px;margin-top:60px}
+  .num b{display:block;font:300 clamp(38px,4.6vw,58px)/1 "Space Grotesk";letter-spacing:-.03em;
+         background:linear-gradient(160deg,var(--nube),var(--gris));
+         -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  .num span{display:block;color:var(--gris);font-size:14.5px;margin-top:12px;max-width:20ch}
+
+  /* tarjetas */
+  .tarjetas{display:grid;grid-template-columns:1.25fr 1fr;gap:22px;margin-top:60px}
+  .tarjeta{background:linear-gradient(160deg,rgba(242,242,247,.055),rgba(242,242,247,.015));
+           border:1px solid rgba(242,242,247,.08);border-radius:18px;padding:38px 36px;
+           position:relative;overflow:hidden;transition:border-color .35s,transform .35s}
+  .tarjeta:hover{border-color:rgba(108,99,255,.35);transform:translateY(-3px)}
+  .tarjeta.alta{grid-row:span 2;display:flex;flex-direction:column}
+  .tarjeta h3{font:500 22px/1.25 "Space Grotesk";margin-bottom:12px;letter-spacing:-.01em}
+  .tarjeta p{color:var(--gris);font-size:15.5px}
+  .tarjeta figure{margin-top:auto;padding-top:32px}
+  .tarjeta figure div{border-radius:12px;overflow:hidden;
+    background:linear-gradient(155deg,var(--acento) 0%,color-mix(in srgb,var(--acento) 55%,#0C0C14) 55%,#0C0C14 100%);transition:background .6s}
+  .tarjeta figure img{mix-blend-mode:luminosity;filter:contrast(1.1);opacity:.9}
+  .tarjeta .ico{width:42px;height:42px;border-radius:11px;margin-bottom:22px;
+    background:linear-gradient(140deg,var(--acento),var(--acento2));opacity:.9;transition:background .6s}
+
+  /* specs */
+  .specs{border-top:1px solid rgba(242,242,247,.08);margin-top:22px}
+  .spec{display:grid;grid-template-columns:230px 1fr;gap:30px;padding:22px 0;
+        border-bottom:1px solid rgba(242,242,247,.08);font-size:15.5px}
+  .spec dt{color:var(--gris)}
+  .spec dd{color:var(--nube)}
+
+  /* precio */
+  #comprar{text-align:center}
+  .caja{max-width:560px;margin:56px auto 0;background:linear-gradient(170deg,rgba(242,242,247,.07),rgba(242,242,247,.02));
+        border:1px solid rgba(242,242,247,.1);border-radius:22px;padding:46px 42px 44px}
+  .precio{font:300 58px/1 "Space Grotesk";letter-spacing:-.035em}
+  .precio small{display:block;font:300 15px Inter;color:var(--gris);margin-top:12px;letter-spacing:0}
+  .cuotas{margin:26px 0 32px;font-size:15px;color:var(--gris)}
+  .cuotas b{color:var(--nube);font-weight:500}
+  form{display:grid;gap:16px;text-align:left;margin-top:32px}
+  .fila{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  label{display:block;font-size:12px;letter-spacing:.1em;text-transform:uppercase;
+        color:var(--gris);margin-bottom:7px}
+  input,select{width:100%;background:rgba(242,242,247,.05);border:1px solid rgba(242,242,247,.12);
+    border-radius:10px;color:var(--nube);font:300 15.5px Inter,sans-serif;padding:13px 15px;
+    transition:border-color .25s}
+  input:focus,select:focus{outline:0;border-color:var(--acento)}
+  select option{background:var(--carbon)}
+  form .btn{margin-top:8px;text-align:center}
+  .ok{background:rgba(108,99,255,.12);border:1px solid rgba(108,99,255,.3);border-radius:12px;
+      padding:18px 22px;font-size:15px;display:none;text-align:left;transition:background .5s,border-color .5s}
+  .ok.ver{display:block;animation:sube .45s ease}
+  @keyframes sube{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+  .garantia{margin-top:26px;font-size:13.5px;color:var(--gris)}
+
+  footer{padding:44px 0;border-top:1px solid rgba(242,242,247,.07);font-size:13.5px;
+         color:var(--gris);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+
+  .js .rev{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease}
+  .js .rev.on{opacity:1;transform:none}
+
+  @media(max-width:900px){
+    .links{display:none}
+    .numeros{grid-template-columns:1fr 1fr;gap:36px 24px}
+    .tarjetas{grid-template-columns:1fr}
+    .tarjeta.alta{grid-row:auto}
+    .spec{grid-template-columns:1fr;gap:6px}
+    section{padding:78px 0}
+    .caja{padding:34px 26px}
+    .fila{grid-template-columns:1fr}
+  }
+</style>
+<script>document.documentElement.className="js"</script>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="marca">N<i>O</i>DO</div>
+    <div class="links">
+      <a href="#diseno">Diseño</a>
+      <a href="#sonido">Sonido</a>
+      <a href="#specs">Ficha técnica</a>
+      <a href="#comprar">Precio</a>
+    </div>
+    <a href="#comprar" class="btn">Reservar</a>
+  </div>
+</nav>
+
+<header>
+  <div class="aura" id="aura"></div>
+  <div class="wrap hero">
+    <span class="pill"><b>Nuevo</b> · Tercera generación</span>
+    <h1 class="g">Todo lo que <b>no</b> escuchabas</h1>
+    <p>Cancelación adaptativa que se ajusta cuarenta veces por segundo, 42 horas de batería y una caja que cabe en el bolsillo del saco.</p>
+    <div class="acciones">
+      <a href="#comprar" class="btn">Reservar el mío</a>
+      <a href="#sonido" class="btn hueca">Cómo suena</a>
+    </div>
+    <div class="producto">
+      <img id="foto" src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=1200&q=85" alt="NODO One">
+    </div>
+    <div class="colores">
+      <button class="color" aria-pressed="true" data-c="#6C63FF" data-c2="#A78BFA" data-img="1505740420928-5e560c06d30e" title="Violeta"><span style="background:#6C63FF"></span></button>
+      <button class="color" data-c="#E2603D" data-c2="#F2A07B" data-img="1546435770-a3e426bf472b" title="Cobre"><span style="background:#E2603D"></span></button>
+      <button class="color" data-c="#2DA98C" data-c2="#7FE0C8" data-img="1484704849700-f032a568e944" title="Verde"><span style="background:#2DA98C"></span></button>
+      <button class="color" data-c="#B9BECA" data-c2="#EDEFF3" data-img="1572569511254-d8f925fe2cbb" title="Plata"><span style="background:#B9BECA"></span></button>
+    </div>
+  </div>
+</header>
+
+<section id="diseno">
+  <div class="wrap">
+    <p class="eyebrow rev">Por qué existe</p>
+    <h2 class="rev">Cuatro decisiones<br>que no negociamos</h2>
+    <p class="lead rev">Nos tomamos tres años en vez de dos. Estas son las cosas que no quisimos resolver rápido.</p>
+    <div class="numeros">
+      <div class="num rev"><b>42 h</b><span>de reproducción con cancelación activa encendida</span></div>
+      <div class="num rev"><b>0 %</b><span>de plástico virgen: todo el cuerpo es aluminio reciclado</span></div>
+      <div class="num rev"><b>3 años</b><span>de garantía, con batería reemplazable por vos</span></div>
+      <div class="num rev"><b>8 min</b><span>de carga para cinco horas de música</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="sonido">
+  <div class="wrap">
+    <p class="eyebrow rev">Sonido</p>
+    <h2 class="rev">Un solo driver,<br>bien hecho</h2>
+    <p class="lead rev">Preferimos un transductor de 40 mm afinado a mano antes que tres drivers peleándose la misma frecuencia.</p>
+    <div class="tarjetas">
+      <div class="tarjeta alta rev">
+        <div class="ico"></div>
+        <h3>Cancelación adaptativa</h3>
+        <p>Seis micrófonos miden el ruido de afuera y el que se cuela adentro del auricular. El perfil se recalcula cuarenta veces por segundo, así que funciona igual de bien en un subte que en una oficina — y no te tapa los oídos cuando no hace falta.</p>
+        <figure><div><img src="https://images.unsplash.com/photo-1546435770-a3e426bf472b?w=900&q=80" alt="Detalle del auricular"></div></figure>
+      </div>
+      <div class="tarjeta rev">
+        <div class="ico"></div>
+        <h3>Modo conversación</h3>
+        <p>Tocás dos veces y la música baja a la mitad mientras deja pasar las voces. Vuelve sola a los quince segundos de silencio.</p>
+      </div>
+      <div class="tarjeta rev">
+        <div class="ico"></div>
+        <h3>Dos equipos a la vez</h3>
+        <p>Conectado a la computadora y al teléfono al mismo tiempo. Si entra una llamada, cambia solo y vuelve al terminar.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="specs">
+  <div class="wrap">
+    <p class="eyebrow rev">Ficha técnica</p>
+    <h2 class="rev">Los números finos</h2>
+    <dl class="specs rev">
+      <div class="spec"><dt>Transductor</dt><dd>Dinámico de 40 mm, diafragma de fibra de celulosa</dd></div>
+      <div class="spec"><dt>Respuesta en frecuencia</dt><dd>8 Hz – 40 kHz</dd></div>
+      <div class="spec"><dt>Códecs</dt><dd>SBC, AAC, aptX Adaptive, LDAC</dd></div>
+      <div class="spec"><dt>Batería</dt><dd>42 h con ANC · 60 h sin ANC · reemplazable sin herramientas</dd></div>
+      <div class="spec"><dt>Carga</dt><dd>USB-C, carga completa en 90 min · 8 min = 5 h</dd></div>
+      <div class="spec"><dt>Conexión</dt><dd>Bluetooth 5.4 · multipunto a dos equipos · cable de 3,5 mm incluido</dd></div>
+      <div class="spec"><dt>Peso</dt><dd>248 g con la vincha</dd></div>
+      <div class="spec"><dt>Resistencia</dt><dd>IPX4 · almohadillas de reemplazo incluidas</dd></div>
+      <div class="spec"><dt>En la caja</dt><dd>Auriculares, estuche rígido, cable USB-C, cable de 3,5 mm, dos pares de almohadillas</dd></div>
+    </dl>
+  </div>
+</section>
+
+<section id="comprar">
+  <div class="wrap">
+    <p class="eyebrow rev">Reservas</p>
+    <h2 class="rev">Primera tanda:<br>marzo de 2026</h2>
+    <p class="lead rev" style="margin:0 auto">Producimos 800 unidades por tanda. Reservás sin pagar nada y te avisamos cuando podés completar la compra.</p>
+    <div class="caja rev">
+      <div class="precio">$389.000<small>Precio final con envío a todo el país</small></div>
+      <p class="cuotas">o <b>6 cuotas sin interés</b> de $64.833 · <b>12 cuotas</b> de $38.900</p>
+      <form id="form" novalidate>
+        <div class="fila">
+          <div><label for="nom">Nombre</label><input id="nom" required placeholder="Nombre y apellido"></div>
+          <div><label for="mail">Email</label><input id="mail" type="email" required placeholder="tu@correo.com"></div>
+        </div>
+        <div class="fila">
+          <div><label for="col">Color</label>
+            <select id="col"><option>Violeta</option><option>Cobre</option><option>Verde</option><option>Plata</option></select></div>
+          <div><label for="cant">Unidades</label>
+            <select id="cant"><option>1</option><option>2</option><option>3</option></select></div>
+        </div>
+        <button class="btn" type="submit">Reservar sin pagar</button>
+        <div class="ok" id="ok"></div>
+      </form>
+      <p class="garantia">Tres años de garantía · 30 días para devolverlo sin explicar por qué</p>
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+  <footer>
+    <span>© 2026 NODO Audio · Diseñado y ensamblado en Argentina</span>
+    <span>Soporte · Garantía · Prensa</span>
+  </footer>
+</div>
+
+<script>
+  const io = new IntersectionObserver(es => {
+    es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); } });
+  }, {threshold:.12});
+  document.querySelectorAll('.rev').forEach((el,i) => {
+    el.style.transitionDelay = (i % 4) * 80 + 'ms';
+    io.observe(el);
+  });
+
+  // selector de color: tiñe todo el sitio y cambia la foto
+  const raiz = document.documentElement, foto = document.getElementById('foto');
+  const sel = document.getElementById('col');
+  document.querySelectorAll('.color').forEach(b => {
+    b.addEventListener('click', () => {
+      document.querySelectorAll('.color').forEach(o => o.setAttribute('aria-pressed','false'));
+      b.setAttribute('aria-pressed','true');
+      raiz.style.setProperty('--acento', b.dataset.c);
+      raiz.style.setProperty('--acento2', b.dataset.c2);
+      foto.style.opacity = .6;
+      setTimeout(() => foto.style.opacity = .92, 180);
+      sel.value = b.title;
+    });
+  });
+
+  // el select del formulario también cambia el color mostrado
+  sel.addEventListener('change', () => {
+    const b = [...document.querySelectorAll('.color')].find(x => x.title === sel.value);
+    if (b) b.click();
+  });
+
+  const form = document.getElementById('form'), ok = document.getElementById('ok');
+  form.addEventListener('submit', ev => {
+    ev.preventDefault();
+    const nom = document.getElementById('nom'), mail = document.getElementById('mail');
+    if (!nom.value.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(mail.value)) {
+      ok.textContent = 'Necesitamos tu nombre y un email válido para guardarte el lugar.';
+      ok.classList.add('ver'); return;
+    }
+    const n = +document.getElementById('cant').value;
+    ok.innerHTML = `Reserva anotada, ${nom.value.trim().split(' ')[0]}. ${n === 1 ? 'Una unidad' : n + ' unidades'} en ${sel.value.toLowerCase()}.
+      Te escribimos a <b>${mail.value}</b> en febrero para completar la compra. No te cobramos nada hasta entonces.`;
+    ok.classList.add('ver');
+    form.querySelector('.btn').textContent = 'Lugar reservado';
+  });
+</script>
+</body>
+</html>

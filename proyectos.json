@@ -1,6 +1,6 @@
 {
   "_comentario": "Proyectos que se muestran en https://fnguerrero.github.io. Los privados NO estan aca: viven en privados.json, que no se publica. Para agregar o cambiar algo se edita este archivo y se pushea.",
-  "actualizado": "2026-08-30",
+  "actualizado": "2026-09-06",
   "grupos": [
     {
       "titulo": "Aplicaciones",
@@ -162,6 +162,21 @@
           ],
           "url": "https://fnguerrero.github.io/paid/",
           "tocado": "2026-08-29"
+        },
+        {
+          "nombre": "Sitios web",
+          "sigla": "Sw",
+          "color": "#1B4F8C",
+          "tag": "Cinco demos de diseno",
+          "que": "Cinco sitios de muestra, uno por rubro: un cafe, un estudio contable, un gimnasio, una inmobiliaria y una marca de producto. Cada uno con su propio lenguaje visual, responsive y con formulario de contacto. El contenido es inventado y los formularios validan pero no envian.",
+          "chips": [
+            "HTML y CSS",
+            "Sin frameworks",
+            "Responsive"
+          ],
+          "url": "https://fnguerrero.github.io/sitios/",
+          "img": "img/sitios.jpg",
+          "tocado": "2026-09-06"
         }
       ]
     },
