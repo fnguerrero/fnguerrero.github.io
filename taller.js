@@ -285,7 +285,7 @@ var Taller = (function () {
   }
 
   /* El buscador. Se arma solo, para no repetir el markup en las dos paginas. */
-  function armarBuscador() {
+  function armarBuscador(solapas) {
     var caja = el("div", "buscar");
     var input = document.createElement("input");
     input.type = "search";
@@ -295,12 +295,16 @@ var Taller = (function () {
 
     input.addEventListener("input", function () {
       var n = filtrar(input.value);
+      if (solapas) solapas.suspender(input.value.trim());
       cuenta.textContent = input.value.trim()
         ? (n === 0 ? "nada" : n === 1 ? "1 resultado" : n + " resultados")
         : "";
     });
     input.addEventListener("keydown", function (ev) {
-      if (ev.key === "Escape") { input.value = ""; filtrar(""); cuenta.textContent = ""; }
+      if (ev.key === "Escape") {
+        input.value = ""; filtrar(""); cuenta.textContent = "";
+        if (solapas) solapas.suspender(false);
+      }
     });
 
     // Barra inclinada para buscar, como en cualquier lado. Enter no hace falta: filtra
@@ -313,6 +317,51 @@ var Taller = (function () {
     caja.appendChild(input);
     caja.appendChild(cuenta);
     return caja;
+  }
+
+  /* Las solapas del telefono. Ocultan con una clase y no tocan style.display, que es de
+     quien busca: asi los dos pueden esconder secciones sin pisarse. Mientras hay algo
+     escrito en el buscador las solapas se apagan y mandan los resultados. */
+  function armarSolapas(cont, secciones) {
+    if (secciones.length < 2) return null;
+
+    var barra = el("nav", "solapas");
+    barra.setAttribute("role", "tablist");
+    barra.setAttribute("aria-label", "Grupos de proyectos");
+
+    var elegida = 0;
+    try {
+      var guardada = secciones.map(function (s) { return s.titulo; })
+                              .indexOf(localStorage.getItem("taller.solapa"));
+      if (guardada > -1) elegida = guardada;
+    } catch (e) {}
+
+    var botones = secciones.map(function (s, i) {
+      var b = document.createElement("button");
+      b.type = "button";
+      b.setAttribute("role", "tab");
+      b.appendChild(document.createTextNode(s.titulo));
+      var n = el("s", null, String(s.cartas.length));
+      b.appendChild(n);
+      b.addEventListener("click", function () { activar(i); });
+      barra.appendChild(b);
+      return b;
+    });
+
+    function activar(i) {
+      elegida = i;
+      secciones.forEach(function (s, k) {
+        s.sec.classList.toggle("sin-solapa", k !== i);
+        botones[k].setAttribute("aria-selected", k === i ? "true" : "false");
+      });
+      try { localStorage.setItem("taller.solapa", secciones[i].titulo); } catch (e) {}
+      botones[i].scrollIntoView({block: "nearest", inline: "nearest"});
+    }
+
+    activar(elegida);
+    return {barra: barra, suspender: function (buscando) {
+      cont.classList.toggle("buscando", !!buscando);
+    }};
   }
 
   function filas(cont, grupos, opciones) {
@@ -330,7 +379,7 @@ var Taller = (function () {
       var sec = fila(g.titulo, items, g.verbo);
       cont.appendChild(sec);
       secciones.push({sec: sec, items: items, cartas: sec.cartas,
-                      contador: sec.rotuloContador});
+                      contador: sec.rotuloContador, titulo: g.titulo});
       sec.cartas.forEach(function (c, i) {
         if (c.luz) conLuz.push({puerto: items[i].puerto, luz: c.luz});
       });
@@ -339,7 +388,10 @@ var Taller = (function () {
     // Con pocas tarjetas se encuentra todo con el ojo; el buscador recien suma cuando la
     // lista no entra de un vistazo.
     var cuantos = secciones.reduce(function (n, s) { return n + s.cartas.length; }, 0);
-    if (cuantos >= 10) cont.insertBefore(armarBuscador(), cont.firstChild);
+
+    var solapas = armarSolapas(cont, secciones);
+    if (solapas) cont.insertBefore(solapas.barra, cont.firstChild);
+    if (cuantos >= 10) cont.insertBefore(armarBuscador(solapas), cont.firstChild);
 
     return conLuz;
   }

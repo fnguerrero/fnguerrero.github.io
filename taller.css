@@ -188,15 +188,51 @@ dialog::backdrop{background:rgba(6,10,14,.7);backdrop-filter:blur(3px)}
   .pista{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px 10px}
 }
 
-/* En el telefono, una sola columna.
-   Las portadas son capturas de pantallas de escritorio: a dos columnas quedan de 170 px
-   y no se lee nada, que es justo lo que la portada tenia que resolver. A una columna se
-   ven, y de paso entran los nombres largos sin cortarse con puntos suspensivos. */
+/* ---------- solapas (solo telefono) ----------
+   La barra se dibuja siempre, pero recien se muestra en pantallas chicas: en escritorio
+   los cuatro grupos entran de un vistazo y no hay nada que elegir. */
+.solapas{display:none}
+
+/* En el telefono la tarjeta con portada 16/9 no sirve: son capturas de pantallas de
+   escritorio, a ese ancho no se lee nada y cada proyecto se come 244 px. Con 29 proyectos
+   eran casi diez pantallas de scroll. Aca la portada pasa a miniatura y la tarjeta se
+   vuelve una fila: la portada grande sigue estando, en la ficha. */
 @media (max-width:520px){
-  .pista{grid-template-columns:1fr;gap:16px}
-  .carta .pie{height:auto;row-gap:2px;padding-bottom:2px}
+  .solapas{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;
+    margin:0 -18px 4px;padding:2px 18px 10px;position:sticky;top:0;z-index:20;
+    background:var(--bg);-webkit-overflow-scrolling:touch}
+  .solapas::-webkit-scrollbar{display:none}
+  .solapas button{flex:none;background:var(--surface-2);color:var(--ink-faint);
+    border:1px solid var(--rule);border-radius:999px;padding:9px 15px;
+    font:inherit;font-size:.86rem;cursor:pointer;white-space:nowrap;
+    transition:background .14s,color .14s,border-color .14s}
+  .solapas button s{text-decoration:none;font-size:11px;opacity:.7;margin-left:6px;
+    font-variant-numeric:tabular-nums}
+  .solapas button[aria-selected="true"]{background:var(--accent);color:var(--bg);
+    border-color:var(--accent)}
+  .solapas button[aria-selected="true"] s{opacity:.8}
+
+  /* la seccion que la solapa dejo afuera */
+  .sin-solapa{display:none}
+  /* mientras se busca mandan los resultados, no la solapa */
+  .buscando .sin-solapa{display:block}
+  .buscando .solapas{display:none}
+
+  .fila{padding:8px 0 0}
+  .flabel{display:none}                 /* el titulo ya esta en la solapa */
+  .buscando .flabel{display:flex}
+  .pista{grid-template-columns:1fr;gap:0;padding:0}
+  .carta{display:grid;grid-template-columns:74px 1fr;gap:13px;align-items:center;
+    padding:11px 2px;border-bottom:1px solid var(--rule)}
+  .carta:last-child{border-bottom:0}
+  .carta:hover,.carta:focus-visible{transform:none}
+  .carta .marco{aspect-ratio:16/10;box-shadow:none}
+  .carta .sinfoto{font-size:1.05rem}
+  .carta .velo{display:none}            /* no hay hover en el telefono */
+  .carta .pie{height:auto;padding:0;row-gap:3px}
   .carta .pie b{white-space:normal;font-size:.95rem}
-  .carta .pie i{white-space:normal;font-size:11px}
+  .carta .pie i{white-space:normal;font-size:11.5px;line-height:1.35}
+  .carta .pie .tocado{grid-row:1;align-self:start}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 
