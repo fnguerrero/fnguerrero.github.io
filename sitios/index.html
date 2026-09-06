@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Sitios web · Nico Guerrero</title>
-<meta name="description" content="Once sitios de muestra, uno por rubro: café, estudio contable, gimnasio, inmobiliaria, producto, odontología, cabañas, bodega, arquitectura, casamiento y rotisería.">
+<meta name="description" content="Sitios web por rubro: gastronomía, servicios profesionales, salud, turismo, inmobiliaria, e-commerce, eventos y más. Diseño y desarrollo a medida.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -101,9 +101,9 @@
   <header>
     <a class="volver" href="../">← El taller de Nico</a>
     <p class="kicker">Diseño y desarrollo web</p>
-    <h1 class="serif">Once sitios, once <em>maneras</em> de resolverlo</h1>
-    <p>Cada uno está pensado para un rubro distinto y resuelto con un lenguaje visual propio. No son plantillas con el color cambiado: cambian la tipografía, la estructura, el ritmo y —sobre todo— lo que el visitante tiene que poder hacer.</p>
-    <p class="nota"><b>Son demos.</b> Los nombres, textos, precios y datos de contacto son inventados. Todo lo interactivo funciona de verdad —los turnos, el carrito, los filtros, el cálculo de precios— pero nada se envía a ningún lado.</p>
+    <h1 class="serif">Cada rubro, su <em>manera</em> de resolverlo</h1>
+    <p>Cada sitio está pensado para un rubro distinto y resuelto con un lenguaje visual propio. No son plantillas con el color cambiado: cambian la tipografía, la estructura, el ritmo y —sobre todo— lo que el visitante tiene que poder hacer.</p>
+    <p class="nota">Todo lo que ves funciona de verdad: los turnos consultan disponibilidad, el carrito calcula descuentos, los filtros filtran y los precios se arman según las fechas. Entrá y probalos.</p>
   </header>
 
   <div class="filtros" id="filtros"></div>
@@ -189,8 +189,10 @@ $('#filtros').addEventListener('click', ev => {
 
 function pintar(){
   const lista = filtro === 'Todos' ? SITIOS : SITIOS.filter(s => s.hace.includes(filtro));
+  /* El total no se muestra: la lista crece y el número deja de ser una virtud. Solo cuenta
+     cuando hay un filtro puesto, que es cuando saber cuántos quedaron sirve para algo. */
   $('#cuenta').textContent = filtro === 'Todos'
-    ? `${SITIOS.length} sitios`
+    ? ''
     : `${lista.length} ${lista.length === 1 ? 'sitio' : 'sitios'} con ${filtro.toLowerCase()}`;
   /* Las tarjetas no llevan aparición progresiva: como la grilla se vuelve a dibujar en cada
      filtro, arrancarían invisibles y con `loading="lazy"` ni siquiera se pedirían las fotos. */
