@@ -256,6 +256,96 @@
           "url": "https://fnguerrero.github.io/sitios/producto/",
           "img": "img/nodo-one.jpg?v=1788694726",
           "tocado": "2026-09-06"
+        },
+        {
+          "nombre": "Nordelta Odontología",
+          "sigla": "No",
+          "color": "#1B9AAA",
+          "tag": "Turnos online",
+          "que": "Muestra de sitio para salud, con agenda de turnos de verdad: elegís el día entre los próximos doce, ves qué horarios quedan libres y no se puede confirmar hasta elegir los dos. La disponibilidad es estable, no cambia mientras completás tus datos.",
+          "chips": [
+            "Agenda de turnos",
+            "Horarios ocupados",
+            "Obras sociales"
+          ],
+          "url": "https://fnguerrero.github.io/sitios/odontologia/",
+          "img": "img/sitio-odontologia.jpg",
+          "tocado": "2026-09-06"
+        },
+        {
+          "nombre": "Cabañas del Manso",
+          "sigla": "Cm",
+          "color": "#8A5A2B",
+          "tag": "Reservas con fechas",
+          "que": "Muestra de sitio para turismo. Calcula el total noche por noche, así una estadía que arranca en temporada baja y termina en alta se cobra como corresponde. Controla mínimo de noches, capacidad de cada cabaña y descuento por semana.",
+          "chips": [
+            "Cálculo por noche",
+            "Temporada alta",
+            "Rústico"
+          ],
+          "url": "https://fnguerrero.github.io/sitios/cabanias/",
+          "img": "img/sitio-cabanias.jpg",
+          "tocado": "2026-09-06"
+        },
+        {
+          "nombre": "Bodega Alto Verde",
+          "sigla": "Av",
+          "color": "#7B2233",
+          "tag": "Tienda con carrito",
+          "que": "Muestra de e-commerce: carrito lateral con cantidades, descuento automático al llegar a la caja de seis y envío gratis a partir de ahí. Las etiquetas de los vinos están dibujadas con CSS, sin una sola foto de stock.",
+          "chips": [
+            "Carrito",
+            "Descuento por caja",
+            "Etiquetas en CSS"
+          ],
+          "url": "https://fnguerrero.github.io/sitios/bodega/",
+          "img": "img/sitio-bodega.jpg",
+          "tocado": "2026-09-06"
+        },
+        {
+          "nombre": "Mota Arquitectura",
+          "sigla": "Ma",
+          "color": "#C4562A",
+          "tag": "Portfolio de obras",
+          "que": "Muestra de sitio para estudio creativo, donde manda la imagen: grilla asimétrica con obras de distintos tamaños, filtro por tipo y visor a pantalla completa que se maneja con las flechas del teclado.",
+          "chips": [
+            "Grilla asimétrica",
+            "Visor con teclado",
+            "Editorial"
+          ],
+          "url": "https://fnguerrero.github.io/sitios/arquitectura/",
+          "img": "img/sitio-arquitectura.jpg",
+          "tocado": "2026-09-06"
+        },
+        {
+          "nombre": "Juli & Tomás",
+          "sigla": "Jt",
+          "color": "#7E9080",
+          "tag": "Casamiento",
+          "que": "Muestra de sitio para un evento: una sola página con cuenta regresiva en vivo y confirmación de asistencia. Si decís que venís aparecen los campos de acompañantes, menú y micro; si no, desaparecen.",
+          "chips": [
+            "Cuenta regresiva",
+            "Confirmación",
+            "Formulario que cambia"
+          ],
+          "url": "https://fnguerrero.github.io/sitios/casamiento/",
+          "img": "img/sitio-casamiento.jpg",
+          "tocado": "2026-09-06"
+        },
+        {
+          "nombre": "El Fogón",
+          "sigla": "Ef",
+          "color": "#C4341F",
+          "tag": "Pedidos por WhatsApp",
+          "que": "Muestra de sitio para gastronomía con pedido: armás el pedido de una carta de diecinueve platos y sale el mensaje de WhatsApp escrito, con detalle y total. El precio cambia según retires o te lo envíen, y muestra si está abierto en este momento.",
+          "chips": [
+            "Pedido por WhatsApp",
+            "Envío o retiro",
+            "Abierto ahora"
+          ],
+          "url": "https://fnguerrero.github.io/sitios/rotiseria/",
+          "img": "img/sitio-rotiseria.jpg",
+          "tocado": "2026-09-06"
         }
       ]
     },

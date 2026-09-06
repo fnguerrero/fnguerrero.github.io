@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nordelta Odontología · Turnos online</title>
+<meta name="description" content="Consultorio odontológico en Nordelta. Odontología general, implantes y ortodoncia. Pedí tu turno online.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --fondo:#F7FAFC; --blanco:#fff; --tinta:#12232E; --gris:#5D7183;
+    --agua:#1B9AAA; --agua-osc:#137C8A; --linea:#DFE9EF; --suave:#EDF6F8;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--fondo);color:var(--tinta);
+       font:400 17px/1.65 Outfit,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  img{max-width:100%;display:block}
+  a{color:inherit}
+  button{font:inherit;color:inherit;cursor:pointer;border:0;background:none}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 26px}
+
+  nav{position:sticky;top:0;z-index:50;background:rgba(247,250,252,.94);
+      backdrop-filter:blur(10px);border-bottom:1px solid var(--linea)}
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:76px}
+  .marca{display:flex;align-items:center;gap:11px;font-weight:600;font-size:19px}
+  .marca .gota{width:26px;height:26px;border-radius:50% 50% 50% 8px;background:var(--agua);
+               transform:rotate(45deg);flex:none}
+  .links{display:flex;gap:30px;font-size:16px}
+  .links a{text-decoration:none;color:var(--gris);transition:color .2s}
+  .links a:hover{color:var(--agua)}
+  .btn{display:inline-block;background:var(--agua);color:#fff;text-decoration:none;
+       padding:13px 24px;border-radius:100px;font-weight:500;font-size:16px;
+       transition:background .22s,transform .18s}
+  .btn:hover{background:var(--agua-osc);transform:translateY(-1px)}
+  .btn.hueca{background:#fff;color:var(--agua);border:1px solid var(--linea)}
+  .btn.hueca:hover{background:var(--suave);transform:none}
+  .btn[disabled]{opacity:.4;cursor:not-allowed;transform:none}
+
+  header{padding:70px 0 84px}
+  .hgrid{display:grid;grid-template-columns:1.02fr .98fr;gap:64px;align-items:center}
+  .pill{display:inline-flex;align-items:center;gap:9px;background:var(--suave);color:var(--agua-osc);
+        border-radius:100px;padding:7px 16px;font-size:14.5px;font-weight:500;margin-bottom:24px}
+  h1{font-size:clamp(38px,5.2vw,56px);line-height:1.08;font-weight:500;letter-spacing:-.02em}
+  h1 b{color:var(--agua);font-weight:600}
+  header p{color:var(--gris);font-size:19px;margin:22px 0 32px;max-width:46ch;font-weight:300}
+  .acciones{display:flex;gap:13px;flex-wrap:wrap}
+  .hfoto{border-radius:20px;overflow:hidden;aspect-ratio:4/3.4}
+  .hfoto img{width:100%;height:100%;object-fit:cover}
+
+  .tira{background:var(--blanco);border-top:1px solid var(--linea);border-bottom:1px solid var(--linea)}
+  .tira .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:26px;padding:34px 26px}
+  .dato b{display:block;font-size:30px;font-weight:600;color:var(--agua)}
+  .dato span{font-size:15px;color:var(--gris)}
+
+  section{padding:88px 0}
+  .cab{max-width:56ch;margin-bottom:46px}
+  h2{font-size:clamp(28px,3.8vw,40px);font-weight:500;letter-spacing:-.02em;margin-bottom:14px}
+  .cab p{color:var(--gris);font-size:18px;font-weight:300}
+
+  .servicios{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .serv{background:var(--blanco);border:1px solid var(--linea);border-radius:16px;padding:30px 26px}
+  .serv .ico{width:46px;height:46px;border-radius:13px;background:var(--suave);display:grid;
+             place-items:center;font-size:22px;margin-bottom:18px}
+  .serv h3{font-size:19px;font-weight:600;margin-bottom:8px}
+  .serv p{font-size:15.5px;color:var(--gris);font-weight:300}
+
+  /* turnos */
+  #turnos{background:var(--blanco);border-top:1px solid var(--linea)}
+  .agenda{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start}
+  .paso{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--agua);
+        font-weight:600;margin-bottom:14px}
+  .dias{display:grid;grid-template-columns:repeat(auto-fill,minmax(74px,1fr));gap:10px}
+  .dia{background:var(--fondo);border:1px solid var(--linea);border-radius:13px;padding:12px 6px;
+       text-align:center;transition:border-color .18s,background .18s}
+  .dia:hover:not([disabled]){border-color:var(--agua)}
+  .dia b{display:block;font-size:21px;font-weight:600;line-height:1.2}
+  .dia span{display:block;font-size:12.5px;color:var(--gris);text-transform:capitalize}
+  .dia[aria-pressed="true"]{background:var(--agua);border-color:var(--agua);color:#fff}
+  .dia[aria-pressed="true"] span{color:rgba(255,255,255,.85)}
+  .dia[disabled]{opacity:.35;cursor:not-allowed}
+  .horas{display:grid;grid-template-columns:repeat(auto-fill,minmax(84px,1fr));gap:10px;margin-top:8px}
+  .hora{background:var(--fondo);border:1px solid var(--linea);border-radius:11px;padding:12px 6px;
+        text-align:center;font-size:16px;font-weight:500;transition:border-color .18s,background .18s}
+  .hora:hover:not([disabled]){border-color:var(--agua)}
+  .hora[aria-pressed="true"]{background:var(--agua);border-color:var(--agua);color:#fff}
+  .hora[disabled]{opacity:.32;cursor:not-allowed;text-decoration:line-through}
+  .vacio{color:var(--gris);font-size:16px;font-weight:300;padding:14px 0}
+  form{display:grid;gap:16px;margin-top:8px}
+  .fila{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  label{display:block;font-size:14px;color:var(--gris);margin-bottom:6px}
+  input,select{width:100%;background:var(--fondo);border:1px solid var(--linea);border-radius:11px;
+    padding:13px 14px;font:400 16px Outfit,sans-serif;color:var(--tinta);transition:border-color .2s}
+  input:focus,select:focus{outline:0;border-color:var(--agua)}
+  .resumen{background:var(--suave);border-radius:14px;padding:18px 20px;font-size:16px;
+           color:var(--agua-osc);display:none}
+  .resumen.ver{display:block}
+  .resumen b{font-weight:600}
+  .ok{background:var(--suave);border-left:3px solid var(--agua);border-radius:0 12px 12px 0;
+      padding:20px 22px;font-size:16.5px;display:none}
+  .ok.ver{display:block;animation:sube .4s ease}
+  @keyframes sube{from{opacity:0;transform:translateY(9px)}to{opacity:1;transform:none}}
+
+  .datos{background:var(--fondo);border-radius:18px;padding:30px 28px}
+  .datos div{margin-bottom:24px}
+  .datos strong{display:block;font-size:13px;letter-spacing:.1em;text-transform:uppercase;
+                color:var(--gris);font-weight:500;margin-bottom:5px}
+  .datos p{font-size:16.5px}
+
+  .obras{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+  .obra{background:var(--blanco);border:1px solid var(--linea);border-radius:100px;
+        padding:9px 18px;font-size:15px;color:var(--gris)}
+
+  footer{padding:34px 0;border-top:1px solid var(--linea);font-size:14.5px;color:var(--gris);
+         display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+
+  @media(max-width:900px){
+    .links{display:none}
+    .hgrid,.agenda{grid-template-columns:1fr;gap:38px}
+    .tira .wrap{grid-template-columns:1fr 1fr;gap:22px}
+    .servicios{grid-template-columns:1fr}
+    section,header{padding:56px 0}
+    .fila{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="marca"><span class="gota"></span> Nordelta Odontología</div>
+    <div class="links">
+      <a href="#servicios">Tratamientos</a>
+      <a href="#turnos">Turnos</a>
+      <a href="#contacto">Contacto</a>
+    </div>
+    <a href="#turnos" class="btn">Pedir turno</a>
+  </div>
+</nav>
+
+<header>
+  <div class="wrap hgrid">
+    <div>
+      <span class="pill">Atendemos obras sociales y prepagas</span>
+      <h1>Que venir al dentista <b>no sea un problema</b></h1>
+      <p>Consultorio de tres box en Nordelta. Turnos que empiezan a horario, presupuesto cerrado antes de empezar y nada de tratamientos que no necesitás.</p>
+      <div class="acciones">
+        <a href="#turnos" class="btn">Sacar turno online</a>
+        <a href="#servicios" class="btn hueca">Ver tratamientos</a>
+      </div>
+    </div>
+    <div class="hfoto"><img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=900&q=80" alt="Consultorio"></div>
+  </div>
+</header>
+
+<div class="tira">
+  <div class="wrap">
+    <div class="dato"><b>18</b><span>años en la zona</span></div>
+    <div class="dato"><b>4</b><span>profesionales</span></div>
+    <div class="dato"><b>0</b><span>demora promedio, en minutos</span></div>
+    <div class="dato"><b>Sáb</b><span>también atendemos</span></div>
+  </div>
+</div>
+
+<section id="servicios">
+  <div class="wrap">
+    <div class="cab">
+      <h2>Qué hacemos</h2>
+      <p>Todo en el mismo lugar, con la misma historia clínica. No te derivamos salvo que haga falta cirugía compleja.</p>
+    </div>
+    <div class="servicios">
+      <div class="serv"><div class="ico">🦷</div><h3>Odontología general</h3><p>Control, limpieza, arreglos y endodoncia. La consulta de diagnóstico es sin cargo.</p></div>
+      <div class="serv"><div class="ico">✨</div><h3>Estética</h3><p>Blanqueamiento con luz fría y carillas de porcelana. Te mostramos la simulación antes de tocarte un diente.</p></div>
+      <div class="serv"><div class="ico">🔧</div><h3>Implantes</h3><p>Planificación con tomografía. Trabajamos con implantes de marca, con garantía escrita.</p></div>
+      <div class="serv"><div class="ico">📐</div><h3>Ortodoncia</h3><p>Brackets metálicos, estéticos y alineadores invisibles. Control cada 30 días.</p></div>
+      <div class="serv"><div class="ico">👶</div><h3>Odontopediatría</h3><p>Con box propio y sin apuro. Primera visita a los dos años, aunque sea solo para que conozca.</p></div>
+      <div class="serv"><div class="ico">🚑</div><h3>Urgencias</h3><p>Dolor, fractura o algo que se salió: guardamos horarios libres todos los días para eso.</p></div>
+    </div>
+    <div class="obras">
+      <span class="obra">OSDE</span><span class="obra">Swiss Medical</span><span class="obra">Galeno</span>
+      <span class="obra">Medifé</span><span class="obra">OMINT</span><span class="obra">IOMA</span>
+      <span class="obra">Particular</span>
+    </div>
+  </div>
+</section>
+
+<section id="turnos">
+  <div class="wrap">
+    <div class="cab">
+      <h2>Pedí tu turno</h2>
+      <p>Elegí el día y la hora que te queden bien. Te lo confirmamos por WhatsApp dentro de las dos horas.</p>
+    </div>
+    <div class="agenda">
+      <div>
+        <p class="paso">Paso 1 · Elegí el día</p>
+        <div class="dias" id="dias"></div>
+        <p class="paso" style="margin-top:30px">Paso 2 · Elegí la hora</p>
+        <div class="horas" id="horas"><p class="vacio">Elegí primero un día.</p></div>
+      </div>
+      <div>
+        <p class="paso">Paso 3 · Tus datos</p>
+        <div class="resumen" id="resumen"></div>
+        <form id="form" novalidate>
+          <div class="fila">
+            <div><label for="nom">Nombre y apellido</label><input id="nom" required></div>
+            <div><label for="tel">Teléfono</label><input id="tel" type="tel" required placeholder="11 5555 5555"></div>
+          </div>
+          <div class="fila">
+            <div><label for="cob">Cobertura</label>
+              <select id="cob"><option>Particular</option><option>OSDE</option><option>Swiss Medical</option>
+                <option>Galeno</option><option>Medifé</option><option>OMINT</option><option>IOMA</option></select></div>
+            <div><label for="mot">Motivo</label>
+              <select id="mot"><option>Consulta o control</option><option>Limpieza</option><option>Dolor o urgencia</option>
+                <option>Ortodoncia</option><option>Implantes</option><option>Estética</option></select></div>
+          </div>
+          <button class="btn" type="submit" id="enviar" disabled>Confirmar el turno</button>
+          <div class="ok" id="ok"></div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contacto">
+  <div class="wrap">
+    <div class="agenda">
+      <div class="datos">
+        <div><strong>Dónde</strong><p>Av. de los Lagos 7020, local 12<br>Nordelta, Tigre</p></div>
+        <div><strong>Teléfono</strong><p>011 4871 3300<br>11 5544 7788 (WhatsApp)</p></div>
+        <div><strong>Horarios</strong><p>Lunes a viernes de 9 a 20 h<br>Sábados de 9 a 14 h</p></div>
+        <div style="margin:0"><strong>Email</strong><p>turnos@nordeltaodonto.com.ar</p></div>
+      </div>
+      <div class="hfoto"><img src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=900&q=80" alt="Atención"></div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+  <footer>
+    <span>© 2026 Nordelta Odontología · Dir. Téc. Dra. C. Lema, M.N. 24.883</span>
+    <span>Instagram · WhatsApp</span>
+  </footer>
+</div>
+
+<script>
+const $ = s => document.querySelector(s);
+const HORAS = ['09:00','10:00','11:00','12:00','15:00','16:00','17:00','18:00','19:00'];
+let elegido = null, hora = null;
+
+/* La disponibilidad es siempre la misma para cada fecha: si cambiara en cada clic,
+   un turno que viste libre desaparecería mientras completás tus datos. */
+function ocupadas(fecha){
+  const semilla = fecha.getDate() * 31 + fecha.getMonth() * 7;
+  return HORAS.filter((_, i) => (semilla + i * 13) % 7 < 3);
+}
+
+const hoy = new Date(); hoy.setHours(0,0,0,0);
+const dias = [];
+for (let i = 1; dias.length < 12; i++){
+  const d = new Date(hoy); d.setDate(hoy.getDate() + i);
+  if (d.getDay() !== 0) dias.push(d);          // los domingos está cerrado
+}
+
+$('#dias').innerHTML = dias.map((d,i) => {
+  const libres = HORAS.length - ocupadas(d).length;
+  const sabado = d.getDay() === 6;
+  return `<button class="dia" data-d="${i}" ${libres ? '' : 'disabled'} aria-pressed="false">
+    <b>${d.getDate()}</b><span>${d.toLocaleDateString('es-AR',{weekday:'short'})}${sabado ? ' ·' : ''}</span>
+  </button>`;
+}).join('');
+
+$('#dias').addEventListener('click', ev => {
+  const b = ev.target.closest('[data-d]'); if (!b || b.disabled) return;
+  document.querySelectorAll('.dia').forEach(x => x.setAttribute('aria-pressed','false'));
+  b.setAttribute('aria-pressed','true');
+  elegido = dias[+b.dataset.d]; hora = null;
+  pintarHoras();
+  actualizar();
+});
+
+function pintarHoras(){
+  const cerradas = ocupadas(elegido);
+  const tope = elegido.getDay() === 6 ? HORAS.slice(0,4) : HORAS;   // sábado hasta el mediodía
+  $('#horas').innerHTML = tope.map(h =>
+    `<button class="hora" data-h="${h}" ${cerradas.includes(h) ? 'disabled' : ''} aria-pressed="false">${h}</button>`
+  ).join('');
+}
+
+$('#horas').addEventListener('click', ev => {
+  const b = ev.target.closest('[data-h]'); if (!b || b.disabled) return;
+  document.querySelectorAll('.hora').forEach(x => x.setAttribute('aria-pressed','false'));
+  b.setAttribute('aria-pressed','true');
+  hora = b.dataset.h;
+  actualizar();
+});
+
+function actualizar(){
+  const r = $('#resumen');
+  if (elegido && hora) {
+    r.innerHTML = `Turno para el <b>${elegido.toLocaleDateString('es-AR',{weekday:'long',day:'numeric',month:'long'})}</b> a las <b>${hora}</b>.`;
+    r.classList.add('ver');
+    $('#enviar').disabled = false;
+  } else if (elegido) {
+    r.innerHTML = `Día elegido: <b>${elegido.toLocaleDateString('es-AR',{weekday:'long',day:'numeric',month:'long'})}</b>. Ahora la hora.`;
+    r.classList.add('ver');
+    $('#enviar').disabled = true;
+  }
+}
+
+$('#form').addEventListener('submit', ev => {
+  ev.preventDefault();
+  const nom = $('#nom'), tel = $('#tel'), ok = $('#ok');
+  if (!nom.value.trim() || tel.value.replace(/\D/g,'').length < 8) {
+    ok.textContent = 'Necesitamos tu nombre y un teléfono para confirmarte.';
+    ok.classList.add('ver'); return;
+  }
+  ok.innerHTML = `Listo, ${nom.value.trim().split(' ')[0]}. Te esperamos el
+    <b>${elegido.toLocaleDateString('es-AR',{weekday:'long',day:'numeric',month:'long'})}</b> a las <b>${hora}</b>
+    por ${$('#mot').value.toLowerCase()}. Te escribimos al ${tel.value} para confirmar.
+    Si no podés venir, avisanos con 24 horas.`;
+  ok.classList.add('ver');
+  $('#enviar').textContent = 'Turno pedido';
+  $('#enviar').disabled = true;
+});
+</script>
+</body>
+</html>

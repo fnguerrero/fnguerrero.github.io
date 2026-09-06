@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bodega Alto Verde · Valle de Uco</title>
+<meta name="description" content="Bodega familiar en el Valle de Uco. Vinos de altura, visitas con degustación y envíos a todo el país.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,500;1,300&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --noche:#17100F; --carbon:#221816; --crema:#F2EAE0; --gris:#9C8C82;
+    --borgona:#7B2233; --oro:#C6A15B; --linea:rgba(242,234,224,.14);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--noche);color:var(--crema);
+       font:300 17px/1.7 Jost,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  img{max-width:100%;display:block}
+  a{color:inherit}
+  button{font:inherit;color:inherit;cursor:pointer;border:0;background:none}
+  .serif{font-family:"Cormorant Garamond",Georgia,serif;font-weight:300;letter-spacing:-.01em}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 28px}
+
+  nav{position:sticky;top:0;z-index:60;background:rgba(23,16,15,.9);
+      backdrop-filter:blur(12px);border-bottom:1px solid var(--linea)}
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:80px}
+  .marca{font-family:"Cormorant Garamond",serif;font-size:25px;letter-spacing:.04em}
+  .marca i{font-style:normal;color:var(--oro)}
+  .links{display:flex;gap:32px;font-size:14px;letter-spacing:.1em;text-transform:uppercase}
+  .links a{text-decoration:none;color:var(--gris);transition:color .2s}
+  .links a:hover{color:var(--oro)}
+  .btn{display:inline-block;background:var(--borgona);color:var(--crema);text-decoration:none;
+       padding:14px 28px;border-radius:2px;font-size:14px;letter-spacing:.1em;text-transform:uppercase;
+       transition:background .25s}
+  .btn:hover{background:#96293D}
+  .btn.hueca{background:transparent;border:1px solid var(--linea);color:var(--crema)}
+  .btn.hueca:hover{border-color:var(--oro);color:var(--oro);background:transparent}
+  .btn[disabled]{opacity:.35;cursor:not-allowed}
+  .carrito-btn{position:relative}
+  .carrito-btn s{position:absolute;top:-7px;right:-9px;background:var(--oro);color:var(--noche);
+    text-decoration:none;font-size:11px;font-weight:500;min-width:20px;height:20px;border-radius:10px;
+    display:grid;place-items:center;padding:0 5px}
+
+  header{position:relative;min-height:92vh;display:flex;align-items:center;overflow:hidden}
+  header::before{content:"";position:absolute;inset:0;
+    background:url("https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=1800&q=80") center/cover;
+    filter:saturate(.9) brightness(.72)}
+  header::after{content:"";position:absolute;inset:0;
+    background:linear-gradient(90deg,rgba(23,16,15,.88) 0%,rgba(23,16,15,.35) 60%,rgba(23,16,15,.7) 100%)}
+  .hero{position:relative;z-index:2;max-width:36ch}
+  .hero .alto{font-size:13px;letter-spacing:.3em;text-transform:uppercase;color:var(--oro);margin-bottom:22px}
+  .hero h1{font-size:clamp(46px,8vw,86px);line-height:1}
+  .hero h1 em{font-style:italic;color:var(--oro)}
+  .hero p{margin:24px 0 34px;font-size:19px;color:rgba(242,234,224,.82)}
+
+  section{padding:104px 0}
+  .cab{max-width:54ch;margin-bottom:52px}
+  h2{font-size:clamp(32px,4.6vw,50px);margin-bottom:16px}
+  .cab p{color:var(--gris);font-size:18px}
+  .eyebrow{font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:var(--oro);margin-bottom:16px}
+
+  /* vinos */
+  .vinos{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+  .vino{background:var(--carbon);border:1px solid var(--linea);border-radius:4px;overflow:hidden;
+        display:flex;flex-direction:column;transition:border-color .28s}
+  .vino:hover{border-color:rgba(198,161,91,.5)}
+  .etiqueta{aspect-ratio:3/2.1;display:grid;place-items:center;position:relative;
+            background:linear-gradient(160deg,var(--c) 0%,#12100F 130%)}
+  .etiqueta .papel{width:52%;background:#F4EEE4;color:#1A1412;padding:16px 10px;text-align:center;
+    box-shadow:0 8px 24px rgba(0,0,0,.45)}
+  .etiqueta .papel b{display:block;font-family:"Cormorant Garamond",serif;font-size:22px;
+    font-weight:500;line-height:1.1}
+  .etiqueta .papel span{display:block;font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;
+    color:#6B5B52;margin-top:6px}
+  .etiqueta .papel hr{border:0;border-top:1px solid #D6CBBE;margin:9px 18%}
+  .vino .cuerpo{padding:22px 22px 24px;display:flex;flex-direction:column;flex:1}
+  .vino h3{font-family:"Cormorant Garamond",serif;font-size:26px;font-weight:500}
+  .vino .tipo{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--oro);margin:6px 0 12px}
+  .vino p{font-size:15px;color:var(--gris);flex:1}
+  .vino .pie{display:flex;align-items:center;justify-content:space-between;gap:12px;
+             margin-top:20px;padding-top:18px;border-top:1px solid var(--linea)}
+  .vino .valor{font-family:"Cormorant Garamond",serif;font-size:27px;font-variant-numeric:tabular-nums}
+  .sumar{background:transparent;border:1px solid var(--linea);border-radius:2px;padding:11px 18px;
+         font-size:13px;letter-spacing:.08em;text-transform:uppercase;transition:background .2s,border-color .2s}
+  .sumar:hover{background:var(--borgona);border-color:var(--borgona)}
+
+  /* carrito */
+  .panel{position:fixed;inset:0;z-index:90;display:none}
+  .panel.ver{display:block}
+  .panel .fondo{position:absolute;inset:0;background:rgba(10,7,6,.62)}
+  .caja{position:absolute;top:0;right:0;bottom:0;width:min(430px,100%);background:var(--carbon);
+        border-left:1px solid var(--linea);padding:30px 26px;overflow-y:auto;
+        animation:entra .3s ease}
+  @keyframes entra{from{transform:translateX(30px);opacity:0}to{transform:none;opacity:1}}
+  .caja h3{font-family:"Cormorant Garamond",serif;font-size:30px;font-weight:400;margin-bottom:4px}
+  .caja .cerrar{position:absolute;top:24px;right:22px;font-size:26px;line-height:1;color:var(--gris)}
+  .item{display:grid;grid-template-columns:1fr auto;gap:6px 14px;padding:18px 0;
+        border-bottom:1px solid var(--linea)}
+  .item b{font-family:"Cormorant Garamond",serif;font-size:20px;font-weight:500}
+  .item .sub{font-size:13.5px;color:var(--gris)}
+  .item .valor{font-variant-numeric:tabular-nums;align-self:center;white-space:nowrap}
+  .cant{display:flex;align-items:center;gap:12px;margin-top:6px}
+  .cant button{width:28px;height:28px;border:1px solid var(--linea);border-radius:2px;
+    display:grid;place-items:center;font-size:16px;transition:border-color .18s}
+  .cant button:hover{border-color:var(--oro);color:var(--oro)}
+  .cant span{min-width:18px;text-align:center;font-variant-numeric:tabular-nums}
+  .totales{margin-top:22px;padding-top:20px;border-top:1px solid var(--linea)}
+  .renglon{display:flex;justify-content:space-between;gap:14px;padding:8px 0;font-size:15.5px;
+           color:var(--gris)}
+  .renglon.grande{color:var(--crema);font-size:20px;padding-top:16px;margin-top:8px;
+                  border-top:1px solid var(--linea)}
+  .renglon.grande b{font-family:"Cormorant Garamond",serif;font-size:30px;color:var(--oro);
+                    font-variant-numeric:tabular-nums}
+  .vacio{color:var(--gris);padding:40px 0;text-align:center}
+  .ok{background:rgba(198,161,91,.1);border:1px solid rgba(198,161,91,.35);padding:18px 20px;
+      margin-top:18px;font-size:15.5px;display:none}
+  .ok.ver{display:block}
+
+  /* visitas */
+  #visitas{background:var(--carbon)}
+  .vgrid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+  .vgrid img{border-radius:3px;aspect-ratio:4/3;object-fit:cover}
+  .planes{display:grid;gap:14px;margin-top:26px}
+  .plan{display:flex;justify-content:space-between;gap:18px;padding:18px 0;
+        border-bottom:1px solid var(--linea)}
+  .plan b{font-family:"Cormorant Garamond",serif;font-size:21px;font-weight:500;display:block}
+  .plan span{font-size:14.5px;color:var(--gris)}
+  .plan .valor{font-family:"Cormorant Garamond",serif;font-size:23px;white-space:nowrap;color:var(--oro)}
+
+  footer{padding:40px 0;border-top:1px solid var(--linea);font-size:14px;color:var(--gris);
+         display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+
+  @media(max-width:900px){
+    .links{display:none}
+    .vinos{grid-template-columns:1fr}
+    .vgrid{grid-template-columns:1fr;gap:34px}
+    section{padding:64px 0}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="marca">Alto <i>Verde</i></div>
+    <div class="links">
+      <a href="#vinos">Los vinos</a>
+      <a href="#visitas">Visitas</a>
+      <a href="#contacto">Contacto</a>
+    </div>
+    <button class="btn hueca carrito-btn" id="abrir">Mi pedido <s id="cuenta">0</s></button>
+  </div>
+</nav>
+
+<header>
+  <div class="wrap hero">
+    <p class="alto">Valle de Uco · 1.180 msnm</p>
+    <h1 class="serif">Vinos de <em>altura</em></h1>
+    <p>Bodega familiar desde 1974. Diez hectáreas propias, cosecha manual y una producción chica que se termina todos los años.</p>
+    <a href="#vinos" class="btn">Ver los vinos</a>
+  </div>
+</header>
+
+<section id="vinos">
+  <div class="wrap">
+    <div class="cab">
+      <p class="eyebrow">La línea</p>
+      <h2 class="serif">Seis etiquetas</h2>
+      <p>Todas de finca propia. Los precios son de bodega: comprando acá pagás lo mismo que viniendo hasta Mendoza.</p>
+    </div>
+    <div class="vinos" id="lista"></div>
+  </div>
+</section>
+
+<section id="visitas">
+  <div class="wrap">
+    <div class="vgrid">
+      <div>
+        <p class="eyebrow">Visitas</p>
+        <h2 class="serif">Venite a conocer</h2>
+        <p style="color:var(--gris)">De martes a domingo, con reserva. La recorrida la hace alguien de la familia, no un guía contratado.</p>
+        <div class="planes">
+          <div class="plan"><span><b>Recorrida y degustación</b><span>90 minutos · 4 vinos</span></span><span class="valor">$28.000</span></div>
+          <div class="plan"><span><b>Almuerzo entre viñas</b><span>3 pasos maridados · sábados y domingos</span></span><span class="valor">$72.000</span></div>
+          <div class="plan"><span><b>Cata vertical</b><span>Seis añadas del mismo Malbec · con reserva</span></span><span class="valor">$95.000</span></div>
+        </div>
+      </div>
+      <img src="https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=900&q=80" alt="Degustación">
+    </div>
+  </div>
+</section>
+
+<section id="contacto">
+  <div class="wrap">
+    <div class="vgrid">
+      <img src="https://images.unsplash.com/photo-1560493676-04071c5f467b?w=900&q=80" alt="La finca">
+      <div>
+        <p class="eyebrow">Dónde estamos</p>
+        <h2 class="serif">Ruta 89, km 14</h2>
+        <p style="color:var(--gris);margin-bottom:22px">Tupungato, Mendoza. A 70 minutos de la ciudad, el último tramo es de ripio pero se hace con cualquier auto.</p>
+        <div class="planes">
+          <div class="plan"><span><b>Teléfono</b><span>0262 244 8890</span></span></div>
+          <div class="plan"><span><b>Email</b><span>hola@bodegaaltoverde.com.ar</span></span></div>
+          <div class="plan"><span><b>Envíos</b><span>A todo el país, sin cargo desde 6 botellas</span></span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+  <footer>
+    <span>© 2026 Bodega Alto Verde · Beber con moderación. Prohibida su venta a menores de 18 años.</span>
+    <span>Instagram · WhatsApp</span>
+  </footer>
+</div>
+
+<div class="panel" id="panel">
+  <div class="fondo" data-cerrar></div>
+  <div class="caja">
+    <button class="cerrar" data-cerrar aria-label="Cerrar">×</button>
+    <h3 class="serif">Tu pedido</h3>
+    <p style="color:var(--gris);font-size:14.5px;margin-bottom:10px">Los precios son por botella.</p>
+    <div id="items"></div>
+    <div id="totales"></div>
+    <div class="ok" id="ok"></div>
+  </div>
+</div>
+
+<script>
+const VINOS = [
+  {id:'m1', nom:'Alto Verde Malbec', tipo:'Malbec 2023', color:'#4A1220', precio:16500,
+   des:'El de todos los días. Fruta negra, taninos redondos y seis meses de roble francés.'},
+  {id:'m2', nom:'Finca La Escalera', tipo:'Malbec de parcela 2021', color:'#3A0E1A', precio:38000,
+   des:'De la parcela más alta, la que se cosecha última. Doce meses de barrica y guarda de diez años.'},
+  {id:'c1', nom:'Alto Verde Cabernet', tipo:'Cabernet Franc 2022', color:'#2E1428', precio:21000,
+   des:'Pimiento, hierbas y una acidez que lo hace fácil de tomar. Va bien con cordero.'},
+  {id:'b1', nom:'Piedra Blanca', tipo:'Chardonnay 2024', color:'#6B5B2A', precio:14500,
+   des:'Sin madera. Cítrico, filoso y frío. El que más rápido se termina en verano.'},
+  {id:'b2', nom:'Alto Verde Torrontés', tipo:'Torrontés 2024', color:'#7A6A2E', precio:12800,
+   des:'Aromático pero seco, no dulce. Para arrancar la mesa o tomar solo.'},
+  {id:'r1', nom:'Ladera Sur', tipo:'Rosado de Malbec 2024', color:'#8A3040', precio:13200,
+   des:'Prensado directo, color pálido. Hecho para tomar joven, este año y no el que viene.'}
+];
+
+const $ = s => document.querySelector(s);
+const plata = n => '$' + n.toLocaleString('es-AR');
+const carro = {};
+
+$('#lista').innerHTML = VINOS.map(v => `
+  <article class="vino">
+    <div class="etiqueta" style="--c:${v.color}">
+      <div class="papel"><b>${v.nom.replace('Alto Verde ','')}</b><hr><span>Alto Verde</span></div>
+    </div>
+    <div class="cuerpo">
+      <h3>${v.nom}</h3>
+      <p class="tipo">${v.tipo}</p>
+      <p>${v.des}</p>
+      <div class="pie">
+        <span class="valor">${plata(v.precio)}</span>
+        <button class="sumar" data-add="${v.id}">Agregar</button>
+      </div>
+    </div>
+  </article>`).join('');
+
+document.addEventListener('click', ev => {
+  const add = ev.target.closest('[data-add]');
+  if (add) { sumar(add.dataset.add, 1); abrir(); }
+  const menos = ev.target.closest('[data-menos]');
+  if (menos) sumar(menos.dataset.menos, -1);
+  const mas = ev.target.closest('[data-mas]');
+  if (mas) sumar(mas.dataset.mas, 1);
+  if (ev.target.closest('[data-cerrar]')) $('#panel').classList.remove('ver');
+});
+$('#abrir').addEventListener('click', abrir);
+addEventListener('keydown', ev => { if (ev.key === 'Escape') $('#panel').classList.remove('ver'); });
+
+function abrir(){ $('#panel').classList.add('ver'); }
+
+function sumar(id, n){
+  carro[id] = (carro[id] || 0) + n;
+  if (carro[id] < 1) delete carro[id];
+  pintar();
+}
+
+function pintar(){
+  const ids = Object.keys(carro);
+  const botellas = ids.reduce((n,id) => n + carro[id], 0);
+  $('#cuenta').textContent = botellas;
+
+  if (!ids.length) {
+    $('#items').innerHTML = '<p class="vacio">Todavía no elegiste nada.</p>';
+    $('#totales').innerHTML = '';
+    return;
+  }
+
+  $('#items').innerHTML = ids.map(id => {
+    const v = VINOS.find(x => x.id === id);
+    return `<div class="item">
+      <div><b>${v.nom}</b><div class="sub">${v.tipo}</div>
+        <div class="cant">
+          <button data-menos="${id}" aria-label="Quitar una">−</button>
+          <span>${carro[id]}</span>
+          <button data-mas="${id}" aria-label="Sumar una">+</button>
+        </div></div>
+      <div class="valor">${plata(v.precio * carro[id])}</div>
+    </div>`;
+  }).join('');
+
+  const subtotal = ids.reduce((n,id) => n + VINOS.find(x => x.id === id).precio * carro[id], 0);
+  /* De seis botellas para arriba es una caja: 10% menos y el envío por cuenta de la bodega. */
+  const caja = botellas >= 6;
+  const descuento = caja ? Math.round(subtotal * 0.1) : 0;
+  const envio = caja ? 0 : 9500;
+
+  $('#totales').innerHTML = `
+    <div class="totales">
+      <div class="renglon"><span>${botellas} ${botellas === 1 ? 'botella' : 'botellas'}</span><span>${plata(subtotal)}</span></div>
+      ${caja ? `<div class="renglon"><span>Descuento por caja de 6</span><span>−${plata(descuento)}</span></div>` : ''}
+      <div class="renglon"><span>Envío</span><span>${envio ? plata(envio) : 'sin cargo'}</span></div>
+      ${!caja ? `<div class="renglon" style="color:var(--oro)"><span>Te faltan ${6 - botellas} para la caja</span><span>−10% y envío gratis</span></div>` : ''}
+      <div class="renglon grande"><span>Total</span><b>${plata(subtotal - descuento + envio)}</b></div>
+      <button class="btn" style="width:100%;margin-top:20px" id="cerrar-pedido">Terminar el pedido</button>
+    </div>`;
+
+  $('#cerrar-pedido').addEventListener('click', () => {
+    const ok = $('#ok');
+    ok.innerHTML = `Pedido tomado: <b>${botellas} ${botellas === 1 ? 'botella' : 'botellas'}</b> por
+      ${plata(subtotal - descuento + envio)}. Te escribimos para coordinar el pago y el envío,
+      que sale de la bodega los martes y los viernes.`;
+    ok.classList.add('ver');
+  });
+}
+
+pintar();
+</script>
+</body>
+</html>

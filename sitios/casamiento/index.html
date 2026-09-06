@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Juli &amp; Tomás · 14 de noviembre</title>
+<meta name="description" content="Nos casamos el 14 de noviembre de 2026 en Open Door. Toda la info y confirmación de asistencia.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,500;1,300&family=Jost:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --crema:#FAF7F2; --papel:#F1EBE1; --tinta:#2E2C26; --gris:#7C766A;
+    --salvia:#7E9080; --salvia-osc:#5F7261; --linea:#E2DACE;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--crema);color:var(--tinta);
+       font:300 17px/1.75 Jost,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  img{max-width:100%;display:block}
+  a{color:inherit}
+  button{font:inherit;color:inherit;cursor:pointer;border:0;background:none}
+  .serif{font-family:"Cormorant Garamond",Georgia,serif;font-weight:300}
+  .wrap{max-width:900px;margin:0 auto;padding:0 26px}
+  .centro{text-align:center}
+
+  header{position:relative;min-height:100vh;display:grid;place-items:center;text-align:center;
+         padding:70px 0;overflow:hidden}
+  header::before{content:"";position:absolute;inset:0;
+    background:url("https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=1800&q=80") center/cover;
+    filter:saturate(.72) brightness(.86)}
+  header::after{content:"";position:absolute;inset:0;background:rgba(250,247,242,.66)}
+  .hero{position:relative;z-index:2}
+  .hero .nos{font-size:13px;letter-spacing:.42em;text-transform:uppercase;color:var(--salvia-osc);
+             margin-bottom:26px}
+  .hero h1{font-family:"Cormorant Garamond",serif;font-weight:300;
+           font-size:clamp(58px,15vw,140px);line-height:.92;letter-spacing:-.02em}
+  .hero h1 em{font-style:italic;display:block;font-size:.52em;margin:6px 0;color:var(--salvia)}
+  .hero .fecha{margin-top:26px;font-size:19px;letter-spacing:.16em;text-transform:uppercase}
+  .hero .donde{color:var(--gris);margin-top:8px;font-size:16px}
+
+  /* cuenta regresiva */
+  .reloj{display:flex;justify-content:center;gap:12px;margin-top:44px;flex-wrap:wrap}
+  .casilla{background:rgba(250,247,242,.86);border:1px solid var(--linea);border-radius:3px;
+           min-width:92px;padding:16px 10px}
+  .casilla b{display:block;font-family:"Cormorant Garamond",serif;font-size:42px;line-height:1;
+             font-weight:300;font-variant-numeric:tabular-nums}
+  .casilla span{display:block;font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;
+                color:var(--gris);margin-top:8px}
+
+  section{padding:96px 0}
+  .eyebrow{font-size:12px;letter-spacing:.32em;text-transform:uppercase;color:var(--salvia);
+           margin-bottom:18px}
+  h2{font-family:"Cormorant Garamond",serif;font-weight:300;font-size:clamp(34px,5.4vw,54px);
+     line-height:1.05;margin-bottom:18px}
+  section p{color:var(--gris);font-size:18px}
+  .linea-fina{width:56px;height:1px;background:var(--salvia);margin:0 auto 26px}
+
+  /* momentos */
+  .momentos{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:52px}
+  .momento{background:var(--papel);border-radius:3px;padding:38px 32px;text-align:center}
+  .momento .hora{font-family:"Cormorant Garamond",serif;font-size:40px;font-weight:300;
+                 color:var(--salvia-osc);line-height:1}
+  .momento h3{font-family:"Cormorant Garamond",serif;font-weight:500;font-size:24px;margin:12px 0 8px}
+  .momento p{font-size:16px}
+  .momento .lugar{margin-top:14px;font-size:14.5px;color:var(--tinta);
+                  padding-top:14px;border-top:1px solid var(--linea)}
+
+  /* confirmacion */
+  #confirmar{background:var(--papel)}
+  .tarjeta{background:var(--crema);border:1px solid var(--linea);border-radius:3px;
+           padding:44px 40px;max-width:640px;margin:44px auto 0}
+  form{display:grid;gap:20px}
+  label{display:block;font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;
+        color:var(--gris);margin-bottom:8px}
+  input,select,textarea{width:100%;background:transparent;border:0;border-bottom:1px solid var(--linea);
+    padding:10px 0;font:300 17px Jost,sans-serif;color:var(--tinta);transition:border-color .22s}
+  input:focus,select:focus,textarea:focus{outline:0;border-color:var(--salvia)}
+  textarea{resize:vertical;min-height:56px}
+  .fila{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  .opciones{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .op{border:1px solid var(--linea);border-radius:3px;padding:16px 14px;text-align:center;
+      font-size:16px;transition:border-color .2s,background .2s}
+  .op:hover{border-color:var(--salvia)}
+  .op[aria-pressed="true"]{background:var(--salvia);border-color:var(--salvia);color:#fff}
+  .oculto{display:none}
+  .btn{background:var(--salvia-osc);color:#fff;padding:16px 34px;border-radius:3px;
+       font-size:14px;letter-spacing:.14em;text-transform:uppercase;justify-self:center;
+       transition:background .22s}
+  .btn:hover{background:#4E5F51}
+  .ok{background:rgba(126,144,128,.12);border:1px solid rgba(126,144,128,.4);border-radius:3px;
+      padding:22px 24px;font-size:16.5px;text-align:center;display:none}
+  .ok.ver{display:block;animation:sube .5s ease}
+  @keyframes sube{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+  /* datos utiles */
+  .utiles{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:46px}
+  .util{text-align:center;padding:30px 22px;border:1px solid var(--linea);border-radius:3px}
+  .util .ico{font-size:26px;margin-bottom:14px}
+  .util h3{font-family:"Cormorant Garamond",serif;font-weight:500;font-size:21px;margin-bottom:8px}
+  .util p{font-size:15.5px}
+
+  footer{padding:60px 0;text-align:center;color:var(--gris);font-size:15px}
+  footer .nombres{font-family:"Cormorant Garamond",serif;font-size:30px;color:var(--tinta);
+                  margin-bottom:10px;font-weight:300}
+
+  @media(max-width:760px){
+    .momentos,.utiles,.fila,.opciones{grid-template-columns:1fr}
+    .casilla{min-width:72px;padding:13px 8px}
+    .casilla b{font-size:32px}
+    section{padding:62px 0}
+    .tarjeta{padding:30px 22px}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap hero">
+    <p class="nos">Nos casamos</p>
+    <h1>Juli <em>&amp;</em> Tomás</h1>
+    <p class="fecha">Sábado 14 de noviembre de 2026</p>
+    <p class="donde">Estancia La Aguada · Open Door, Luján</p>
+    <div class="reloj" id="reloj"></div>
+  </div>
+</header>
+
+<section class="centro">
+  <div class="wrap">
+    <div class="linea-fina"></div>
+    <p class="eyebrow">El día</p>
+    <h2>Cómo va a ser</h2>
+    <p style="max-width:48ch;margin:0 auto">Es a la tarde y al aire libre. Después se pasa al galpón, que está techado, así que si llueve no se suspende nada.</p>
+    <div class="momentos">
+      <div class="momento">
+        <div class="hora">17:00</div>
+        <h3>Ceremonia</h3>
+        <p>Debajo de los eucaliptos. Tratá de llegar quince minutos antes.</p>
+        <p class="lugar">Estancia La Aguada · Ruta 6 km 174</p>
+      </div>
+      <div class="momento">
+        <div class="hora">18:30</div>
+        <h3>Fiesta</h3>
+        <p>Recepción en el parque y cena en el galpón. Hay barra hasta las cuatro.</p>
+        <p class="lugar">Mismo lugar, no hay que moverse</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="confirmar">
+  <div class="wrap centro">
+    <div class="linea-fina"></div>
+    <p class="eyebrow">Confirmación</p>
+    <h2>Avisanos si venís</h2>
+    <p style="max-width:44ch;margin:0 auto">Necesitamos saberlo antes del <b style="color:var(--tinta);font-weight:400">10 de octubre</b> para cerrar el número con la estancia.</p>
+    <div class="tarjeta">
+      <form id="form" novalidate>
+        <div>
+          <label>¿Vas a venir?</label>
+          <div class="opciones">
+            <button type="button" class="op" data-va="si" aria-pressed="false">Sí, ahí estaré</button>
+            <button type="button" class="op" data-va="no" aria-pressed="false">No voy a poder</button>
+          </div>
+        </div>
+        <div class="fila">
+          <div><label for="nom">Nombre y apellido</label><input id="nom" required></div>
+          <div><label for="tel">Teléfono</label><input id="tel" type="tel"></div>
+        </div>
+        <div id="siviene" class="oculto" style="display:grid;gap:20px">
+          <div class="fila">
+            <div><label for="cuantos">Con cuántas personas venís</label>
+              <select id="cuantos"><option value="1">Solo yo</option><option value="2">Con una persona</option>
+                <option value="3">Somos tres</option><option value="4">Somos cuatro</option></select></div>
+            <div><label for="menu">Menú</label>
+              <select id="menu"><option>Sin restricciones</option><option>Vegetariano</option>
+                <option>Vegano</option><option>Sin gluten</option><option>Otra cosa (contame abajo)</option></select></div>
+          </div>
+          <div><label for="micro">¿Usás el micro desde Capital?</label>
+            <select id="micro"><option>Sí, para mí</option><option>Sí, para todo el grupo</option>
+              <option>No, voy por mi cuenta</option></select></div>
+        </div>
+        <div><label for="msj">Algo que quieras decirnos</label><textarea id="msj" placeholder="Una canción que no puede faltar, una alergia, lo que sea"></textarea></div>
+        <button class="btn" type="submit">Confirmar</button>
+        <div class="ok" id="ok"></div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<section class="centro">
+  <div class="wrap">
+    <div class="linea-fina"></div>
+    <p class="eyebrow">Para tener en cuenta</p>
+    <h2>Lo práctico</h2>
+    <div class="utiles">
+      <div class="util">
+        <div class="ico">🚌</div>
+        <h3>Cómo llegar</h3>
+        <p>Sale un micro a las 15:30 de Plaza Italia y vuelve a las 4. Avisanos en el formulario si lo usás.</p>
+      </div>
+      <div class="util">
+        <div class="ico">👗</div>
+        <h3>Qué ponerse</h3>
+        <p>Elegante sport. Es en el campo y hay pasto: no vengas con tacos finos, en serio.</p>
+      </div>
+      <div class="util">
+        <div class="ico">🎁</div>
+        <h3>Regalos</h3>
+        <p>Tu presencia alcanza. Si igual querés, en la fiesta va a haber una urna y nada más.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p class="nombres serif">Juli &amp; Tomás</p>
+    <p>14 · 11 · 2026 &nbsp;·&nbsp; Open Door</p>
+  </div>
+</footer>
+
+<script>
+const $ = s => document.querySelector(s);
+const FECHA = new Date('2026-11-14T17:00:00-03:00');
+
+function reloj(){
+  const falta = FECHA - new Date();
+  if (falta <= 0) { $('#reloj').innerHTML = '<div class="casilla" style="min-width:auto;padding:16px 26px"><b>¡Hoy!</b></div>'; return; }
+  const d = Math.floor(falta / 86400000);
+  const h = Math.floor(falta / 3600000) % 24;
+  const m = Math.floor(falta / 60000) % 60;
+  const s = Math.floor(falta / 1000) % 60;
+  const cajas = [[d,'días'],[h,'horas'],[m,'minutos'],[s,'segundos']];
+  $('#reloj').innerHTML = cajas.map(([n,t]) =>
+    `<div class="casilla"><b>${String(n).padStart(2,'0')}</b><span>${t}</span></div>`).join('');
+}
+reloj();
+setInterval(reloj, 1000);
+
+let viene = null;
+document.querySelectorAll('[data-va]').forEach(b => {
+  b.addEventListener('click', () => {
+    document.querySelectorAll('[data-va]').forEach(x => x.setAttribute('aria-pressed','false'));
+    b.setAttribute('aria-pressed','true');
+    viene = b.dataset.va === 'si';
+    $('#siviene').classList.toggle('oculto', !viene);
+  });
+});
+
+$('#form').addEventListener('submit', ev => {
+  ev.preventDefault();
+  const nom = $('#nom'), ok = $('#ok');
+  if (viene === null) { ok.textContent = 'Contanos primero si vas a venir.'; ok.classList.add('ver'); return; }
+  if (!nom.value.trim()) { ok.textContent = 'Necesitamos tu nombre para tacharte de la lista.'; ok.classList.add('ver'); return; }
+
+  const quien = nom.value.trim().split(' ')[0];
+  if (!viene) {
+    ok.innerHTML = `Gracias por avisar, ${quien}. Nos da pena, pero entendemos. ¡Nos vemos pronto!`;
+  } else {
+    const n = +$('#cuantos').value;
+    /* los mismos días que muestra el reloj de arriba: si redondeara distinto, el que
+       confirma ve un número y dos centímetros más arriba, otro */
+    const dias = Math.floor((FECHA - new Date()) / 86400000);
+    const acompanantes = n === 1 ? 'a vos'
+      : n === 2 ? 'a vos y a una persona más'
+      : 'a vos y a ' + (n - 1) + ' personas más';
+    ok.innerHTML = `¡Buenísimo, ${quien}! Te anotamos ${acompanantes},
+      con menú <b>${$('#menu').value.toLowerCase()}</b>.
+      ${$('#micro').value.startsWith('Sí') ? 'Guardamos tu lugar en el micro. ' : ''}
+      Faltan ${dias} días.`;
+  }
+  ok.classList.add('ver');
+  ev.target.querySelector('.btn').textContent = 'Confirmado';
+});
+</script>
+</body>
+</html>

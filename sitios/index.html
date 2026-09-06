@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Sitios web · Nico Guerrero</title>
-<meta name="description" content="Cinco sitios de muestra: café, estudio contable, gimnasio, inmobiliaria y marca de producto. Diseño y desarrollo web.">
+<meta name="description" content="Once sitios de muestra, uno por rubro: café, estudio contable, gimnasio, inmobiliaria, producto, odontología, cabañas, bodega, arquitectura, casamiento y rotisería.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -19,10 +19,11 @@
        font:400 16.5px/1.65 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
   img{max-width:100%;display:block}
   a{color:inherit}
-  .wrap{max-width:1200px;margin:0 auto;padding:0 32px}
+  button{font:inherit;color:inherit;cursor:pointer;border:0;background:none}
+  .wrap{max-width:1240px;margin:0 auto;padding:0 32px}
   .serif{font-family:"Instrument Serif",Georgia,serif;font-weight:400;letter-spacing:-.01em}
 
-  header{padding:64px 0 60px}
+  header{padding:64px 0 44px}
   .volver{display:inline-flex;align-items:center;gap:8px;font-size:14px;color:var(--gris);
           text-decoration:none;margin-bottom:44px;transition:color .2s}
   .volver:hover{color:var(--acento)}
@@ -32,59 +33,64 @@
   h1{font-size:clamp(42px,6vw,72px);line-height:1.05;max-width:17ch}
   h1 em{font-style:italic;color:var(--acento)}
   header p{color:var(--gris);font-size:19px;max-width:60ch;margin-top:26px;font-weight:300}
-  .nota{margin-top:34px;padding:16px 20px;background:var(--blanco);border:1px solid var(--linea);
+  .nota{margin-top:30px;padding:16px 20px;background:var(--blanco);border:1px solid var(--linea);
         border-radius:5px;font-size:14.5px;color:var(--gris);max-width:66ch}
   .nota b{color:var(--tinta);font-weight:500}
 
-  .lista{padding-bottom:40px}
-  .sitio{display:grid;grid-template-columns:1fr 1fr;gap:0;background:var(--blanco);
-         border:1px solid var(--linea);border-radius:8px;overflow:hidden;margin-bottom:32px;
-         transition:box-shadow .35s,transform .35s}
-  .sitio:hover{box-shadow:0 20px 50px rgba(21,23,26,.09);transform:translateY(-3px)}
-  .sitio:nth-child(even) .captura{order:2}
-  .captura{position:relative;background:#EDECE8;overflow:hidden;min-height:330px}
-  .captura img{width:100%;height:100%;object-fit:cover;object-position:top center;
-               transition:transform 4s ease}
-  .sitio:hover .captura img{transform:translateY(-8%)}
-  .captura .marco{position:absolute;inset:0;box-shadow:inset 0 0 0 1px rgba(21,23,26,.07)}
-  .texto{padding:46px 48px;display:flex;flex-direction:column;justify-content:center}
-  .rubro{font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--acento);margin-bottom:16px}
-  .sitio h2{font-size:33px;line-height:1.15;margin-bottom:14px}
-  .sitio > .texto > p{color:var(--gris);font-size:16px;font-weight:300}
-  .tags{display:flex;flex-wrap:wrap;gap:8px;margin:26px 0 30px}
-  .tag{font-size:12.5px;color:var(--gris);border:1px solid var(--linea);border-radius:100px;padding:5px 13px}
-  .acciones{display:flex;gap:12px;flex-wrap:wrap}
-  .btn{display:inline-block;background:var(--tinta);color:#fff;text-decoration:none;
-       padding:13px 24px;border-radius:4px;font-size:14.5px;font-weight:500;transition:background .25s}
-  .btn:hover{background:var(--acento)}
-  .btn.hueca{background:transparent;color:var(--tinta);border:1px solid var(--linea)}
-  .btn.hueca:hover{background:var(--papel);border-color:var(--tinta)}
+  /* filtros por lo que resuelve cada uno, no por rubro: el que mira quiere saber si
+     puede tener turnos, catálogo o carrito, más que si el ejemplo es un café */
+  .filtros{display:flex;gap:8px;flex-wrap:wrap;margin:34px 0 4px}
+  .filtro{border:1px solid var(--linea);border-radius:100px;padding:9px 18px;font-size:14.5px;
+          color:var(--gris);background:var(--blanco);transition:all .18s}
+  .filtro:hover{border-color:var(--tinta);color:var(--tinta)}
+  .filtro[aria-pressed="true"]{background:var(--tinta);border-color:var(--tinta);color:var(--blanco)}
+  .cuenta{color:var(--gris);font-size:14px;margin:18px 0 0}
 
-  .cierre{background:var(--tinta);color:#fff;border-radius:8px;padding:72px 60px;margin:32px 0 90px;
-          display:grid;grid-template-columns:1.1fr .9fr;gap:64px;align-items:center}
+  .grilla{display:grid;grid-template-columns:repeat(2,1fr);gap:26px;padding:26px 0 40px}
+  .sitio{background:var(--blanco);border:1px solid var(--linea);border-radius:10px;overflow:hidden;
+         display:flex;flex-direction:column;transition:box-shadow .3s,transform .3s}
+  .sitio:hover{box-shadow:0 18px 44px rgba(21,23,26,.1);transform:translateY(-3px)}
+  .captura{position:relative;aspect-ratio:16/10;overflow:hidden;background:#EDECE8;
+           border-bottom:1px solid var(--linea)}
+  .captura img{width:100%;height:100%;object-fit:cover;object-position:top center;
+               transition:transform 3.5s ease}
+  .sitio:hover .captura img{transform:translateY(-7%)}
+  .texto{padding:26px 28px 28px;display:flex;flex-direction:column;flex:1}
+  .rubro{font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--acento);
+         margin-bottom:12px}
+  .sitio h2{font-size:26px;line-height:1.2;margin-bottom:10px}
+  .sitio > .texto > p{color:var(--gris);font-size:15.5px;font-weight:300}
+  .tags{display:flex;flex-wrap:wrap;gap:7px;margin:20px 0 22px}
+  .tag{font-size:12.5px;color:var(--gris);border:1px solid var(--linea);border-radius:100px;
+       padding:5px 12px}
+  .btn{display:inline-block;background:var(--tinta);color:#fff;text-decoration:none;
+       padding:12px 22px;border-radius:4px;font-size:14.5px;font-weight:500;
+       transition:background .22s;align-self:flex-start;margin-top:auto}
+  .btn:hover{background:var(--acento)}
+
+  .cierre{background:var(--tinta);color:#fff;border-radius:10px;padding:64px 56px;margin:20px 0 80px;
+          display:grid;grid-template-columns:1.1fr .9fr;gap:60px;align-items:center}
   .cierre h2{font-size:clamp(30px,4vw,44px);line-height:1.1;margin-bottom:18px}
   .cierre p{color:rgba(255,255,255,.68);font-weight:300;font-size:17.5px}
-  .cierre .btn{background:#fff;color:var(--tinta)}
+  .cierre .btn{background:#fff;color:var(--tinta);margin:0}
   .cierre .btn:hover{background:rgba(255,255,255,.86)}
   .incluye{list-style:none;font-size:15.5px}
-  .incluye li{padding:13px 0;border-bottom:1px solid rgba(255,255,255,.14);
+  .incluye li{padding:12px 0;border-bottom:1px solid rgba(255,255,255,.14);
               display:flex;gap:13px;color:rgba(255,255,255,.88)}
   .incluye li::before{content:"→";color:#7FA9DC;flex:none}
   .incluye li:last-child{border-bottom:0}
 
-  footer{padding:34px 0 60px;border-top:1px solid var(--linea);font-size:13.5px;color:var(--gris);
+  footer{padding:30px 0 56px;border-top:1px solid var(--linea);font-size:13.5px;color:var(--gris);
          display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 
-  .js .rev{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+  .js .rev{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease}
   .js .rev.on{opacity:1;transform:none}
 
-  @media(max-width:900px){
-    .sitio{grid-template-columns:1fr}
-    .sitio:nth-child(even) .captura{order:0}
-    .captura{aspect-ratio:16/10;min-height:0}
-    .texto{padding:34px 30px 38px}
-    .cierre{grid-template-columns:1fr;gap:40px;padding:48px 32px}
-    header{padding:64px 0 48px}
+  @media(max-width:920px){
+    .grilla{grid-template-columns:1fr;gap:20px}
+    .cierre{grid-template-columns:1fr;gap:38px;padding:44px 30px}
+    .texto{padding:22px 22px 24px}
+    header{padding:44px 0 28px}
   }
 </style>
 <script>document.documentElement.className="js"</script>
@@ -95,90 +101,21 @@
   <header>
     <a class="volver" href="../">← El taller de Nico</a>
     <p class="kicker">Diseño y desarrollo web</p>
-    <h1 class="serif">Cinco sitios, cinco <em>maneras</em> de resolverlo</h1>
-    <p>Cada uno está pensado para un rubro distinto y resuelto con un lenguaje visual propio. No son plantillas con el color cambiado: cambian la tipografía, la estructura, el ritmo y lo que el visitante tiene que poder hacer.</p>
-    <p class="nota"><b>Son demos.</b> Los nombres, textos, precios y datos de contacto son inventados. Los formularios validan y responden, pero no envían nada — en un sitio real llegan a tu casilla o a WhatsApp.</p>
+    <h1 class="serif">Once sitios, once <em>maneras</em> de resolverlo</h1>
+    <p>Cada uno está pensado para un rubro distinto y resuelto con un lenguaje visual propio. No son plantillas con el color cambiado: cambian la tipografía, la estructura, el ritmo y —sobre todo— lo que el visitante tiene que poder hacer.</p>
+    <p class="nota"><b>Son demos.</b> Los nombres, textos, precios y datos de contacto son inventados. Todo lo interactivo funciona de verdad —los turnos, el carrito, los filtros, el cálculo de precios— pero nada se envía a ningún lado.</p>
   </header>
 
-  <div class="lista">
+  <div class="filtros" id="filtros"></div>
+  <p class="cuenta" id="cuenta"></p>
 
-    <article class="sitio rev">
-      <div class="captura"><img src="../img/sitio-cafe.jpg" alt="Sitio del café Origen"><div class="marco"></div></div>
-      <div class="texto">
-        <p class="rubro">Gastronomía</p>
-        <h2 class="serif">Origen · Café de especialidad</h2>
-        <p>Foto grande, carta legible sin hacer scroll infinito y una reserva que se completa en cuatro campos. Lo que un café necesita que la gente haga: ver el menú y sentarse.</p>
-        <div class="tags">
-          <span class="tag">Cálido y editorial</span><span class="tag">Carta con precios</span>
-          <span class="tag">Reserva de mesa</span><span class="tag">Galería</span>
-        </div>
-        <div class="acciones"><a class="btn" href="cafe/">Ver el sitio</a></div>
-      </div>
-    </article>
-
-    <article class="sitio rev">
-      <div class="captura"><img src="../img/sitio-estudio.jpg" alt="Sitio del estudio contable"><div class="marco"></div></div>
-      <div class="texto">
-        <p class="rubro">Servicios profesionales</p>
-        <h2 class="serif">Vidal &amp; Asociados · Estudio contable</h2>
-        <p>Acá el trabajo del diseño es generar confianza. Mucho aire, grilla firme, cifras que respaldan y las preguntas incómodas contestadas antes de que las haga.</p>
-        <div class="tags">
-          <span class="tag">Sobrio e institucional</span><span class="tag">Preguntas frecuentes</span>
-          <span class="tag">Equipo</span><span class="tag">Formulario de consulta</span>
-        </div>
-        <div class="acciones"><a class="btn" href="estudio/">Ver el sitio</a></div>
-      </div>
-    </article>
-
-    <article class="sitio rev">
-      <div class="captura"><img src="../img/sitio-gimnasio.jpg" alt="Sitio del gimnasio Vértice"><div class="marco"></div></div>
-      <div class="texto">
-        <p class="rubro">Fitness</p>
-        <h2 class="serif">VÉRTICE · Entrenamiento funcional</h2>
-        <p>Alto contraste, tipografía pesada y una sola cosa para hacer: reservar la clase gratis. Los planes se comparan de un vistazo y el precio no está escondido.</p>
-        <div class="tags">
-          <span class="tag">Oscuro y enérgico</span><span class="tag">Tabla de planes</span>
-          <span class="tag">Horarios</span><span class="tag">Reserva de clase</span>
-        </div>
-        <div class="acciones"><a class="btn" href="gimnasio/">Ver el sitio</a></div>
-      </div>
-    </article>
-
-    <article class="sitio rev">
-      <div class="captura"><img src="../img/sitio-inmobiliaria.jpg" alt="Sitio de la inmobiliaria"><div class="marco"></div></div>
-      <div class="texto">
-        <p class="rubro">Inmobiliaria</p>
-        <h2 class="serif">Norte Propiedades · Zona norte</h2>
-        <p>El más parecido a una aplicación: doce propiedades con buscador por operación, zona, dormitorios y precio, orden por valor o superficie, y ficha ampliada. Los filtros funcionan de verdad.</p>
-        <div class="tags">
-          <span class="tag">Catálogo filtrable</span><span class="tag">Orden dinámico</span>
-          <span class="tag">Ficha en ventana</span><span class="tag">Pedido de tasación</span>
-        </div>
-        <div class="acciones"><a class="btn" href="inmobiliaria/">Ver el sitio</a></div>
-      </div>
-    </article>
-
-    <article class="sitio rev">
-      <div class="captura"><img src="../img/sitio-producto.jpg" alt="Landing del producto NODO"><div class="marco"></div></div>
-      <div class="texto">
-        <p class="rubro">Producto / e-commerce</p>
-        <h2 class="serif">NODO One · Auriculares</h2>
-        <p>Una sola página que cuenta un producto de arriba a abajo. El selector de color cambia la foto y tiñe el sitio entero, y la ficha técnica está completa para el que quiere el detalle.</p>
-        <div class="tags">
-          <span class="tag">Landing de una página</span><span class="tag">Selector de color</span>
-          <span class="tag">Ficha técnica</span><span class="tag">Reserva</span>
-        </div>
-        <div class="acciones"><a class="btn" href="producto/">Ver el sitio</a></div>
-      </div>
-    </article>
-
-  </div>
+  <div class="grilla" id="grilla"></div>
 
   <section class="cierre rev">
     <div>
       <h2 class="serif">¿Querés uno para lo tuyo?</h2>
       <p>Arrancamos con una charla de media hora para entender qué tiene que lograr el sitio. De ahí sale una propuesta con alcance, plazo y precio cerrado.</p>
-      <div class="acciones" style="margin-top:28px">
+      <div style="margin-top:26px">
         <a class="btn" href="mailto:nass.ia9000@gmail.com?subject=Consulta%20por%20un%20sitio%20web">Escribime</a>
       </div>
     </div>
@@ -186,7 +123,7 @@
       <li>Diseño propio, no una plantilla comprada</li>
       <li>Anda igual en celular, tablet y computadora</li>
       <li>Carga rápido: sin frameworks pesados de más</li>
-      <li>Formulario que llega a donde vos quieras</li>
+      <li>Formulario, turnos o pedidos que llegan a donde vos quieras</li>
       <li>Textos y fotos, si no los tenés</li>
       <li>Te lo dejo publicado y andando</li>
     </ul>
@@ -199,10 +136,84 @@
 </div>
 
 <script>
-  const io = new IntersectionObserver(es => {
-    es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); } });
-  }, {threshold:.08});
-  document.querySelectorAll('.rev').forEach(el => io.observe(el));
+const SITIOS = [
+  {slug:'cafe', rubro:'Gastronomía', nom:'Origen · Café de especialidad', hace:['Reservas'],
+   des:'Foto grande, carta legible sin scroll infinito y una reserva que se completa en cuatro campos. Lo que un café necesita que la gente haga: ver el menú y sentarse.',
+   tags:['Cálido y editorial','Carta con precios','Reserva de mesa','Galería']},
+  {slug:'estudio', rubro:'Servicios profesionales', nom:'Vidal & Asociados · Estudio contable', hace:['Contacto'],
+   des:'Acá el trabajo del diseño es generar confianza. Mucho aire, grilla firme, cifras que respaldan y las preguntas incómodas contestadas antes de que las haga.',
+   tags:['Sobrio e institucional','Preguntas frecuentes','Equipo','Formulario']},
+  {slug:'gimnasio', rubro:'Fitness', nom:'VÉRTICE · Entrenamiento funcional', hace:['Reservas'],
+   des:'Alto contraste, tipografía pesada y una sola cosa para hacer: reservar la clase gratis. Los planes se comparan de un vistazo y el precio no está escondido.',
+   tags:['Oscuro y enérgico','Tabla de planes','Horarios','Reserva de clase']},
+  {slug:'inmobiliaria', rubro:'Inmobiliaria', nom:'Norte Propiedades · Zona norte', hace:['Catálogo'],
+   des:'El más parecido a una aplicación: doce propiedades con buscador por operación, zona, dormitorios y precio, orden por valor o superficie, y ficha ampliada.',
+   tags:['Catálogo filtrable','Orden dinámico','Ficha en ventana','Tasación']},
+  {slug:'producto', rubro:'Producto', nom:'NODO One · Auriculares', hace:['Catálogo'],
+   des:'Una sola página que cuenta un producto de arriba a abajo. El selector de color cambia la foto y tiñe el sitio entero, y la ficha técnica está completa para el que quiere el detalle.',
+   tags:['Landing de una página','Selector de color','Ficha técnica','Reserva']},
+  {slug:'odontologia', rubro:'Salud', nom:'Nordelta Odontología · Turnos', hace:['Turnos'],
+   des:'Agenda de verdad: elegís el día entre los próximos doce, ves qué horarios quedan libres y el turno no se puede confirmar hasta que elegiste los dos. La disponibilidad es estable, no cambia mientras completás tus datos.',
+   tags:['Agenda de turnos','Horarios ocupados','Obras sociales','Limpio y claro']},
+  {slug:'cabanias', rubro:'Turismo', nom:'Cabañas del Manso · El Bolsón', hace:['Reservas','Precios'],
+   des:'Reserva con fechas que calcula el total noche por noche: una estadía que arranca en temporada baja y termina en alta se cobra como corresponde, no toda a un precio. Controla mínimo de noches y capacidad.',
+   tags:['Cálculo por noche','Temporada alta','Descuento semanal','Rústico y cálido']},
+  {slug:'bodega', rubro:'E-commerce', nom:'Bodega Alto Verde · Valle de Uco', hace:['Carrito'],
+   des:'Tienda con carrito lateral, cantidades, descuento automático al llegar a la caja de seis y envío gratis a partir de ahí. Las etiquetas de los vinos están dibujadas con CSS, sin una sola foto de stock.',
+   tags:['Carrito','Descuento por caja','Etiquetas en CSS','Oscuro y elegante']},
+  {slug:'arquitectura', rubro:'Estudio creativo', nom:'Mota Arquitectura · Obras', hace:['Catálogo','Galería'],
+   des:'Portfolio donde manda la imagen: grilla asimétrica con obras de distintos tamaños, filtro por tipo y visor a pantalla completa que se maneja con las flechas del teclado.',
+   tags:['Grilla asimétrica','Visor con teclado','Filtro por tipo','Editorial']},
+  {slug:'casamiento', rubro:'Evento', nom:'Juli & Tomás · Casamiento', hace:['Confirmaciones'],
+   des:'Una sola página con cuenta regresiva en vivo y confirmación de asistencia: si decís que venís aparecen los campos de acompañantes, menú y micro; si no, desaparecen.',
+   tags:['Cuenta regresiva','Confirmación','Formulario que cambia','Romántico']},
+  {slug:'rotiseria', rubro:'Gastronomía', nom:'El Fogón · Parrilla y rotisería', hace:['Pedidos'],
+   des:'Armás el pedido de una carta de diecinueve platos y sale el mensaje de WhatsApp escrito, con el detalle y el total. Cambia el precio según retires o te lo envíen, y muestra si está abierto ahora.',
+   tags:['Pedido por WhatsApp','Envío o retiro','Abierto ahora','Carta por rubro']}
+];
+
+const $ = s => document.querySelector(s);
+const HACE = ['Todos'].concat([...new Set(SITIOS.flatMap(s => s.hace))]);
+let filtro = 'Todos';
+
+$('#filtros').innerHTML = HACE.map((h,i) =>
+  `<button class="filtro" data-f="${h}" aria-pressed="${i === 0}">${h}</button>`).join('');
+
+$('#filtros').addEventListener('click', ev => {
+  const b = ev.target.closest('[data-f]'); if (!b) return;
+  document.querySelectorAll('.filtro').forEach(x => x.setAttribute('aria-pressed','false'));
+  b.setAttribute('aria-pressed','true');
+  filtro = b.dataset.f;
+  pintar();
+});
+
+function pintar(){
+  const lista = filtro === 'Todos' ? SITIOS : SITIOS.filter(s => s.hace.includes(filtro));
+  $('#cuenta').textContent = filtro === 'Todos'
+    ? `${SITIOS.length} sitios`
+    : `${lista.length} ${lista.length === 1 ? 'sitio' : 'sitios'} con ${filtro.toLowerCase()}`;
+  /* Las tarjetas no llevan aparición progresiva: como la grilla se vuelve a dibujar en cada
+     filtro, arrancarían invisibles y con `loading="lazy"` ni siquiera se pedirían las fotos. */
+  $('#grilla').innerHTML = lista.map(s => `
+    <article class="sitio">
+      <div class="captura"><img src="../img/sitio-${s.slug}.jpg" alt="Sitio de ${s.nom}"></div>
+      <div class="texto">
+        <p class="rubro">${s.rubro}</p>
+        <h2 class="serif">${s.nom}</h2>
+        <p>${s.des}</p>
+        <div class="tags">${s.tags.map(t => `<span class="tag">${t}</span>`).join('')}</div>
+        <a class="btn" href="${s.slug}/">Ver el sitio</a>
+      </div>
+    </article>`).join('');
+  observar();
+}
+
+const io = new IntersectionObserver(es => {
+  es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); } });
+}, {threshold:.06});
+function observar(){ document.querySelectorAll('.rev:not(.on)').forEach(el => io.observe(el)); }
+
+pintar();
 </script>
 </body>
 </html>
