@@ -162,20 +162,99 @@
           ],
           "url": "https://fnguerrero.github.io/paid/",
           "tocado": "2026-08-29"
-        },
+        }
+      ]
+    },
+    {
+      "titulo": "Sitios web",
+      "items": [
         {
-          "nombre": "Sitios web",
+          "nombre": "El apartado completo",
           "sigla": "Sw",
           "color": "#1B4F8C",
-          "tag": "Cinco demos de diseno",
-          "que": "Cinco sitios de muestra, uno por rubro: un cafe, un estudio contable, un gimnasio, una inmobiliaria y una marca de producto. Cada uno con su propio lenguaje visual, responsive y con formulario de contacto. El contenido es inventado y los formularios validan pero no envian.",
+          "tag": "Los cinco juntos",
+          "que": "La portada del apartado: las cinco muestras en una sola página, con qué resuelve cada una. Es el link para mandarle a alguien que quiere ver todo de una.",
           "chips": [
-            "HTML y CSS",
-            "Sin frameworks",
-            "Responsive"
+            "Portada",
+            "Cinco rubros"
           ],
           "url": "https://fnguerrero.github.io/sitios/",
           "img": "img/sitios.jpg",
+          "tocado": "2026-09-06"
+        },
+        {
+          "nombre": "Origen",
+          "sigla": "Or",
+          "color": "#B4522F",
+          "tag": "Café de especialidad",
+          "que": "Muestra de sitio para gastronomía. Foto a pantalla completa, carta con precios, galería y reserva de mesa en cuatro campos. Cálido y editorial, con tipografía serif.",
+          "chips": [
+            "Gastronomía",
+            "Reserva de mesa",
+            "Carta"
+          ],
+          "url": "https://fnguerrero.github.io/sitios/cafe/",
+          "img": "img/sitio-cafe.jpg",
+          "tocado": "2026-09-06"
+        },
+        {
+          "nombre": "Vidal & Asociados",
+          "sigla": "Va",
+          "color": "#1B4F8C",
+          "tag": "Estudio contable",
+          "que": "Muestra de sitio para servicios profesionales. Sobrio y con mucho aire: cifras que respaldan, servicios en grilla, equipo y las preguntas incómodas contestadas antes de que las haga.",
+          "chips": [
+            "Institucional",
+            "Preguntas frecuentes",
+            "Formulario"
+          ],
+          "url": "https://fnguerrero.github.io/sitios/estudio/",
+          "img": "img/sitio-estudio.jpg",
+          "tocado": "2026-09-06"
+        },
+        {
+          "nombre": "VÉRTICE",
+          "sigla": "Vt",
+          "color": "#C9FF3D",
+          "tag": "Gimnasio funcional",
+          "que": "Muestra de sitio para fitness. Alto contraste, tipografía pesada y una sola cosa para hacer: reservar la clase gratis. Los planes se comparan de un vistazo y el precio está a la vista.",
+          "chips": [
+            "Oscuro",
+            "Tabla de planes",
+            "Reserva de clase"
+          ],
+          "url": "https://fnguerrero.github.io/sitios/gimnasio/",
+          "img": "img/sitio-gimnasio.jpg",
+          "tocado": "2026-09-06"
+        },
+        {
+          "nombre": "Norte Propiedades",
+          "sigla": "Np",
+          "color": "#1F5F4E",
+          "tag": "Inmobiliaria",
+          "que": "Muestra de sitio para inmobiliaria, la más parecida a una aplicación: doce propiedades con buscador por operación, zona, dormitorios y precio, orden por valor o superficie y ficha ampliada. Los filtros funcionan de verdad.",
+          "chips": [
+            "Catálogo filtrable",
+            "Orden dinámico",
+            "Ficha en ventana"
+          ],
+          "url": "https://fnguerrero.github.io/sitios/inmobiliaria/",
+          "img": "img/sitio-inmobiliaria.jpg",
+          "tocado": "2026-09-06"
+        },
+        {
+          "nombre": "NODO One",
+          "sigla": "Nd",
+          "color": "#6C63FF",
+          "tag": "Marca de producto",
+          "que": "Muestra de landing de producto en una sola página. El selector de color cambia la foto y tiñe el sitio entero, y la ficha técnica está completa para el que quiere el detalle.",
+          "chips": [
+            "Landing",
+            "Selector de color",
+            "Ficha técnica"
+          ],
+          "url": "https://fnguerrero.github.io/sitios/producto/",
+          "img": "img/sitio-producto.jpg",
           "tocado": "2026-09-06"
         }
       ]
