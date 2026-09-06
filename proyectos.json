@@ -264,6 +264,22 @@
       "verbo": "Jugar",
       "items": [
         {
+          "nombre": "Los juegos de la familia",
+          "sigla": "Jf",
+          "color": "#3E7C4A",
+          "tag": "Cuatro juegos por día",
+          "que": "Palabra del día, ordenar hechos por año, preguntas y palabras escondidas. Los cuatro se sortean por fecha, así que toda la familia juega lo mismo y después se compara: cada juego termina con un resultado listo para pegar en el grupo. Ninguno depende de reflejos ni de destreza, para que lo pueda jugar cualquiera.",
+          "chips": [
+            "Un solo HTML",
+            "Sin cuentas",
+            "Sorteo por fecha"
+          ],
+          "url": "https://fnguerrero.github.io/juegos-familia/",
+          "repo": "https://github.com/fnguerrero/juegos-familia",
+          "img": "img/juegos-familia.jpg",
+          "tocado": "2026-09-06"
+        },
+        {
           "nombre": "Los juegos de Valen",
           "sigla": "JV",
           "color": "#4A63D8",
