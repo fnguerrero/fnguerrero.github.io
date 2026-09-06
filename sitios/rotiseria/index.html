@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>El Fogón · Parrilla y rotisería</title>
+<meta name="description" content="Parrilla y rotisería de barrio. Armá tu pedido y mandalo por WhatsApp. Envíos en Caballito y alrededores.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --negro:#1A1614; --carbon:#241E1B; --crema:#F6F1E8; --gris:#8C8178;
+    --brasa:#C4341F; --ceniza:#332B27; --verde:#25D366;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--negro);color:var(--crema);
+       font:400 17px/1.6 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  img{max-width:100%;display:block}
+  a{color:inherit}
+  button{font:inherit;color:inherit;cursor:pointer;border:0;background:none}
+  .bebas{font-family:"Bebas Neue",Impact,sans-serif;letter-spacing:.02em;line-height:.95}
+  .wrap{max-width:1160px;margin:0 auto;padding:0 24px}
+
+  nav{position:sticky;top:0;z-index:60;background:rgba(26,22,20,.94);
+      backdrop-filter:blur(10px);border-bottom:1px solid var(--ceniza)}
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:72px}
+  .marca{font-family:"Bebas Neue",sans-serif;font-size:28px;letter-spacing:.05em}
+  .marca i{color:var(--brasa);font-style:normal}
+  .links{display:flex;gap:26px;font-size:14px;letter-spacing:.06em;text-transform:uppercase}
+  .links a{text-decoration:none;color:var(--gris);transition:color .2s}
+  .links a:hover{color:var(--crema)}
+  .btn{display:inline-flex;align-items:center;gap:9px;background:var(--brasa);color:#fff;
+       text-decoration:none;padding:13px 22px;border-radius:6px;font-weight:600;font-size:15px;
+       transition:background .22s,transform .16s}
+  .btn:hover{background:#A82A18;transform:translateY(-1px)}
+  .btn.wsp{background:var(--verde);color:#06341A}
+  .btn.wsp:hover{background:#1FBA59}
+  .btn[disabled]{opacity:.4;cursor:not-allowed;transform:none}
+  .btn.hueca{background:transparent;border:1px solid var(--ceniza);color:var(--crema)}
+  .btn.hueca:hover{border-color:var(--brasa);background:transparent}
+  .cuenta-btn{position:relative}
+  .cuenta-btn s{position:absolute;top:-6px;right:-8px;background:var(--crema);color:var(--negro);
+    text-decoration:none;font-size:11px;font-weight:600;min-width:19px;height:19px;border-radius:10px;
+    display:grid;place-items:center;padding:0 5px}
+
+  header{position:relative;padding:96px 0 84px;overflow:hidden}
+  header::before{content:"";position:absolute;inset:0;
+    background:url("https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1800&q=80") center/cover;
+    filter:grayscale(.4) brightness(.36)}
+  header::after{content:"";position:absolute;inset:0;
+    background:linear-gradient(180deg,rgba(26,22,20,.6),rgba(26,22,20,.94))}
+  .hero{position:relative;z-index:2;text-align:center}
+  .hero .tag{display:inline-block;border:1px solid var(--brasa);color:var(--brasa);
+    font-size:12px;letter-spacing:.2em;text-transform:uppercase;padding:6px 14px;margin-bottom:24px}
+  .hero h1{font-size:clamp(52px,12vw,116px)}
+  .hero h1 span{color:var(--brasa)}
+  .hero p{max-width:46ch;margin:20px auto 30px;color:rgba(246,241,232,.76);font-size:19px;font-weight:300}
+  .abierto{display:inline-flex;align-items:center;gap:9px;font-size:15px;color:rgba(246,241,232,.8)}
+  .punto{width:9px;height:9px;border-radius:50%;background:var(--verde);
+         box-shadow:0 0 0 4px rgba(37,211,102,.18)}
+  .punto.cerrado{background:var(--gris);box-shadow:0 0 0 4px rgba(140,129,120,.16)}
+
+  section{padding:76px 0}
+  .cab{margin-bottom:34px}
+  h2{font-family:"Bebas Neue",sans-serif;font-size:clamp(36px,6vw,58px);letter-spacing:.02em}
+  .cab p{color:var(--gris);font-size:17px;margin-top:6px}
+
+  /* carta */
+  .rubros{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:26px}
+  .rubro{border:1px solid var(--ceniza);border-radius:100px;padding:9px 18px;font-size:14.5px;
+         color:var(--gris);transition:all .2s}
+  .rubro:hover{border-color:var(--crema);color:var(--crema)}
+  .rubro[aria-pressed="true"]{background:var(--brasa);border-color:var(--brasa);color:#fff}
+  .platos{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+  .plato{display:grid;grid-template-columns:1fr auto auto;gap:16px;align-items:center;
+         background:var(--carbon);border:1px solid var(--ceniza);border-radius:10px;padding:18px 18px}
+  .plato h3{font-size:18px;font-weight:600;margin-bottom:3px}
+  .plato p{font-size:14.5px;color:var(--gris);font-weight:300}
+  .plato .valor{font-family:"Bebas Neue",sans-serif;font-size:25px;white-space:nowrap;
+                font-variant-numeric:tabular-nums}
+  .mas{width:38px;height:38px;border:1px solid var(--ceniza);border-radius:9px;font-size:20px;
+       display:grid;place-items:center;transition:all .18s}
+  .mas:hover{background:var(--brasa);border-color:var(--brasa);color:#fff}
+
+  /* pedido */
+  .panel{position:fixed;inset:0;z-index:90;display:none}
+  .panel.ver{display:block}
+  .panel .fondo{position:absolute;inset:0;background:rgba(12,9,8,.66)}
+  .caja{position:absolute;top:0;right:0;bottom:0;width:min(440px,100%);background:var(--carbon);
+        border-left:1px solid var(--ceniza);padding:26px 24px 30px;overflow-y:auto;
+        animation:entra .28s ease}
+  @keyframes entra{from{transform:translateX(26px);opacity:0}to{transform:none;opacity:1}}
+  .caja h3{font-family:"Bebas Neue",sans-serif;font-size:30px;margin-bottom:2px}
+  .cerrar{position:absolute;top:22px;right:20px;font-size:26px;color:var(--gris);line-height:1}
+  .item{display:grid;grid-template-columns:1fr auto;gap:4px 12px;padding:14px 0;
+        border-bottom:1px solid var(--ceniza)}
+  .item b{font-weight:600;font-size:16px}
+  .item .valor{font-variant-numeric:tabular-nums;align-self:center;white-space:nowrap}
+  .cant{display:flex;align-items:center;gap:11px;margin-top:6px}
+  .cant button{width:26px;height:26px;border:1px solid var(--ceniza);border-radius:6px;
+    display:grid;place-items:center;font-size:15px}
+  .cant button:hover{border-color:var(--brasa);color:var(--brasa)}
+  .cant span{min-width:16px;text-align:center;font-variant-numeric:tabular-nums}
+  .modo{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:20px 0 16px}
+  .modo button{border:1px solid var(--ceniza);border-radius:9px;padding:13px 8px;font-size:15px;
+               transition:all .2s}
+  .modo button[aria-pressed="true"]{background:var(--crema);border-color:var(--crema);color:var(--negro);
+                                    font-weight:600}
+  label{display:block;font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;
+        color:var(--gris);margin:14px 0 6px}
+  input,textarea{width:100%;background:var(--negro);border:1px solid var(--ceniza);border-radius:8px;
+    padding:12px 13px;color:var(--crema);font:400 16px Inter,sans-serif}
+  input:focus,textarea:focus{outline:0;border-color:var(--brasa)}
+  textarea{resize:vertical;min-height:56px}
+  .renglon{display:flex;justify-content:space-between;gap:12px;padding:7px 0;font-size:15px;
+           color:var(--gris)}
+  .renglon.total{color:var(--crema);font-size:19px;margin-top:10px;padding-top:14px;
+                 border-top:1px solid var(--ceniza)}
+  .renglon.total b{font-family:"Bebas Neue",sans-serif;font-size:30px;color:var(--brasa);
+                   font-variant-numeric:tabular-nums}
+  .vacio{color:var(--gris);text-align:center;padding:44px 0;font-weight:300}
+  .mensaje{background:var(--negro);border:1px solid var(--ceniza);border-radius:9px;padding:16px;
+           font:400 13.5px/1.55 ui-monospace,monospace;white-space:pre-wrap;color:var(--gris);
+           margin-top:16px;display:none;max-height:230px;overflow:auto}
+  .mensaje.ver{display:block}
+
+  /* info */
+  .info{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .tarj{background:var(--carbon);border:1px solid var(--ceniza);border-radius:10px;padding:26px 24px}
+  .tarj h3{font-family:"Bebas Neue",sans-serif;font-size:24px;margin-bottom:10px;color:var(--brasa)}
+  .tarj p{font-size:15.5px;color:rgba(246,241,232,.8);font-weight:300}
+
+  footer{padding:34px 0;border-top:1px solid var(--ceniza);font-size:14px;color:var(--gris);
+         display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}
+
+  @media(max-width:820px){
+    .links{display:none}
+    .platos,.info{grid-template-columns:1fr}
+    section{padding:52px 0}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="marca">EL F<i>O</i>GÓN</div>
+    <div class="links">
+      <a href="#carta">La carta</a>
+      <a href="#info">Envíos</a>
+    </div>
+    <button class="btn cuenta-btn" id="abrir">Mi pedido <s id="cuenta">0</s></button>
+  </div>
+</nav>
+
+<header>
+  <div class="wrap hero">
+    <span class="tag">Caballito · desde 1998</span>
+    <h1 class="bebas">Parrilla<span>&amp;</span>rotisería</h1>
+    <p>Carne a la parrilla de verdad, pollos al spiedo y las pastas de los domingos. Armás el pedido acá y nos llega por WhatsApp.</p>
+    <p class="abierto"><span class="punto" id="luz"></span> <span id="estado">Cargando…</span></p>
+  </div>
+</header>
+
+<section id="carta">
+  <div class="wrap">
+    <div class="cab">
+      <h2>La carta</h2>
+      <p>Los precios son por porción. Las guarniciones van aparte.</p>
+    </div>
+    <div class="rubros" id="rubros"></div>
+    <div class="platos" id="platos"></div>
+  </div>
+</section>
+
+<section id="info">
+  <div class="wrap">
+    <div class="cab"><h2>Cómo funciona</h2></div>
+    <div class="info">
+      <div class="tarj"><h3>Envíos</h3><p>Caballito, Almagro y Flores. El envío sale $2.500 y es sin cargo desde $35.000. Tardamos entre 40 y 60 minutos.</p></div>
+      <div class="tarj"><h3>Retiro</h3><p>Rivadavia 5240. Si retirás por el local tenés 10% de descuento y está listo en 25 minutos.</p></div>
+      <div class="tarj"><h3>Horarios</h3><p>Todos los días de 11 a 15:30 y de 19 a 23:30. Los lunes cerramos al mediodía.</p></div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+  <footer>
+    <span>© 2026 El Fogón · Rivadavia 5240, CABA</span>
+    <span>11 4903 7788</span>
+  </footer>
+</div>
+
+<div class="panel" id="panel">
+  <div class="fondo" data-cerrar></div>
+  <div class="caja">
+    <button class="cerrar" data-cerrar aria-label="Cerrar">×</button>
+    <h3>Tu pedido</h3>
+    <div id="items"></div>
+    <div id="cierre"></div>
+  </div>
+</div>
+
+<script>
+const CARTA = [
+  {r:'Parrilla', n:'Asado de tira', d:'Media res, tira ancha. Por kilo.', p:18500},
+  {r:'Parrilla', n:'Vacío', d:'Entero o en porciones. Por kilo.', p:19800},
+  {r:'Parrilla', n:'Entraña', d:'Fina, a punto. Por kilo.', p:24500},
+  {r:'Parrilla', n:'Bife de chorizo', d:'Corte de 400 g, por unidad.', p:12800},
+  {r:'Parrilla', n:'Provoleta', d:'Con orégano y aceite de oliva.', p:6900},
+  {r:'Parrilla', n:'Chorizo o morcilla', d:'Por unidad.', p:3400},
+  {r:'Rotisería', n:'Pollo al spiedo', d:'Entero, con papas.', p:14500},
+  {r:'Rotisería', n:'Medio pollo', d:'Con papas.', p:8200},
+  {r:'Rotisería', n:'Milanesa de ternera', d:'Con puré o papas fritas.', p:11500},
+  {r:'Rotisería', n:'Tarta de verdura', d:'Porción grande.', p:5400},
+  {r:'Rotisería', n:'Empanadas', d:'Carne, pollo, jamón y queso. Por docena.', p:16800},
+  {r:'Pastas', n:'Ravioles de ricota', d:'Docena, con salsa a elección.', p:9800},
+  {r:'Pastas', n:'Sorrentinos de jamón y queso', d:'Docena, con salsa.', p:11200},
+  {r:'Pastas', n:'Ñoquis caseros', d:'Porción, con salsa.', p:8400},
+  {r:'Guarniciones', n:'Papas fritas', d:'Porción para dos.', p:5200},
+  {r:'Guarniciones', n:'Ensalada mixta', d:'Lechuga, tomate y cebolla.', p:4600},
+  {r:'Guarniciones', n:'Puré de papas', d:'Porción.', p:4400},
+  {r:'Postres', n:'Flan casero', d:'Con dulce de leche o crema.', p:4900},
+  {r:'Postres', n:'Budín de pan', d:'Porción.', p:4200}
+];
+
+const $ = s => document.querySelector(s);
+const plata = n => '$' + n.toLocaleString('es-AR');
+const carro = {};
+let modo = 'envio';
+
+/* Abierto de 11 a 15:30 y de 19 a 23:30. Los lunes no abrimos al mediodía. */
+function abierto(){
+  const ahora = new Date();
+  const min = ahora.getHours() * 60 + ahora.getMinutes();
+  const lunes = ahora.getDay() === 1;
+  const medio = !lunes && min >= 660 && min <= 930;
+  const noche = min >= 1140 && min <= 1410;
+  return medio || noche;
+}
+(function estado(){
+  const si = abierto();
+  $('#luz').classList.toggle('cerrado', !si);
+  $('#estado').textContent = si
+    ? 'Abierto ahora — estamos tomando pedidos'
+    : 'Cerrado en este momento — podés dejar el pedido igual';
+})();
+
+const rubros = ['Todo'].concat([...new Set(CARTA.map(p => p.r))]);
+$('#rubros').innerHTML = rubros.map((r,i) =>
+  `<button class="rubro" data-r="${r}" aria-pressed="${i===0}">${r}</button>`).join('');
+
+$('#rubros').addEventListener('click', ev => {
+  const b = ev.target.closest('[data-r]'); if (!b) return;
+  document.querySelectorAll('.rubro').forEach(x => x.setAttribute('aria-pressed','false'));
+  b.setAttribute('aria-pressed','true');
+  pintarCarta(b.dataset.r);
+});
+
+function pintarCarta(rubro){
+  const lista = rubro === 'Todo' ? CARTA : CARTA.filter(p => p.r === rubro);
+  $('#platos').innerHTML = lista.map(p => {
+    const i = CARTA.indexOf(p);
+    return `<article class="plato">
+      <div><h3>${p.n}</h3><p>${p.d}</p></div>
+      <span class="valor">${plata(p.p)}</span>
+      <button class="mas" data-add="${i}" aria-label="Agregar ${p.n}">+</button>
+    </article>`;
+  }).join('');
+}
+
+document.addEventListener('click', ev => {
+  const add = ev.target.closest('[data-add]');
+  if (add) { mover(+add.dataset.add, 1); $('#panel').classList.add('ver'); }
+  const m = ev.target.closest('[data-menos]'); if (m) mover(+m.dataset.menos, -1);
+  const p = ev.target.closest('[data-mas]'); if (p) mover(+p.dataset.mas, 1);
+  if (ev.target.closest('[data-cerrar]')) $('#panel').classList.remove('ver');
+  const md = ev.target.closest('[data-modo]');
+  if (md) { modo = md.dataset.modo; pintar(); }
+});
+$('#abrir').addEventListener('click', () => $('#panel').classList.add('ver'));
+addEventListener('keydown', ev => { if (ev.key === 'Escape') $('#panel').classList.remove('ver'); });
+
+function mover(i, n){
+  carro[i] = (carro[i] || 0) + n;
+  if (carro[i] < 1) delete carro[i];
+  pintar();
+}
+
+function pintar(){
+  const ids = Object.keys(carro);
+  $('#cuenta').textContent = ids.reduce((n,i) => n + carro[i], 0);
+
+  if (!ids.length) {
+    $('#items').innerHTML = '<p class="vacio">Todavía no agregaste nada.</p>';
+    $('#cierre').innerHTML = '';
+    return;
+  }
+
+  $('#items').innerHTML = ids.map(i => {
+    const p = CARTA[i];
+    return `<div class="item">
+      <div><b>${p.n}</b>
+        <div class="cant"><button data-menos="${i}" aria-label="Quitar">−</button>
+          <span>${carro[i]}</span>
+          <button data-mas="${i}" aria-label="Sumar">+</button></div></div>
+      <div class="valor">${plata(p.p * carro[i])}</div>
+    </div>`;
+  }).join('');
+
+  const subtotal = ids.reduce((n,i) => n + CARTA[i].p * carro[i], 0);
+  const retira = modo === 'retiro';
+  const descuento = retira ? Math.round(subtotal * 0.1) : 0;
+  const envio = retira ? 0 : (subtotal >= 35000 ? 0 : 2500);
+  const total = subtotal - descuento + envio;
+
+  $('#cierre').innerHTML = `
+    <div class="modo">
+      <button data-modo="envio" aria-pressed="${!retira}">Me lo envían</button>
+      <button data-modo="retiro" aria-pressed="${retira}">Lo retiro yo</button>
+    </div>
+    <div class="renglon"><span>Subtotal</span><span>${plata(subtotal)}</span></div>
+    ${retira ? `<div class="renglon"><span>Descuento por retiro</span><span>−${plata(descuento)}</span></div>` : ''}
+    ${!retira ? `<div class="renglon"><span>Envío</span><span>${envio ? plata(envio) : 'sin cargo'}</span></div>` : ''}
+    ${!retira && envio ? `<div class="renglon" style="color:var(--brasa)"><span>Te faltan ${plata(35000 - subtotal)}</span><span>para envío gratis</span></div>` : ''}
+    <div class="renglon total"><span>Total</span><b>${plata(total)}</b></div>
+    <label for="nom">Tu nombre</label><input id="nom" placeholder="Cómo te anotamos">
+    ${retira ? '' : '<label for="dir">Dirección</label><input id="dir" placeholder="Calle, altura y piso">'}
+    <label for="obs">Aclaraciones</label><textarea id="obs" placeholder="Punto de cocción, sin sal, tocar timbre…"></textarea>
+    <button class="btn wsp" style="width:100%;margin-top:18px;justify-content:center" id="enviar">
+      Mandar el pedido por WhatsApp</button>
+    <div class="mensaje" id="mensaje"></div>`;
+
+  $('#enviar').addEventListener('click', () => {
+    const nom = $('#nom').value.trim();
+    const dir = retira ? '' : ($('#dir') ? $('#dir').value.trim() : '');
+    const obs = $('#obs').value.trim();
+    const msj = $('#mensaje');
+
+    if (!nom) { msj.textContent = 'Poné tu nombre así sabemos de quién es el pedido.'; msj.classList.add('ver'); return; }
+    if (!retira && !dir) { msj.textContent = 'Nos falta la dirección para poder llevártelo.'; msj.classList.add('ver'); return; }
+
+    const lineas = ids.map(i => `• ${carro[i]}× ${CARTA[i].n} — ${plata(CARTA[i].p * carro[i])}`);
+    msj.textContent =
+      `Hola El Fogón, va un pedido:\n\n${lineas.join('\n')}\n\n` +
+      (retira ? `Retiro por el local (−10%)\n` : `Envío a: ${dir}\n`) +
+      (obs ? `Aclaraciones: ${obs}\n` : '') +
+      `\nTotal: ${plata(total)}\nA nombre de ${nom}`;
+    msj.classList.add('ver');
+    $('#enviar').textContent = 'Mensaje listo — es una demo, no se envía';
+  });
+}
+
+pintarCarta('Todo');
+pintar();
+</script>
+</body>
+</html>

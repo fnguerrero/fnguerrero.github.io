@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cabañas del Manso · El Bolsón</title>
+<meta name="description" content="Cuatro cabañas de montaña en El Bolsón, entre el bosque y el río. Consultá disponibilidad y reservá.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bitter:wght@400;600&family=Nunito+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --papel:#FBF8F3; --madera:#8A5A2B; --corteza:#4A3722; --musgo:#3F5B41;
+    --tinta:#2A231C; --gris:#7A6A5A; --linea:#E5DCCE; --blanco:#fff;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--papel);color:var(--tinta);
+       font:400 17px/1.7 "Nunito Sans",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  img{max-width:100%;display:block}
+  a{color:inherit}
+  button{font:inherit;color:inherit;cursor:pointer;border:0;background:none}
+  h1,h2,h3{font-family:Bitter,Georgia,serif;font-weight:600;line-height:1.15}
+  .wrap{max-width:1140px;margin:0 auto;padding:0 26px}
+
+  nav{position:absolute;inset:0 0 auto;z-index:50}
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:88px;color:#fff}
+  .marca{font-family:Bitter,serif;font-weight:600;font-size:21px;letter-spacing:.01em}
+  .links{display:flex;gap:30px;font-size:16px}
+  .links a{text-decoration:none;opacity:.85;transition:opacity .2s}
+  .links a:hover{opacity:1}
+  .btn{display:inline-block;background:var(--madera);color:#fff;text-decoration:none;
+       padding:14px 26px;border-radius:6px;font-weight:600;font-size:16px;
+       transition:background .22s,transform .18s}
+  .btn:hover{background:#734A22;transform:translateY(-1px)}
+  .btn.clara{background:#fff;color:var(--corteza)}
+  .btn.clara:hover{background:#F0E7DA}
+  .btn[disabled]{opacity:.45;cursor:not-allowed;transform:none}
+
+  header{position:relative;min-height:88vh;display:flex;align-items:center;overflow:hidden}
+  header::before{content:"";position:absolute;inset:0;
+    background:url("https://images.unsplash.com/photo-1449158743715-0a90ebb6d2d8?w=1800&q=80") center/cover}
+  header::after{content:"";position:absolute;inset:0;
+    background:linear-gradient(180deg,rgba(30,24,16,.62),rgba(30,24,16,.28) 45%,rgba(30,24,16,.8))}
+  .hero{position:relative;z-index:2;color:#fff;padding:70px 0 0}
+  .hero .lugar{font-size:14px;letter-spacing:.24em;text-transform:uppercase;opacity:.85;margin-bottom:18px}
+  .hero h1{font-size:clamp(40px,7vw,72px);max-width:15ch}
+  .hero p{margin:22px 0 32px;max-width:44ch;font-size:19px;opacity:.92;font-weight:300}
+
+  section{padding:92px 0}
+  .cab{max-width:56ch;margin-bottom:44px}
+  h2{font-size:clamp(28px,4vw,42px);margin-bottom:14px}
+  .cab p{color:var(--gris);font-size:18px;font-weight:300}
+  .eyebrow{font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:var(--madera);
+           font-weight:600;margin-bottom:14px}
+
+  /* cabañas */
+  .lista{display:grid;gap:22px}
+  .caba{display:grid;grid-template-columns:300px 1fr auto;gap:28px;align-items:center;
+        background:var(--blanco);border:1px solid var(--linea);border-radius:16px;
+        padding:18px;transition:box-shadow .25s}
+  .caba:hover{box-shadow:0 14px 34px rgba(42,35,28,.09)}
+  .caba img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:11px}
+  .caba h3{font-size:23px;margin-bottom:6px}
+  .caba .detalle{color:var(--gris);font-size:15.5px;font-weight:300;margin-bottom:12px}
+  .caba .cosas{display:flex;flex-wrap:wrap;gap:7px}
+  .caba .cosa{font-size:13.5px;color:var(--musgo);background:#F1F5F0;border-radius:100px;padding:5px 12px}
+  .precio{text-align:right;padding-right:12px;white-space:nowrap}
+  .precio b{display:block;font-family:Bitter,serif;font-size:27px;color:var(--corteza)}
+  .precio span{font-size:14px;color:var(--gris)}
+
+  /* reserva */
+  #reservar{background:var(--corteza);color:#F6EFE4}
+  #reservar h2{color:#fff}
+  #reservar .cab p{color:rgba(246,239,228,.72)}
+  #reservar .eyebrow{color:#D6A567}
+  .rgrid{display:grid;grid-template-columns:1.05fr .95fr;gap:54px;align-items:start}
+  .campos{display:grid;gap:18px}
+  .fila{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  label{display:block;font-size:14px;color:rgba(246,239,228,.66);margin-bottom:7px}
+  input,select{width:100%;background:rgba(255,255,255,.07);border:1px solid rgba(246,239,228,.2);
+    border-radius:9px;padding:13px 14px;color:#F6EFE4;font:400 16px "Nunito Sans",sans-serif;
+    transition:border-color .2s}
+  input:focus,select:focus{outline:0;border-color:#D6A567}
+  select option{background:var(--corteza)}
+  input[type="date"]{color-scheme:dark}
+  .cuenta{background:rgba(255,255,255,.06);border:1px solid rgba(246,239,228,.16);
+          border-radius:14px;padding:24px 24px 26px}
+  .cuenta h3{font-size:19px;color:#fff;margin-bottom:16px}
+  .renglon{display:flex;justify-content:space-between;gap:14px;padding:11px 0;
+           border-bottom:1px solid rgba(246,239,228,.13);font-size:16px}
+  .renglon:last-of-type{border-bottom:0}
+  .renglon span:last-child{font-variant-numeric:tabular-nums}
+  .total{display:flex;justify-content:space-between;align-items:baseline;gap:14px;
+         margin-top:14px;padding-top:16px;border-top:2px solid rgba(246,239,228,.3)}
+  .total b{font-family:Bitter,serif;font-size:29px;color:#D6A567;font-variant-numeric:tabular-nums}
+  .nota{font-size:14px;color:rgba(246,239,228,.6);margin-top:14px;font-weight:300}
+  .ok{background:rgba(214,165,103,.14);border:1px solid rgba(214,165,103,.4);border-radius:12px;
+      padding:18px 20px;font-size:16px;margin-top:18px;display:none}
+  .ok.ver{display:block;animation:sube .4s ease}
+  @keyframes sube{from{opacity:0;transform:translateY(9px)}to{opacity:1;transform:none}}
+
+  /* galeria */
+  .galeria{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  .galeria img{aspect-ratio:1;object-fit:cover;border-radius:12px}
+
+  footer{padding:36px 0;border-top:1px solid var(--linea);font-size:14.5px;color:var(--gris);
+         display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+
+  @media(max-width:900px){
+    .links{display:none}
+    .caba{grid-template-columns:1fr;gap:16px}
+    .precio{text-align:left;padding:0}
+    .rgrid{grid-template-columns:1fr;gap:34px}
+    .galeria{grid-template-columns:1fr 1fr}
+    .galeria img:last-child{display:none}
+    section{padding:60px 0}
+    .fila{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="marca">Cabañas del Manso</div>
+    <div class="links">
+      <a href="#cabanias">Las cabañas</a>
+      <a href="#reservar">Reservar</a>
+      <a href="#lugar">El lugar</a>
+    </div>
+    <a href="#reservar" class="btn clara">Ver disponibilidad</a>
+  </div>
+</nav>
+
+<header>
+  <div class="wrap hero">
+    <p class="lugar">El Bolsón · Río Negro</p>
+    <h1>Cuatro cabañas y el sonido del río</h1>
+    <p>Sobre dos hectáreas de bosque nativo, a doce kilómetros del centro. Sin vecinos a la vista y con leña incluida.</p>
+    <a href="#reservar" class="btn">Consultar fechas</a>
+  </div>
+</header>
+
+<section id="cabanias">
+  <div class="wrap">
+    <div class="cab">
+      <p class="eyebrow">Las cabañas</p>
+      <h2>Cuatro, y ninguna igual</h2>
+      <p>Todas con cocina completa, ropa de cama, estufa a leña y parrilla propia. La leña la ponemos nosotros.</p>
+    </div>
+    <div class="lista">
+      <article class="caba">
+        <img src="https://images.unsplash.com/photo-1449158743715-0a90ebb6d2d8?w=700&q=80" alt="El Ciprés">
+        <div>
+          <h3>El Ciprés</h3>
+          <p class="detalle">Para 2 personas · 38 m² · la más cerca del río</p>
+          <div class="cosas"><span class="cosa">Estufa a leña</span><span class="cosa">Parrilla</span>
+            <span class="cosa">Wi-Fi</span><span class="cosa">Deck al río</span></div>
+        </div>
+        <div class="precio"><b>$78.000</b><span>por noche</span></div>
+      </article>
+      <article class="caba">
+        <img src="https://images.unsplash.com/photo-1449844908441-8829872d2607?w=700&q=80" alt="El Radal">
+        <div>
+          <h3>El Radal</h3>
+          <p class="detalle">Para 4 personas · 62 m² · dos dormitorios</p>
+          <div class="cosas"><span class="cosa">Estufa a leña</span><span class="cosa">Parrilla</span>
+            <span class="cosa">Wi-Fi</span><span class="cosa">Apta mascotas</span></div>
+        </div>
+        <div class="precio"><b>$112.000</b><span>por noche</span></div>
+      </article>
+      <article class="caba">
+        <img src="https://images.unsplash.com/photo-1503174971373-b1f69850bded?w=700&q=80" alt="El Ñire">
+        <div>
+          <h3>El Ñire</h3>
+          <p class="detalle">Para 6 personas · 90 m² · la más grande, con altillo</p>
+          <div class="cosas"><span class="cosa">Estufa a leña</span><span class="cosa">Parrilla</span>
+            <span class="cosa">Wi-Fi</span><span class="cosa">Lavarropas</span></div>
+        </div>
+        <div class="precio"><b>$156.000</b><span>por noche</span></div>
+      </article>
+      <article class="caba">
+        <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=700&q=80" alt="El Maitén">
+        <div>
+          <h3>El Maitén</h3>
+          <p class="detalle">Para 3 personas · 45 m² · la más silenciosa, arriba del todo</p>
+          <div class="cosas"><span class="cosa">Estufa a leña</span><span class="cosa">Parrilla</span>
+            <span class="cosa">Wi-Fi</span><span class="cosa">Vista al valle</span></div>
+        </div>
+        <div class="precio"><b>$94.000</b><span>por noche</span></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="reservar">
+  <div class="wrap">
+    <div class="cab">
+      <p class="eyebrow">Reservas</p>
+      <h2>Fijate cuánto te sale</h2>
+      <p>Poné las fechas y te armamos el total, sin sorpresas. Enero, febrero y las dos semanas de julio son temporada alta.</p>
+    </div>
+    <div class="rgrid">
+      <form class="campos" id="form" novalidate>
+        <div class="fila">
+          <div><label for="entra">Llegada</label><input id="entra" type="date"></div>
+          <div><label for="sale">Salida</label><input id="sale" type="date"></div>
+        </div>
+        <div class="fila">
+          <div><label for="caba">Cabaña</label>
+            <select id="caba">
+              <option value="78000|2">El Ciprés — hasta 2 personas</option>
+              <option value="112000|4">El Radal — hasta 4 personas</option>
+              <option value="156000|6">El Ñire — hasta 6 personas</option>
+              <option value="94000|3">El Maitén — hasta 3 personas</option>
+            </select></div>
+          <div><label for="gente">Personas</label>
+            <select id="gente"><option>1</option><option selected>2</option><option>3</option>
+              <option>4</option><option>5</option><option>6</option></select></div>
+        </div>
+        <div class="fila">
+          <div><label for="nom">Nombre</label><input id="nom" placeholder="Nombre y apellido"></div>
+          <div><label for="tel">Teléfono</label><input id="tel" type="tel" placeholder="11 5555 5555"></div>
+        </div>
+        <button class="btn" type="submit" id="enviar" disabled>Pedir la reserva</button>
+        <div class="ok" id="ok"></div>
+      </form>
+      <div class="cuenta" id="cuenta">
+        <h3>Tu estadía</h3>
+        <div id="detalle"><p class="nota" style="margin:0">Elegí las fechas y te muestro el total acá.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="lugar">
+  <div class="wrap">
+    <div class="cab">
+      <p class="eyebrow">El lugar</p>
+      <h2>Qué hay alrededor</h2>
+      <p>El río a doscientos metros, la feria del pueblo a quince minutos en auto y tres senderos que arrancan desde la tranquera.</p>
+    </div>
+    <div class="galeria">
+      <img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=700&q=80" alt="El valle">
+      <img src="https://images.unsplash.com/photo-1449158743715-0a90ebb6d2d8?w=700&q=80" alt="La cabaña">
+      <img src="https://images.unsplash.com/photo-1449844908441-8829872d2607?w=700&q=80" alt="El camino">
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+  <footer>
+    <span>© 2026 Cabañas del Manso · Paraje Río Azul, El Bolsón</span>
+    <span>11 5566 7788 · hola@cabanasdelmanso.com.ar</span>
+  </footer>
+</div>
+
+<script>
+const $ = s => document.querySelector(s);
+const plata = n => '$' + n.toLocaleString('es-AR');
+
+/* Enero, febrero y la segunda quincena de julio valen 35% más. */
+function esAlta(f){
+  const m = f.getMonth(), d = f.getDate();
+  return m === 0 || m === 1 || (m === 6 && d >= 10 && d <= 25);
+}
+
+function noches(a, b){ return Math.round((b - a) / 86400000); }
+
+function calcular(){
+  const a = $('#entra').valueAsDate, b = $('#sale').valueAsDate;
+  const cont = $('#detalle');
+  $('#enviar').disabled = true;
+
+  if (!a || !b) { cont.innerHTML = '<p class="nota" style="margin:0">Elegí las fechas y te muestro el total acá.</p>'; return; }
+  const n = noches(a, b);
+  if (n < 1) { cont.innerHTML = '<p class="nota" style="margin:0">La salida tiene que ser después de la llegada.</p>'; return; }
+  if (n < 2) { cont.innerHTML = '<p class="nota" style="margin:0">La estadía mínima es de dos noches.</p>'; return; }
+
+  const [base, capacidad] = $('#caba').value.split('|').map(Number);
+  const gente = +$('#gente').value;
+  if (gente > capacidad) {
+    cont.innerHTML = `<p class="nota" style="margin:0">Esa cabaña es para ${capacidad} personas. Elegí una más grande o bajá la cantidad.</p>`;
+    return;
+  }
+
+  /* Se cobra noche por noche: una estadía que arranca en temporada baja y termina
+     en alta no puede cobrarse toda a un solo precio. */
+  let altas = 0;
+  for (let i = 0; i < n; i++){
+    const d = new Date(a); d.setDate(a.getDate() + i);
+    if (esAlta(d)) altas++;
+  }
+  const bajas = n - altas;
+  const subtotal = bajas * base + altas * Math.round(base * 1.35);
+  const descuento = n >= 7 ? Math.round(subtotal * 0.1) : 0;
+
+  cont.innerHTML = `
+    ${bajas ? `<div class="renglon"><span>${bajas} ${bajas === 1 ? 'noche' : 'noches'} de temporada baja</span>
+      <span>${plata(bajas * base)}</span></div>` : ''}
+    ${altas ? `<div class="renglon"><span>${altas} ${altas === 1 ? 'noche' : 'noches'} de temporada alta</span>
+      <span>${plata(altas * Math.round(base * 1.35))}</span></div>` : ''}
+    ${descuento ? `<div class="renglon"><span>Descuento por semana</span><span>−${plata(descuento)}</span></div>` : ''}
+    <div class="renglon"><span>Leña, ropa de cama y limpieza</span><span>incluido</span></div>
+    <div class="total"><span>Total por ${n} ${n === 1 ? 'noche' : 'noches'}</span><b>${plata(subtotal - descuento)}</b></div>
+    <p class="nota">Se reserva con el 30% y el resto se paga al llegar. Cancelás sin costo hasta 7 días antes.</p>`;
+  $('#enviar').disabled = false;
+}
+
+['#entra','#sale','#caba','#gente'].forEach(s => $(s).addEventListener('input', calcular));
+
+const hoy = new Date().toISOString().slice(0,10);
+$('#entra').min = hoy; $('#sale').min = hoy;
+$('#entra').addEventListener('input', () => {
+  if ($('#entra').value) {
+    const d = new Date($('#entra').value); d.setDate(d.getDate() + 2);
+    $('#sale').min = d.toISOString().slice(0,10);
+  }
+});
+
+$('#form').addEventListener('submit', ev => {
+  ev.preventDefault();
+  const nom = $('#nom'), tel = $('#tel'), ok = $('#ok');
+  if (!nom.value.trim() || tel.value.replace(/\D/g,'').length < 8) {
+    ok.textContent = 'Nos falta tu nombre y un teléfono para contestarte.';
+    ok.classList.add('ver'); return;
+  }
+  const a = $('#entra').valueAsDate, b = $('#sale').valueAsDate;
+  const caba = $('#caba').selectedOptions[0].textContent.split(' —')[0];
+  ok.innerHTML = `Gracias ${nom.value.trim().split(' ')[0]}. Anotamos <b>${caba}</b> del
+    ${a.toLocaleDateString('es-AR',{day:'numeric',month:'long'})} al
+    ${b.toLocaleDateString('es-AR',{day:'numeric',month:'long'})}, ${noches(a,b)} noches.
+    Te escribimos al ${tel.value} para confirmar y pasarte los datos de la seña.`;
+  ok.classList.add('ver');
+  $('#enviar').textContent = 'Reserva pedida';
+  $('#enviar').disabled = true;
+});
+</script>
+</body>
+</html>

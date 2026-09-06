@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mota Arquitectura · Obras</title>
+<meta name="description" content="Estudio de arquitectura en Rosario. Vivienda, reforma y obra pública. Proyecto, dirección y obra.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500&family=Syne:wght@600;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --papel:#FCFCFB; --tinta:#111110; --gris:#75746F; --linea:#E4E3DF; --acento:#C4562A;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--papel);color:var(--tinta);
+       font:300 17px/1.6 Archivo,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  img{max-width:100%;display:block}
+  a{color:inherit}
+  button{font:inherit;color:inherit;cursor:pointer;border:0;background:none}
+  .syne{font-family:Syne,Archivo,sans-serif;font-weight:800;letter-spacing:-.03em;line-height:.94}
+  .wrap{max-width:1320px;margin:0 auto;padding:0 32px}
+
+  nav{position:fixed;inset:0 0 auto;z-index:60;mix-blend-mode:difference}
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:84px;color:#fff}
+  .marca{font-family:Syne,sans-serif;font-weight:800;font-size:19px;letter-spacing:-.02em}
+  .links{display:flex;gap:28px;font-size:14px;letter-spacing:.04em}
+  .links a{text-decoration:none;opacity:.8;transition:opacity .2s}
+  .links a:hover{opacity:1}
+
+  header{padding:180px 0 90px}
+  header h1{font-size:clamp(46px,10vw,132px);max-width:16ch}
+  .bajo{display:grid;grid-template-columns:1fr 1fr;gap:60px;margin-top:56px;align-items:end}
+  .bajo p{color:var(--gris);font-size:19px;max-width:46ch}
+  .cifras{display:flex;gap:44px;flex-wrap:wrap}
+  .cifra b{display:block;font-family:Syne,sans-serif;font-weight:600;font-size:38px;letter-spacing:-.03em}
+  .cifra span{font-size:14px;color:var(--gris)}
+
+  /* obras */
+  .filtros{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 34px;
+           padding-bottom:22px;border-bottom:1px solid var(--linea)}
+  .filtro{border:1px solid var(--linea);border-radius:100px;padding:9px 19px;font-size:14.5px;
+          color:var(--gris);transition:border-color .2s,color .2s,background .2s}
+  .filtro:hover{border-color:var(--tinta);color:var(--tinta)}
+  .filtro[aria-pressed="true"]{background:var(--tinta);border-color:var(--tinta);color:var(--papel)}
+  .obras{display:grid;grid-template-columns:repeat(6,1fr);gap:16px}
+  .obra{position:relative;overflow:hidden;background:#EFEEEA;cursor:pointer;
+        grid-column:span 2;aspect-ratio:4/5}
+  .obra.ancha{grid-column:span 4;aspect-ratio:16/9}
+  .obra.media{grid-column:span 3;aspect-ratio:3/2}
+  .obra img{width:100%;height:100%;object-fit:cover;transition:transform .7s cubic-bezier(.2,.7,.3,1)}
+  .obra:hover img{transform:scale(1.04)}
+  .obra .rotulo{position:absolute;left:0;right:0;bottom:0;padding:22px 22px 20px;color:#fff;
+    background:linear-gradient(to top,rgba(10,10,9,.82),rgba(10,10,9,0));
+    display:flex;align-items:flex-end;justify-content:space-between;gap:14px}
+  .obra .rotulo b{font-family:Syne,sans-serif;font-weight:600;font-size:19px;letter-spacing:-.01em}
+  .obra .rotulo span{font-size:13px;opacity:.8;display:block;margin-top:3px;font-weight:300}
+  .obra .anio{font-size:13px;opacity:.75;white-space:nowrap}
+
+  /* visor */
+  .visor{position:fixed;inset:0;z-index:90;background:rgba(12,12,11,.96);display:none}
+  .visor.ver{display:grid;grid-template-rows:1fr auto}
+  .visor .marco{display:grid;place-items:center;padding:56px 76px 20px;overflow:hidden}
+  .visor img{max-width:100%;max-height:100%;object-fit:contain}
+  .visor .info{padding:0 76px 34px;color:#F2F1EE;display:flex;justify-content:space-between;
+               align-items:flex-end;gap:28px;flex-wrap:wrap}
+  .visor h3{font-family:Syne,sans-serif;font-weight:600;font-size:27px;letter-spacing:-.02em}
+  .visor .meta{color:#9C9B95;font-size:15px;margin-top:6px;max-width:56ch}
+  .visor .contador{color:#9C9B95;font-size:14px;font-variant-numeric:tabular-nums}
+  .visor .cerrar{position:absolute;top:24px;right:28px;font-size:32px;color:#F2F1EE;line-height:1}
+  .flecha{position:absolute;top:50%;transform:translateY(-50%);width:56px;height:56px;
+    border:1px solid rgba(242,241,238,.28);border-radius:50%;color:#F2F1EE;font-size:22px;
+    display:grid;place-items:center;transition:background .2s,border-color .2s}
+  .flecha:hover{background:rgba(242,241,238,.14);border-color:#F2F1EE}
+  .flecha.izq{left:18px} .flecha.der{right:18px}
+
+  /* equipo / contacto */
+  section{padding:100px 0}
+  .dos{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center}
+  h2{font-family:Syne,sans-serif;font-weight:600;font-size:clamp(30px,4.4vw,50px);
+     letter-spacing:-.03em;line-height:1.02;margin-bottom:20px}
+  .dos p{color:var(--gris);font-size:18px}
+  .dos p+p{margin-top:16px}
+  .dos img{aspect-ratio:4/3;object-fit:cover}
+  #contacto{background:var(--tinta);color:var(--papel)}
+  #contacto h2{color:var(--papel)}
+  #contacto p{color:rgba(252,252,251,.66)}
+  form{display:grid;gap:18px;margin-top:8px}
+  .fila{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  label{display:block;font-size:13px;color:rgba(252,252,251,.55);margin-bottom:7px}
+  input,select,textarea{width:100%;background:transparent;border:0;border-bottom:1px solid rgba(252,252,251,.24);
+    padding:11px 0;color:var(--papel);font:300 16.5px Archivo,sans-serif;transition:border-color .2s}
+  input:focus,select:focus,textarea:focus{outline:0;border-color:var(--acento)}
+  select option{background:var(--tinta)}
+  textarea{resize:vertical;min-height:70px}
+  .btn{background:var(--acento);color:#fff;padding:15px 30px;font-size:15px;justify-self:start;
+       transition:background .22s}
+  .btn:hover{background:#A8451F}
+  .ok{border-left:2px solid var(--acento);padding:16px 20px;font-size:16px;display:none;
+      background:rgba(196,86,42,.1)}
+  .ok.ver{display:block}
+  .datos{font-size:16.5px;color:rgba(252,252,251,.8)}
+  .datos div{padding:15px 0;border-bottom:1px solid rgba(252,252,251,.14)}
+  .datos strong{display:block;font-size:12px;letter-spacing:.14em;text-transform:uppercase;
+                color:rgba(252,252,251,.45);font-weight:500;margin-bottom:5px}
+
+  footer{padding:34px 0;font-size:14px;color:var(--gris);display:flex;
+         justify-content:space-between;gap:16px;flex-wrap:wrap}
+
+  @media(max-width:900px){
+    .links{display:none}
+    header{padding:130px 0 60px}
+    .bajo,.dos{grid-template-columns:1fr;gap:34px}
+    .obras{grid-template-columns:1fr}
+    .obra,.obra.ancha,.obra.media{grid-column:span 1;aspect-ratio:4/3}
+    .visor .marco{padding:60px 18px 16px}
+    .visor .info{padding:0 18px 26px}
+    .flecha{width:46px;height:46px}
+    section{padding:64px 0}
+    .fila{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="marca">MOTA</div>
+    <div class="links">
+      <a href="#obras">Obras</a>
+      <a href="#estudio">Estudio</a>
+      <a href="#contacto">Contacto</a>
+    </div>
+  </div>
+</nav>
+
+<header>
+  <div class="wrap">
+    <h1 class="syne">Construir es decidir qué se saca</h1>
+    <div class="bajo">
+      <p>Estudio de arquitectura en Rosario. Hacemos proyecto, dirección y obra: entramos cuando hay un terreno y salimos cuando se entregan las llaves.</p>
+      <div class="cifras">
+        <div class="cifra"><b>62</b><span>obras terminadas</span></div>
+        <div class="cifra"><b>2009</b><span>desde</span></div>
+        <div class="cifra"><b>7</b><span>en obra hoy</span></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section id="obras" style="padding-top:20px">
+  <div class="wrap">
+    <div class="filtros" id="filtros"></div>
+    <div class="obras" id="grilla"></div>
+  </div>
+</section>
+
+<section id="estudio">
+  <div class="wrap dos">
+    <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=1000&q=80" alt="El estudio">
+    <div>
+      <h2>Somos cuatro y así queremos seguir</h2>
+      <p>No tomamos más de seis obras por año. Es la cantidad que nos permite ir a la obra todas las semanas y que el que dibujó el detalle sea el mismo que lo explica en el andamio.</p>
+      <p>Trabajamos con un grupo estable de contratistas desde 2014. Eso es lo que hace que un plazo signifique algo.</p>
+    </div>
+  </div>
+</section>
+
+<section id="contacto">
+  <div class="wrap dos">
+    <div>
+      <h2>Contanos qué tenés</h2>
+      <p>Un terreno, una casa para reformar o solo una idea. La primera reunión es sin cargo y de ahí sale un anteproyecto con números.</p>
+      <form id="form" novalidate>
+        <div class="fila">
+          <div><label for="nom">Nombre</label><input id="nom" required></div>
+          <div><label for="mail">Email</label><input id="mail" type="email" required></div>
+        </div>
+        <div class="fila">
+          <div><label for="tipo">Qué tipo de obra</label>
+            <select id="tipo"><option>Vivienda nueva</option><option>Reforma o ampliación</option>
+              <option>Local o oficina</option><option>Todavía no sé</option></select></div>
+          <div><label for="donde">Dónde</label><input id="donde" placeholder="Ciudad o barrio"></div>
+        </div>
+        <div><label for="msj">Contanos un poco</label><textarea id="msj" placeholder="Metros del terreno, presupuesto aproximado, cuándo querrías empezar…"></textarea></div>
+        <button class="btn" type="submit">Enviar</button>
+        <div class="ok" id="ok"></div>
+      </form>
+    </div>
+    <div class="datos">
+      <div><strong>Estudio</strong>Córdoba 1740, piso 3<br>Rosario, Santa Fe</div>
+      <div><strong>Teléfono</strong>0341 424 9080</div>
+      <div><strong>Email</strong>estudio@motaarq.com.ar</div>
+      <div style="border:0"><strong>Matrícula</strong>CAPSF D-1 · 08842</div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+  <footer>
+    <span>© 2026 Mota Arquitectura</span>
+    <span>Instagram · LinkedIn</span>
+  </footer>
+</div>
+
+<div class="visor" id="visor">
+  <button class="cerrar" data-cerrar aria-label="Cerrar">×</button>
+  <button class="flecha izq" data-paso="-1" aria-label="Anterior">‹</button>
+  <button class="flecha der" data-paso="1" aria-label="Siguiente">›</button>
+  <div class="marco"><img id="vimg" alt=""></div>
+  <div class="info">
+    <div><h3 id="vtit"></h3><p class="meta" id="vmeta"></p></div>
+    <span class="contador" id="vcont"></span>
+  </div>
+</div>
+
+<script>
+const OBRAS = [
+  {t:'Casa Paraná', c:'Vivienda', a:2025, m:'320 m² en un lote entre medianeras de 8,66. Toda la casa gira alrededor de un patio que le trae luz a la planta baja.',
+   img:'1600566753190-17f0baa2a6c3', clase:'ancha'},
+  {t:'Edificio Oroño', c:'Vivienda', a:2024, m:'Doce unidades de uno y dos dormitorios sobre bulevar. Fachada de hormigón visto y parasoles de madera.',
+   img:'1487958449943-2429e8be8625', clase:''},
+  {t:'Casa Fisherton', c:'Vivienda', a:2024, m:'Ampliación de una casa de los años 50: se agregó una galería vidriada y se abrió la cocina al fondo.',
+   img:'1600607687939-ce8a6c25118c', clase:''},
+  {t:'Oficinas Mendoza', c:'Comercial', a:2023, m:'Reforma de un galpón de acopio en oficinas de planta libre. Se conservaron las cabriadas originales.',
+   img:'1497366811353-6870744d04b2', clase:'media'},
+  {t:'Casa del Sauce', c:'Vivienda', a:2023, m:'Casa de fin de semana en Funes. Un solo nivel, techo a un agua y galería en todo el frente norte.',
+   img:'1503174971373-b1f69850bded', clase:'media'},
+  {t:'Torre Rivadavia', c:'Comercial', a:2022, m:'Concurso ganado para un edificio de oficinas de nueve pisos. En obra desde marzo.',
+   img:'1520250497591-112f2f40a3f4', clase:''},
+  {t:'Reforma Pellegrini', c:'Reforma', a:2022, m:'Un departamento de 90 m² de los años 70 al que se le sacaron todos los tabiques menos dos.',
+   img:'1481253127861-534498168948', clase:''},
+  {t:'Casa Roldán', c:'Vivienda', a:2021, m:'Vivienda en barrio abierto, con muro ciego al frente y todo el vidrio hacia el fondo.',
+   img:'1600585154340-be6161a56a0c', clase:'ancha'}
+];
+
+const $ = s => document.querySelector(s);
+const foto = (id, w) => `https://images.unsplash.com/photo-${id}?w=${w}&q=80`;
+let visibles = OBRAS.slice(), actual = 0;
+
+const cats = ['Todas'].concat([...new Set(OBRAS.map(o => o.c))]);
+$('#filtros').innerHTML = cats.map((c,i) =>
+  `<button class="filtro" data-c="${c}" aria-pressed="${i === 0}">${c}</button>`).join('');
+
+$('#filtros').addEventListener('click', ev => {
+  const b = ev.target.closest('[data-c]'); if (!b) return;
+  document.querySelectorAll('.filtro').forEach(x => x.setAttribute('aria-pressed','false'));
+  b.setAttribute('aria-pressed','true');
+  const c = b.dataset.c;
+  visibles = c === 'Todas' ? OBRAS.slice() : OBRAS.filter(o => o.c === c);
+  pintar();
+});
+
+function pintar(){
+  $('#grilla').innerHTML = visibles.map((o,i) => `
+    <article class="obra ${o.clase}" data-i="${i}">
+      <img src="${foto(o.img, 1100)}" alt="${o.t}" loading="lazy">
+      <div class="rotulo">
+        <span><b>${o.t}</b><span>${o.c}</span></span>
+        <span class="anio">${o.a}</span>
+      </div>
+    </article>`).join('');
+}
+
+$('#grilla').addEventListener('click', ev => {
+  const a = ev.target.closest('[data-i]'); if (!a) return;
+  actual = +a.dataset.i; abrirVisor();
+});
+
+function abrirVisor(){
+  const o = visibles[actual];
+  $('#vimg').src = foto(o.img, 1600);
+  $('#vimg').alt = o.t;
+  $('#vtit').textContent = o.t;
+  $('#vmeta').textContent = `${o.c} · ${o.a} — ${o.m}`;
+  $('#vcont').textContent = (actual + 1) + ' / ' + visibles.length;
+  $('#visor').classList.add('ver');
+  document.body.style.overflow = 'hidden';
+}
+
+function cerrar(){ $('#visor').classList.remove('ver'); document.body.style.overflow = ''; }
+
+$('#visor').addEventListener('click', ev => {
+  if (ev.target.closest('[data-cerrar]') || ev.target.classList.contains('marco')) { cerrar(); return; }
+  const p = ev.target.closest('[data-paso]');
+  if (p) { actual = (actual + +p.dataset.paso + visibles.length) % visibles.length; abrirVisor(); }
+});
+
+addEventListener('keydown', ev => {
+  if (!$('#visor').classList.contains('ver')) return;
+  if (ev.key === 'Escape') cerrar();
+  if (ev.key === 'ArrowRight') { actual = (actual + 1) % visibles.length; abrirVisor(); }
+  if (ev.key === 'ArrowLeft') { actual = (actual - 1 + visibles.length) % visibles.length; abrirVisor(); }
+});
+
+$('#form').addEventListener('submit', ev => {
+  ev.preventDefault();
+  const nom = $('#nom'), mail = $('#mail'), ok = $('#ok');
+  if (!nom.value.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(mail.value)) {
+    ok.textContent = 'Nos falta tu nombre y un email válido.';
+    ok.classList.add('ver'); return;
+  }
+  ok.textContent = `Gracias ${nom.value.trim().split(' ')[0]}. Recibimos tu consulta por ${$('#tipo').value.toLowerCase()}. Te escribimos a ${mail.value} esta semana para coordinar la primera reunión.`;
+  ok.classList.add('ver');
+  ev.target.querySelector('.btn').textContent = 'Enviado';
+});
+
+pintar();
+</script>
+</body>
+</html>
