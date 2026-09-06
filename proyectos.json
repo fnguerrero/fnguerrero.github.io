@@ -346,6 +346,21 @@
           "url": "https://fnguerrero.github.io/sitios/rotiseria/",
           "img": "img/sitio-rotiseria.jpg",
           "tocado": "2026-09-06"
+        },
+        {
+          "nombre": "Gráfica Sur",
+          "sigla": "Gs",
+          "color": "#E0218A",
+          "tag": "Cotizador en vivo",
+          "que": "Sitio para una imprenta, con cotizador: elegís producto, cantidad, papel y terminación y el presupuesto se arma solo, con el desglose y el descuento por escala —el unitario se derrumba cuando subís la cantidad, como en una imprenta de verdad—. Es el único resuelto sin una sola foto: el registro de color del encabezado está hecho con CSS.",
+          "chips": [
+            "Cotizador en vivo",
+            "Precio por escala",
+            "Sin fotos"
+          ],
+          "url": "https://fnguerrero.github.io/sitios/grafica/",
+          "img": "img/sitio-grafica.jpg",
+          "tocado": "2026-09-06"
         }
       ]
     },
