@@ -75,7 +75,7 @@
             "Windows",
             "Hosts"
           ],
-          "img": "img/focus.jpg?v=1788228250",
+          "img": "img/focus.jpg?v=1788694750",
           "tocado": "2026-08-31"
         },
         {
@@ -89,7 +89,7 @@
             "Portable",
             "Single file"
           ],
-          "img": "img/flash.jpg?v=1788228250",
+          "img": "img/flash.jpg?v=1788694750",
           "tocado": "2026-08-26"
         },
         {
@@ -103,7 +103,7 @@
             "SQLite",
             "React + Vite"
           ],
-          "img": "img/devatlas.jpg?v=1788228250",
+          "img": "img/devatlas.jpg?v=1788694750",
           "tocado": "2026-08-26"
         },
         {
@@ -154,11 +154,11 @@
             "Offline",
             "Sin backend"
           ],
-          "img": "img/paid.jpg?v=1788228250",
+          "img": "img/paid.jpg?v=1788694750",
           "imgs": [
-            "img/paid.jpg?v=1788228250",
-            "img/paid-2.jpg?v=1788228250",
-            "img/paid-3.jpg?v=1788228250"
+            "img/paid.jpg?v=1788694750",
+            "img/paid-2.jpg?v=1788694751",
+            "img/paid-3.jpg?v=1788694751"
           ],
           "url": "https://fnguerrero.github.io/paid/",
           "tocado": "2026-08-29"
@@ -179,7 +179,7 @@
             "Cinco rubros"
           ],
           "url": "https://fnguerrero.github.io/sitios/",
-          "img": "img/sitios.jpg",
+          "img": "img/el-apartado-completo.jpg?v=1788694726",
           "tocado": "2026-09-06"
         },
         {
@@ -194,7 +194,7 @@
             "Carta"
           ],
           "url": "https://fnguerrero.github.io/sitios/cafe/",
-          "img": "img/sitio-cafe.jpg",
+          "img": "img/origen.jpg?v=1788694726",
           "tocado": "2026-09-06"
         },
         {
@@ -209,7 +209,7 @@
             "Formulario"
           ],
           "url": "https://fnguerrero.github.io/sitios/estudio/",
-          "img": "img/sitio-estudio.jpg",
+          "img": "img/vidal-asociados.jpg?v=1788694726",
           "tocado": "2026-09-06"
         },
         {
@@ -224,7 +224,7 @@
             "Reserva de clase"
           ],
           "url": "https://fnguerrero.github.io/sitios/gimnasio/",
-          "img": "img/sitio-gimnasio.jpg",
+          "img": "img/vertice.jpg?v=1788694726",
           "tocado": "2026-09-06"
         },
         {
@@ -239,7 +239,7 @@
             "Ficha en ventana"
           ],
           "url": "https://fnguerrero.github.io/sitios/inmobiliaria/",
-          "img": "img/sitio-inmobiliaria.jpg",
+          "img": "img/norte-propiedades.jpg?v=1788694726",
           "tocado": "2026-09-06"
         },
         {
@@ -254,7 +254,7 @@
             "Ficha técnica"
           ],
           "url": "https://fnguerrero.github.io/sitios/producto/",
-          "img": "img/sitio-producto.jpg",
+          "img": "img/nodo-one.jpg?v=1788694726",
           "tocado": "2026-09-06"
         }
       ]
@@ -263,6 +263,43 @@
       "titulo": "Juegos",
       "verbo": "Jugar",
       "items": [
+        {
+          "nombre": "Te acordás",
+          "sigla": "Ta",
+          "color": "#F0A736",
+          "tag": "Nostalgia argentina, una por día",
+          "que": "Cinco pistas que van de crípticas a obvias y una sola respuesta: algo que viviste en los 90 o los 2000. Sale un desafío por día, el mismo para todos, y el resultado se comparte en emojis sin spoilear cuál era.",
+          "chips": [
+            "HTML + JS puro",
+            "Un solo archivo",
+            "Sin dependencias"
+          ],
+          "url": "https://fnguerrero.github.io/teacordas/",
+          "repo": "https://github.com/fnguerrero/teacordas",
+          "tocado": "2026-09-06",
+          "img": "img/te-acordas.jpg?v=1788694751"
+        },
+        {
+          "nombre": "La Previa",
+          "sigla": "LP",
+          "color": "#7B4FE0",
+          "tag": "Ocho juegos en una página",
+          "que": "Tetris, sudoku, buscaminas, 2048, un match-3 contra reloj, wordle en español, un desafío de nostalgia y uno para jugar de a dos. Se abre y se juega: no hay que instalar nada ni crear cuenta, y lo poco que guarda queda en el teléfono.",
+          "chips": [
+            "HTML + JS puro",
+            "Sin dependencias",
+            "Ocho juegos"
+          ],
+          "url": "https://fnguerrero.github.io/la-previa/",
+          "repo": "https://github.com/fnguerrero/la-previa",
+          "tocado": "2026-09-06",
+          "img": "img/la-previa.jpg?v=1788694751",
+          "imgs": [
+            "img/la-previa.jpg?v=1788694751",
+            "img/la-previa-2.jpg?v=1788694751",
+            "img/la-previa-3.jpg?v=1788694751"
+          ]
+        },
         {
           "nombre": "Los juegos de la familia",
           "sigla": "Jf",
@@ -276,7 +313,7 @@
           ],
           "url": "https://fnguerrero.github.io/juegos-familia/",
           "repo": "https://github.com/fnguerrero/juegos-familia",
-          "img": "img/juegos-familia.jpg",
+          "img": "img/los-juegos-de-la-familia.jpg?v=1788694726",
           "tocado": "2026-09-06"
         },
         {
@@ -292,11 +329,11 @@
           ],
           "url": "https://fnguerrero.github.io/juegos-valentin/",
           "repo": "https://github.com/fnguerrero/juegos-valentin",
-          "img": "img/los-juegos-de-valen.jpg?v=1788228250",
+          "img": "img/los-juegos-de-valen.jpg?v=1788694751",
           "imgs": [
-            "img/los-juegos-de-valen.jpg?v=1788228250",
-            "img/los-juegos-de-valen-2.jpg?v=1788228250",
-            "img/los-juegos-de-valen-3.jpg?v=1788228250"
+            "img/los-juegos-de-valen.jpg?v=1788694751",
+            "img/los-juegos-de-valen-2.jpg?v=1788694751",
+            "img/los-juegos-de-valen-3.jpg?v=1788694751"
           ],
           "tocado": "2026-08-30"
         },
@@ -496,7 +533,7 @@
             "scrcpy",
             "PowerShell"
           ],
-          "img": "img/celconnect.jpg?v=1788228250"
+          "img": "img/celconnect.jpg?v=1788694751"
         }
       ]
     }
