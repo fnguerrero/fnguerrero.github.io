@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vidal &amp; Asociados · Estudio contable y tributario</title>
+<meta name="description" content="Estudio contable y tributario en Buenos Aires. Impuestos, sueldos, sociedades y auditoría para pymes.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --marino:#0E2340; --azul:#1B4F8C; --gris:#5A6675; --linea:#E2E6EB;
+    --fondo:#FFFFFF; --niebla:#F5F7F9; --acento:#0E2340;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--fondo);color:var(--marino);
+       font:400 16.5px/1.65 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  img{max-width:100%;display:block}
+  a{color:inherit}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 32px}
+
+  nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.9);
+      backdrop-filter:blur(10px);border-bottom:1px solid var(--linea)}
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:78px}
+  .marca{font:500 20px/1 Inter;letter-spacing:-.01em}
+  .marca b{font-weight:600}
+  .marca small{display:block;font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;
+               color:var(--gris);font-weight:400;margin-top:3px}
+  .links{display:flex;gap:34px;font-size:15px}
+  .links a{text-decoration:none;color:var(--gris);transition:color .2s}
+  .links a:hover{color:var(--marino)}
+  .btn{display:inline-block;background:var(--marino);color:#fff;text-decoration:none;
+       padding:13px 24px;border-radius:4px;font-size:14.5px;font-weight:500;
+       transition:background .25s}
+  .btn:hover{background:var(--azul)}
+  .btn.linea{background:transparent;color:var(--marino);border:1px solid var(--linea)}
+  .btn.linea:hover{background:var(--niebla)}
+
+  header{padding:120px 0 96px;border-bottom:1px solid var(--linea)}
+  .hgrid{display:grid;grid-template-columns:1.15fr .85fr;gap:80px;align-items:center}
+  .marcador{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--azul);
+            display:flex;align-items:center;gap:12px;margin-bottom:26px}
+  .marcador::before{content:"";width:34px;height:1px;background:var(--azul)}
+  h1{font:400 clamp(40px,5.6vw,62px)/1.12 "Instrument Serif",Georgia,serif;letter-spacing:-.01em}
+  h1 em{font-style:italic;color:var(--azul)}
+  header p{color:var(--gris);font-size:18.5px;margin:28px 0 36px;max-width:52ch;font-weight:300}
+  .acciones{display:flex;gap:14px;flex-wrap:wrap}
+  .hgrid img{border-radius:6px;aspect-ratio:3/4;object-fit:cover;filter:grayscale(.35) contrast(1.05)}
+
+  .cifras{border-bottom:1px solid var(--linea);background:var(--niebla)}
+  .cifras .wrap{display:grid;grid-template-columns:repeat(4,1fr)}
+  .cifra{padding:46px 26px 46px 0}
+  .cifra:not(:first-child){padding-left:34px;border-left:1px solid var(--linea)}
+  .cifra b{display:block;font:400 46px/1 "Instrument Serif",serif;color:var(--azul)}
+  .cifra span{font-size:14px;color:var(--gris);display:block;margin-top:8px}
+
+  section{padding:104px 0}
+  .cabecera{max-width:60ch;margin-bottom:58px}
+  h2{font:400 clamp(30px,4vw,44px)/1.15 "Instrument Serif",serif;letter-spacing:-.01em;margin-bottom:18px}
+  .cabecera p{color:var(--gris);font-size:18px;font-weight:300}
+
+  .servicios{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--linea);
+             border:1px solid var(--linea);border-radius:6px;overflow:hidden}
+  .serv{background:#fff;padding:38px 34px 42px;transition:background .3s}
+  .serv:hover{background:var(--niebla)}
+  .serv .num{font:400 13px/1 Inter;color:var(--azul);letter-spacing:.1em;margin-bottom:22px;display:block}
+  .serv h3{font:500 19px/1.3 Inter;margin-bottom:12px}
+  .serv p{font-size:15.5px;color:var(--gris);font-weight:300}
+
+  #equipo{background:var(--niebla);border-top:1px solid var(--linea);border-bottom:1px solid var(--linea)}
+  .gente{display:grid;grid-template-columns:repeat(3,1fr);gap:36px}
+  .persona img{aspect-ratio:1;object-fit:cover;border-radius:6px;filter:grayscale(1) contrast(1.08);
+               transition:filter .5s}
+  .persona:hover img{filter:grayscale(0)}
+  .persona h3{font:500 18px/1.3 Inter;margin:22px 0 4px}
+  .persona .rol{font-size:13.5px;color:var(--azul);letter-spacing:.04em}
+  .persona p{font-size:15px;color:var(--gris);margin-top:12px;font-weight:300}
+
+  .faq{max-width:820px}
+  details{border-bottom:1px solid var(--linea)}
+  summary{cursor:pointer;list-style:none;padding:26px 44px 26px 0;position:relative;
+          font-weight:500;font-size:17.5px}
+  summary::-webkit-details-marker{display:none}
+  summary::after{content:"+";position:absolute;right:6px;top:24px;font-size:24px;font-weight:300;
+                 color:var(--azul);transition:transform .3s}
+  details[open] summary::after{transform:rotate(45deg)}
+  details p{padding:0 60px 28px 0;color:var(--gris);font-weight:300}
+
+  #contacto{background:var(--marino);color:#fff}
+  #contacto h2{color:#fff}
+  #contacto .cabecera p{color:rgba(255,255,255,.65)}
+  .cgrid{display:grid;grid-template-columns:1.1fr .9fr;gap:72px;align-items:start}
+  form{display:grid;gap:22px}
+  .fila{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+  label{display:block;font-size:12.5px;color:rgba(255,255,255,.6);margin-bottom:8px}
+  input,select,textarea{width:100%;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);
+    border-radius:4px;color:#fff;font:400 15.5px Inter,sans-serif;padding:13px 15px;transition:border-color .25s,background .25s}
+  input:focus,select:focus,textarea:focus{outline:0;border-color:#7FA9DC;background:rgba(255,255,255,.1)}
+  select option{background:var(--marino)}
+  textarea{resize:vertical;min-height:110px}
+  form button{background:#fff;color:var(--marino);border:0;border-radius:4px;padding:15px 30px;
+              font:500 15px Inter;cursor:pointer;justify-self:start;transition:opacity .25s}
+  form button:hover{opacity:.86}
+  .ok{border-left:2px solid #7FA9DC;background:rgba(127,169,220,.12);padding:18px 22px;
+      font-size:15.5px;border-radius:0 4px 4px 0;display:none}
+  .ok.ver{display:block;animation:sube .45s ease}
+  .err{border-color:#E2A0A0;background:rgba(226,160,160,.12)}
+  @keyframes sube{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  .info{border-left:1px solid rgba(255,255,255,.16);padding-left:40px}
+  .info div{margin-bottom:32px}
+  .info strong{display:block;font-size:12px;letter-spacing:.16em;text-transform:uppercase;
+               color:rgba(255,255,255,.5);font-weight:500;margin-bottom:8px}
+  .info p{font-size:15.5px;color:rgba(255,255,255,.88);font-weight:300}
+
+  footer{padding:34px 0;font-size:13.5px;color:var(--gris);display:flex;
+         justify-content:space-between;gap:16px;flex-wrap:wrap;border-top:1px solid var(--linea)}
+
+  .js .rev{opacity:0;transform:translateY(20px);transition:opacity .65s ease,transform .65s ease}
+  .js .rev.on{opacity:1;transform:none}
+
+  @media(max-width:900px){
+    .links{display:none}
+    .hgrid,.cgrid{grid-template-columns:1fr;gap:44px}
+    .hgrid img{display:none}
+    .cifras .wrap{grid-template-columns:1fr 1fr}
+    .servicios,.gente{grid-template-columns:1fr}
+    .cifra,.cifra:not(:first-child){padding:32px 24px}
+    section,header{padding:64px 0}
+    .info{border-left:0;border-top:1px solid rgba(255,255,255,.16);padding:36px 0 0}
+    .fila{grid-template-columns:1fr}
+  }
+</style>
+<script>document.documentElement.className="js"</script>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="marca">Vidal <b>&amp; Asociados</b><small>Contadores públicos</small></div>
+    <div class="links">
+      <a href="#servicios">Servicios</a>
+      <a href="#equipo">Equipo</a>
+      <a href="#faq">Preguntas</a>
+      <a href="#contacto">Contacto</a>
+    </div>
+    <a href="#contacto" class="btn">Pedir una reunión</a>
+  </div>
+</nav>
+
+<header>
+  <div class="wrap hgrid">
+    <div>
+      <p class="marcador">Buenos Aires · desde 1998</p>
+      <h1>Que los números <em>no sean</em> el problema de tu semana</h1>
+      <p>Somos un estudio chico y elegimos seguir siéndolo. Atendemos a 140 pymes y monotributistas con la misma persona a cargo de tu carpeta todos los meses.</p>
+      <div class="acciones">
+        <a href="#contacto" class="btn">Hablar con un contador</a>
+        <a href="#servicios" class="btn linea">Ver servicios</a>
+      </div>
+    </div>
+    <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80" alt="Oficina del estudio">
+  </div>
+</header>
+
+<div class="cifras">
+  <div class="wrap">
+    <div class="cifra"><b>28</b><span>años trabajando</span></div>
+    <div class="cifra"><b>140</b><span>empresas asesoradas</span></div>
+    <div class="cifra"><b>9</b><span>profesionales</span></div>
+    <div class="cifra"><b>72 h</b><span>para responderte, siempre</span></div>
+  </div>
+</div>
+
+<section id="servicios">
+  <div class="wrap">
+    <div class="cabecera rev">
+      <h2>Lo que hacemos</h2>
+      <p>Trabajamos por abono mensual. Sin sorpresas en la factura y sin cobrar aparte cada consulta.</p>
+    </div>
+    <div class="servicios">
+      <div class="serv rev"><span class="num">01</span><h3>Impuestos</h3><p>IVA, Ganancias, Ingresos Brutos y Convenio Multilateral. Presentación, control de vencimientos y planes de pago cuando hacen falta.</p></div>
+      <div class="serv rev"><span class="num">02</span><h3>Sueldos y cargas sociales</h3><p>Liquidación mensual, alta y baja de empleados, F.931, SAC y vacaciones. Recibos digitales listos para firmar.</p></div>
+      <div class="serv rev"><span class="num">03</span><h3>Sociedades</h3><p>Constitución de SAS y SRL, reformas de estatuto, actas y balances para presentar en IGJ.</p></div>
+      <div class="serv rev"><span class="num">04</span><h3>Monotributo</h3><p>Alta, recategorización cuatrimestral y aviso anticipado cuando estás por pasarte de categoría.</p></div>
+      <div class="serv rev"><span class="num">05</span><h3>Auditoría</h3><p>Estados contables auditados y certificaciones de ingresos para bancos, licitaciones y visas.</p></div>
+      <div class="serv rev"><span class="num">06</span><h3>Planeamiento</h3><p>Revisión anual de la estructura para pagar lo que corresponde y no más. Con el número puesto sobre la mesa.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="equipo">
+  <div class="wrap">
+    <div class="cabecera rev">
+      <h2>Quiénes te van a atender</h2>
+      <p>Vas a tratar siempre con la misma persona. No hay call center ni mesa de entradas.</p>
+    </div>
+    <div class="gente">
+      <div class="persona rev">
+        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=600&q=80" alt="">
+        <h3>Marcela Vidal</h3>
+        <p class="rol">Socia · Contadora Pública (UBA)</p>
+        <p>Fundó el estudio en 1998. Lleva la parte impositiva y las auditorías.</p>
+      </div>
+      <div class="persona rev">
+        <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=600&q=80" alt="">
+        <h3>Diego Sanabria</h3>
+        <p class="rol">Socio · Contador Público (UNLP)</p>
+        <p>Sueldos, cargas sociales y todo lo que toque relación laboral.</p>
+      </div>
+      <div class="persona rev">
+        <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=600&q=80" alt="">
+        <h3>Paula Iriarte</h3>
+        <p class="rol">Responsable de Sociedades</p>
+        <p>Constituciones, reformas y presentaciones ante IGJ y Registro Público.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="wrap">
+    <div class="cabecera rev">
+      <h2>Lo que nos preguntan siempre</h2>
+    </div>
+    <div class="faq">
+      <details class="rev"><summary>¿Cuánto sale el abono mensual?</summary><p>Depende del volumen y de si tenés empleados. Un monotributista sin personal arranca en $85.000 por mes; una SRL con cinco empleados está en el orden de $310.000. En la primera reunión te damos el número cerrado por escrito.</p></details>
+      <details class="rev"><summary>¿Atienden en todo el país?</summary><p>Sí. La mitad de nuestros clientes no está en CABA. Todo lo operativo se resuelve por mail y videollamada, y solo pedimos reuniones presenciales cuando hay que firmar algo ante escribano.</p></details>
+      <details class="rev"><summary>Ya tengo contador, ¿cómo es el cambio?</summary><p>Nos ocupamos nosotros. Pedimos la carpeta al colega anterior, revisamos que no queden presentaciones abiertas y te avisamos si encontramos algo pendiente antes de arrancar. El cambio no interrumpe ningún vencimiento.</p></details>
+      <details class="rev"><summary>¿Qué pasa si me llega una intimación de ARCA?</summary><p>Nos la mandás y la contestamos nosotros dentro del plazo, sin costo adicional si sos cliente de abono. Si deriva en una determinación de oficio te presupuestamos el trabajo antes de empezar.</p></details>
+      <details class="rev"><summary>¿Trabajan con facturación electrónica y sistemas de gestión?</summary><p>Sí. Nos integramos con Tango, Xubio, Colppy y con exportaciones de Tiendanube y Mercado Libre. Si usás algo que no está en la lista, lo miramos.</p></details>
+    </div>
+  </div>
+</section>
+
+<section id="contacto">
+  <div class="wrap">
+    <div class="cabecera rev">
+      <h2>Escribinos</h2>
+      <p>Contanos en dos líneas de qué se trata y te respondemos dentro de las 72 horas hábiles.</p>
+    </div>
+    <div class="cgrid">
+      <form id="form" novalidate>
+        <div class="fila">
+          <div><label for="nom">Nombre y apellido</label><input id="nom" required></div>
+          <div><label for="mail">Email</label><input id="mail" type="email" required></div>
+        </div>
+        <div class="fila">
+          <div><label for="tel">Teléfono</label><input id="tel" type="tel"></div>
+          <div><label for="tipo">Qué necesitás</label>
+            <select id="tipo">
+              <option>Abono mensual para mi empresa</option>
+              <option>Solo impuestos</option>
+              <option>Liquidación de sueldos</option>
+              <option>Constituir una sociedad</option>
+              <option>Una consulta puntual</option>
+            </select>
+          </div>
+        </div>
+        <div><label for="msj">Contanos un poco</label><textarea id="msj" placeholder="Rubro, facturación aproximada, si tenés empleados…"></textarea></div>
+        <button type="submit">Enviar consulta</button>
+        <div class="ok" id="ok"></div>
+      </form>
+      <div class="info rev">
+        <div><strong>Estudio</strong><p>Av. Corrientes 1386, piso 7 «B»<br>C1043AAZ · Ciudad de Buenos Aires</p></div>
+        <div><strong>Teléfonos</strong><p>011 4372 8890<br>011 4372 8891</p></div>
+        <div><strong>Email</strong><p>estudio@vidalyasociados.com.ar</p></div>
+        <div><strong>Atención</strong><p>Lunes a viernes de 9 a 18 h<br>Reuniones con turno previo</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+  <footer>
+    <span>© 2026 Vidal &amp; Asociados · CPCECABA T° 214 F° 88</span>
+    <span>Aviso legal · Política de privacidad</span>
+  </footer>
+</div>
+
+<script>
+  const io = new IntersectionObserver(es => {
+    es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); } });
+  }, {threshold:.1});
+  document.querySelectorAll('.rev').forEach((el,i) => {
+    el.style.transitionDelay = (i % 3) * 80 + 'ms';
+    io.observe(el);
+  });
+
+  const valeMail = v => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v);
+
+  form.addEventListener('submit', ev => {
+    ev.preventDefault();
+    ok.classList.remove('err');
+    if (!nom.value.trim()) { avisar('Nos falta tu nombre.', true); return; }
+    if (!valeMail(mail.value)) { avisar('Revisá el email: no parece una dirección válida.', true); return; }
+    avisar(`Gracias, ${nom.value.trim().split(' ')[0]}. Tu consulta sobre «${tipo.value.toLowerCase()}» quedó registrada. Te escribimos a ${mail.value} dentro de las 72 horas hábiles.`);
+    form.querySelector('button').textContent = 'Consulta enviada';
+    form.querySelector('button').disabled = true;
+  });
+
+  function avisar(txt, error) {
+    ok.textContent = txt;
+    ok.classList.toggle('err', !!error);
+    ok.classList.add('ver');
+  }
+</script>
+</body>
+</html>

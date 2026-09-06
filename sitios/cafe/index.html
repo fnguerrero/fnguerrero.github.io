@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Origen · Café de especialidad</title>
+<meta name="description" content="Café de especialidad, tostado propio y cocina de barrio. Villa Ortúzar, Buenos Aires.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,700&family=Karla:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --crema:#FAF5EE; --papel:#F2E9DC; --tinta:#1E1712; --tierra:#B4522F;
+    --oliva:#3D4A34; --suave:#8A7A6A;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--crema);color:var(--tinta);font:400 17px/1.7 Karla,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  img{max-width:100%;display:block}
+  a{color:inherit}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 28px}
+
+  /* nav */
+  nav{position:fixed;inset:0 0 auto;z-index:50;backdrop-filter:blur(12px);
+      background:rgba(250,245,238,.82);border-bottom:1px solid rgba(30,23,18,.08);
+      transition:transform .35s ease}
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:72px}
+  .marca{font:700 22px/1 Fraunces,serif;letter-spacing:-.02em}
+  .marca span{color:var(--tierra)}
+  .links{display:flex;gap:32px;font-size:15px;letter-spacing:.02em}
+  .links a{text-decoration:none;opacity:.75;transition:opacity .2s}
+  .links a:hover{opacity:1}
+  .btn{display:inline-block;background:var(--tierra);color:var(--crema);text-decoration:none;
+       padding:13px 26px;border-radius:2px;font-size:15px;letter-spacing:.04em;
+       transition:background .25s,transform .25s}
+  .btn:hover{background:#98411f;transform:translateY(-1px)}
+  .burger{display:none;background:none;border:0;font-size:24px;cursor:pointer;color:var(--tinta)}
+
+  /* hero */
+  header{position:relative;min-height:92vh;display:flex;align-items:flex-end;
+         padding:0 0 72px;overflow:hidden}
+  header::before{content:"";position:absolute;inset:0;
+    background:url("https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=1800&q=80") center/cover;
+    filter:saturate(.85)}
+  header::after{content:"";position:absolute;inset:0;
+    background:linear-gradient(180deg,rgba(30,23,18,.45) 0%,rgba(30,23,18,.15) 40%,rgba(30,23,18,.85) 100%)}
+  .hero{position:relative;z-index:2;color:var(--crema)}
+  .hero .kicker{font-size:13px;letter-spacing:.28em;text-transform:uppercase;opacity:.8;margin-bottom:20px}
+  .hero h1{font:300 clamp(48px,9vw,104px)/.95 Fraunces,serif;letter-spacing:-.03em;max-width:14ch}
+  .hero h1 em{font-style:italic;font-weight:500;color:#E8B98F}
+  .hero p{margin:26px 0 34px;max-width:46ch;font-size:19px;opacity:.9;font-weight:300}
+
+  /* secciones */
+  section{padding:110px 0}
+  .eyebrow{font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:var(--tierra);margin-bottom:18px}
+  h2{font:300 clamp(34px,5vw,54px)/1.05 Fraunces,serif;letter-spacing:-.02em;margin-bottom:22px}
+  .lead{font-size:19px;color:var(--suave);max-width:56ch;font-weight:300}
+
+  .dos{display:grid;grid-template-columns:1.05fr 1fr;gap:72px;align-items:center}
+  .dos img{border-radius:2px;aspect-ratio:4/5;object-fit:cover}
+  .dos p+p{margin-top:18px}
+
+  /* menu */
+  #menu{background:var(--papel)}
+  .cartas{display:grid;grid-template-columns:1fr 1fr;gap:56px 72px;margin-top:56px}
+  .carta h3{font:500 15px/1 Karla;letter-spacing:.2em;text-transform:uppercase;
+            color:var(--oliva);padding-bottom:14px;border-bottom:1px solid rgba(30,23,18,.15);margin-bottom:8px}
+  .item{display:flex;align-items:baseline;gap:10px;padding:15px 0;border-bottom:1px dotted rgba(30,23,18,.18)}
+  .item:last-child{border-bottom:0}
+  .item .n{font-weight:600}
+  .item .d{font-size:14.5px;color:var(--suave);display:block;font-weight:300;margin-top:3px}
+  .item .linea{flex:1;border-bottom:1px dotted rgba(30,23,18,.25);transform:translateY(-4px)}
+  .item .p{font-variant-numeric:tabular-nums;color:var(--tierra);font-weight:600;white-space:nowrap}
+
+  /* galeria */
+  .galeria{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:52px}
+  .galeria img{aspect-ratio:1;object-fit:cover;filter:saturate(.9);transition:filter .4s,transform .5s}
+  .galeria img:hover{filter:saturate(1.05);transform:scale(1.02)}
+
+  /* reservas */
+  #reservar{background:var(--oliva);color:var(--crema)}
+  #reservar h2{color:var(--crema)}
+  #reservar .lead{color:rgba(250,245,238,.7)}
+  .formbox{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;margin-top:48px}
+  form{display:grid;gap:18px}
+  .fila{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  label{display:block;font-size:12px;letter-spacing:.16em;text-transform:uppercase;
+        opacity:.6;margin-bottom:8px}
+  input,select,textarea{width:100%;background:transparent;border:0;border-bottom:1px solid rgba(250,245,238,.3);
+    color:var(--crema);font:400 16px Karla,sans-serif;padding:10px 0;transition:border-color .25s}
+  input:focus,select,textarea:focus{outline:0;border-color:#E8B98F}
+  select option{background:var(--oliva)}
+  textarea{resize:vertical;min-height:64px}
+  form .btn{border:0;cursor:pointer;font-family:Karla,sans-serif;justify-self:start;margin-top:12px}
+  .ok{background:rgba(232,185,143,.14);border-left:2px solid #E8B98F;padding:18px 22px;
+      font-size:15.5px;display:none}
+  .ok.ver{display:block;animation:sube .5s ease}
+  @keyframes sube{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  .datos p{margin-bottom:26px;font-size:15.5px}
+  .datos strong{display:block;font-size:12px;letter-spacing:.16em;text-transform:uppercase;
+                opacity:.55;font-weight:600;margin-bottom:6px}
+
+  footer{padding:52px 0;font-size:14px;color:var(--suave);
+         display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+
+  /* reveal */
+  .js .rev{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
+  .js .rev.on{opacity:1;transform:none}
+
+  @media(max-width:860px){
+    .links{display:none}
+    .burger{display:block}
+    .dos,.cartas,.formbox{grid-template-columns:1fr;gap:40px}
+    section{padding:76px 0}
+    .galeria{grid-template-columns:1fr 1fr}
+    .galeria img:last-child{display:none}
+  }
+</style>
+<script>document.documentElement.className="js"</script>
+</head>
+<body>
+
+<nav id="nav">
+  <div class="wrap">
+    <div class="marca">Origen<span>.</span></div>
+    <div class="links">
+      <a href="#lugar">El lugar</a>
+      <a href="#menu">Carta</a>
+      <a href="#galeria">Fotos</a>
+      <a href="#reservar">Reservar</a>
+    </div>
+    <a href="#reservar" class="btn">Reservar mesa</a>
+    <button class="burger" aria-label="Menú">☰</button>
+  </div>
+</nav>
+
+<header>
+  <div class="wrap hero">
+    <p class="kicker">Villa Ortúzar · Buenos Aires</p>
+    <h1>Café tostado <em>acá adentro</em></h1>
+    <p>Grano de finca, tostado propio dos veces por semana y una cocina chica que cambia con lo que hay en el mercado.</p>
+    <a href="#menu" class="btn">Ver la carta</a>
+  </div>
+</header>
+
+<section id="lugar">
+  <div class="wrap dos">
+    <div class="rev">
+      <p class="eyebrow">Desde 2019</p>
+      <h2>Una cuadra sin esquina, veinte mesas</h2>
+      <p class="lead">Abrimos en un galpón de chapa que había sido taller mecánico. Dejamos el piso de pinotea, sumamos una tostadora de 5 kilos y no mucho más.</p>
+      <p class="lead" style="margin-top:18px">Trabajamos con tres productores: dos de Colombia y uno de Salta. Compramos el lote entero, así el café que tomás en agosto no es el mismo que en marzo — y está bien que así sea.</p>
+    </div>
+    <img class="rev" src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=900&q=80" alt="Interior del café">
+  </div>
+</section>
+
+<section id="menu">
+  <div class="wrap">
+    <p class="eyebrow rev">La carta</p>
+    <h2 class="rev">Lo que hay hoy</h2>
+    <div class="cartas">
+      <div class="carta rev">
+        <h3>De la máquina</h3>
+        <div class="item"><span><span class="n">Espresso</span><span class="d">Doble, 18 g</span></span><span class="linea"></span><span class="p">$2.400</span></div>
+        <div class="item"><span><span class="n">Flat white</span><span class="d">Leche entera o de avena</span></span><span class="linea"></span><span class="p">$3.600</span></div>
+        <div class="item"><span><span class="n">Cortado</span></span><span class="linea"></span><span class="p">$2.900</span></div>
+        <div class="item"><span><span class="n">Filtrado V60</span><span class="d">Preguntá cuál está saliendo</span></span><span class="linea"></span><span class="p">$4.200</span></div>
+        <div class="item"><span><span class="n">Cold brew</span><span class="d">18 horas de infusión</span></span><span class="linea"></span><span class="p">$4.500</span></div>
+      </div>
+      <div class="carta rev">
+        <h3>Para comer</h3>
+        <div class="item"><span><span class="n">Tostado de masa madre</span><span class="d">Jamón crudo, provolone y tomate asado</span></span><span class="linea"></span><span class="p">$8.900</span></div>
+        <div class="item"><span><span class="n">Huevos revueltos</span><span class="d">Con pan de campo y palta</span></span><span class="linea"></span><span class="p">$9.400</span></div>
+        <div class="item"><span><span class="n">Budín del día</span><span class="d">Preguntá, cambia seguido</span></span><span class="linea"></span><span class="p">$4.100</span></div>
+        <div class="item"><span><span class="n">Medialunas (3)</span><span class="d">De manteca, hechas acá</span></span><span class="linea"></span><span class="p">$4.800</span></div>
+      </div>
+      <div class="carta rev">
+        <h3>Para llevar</h3>
+        <div class="item"><span><span class="n">Bolsa 250 g</span><span class="d">Molido o en grano</span></span><span class="linea"></span><span class="p">$11.500</span></div>
+        <div class="item"><span><span class="n">Bolsa 1 kg</span></span><span class="linea"></span><span class="p">$39.000</span></div>
+        <div class="item"><span><span class="n">Suscripción mensual</span><span class="d">500 g por mes, te avisamos cuando sale del tostado</span></span><span class="linea"></span><span class="p">$21.000</span></div>
+      </div>
+      <div class="carta rev">
+        <h3>Cata y cursos</h3>
+        <div class="item"><span><span class="n">Cata abierta</span><span class="d">Sábados 11 h · 6 personas</span></span><span class="linea"></span><span class="p">$18.000</span></div>
+        <div class="item"><span><span class="n">Taller de filtrado</span><span class="d">Dos horas, te llevás el V60</span></span><span class="linea"></span><span class="p">$34.000</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="galeria">
+  <div class="wrap">
+    <p class="eyebrow rev">El lugar</p>
+    <h2 class="rev">Cómo se ve</h2>
+    <div class="galeria">
+      <img class="rev" src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=700&q=80" alt="Mesa con café">
+      <img class="rev" src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=700&q=80" alt="Taza de café">
+      <img class="rev" src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=700&q=80" alt="Salón">
+    </div>
+  </div>
+</section>
+
+<section id="reservar">
+  <div class="wrap">
+    <p class="eyebrow rev" style="color:#E8B98F">Reservas</p>
+    <h2 class="rev">Guardamos tu mesa</h2>
+    <p class="lead rev">Tomamos reservas de martes a domingo. Para grupos de más de 8 escribinos y lo armamos aparte.</p>
+    <div class="formbox">
+      <form id="form" novalidate>
+        <div class="fila">
+          <div><label for="n">Nombre</label><input id="n" required placeholder="Cómo te llamás"></div>
+          <div><label for="t">Teléfono</label><input id="t" type="tel" required placeholder="11 5555 5555"></div>
+        </div>
+        <div class="fila">
+          <div><label for="f">Día</label><input id="f" type="date" required></div>
+          <div><label for="h">Hora</label>
+            <select id="h"><option>09:00</option><option>11:00</option><option selected>13:00</option><option>17:00</option><option>19:30</option></select>
+          </div>
+        </div>
+        <div><label for="p">Cuántos son</label>
+          <select id="p"><option>1</option><option selected>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option></select>
+        </div>
+        <div><label for="m">Algo que tengamos que saber</label><textarea id="m" placeholder="Celiaquía, silla de bebé, festejo…"></textarea></div>
+        <button class="btn" type="submit">Pedir la mesa</button>
+        <div class="ok" id="ok"></div>
+      </form>
+      <div class="datos rev">
+        <p><strong>Dónde</strong>Av. Álvarez Thomas 1284<br>Villa Ortúzar, CABA</p>
+        <p><strong>Horarios</strong>Martes a viernes · 8 a 20 h<br>Sábados y domingos · 9 a 21 h<br>Lunes cerrado</p>
+        <p><strong>Escribinos</strong>hola@origencafe.com.ar<br>11 4455 2210</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+  <footer>
+    <span>© 2026 Origen Café de Especialidad</span>
+    <span>Instagram · Facebook · WhatsApp</span>
+  </footer>
+</div>
+
+<script>
+  // reveal al hacer scroll
+  const io = new IntersectionObserver(es => {
+    es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); } });
+  }, {threshold:.12});
+  document.querySelectorAll('.rev').forEach((el,i) => {
+    el.style.transitionDelay = (i % 4) * 70 + 'ms';
+    io.observe(el);
+  });
+
+  // nav que se esconde al bajar
+  let ultimo = 0;
+  addEventListener('scroll', () => {
+    const y = scrollY;
+    nav.style.transform = (y > ultimo && y > 400) ? 'translateY(-100%)' : 'none';
+    ultimo = y;
+  });
+
+  // fecha mínima = hoy
+  const hoy = new Date().toISOString().slice(0,10);
+  f.min = hoy; f.value = hoy;
+
+  form.addEventListener('submit', ev => {
+    ev.preventDefault();
+    if (!n.value.trim() || !t.value.trim()) {
+      ok.textContent = 'Nos falta tu nombre y un teléfono para confirmarte.';
+      ok.classList.add('ver'); return;
+    }
+    const dia = new Date(f.value + 'T12:00').toLocaleDateString('es-AR',{weekday:'long',day:'numeric',month:'long'});
+    ok.textContent = `Listo, ${n.value.trim().split(' ')[0]}. Mesa para ${p.value} el ${dia} a las ${h.value}. Te escribimos al ${t.value} para confirmar.`;
+    ok.classList.add('ver');
+    form.querySelector('button').textContent = 'Pedido enviado';
+  });
+</script>
+</body>
+</html>
