@@ -169,14 +169,14 @@
       "titulo": "Sitios web",
       "items": [
         {
-          "nombre": "El apartado completo",
+          "nombre": "Todos los sitios",
           "sigla": "Sw",
           "color": "#1B4F8C",
-          "tag": "Los cinco juntos",
-          "que": "La portada del apartado: las cinco muestras en una sola página, con qué resuelve cada una. Es el link para mandarle a alguien que quiere ver todo de una.",
+          "tag": "El apartado entero",
+          "que": "La portada del apartado: todos los sitios en una sola página, con qué resuelve cada uno y un filtro por lo que hace —turnos, catálogo, carrito, pedidos—. Es el link para mandarle a alguien que quiere ver todo de una.",
           "chips": [
             "Portada",
-            "Cinco rubros"
+            "Filtro por lo que hace"
           ],
           "url": "https://fnguerrero.github.io/sitios/",
           "img": "img/el-apartado-completo.jpg?v=1788694726",
@@ -187,7 +187,7 @@
           "sigla": "Or",
           "color": "#B4522F",
           "tag": "Café de especialidad",
-          "que": "Muestra de sitio para gastronomía. Foto a pantalla completa, carta con precios, galería y reserva de mesa en cuatro campos. Cálido y editorial, con tipografía serif.",
+          "que": "Sitio para gastronomía. Foto a pantalla completa, carta con precios, galería y reserva de mesa en cuatro campos. Cálido y editorial, con tipografía serif.",
           "chips": [
             "Gastronomía",
             "Reserva de mesa",
@@ -202,7 +202,7 @@
           "sigla": "Va",
           "color": "#1B4F8C",
           "tag": "Estudio contable",
-          "que": "Muestra de sitio para servicios profesionales. Sobrio y con mucho aire: cifras que respaldan, servicios en grilla, equipo y las preguntas incómodas contestadas antes de que las haga.",
+          "que": "Sitio para servicios profesionales. Sobrio y con mucho aire: cifras que respaldan, servicios en grilla, equipo y las preguntas incómodas contestadas antes de que las haga.",
           "chips": [
             "Institucional",
             "Preguntas frecuentes",
@@ -217,7 +217,7 @@
           "sigla": "Vt",
           "color": "#C9FF3D",
           "tag": "Gimnasio funcional",
-          "que": "Muestra de sitio para fitness. Alto contraste, tipografía pesada y una sola cosa para hacer: reservar la clase gratis. Los planes se comparan de un vistazo y el precio está a la vista.",
+          "que": "Sitio para fitness. Alto contraste, tipografía pesada y una sola cosa para hacer: reservar la clase gratis. Los planes se comparan de un vistazo y el precio está a la vista.",
           "chips": [
             "Oscuro",
             "Tabla de planes",
@@ -232,7 +232,7 @@
           "sigla": "Np",
           "color": "#1F5F4E",
           "tag": "Inmobiliaria",
-          "que": "Muestra de sitio para inmobiliaria, la más parecida a una aplicación: doce propiedades con buscador por operación, zona, dormitorios y precio, orden por valor o superficie y ficha ampliada. Los filtros funcionan de verdad.",
+          "que": "Sitio para inmobiliaria, la más parecida a una aplicación: doce propiedades con buscador por operación, zona, dormitorios y precio, orden por valor o superficie y ficha ampliada. Los filtros funcionan de verdad.",
           "chips": [
             "Catálogo filtrable",
             "Orden dinámico",
@@ -247,7 +247,7 @@
           "sigla": "Nd",
           "color": "#6C63FF",
           "tag": "Marca de producto",
-          "que": "Muestra de landing de producto en una sola página. El selector de color cambia la foto y tiñe el sitio entero, y la ficha técnica está completa para el que quiere el detalle.",
+          "que": "Landing de producto en una sola página. El selector de color cambia la foto y tiñe el sitio entero, y la ficha técnica está completa para el que quiere el detalle.",
           "chips": [
             "Landing",
             "Selector de color",
@@ -262,7 +262,7 @@
           "sigla": "No",
           "color": "#1B9AAA",
           "tag": "Turnos online",
-          "que": "Muestra de sitio para salud, con agenda de turnos de verdad: elegís el día entre los próximos doce, ves qué horarios quedan libres y no se puede confirmar hasta elegir los dos. La disponibilidad es estable, no cambia mientras completás tus datos.",
+          "que": "Sitio para salud, con agenda de turnos de verdad: elegís el día entre los próximos doce, ves qué horarios quedan libres y no se puede confirmar hasta elegir los dos. La disponibilidad es estable, no cambia mientras completás tus datos.",
           "chips": [
             "Agenda de turnos",
             "Horarios ocupados",
@@ -277,7 +277,7 @@
           "sigla": "Cm",
           "color": "#8A5A2B",
           "tag": "Reservas con fechas",
-          "que": "Muestra de sitio para turismo. Calcula el total noche por noche, así una estadía que arranca en temporada baja y termina en alta se cobra como corresponde. Controla mínimo de noches, capacidad de cada cabaña y descuento por semana.",
+          "que": "Sitio para turismo. Calcula el total noche por noche, así una estadía que arranca en temporada baja y termina en alta se cobra como corresponde. Controla mínimo de noches, capacidad de cada cabaña y descuento por semana.",
           "chips": [
             "Cálculo por noche",
             "Temporada alta",
@@ -292,7 +292,7 @@
           "sigla": "Av",
           "color": "#7B2233",
           "tag": "Tienda con carrito",
-          "que": "Muestra de e-commerce: carrito lateral con cantidades, descuento automático al llegar a la caja de seis y envío gratis a partir de ahí. Las etiquetas de los vinos están dibujadas con CSS, sin una sola foto de stock.",
+          "que": "Sitio de e-commerce: carrito lateral con cantidades, descuento automático al llegar a la caja de seis y envío gratis a partir de ahí. Las etiquetas de los vinos están dibujadas con CSS, sin una sola foto de stock.",
           "chips": [
             "Carrito",
             "Descuento por caja",
@@ -307,7 +307,7 @@
           "sigla": "Ma",
           "color": "#C4562A",
           "tag": "Portfolio de obras",
-          "que": "Muestra de sitio para estudio creativo, donde manda la imagen: grilla asimétrica con obras de distintos tamaños, filtro por tipo y visor a pantalla completa que se maneja con las flechas del teclado.",
+          "que": "Sitio para estudio creativo, donde manda la imagen: grilla asimétrica con obras de distintos tamaños, filtro por tipo y visor a pantalla completa que se maneja con las flechas del teclado.",
           "chips": [
             "Grilla asimétrica",
             "Visor con teclado",
@@ -322,7 +322,7 @@
           "sigla": "Jt",
           "color": "#7E9080",
           "tag": "Casamiento",
-          "que": "Muestra de sitio para un evento: una sola página con cuenta regresiva en vivo y confirmación de asistencia. Si decís que venís aparecen los campos de acompañantes, menú y micro; si no, desaparecen.",
+          "que": "Sitio para un evento: una sola página con cuenta regresiva en vivo y confirmación de asistencia. Si decís que venís aparecen los campos de acompañantes, menú y micro; si no, desaparecen.",
           "chips": [
             "Cuenta regresiva",
             "Confirmación",
@@ -337,7 +337,7 @@
           "sigla": "Ef",
           "color": "#C4341F",
           "tag": "Pedidos por WhatsApp",
-          "que": "Muestra de sitio para gastronomía con pedido: armás el pedido de una carta de diecinueve platos y sale el mensaje de WhatsApp escrito, con detalle y total. El precio cambia según retires o te lo envíen, y muestra si está abierto en este momento.",
+          "que": "Sitio para gastronomía con pedido: armás el pedido de una carta de diecinueve platos y sale el mensaje de WhatsApp escrito, con detalle y total. El precio cambia según retires o te lo envíen, y muestra si está abierto en este momento.",
           "chips": [
             "Pedido por WhatsApp",
             "Envío o retiro",
