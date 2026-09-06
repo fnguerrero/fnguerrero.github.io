@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gráfica Sur · Imprenta</title>
+<meta name="description" content="Imprenta offset y digital. Tarjetas, folletos, stickers y banners. Cotizá al instante y encargá online.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --papel:#F4F1EA; --tinta:#141414; --gris:#6C6862; --linea:#DBD6CA;
+    --cian:#00A0C6; --magenta:#E0218A; --amarillo:#F5C518; --blanco:#fff;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--papel);color:var(--tinta);
+       font:400 17px/1.6 "Space Grotesk",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  a{color:inherit}
+  button{font:inherit;color:inherit;cursor:pointer;border:0;background:none}
+  .mono{font-family:"Space Mono",ui-monospace,monospace}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 26px}
+
+  nav{position:sticky;top:0;z-index:60;background:var(--papel);border-bottom:2px solid var(--tinta)}
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:72px}
+  .marca{font-weight:700;font-size:21px;letter-spacing:-.02em;display:flex;align-items:center;gap:10px}
+  .puntos{display:flex;gap:3px}
+  .puntos i{width:11px;height:11px;border-radius:50%;display:block}
+  .links{display:flex;gap:28px;font-size:15px}
+  .links a{text-decoration:none;color:var(--gris);transition:color .2s}
+  .links a:hover{color:var(--tinta)}
+  .btn{display:inline-block;background:var(--tinta);color:var(--papel);text-decoration:none;
+       padding:13px 24px;font-weight:500;font-size:15px;border:2px solid var(--tinta);
+       transition:background .18s,color .18s}
+  .btn:hover{background:var(--magenta);border-color:var(--magenta);color:#fff}
+  .btn.hueca{background:transparent;color:var(--tinta)}
+  .btn.hueca:hover{background:var(--tinta);color:var(--papel)}
+
+  /* hero: registro de color, como una prueba de imprenta mal calzada a propósito */
+  header{padding:76px 0 70px;border-bottom:2px solid var(--tinta);overflow:hidden}
+  .hgrid{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center}
+  h1{font-size:clamp(46px,7.6vw,88px);line-height:.96;letter-spacing:-.035em;font-weight:700;
+     position:relative}
+  h1 .capa{position:absolute;inset:0;mix-blend-mode:multiply}
+  h1 .c{color:var(--cian);transform:translate(-5px,3px)}
+  h1 .m{color:var(--magenta);transform:translate(4px,-3px)}
+  h1 .y{color:var(--amarillo);transform:translate(1px,5px)}
+  header p{color:var(--gris);font-size:19px;margin:26px 0 32px;max-width:44ch}
+  .acciones{display:flex;gap:12px;flex-wrap:wrap}
+  .muestra{aspect-ratio:1;position:relative;border:2px solid var(--tinta);background:var(--blanco)}
+  .muestra div{position:absolute;border-radius:50%;mix-blend-mode:multiply;
+               width:56%;height:56%;filter:blur(.2px)}
+  .muestra .a{background:var(--cian);top:6%;left:20%}
+  .muestra .b{background:var(--magenta);top:36%;left:2%}
+  .muestra .c{background:var(--amarillo);top:36%;left:40%}
+  .muestra span{position:absolute;bottom:12px;left:14px;font-size:11px;letter-spacing:.18em;
+                text-transform:uppercase;color:var(--gris)}
+
+  section{padding:78px 0;border-bottom:2px solid var(--tinta)}
+  .eyebrow{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--magenta);
+           font-weight:700;margin-bottom:14px}
+  h2{font-size:clamp(30px,4.6vw,46px);letter-spacing:-.03em;font-weight:700;line-height:1.02;
+     margin-bottom:14px}
+  .cab{max-width:52ch;margin-bottom:40px}
+  .cab p{color:var(--gris);font-size:18px}
+
+  /* cotizador */
+  .coti{display:grid;grid-template-columns:1.15fr .85fr;gap:40px;align-items:start}
+  .grupo{margin-bottom:30px}
+  .grupo > label{display:block;font-size:12px;letter-spacing:.16em;text-transform:uppercase;
+                 color:var(--gris);font-weight:700;margin-bottom:12px}
+  .ops{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px}
+  .op{border:2px solid var(--linea);background:var(--blanco);padding:14px 12px;text-align:left;
+      transition:border-color .18s,background .18s}
+  .op:hover{border-color:var(--tinta)}
+  .op b{display:block;font-size:16px;font-weight:500}
+  .op span{display:block;font-size:12.5px;color:var(--gris);margin-top:3px}
+  .op[aria-pressed="true"]{border-color:var(--tinta);background:var(--tinta);color:var(--papel)}
+  .op[aria-pressed="true"] span{color:rgba(244,241,234,.7)}
+
+  .ticket{border:2px solid var(--tinta);background:var(--blanco);position:sticky;top:96px}
+  .ticket .cabeza{background:var(--tinta);color:var(--papel);padding:16px 22px;
+                  display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+  .ticket .cabeza b{font-size:18px;font-weight:500}
+  .ticket .cabeza span{font-size:12px;letter-spacing:.14em;text-transform:uppercase;opacity:.7}
+  .ticket .cuerpo{padding:22px}
+  .renglon{display:flex;justify-content:space-between;gap:14px;padding:9px 0;font-size:15px;
+           border-bottom:1px dotted var(--linea)}
+  .renglon span:last-child{font-family:"Space Mono",monospace;white-space:nowrap}
+  .renglon.ahorro{color:var(--magenta)}
+  .total{display:flex;justify-content:space-between;align-items:baseline;gap:14px;
+         margin-top:16px;padding-top:16px;border-top:2px solid var(--tinta)}
+  .total b{font-family:"Space Mono",monospace;font-size:30px;font-weight:700}
+  .unitario{font-size:13px;color:var(--gris);text-align:right;margin-top:4px;
+            font-family:"Space Mono",monospace}
+  .plazo{margin-top:18px;padding:13px 15px;background:var(--papel);border:1px dashed var(--linea);
+         font-size:14.5px;color:var(--gris)}
+  .ticket form{padding:0 22px 22px;display:grid;gap:12px}
+  input,textarea{width:100%;background:var(--papel);border:2px solid var(--linea);padding:12px 13px;
+    font:400 16px "Space Grotesk",sans-serif;color:var(--tinta)}
+  input:focus,textarea:focus{outline:0;border-color:var(--tinta)}
+  textarea{resize:vertical;min-height:60px}
+  .ok{border:2px solid var(--magenta);background:rgba(224,33,138,.07);padding:15px 17px;
+      font-size:15px;display:none}
+  .ok.ver{display:block}
+
+  /* que hacemos */
+  .items{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:2px solid var(--tinta)}
+  .item{padding:28px 24px;border-right:2px solid var(--tinta)}
+  .item:last-child{border-right:0}
+  .item .n{font-family:"Space Mono",monospace;font-size:12px;color:var(--magenta);margin-bottom:16px}
+  .item h3{font-size:19px;font-weight:500;margin-bottom:8px}
+  .item p{font-size:14.5px;color:var(--gris)}
+
+  .franja{display:flex}
+  .franja div{flex:1;height:14px}
+
+  footer{padding:34px 0;font-size:14.5px;color:var(--gris);display:flex;
+         justify-content:space-between;gap:16px;flex-wrap:wrap}
+
+  @media(max-width:900px){
+    .links{display:none}
+    .hgrid,.coti{grid-template-columns:1fr;gap:34px}
+    .muestra{max-width:300px}
+    .items{grid-template-columns:1fr}
+    .item{border-right:0;border-bottom:2px solid var(--tinta)}
+    .item:last-child{border-bottom:0}
+    .ticket{position:static}
+    section,header{padding:52px 0}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="marca">
+      <span class="puntos"><i style="background:var(--cian)"></i><i style="background:var(--magenta)"></i><i style="background:var(--amarillo)"></i></span>
+      Gráfica Sur
+    </div>
+    <div class="links">
+      <a href="#cotizar">Cotizar</a>
+      <a href="#hacemos">Qué imprimimos</a>
+      <a href="#contacto">Contacto</a>
+    </div>
+    <a href="#cotizar" class="btn">Cotizar ahora</a>
+  </div>
+</nav>
+
+<header>
+  <div class="wrap hgrid">
+    <div>
+      <h1>Imprenta<br>de barrio<br>desde 1991</h1>
+      <p>Offset y digital en el mismo lugar. Cotizás acá en diez segundos, mandás el archivo y lo retirás en 72 horas.</p>
+      <div class="acciones">
+        <a href="#cotizar" class="btn">Cotizar mi trabajo</a>
+        <a href="#hacemos" class="btn hueca">Ver qué hacemos</a>
+      </div>
+    </div>
+    <div class="muestra">
+      <div class="a"></div><div class="b"></div><div class="c"></div>
+      <span class="mono">Registro CMYK</span>
+    </div>
+  </div>
+</header>
+
+<section id="cotizar">
+  <div class="wrap">
+    <div class="cab">
+      <p class="eyebrow">Cotizador</p>
+      <h2>El precio, sin llamar por teléfono</h2>
+      <p>Elegí qué necesitás y el presupuesto se arma solo. Es el precio final, con IVA incluido.</p>
+    </div>
+    <div class="coti">
+      <div>
+        <div class="grupo">
+          <label>Qué imprimimos</label>
+          <div class="ops" id="producto"></div>
+        </div>
+        <div class="grupo">
+          <label>Cuántos</label>
+          <div class="ops" id="cantidad"></div>
+        </div>
+        <div class="grupo">
+          <label>Papel</label>
+          <div class="ops" id="papel"></div>
+        </div>
+        <div class="grupo" style="margin-bottom:0">
+          <label>Terminación</label>
+          <div class="ops" id="termina"></div>
+        </div>
+      </div>
+
+      <div class="ticket">
+        <div class="cabeza"><b id="tprod">—</b><span class="mono" id="tcant"></span></div>
+        <div class="cuerpo">
+          <div id="detalle"></div>
+          <div class="total"><span>Total</span><b id="ttotal">—</b></div>
+          <p class="unitario" id="tunit"></p>
+          <p class="plazo" id="tplazo"></p>
+        </div>
+        <form id="form" novalidate>
+          <input id="nom" placeholder="Tu nombre">
+          <input id="mail" type="email" placeholder="Tu email">
+          <textarea id="obs" placeholder="Algo que tengamos que saber del archivo"></textarea>
+          <button class="btn" type="submit">Pedir este presupuesto</button>
+          <div class="ok" id="ok"></div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="hacemos">
+  <div class="wrap">
+    <div class="cab">
+      <p class="eyebrow">Qué imprimimos</p>
+      <h2>Casi todo lo que entre en una máquina</h2>
+    </div>
+    <div class="items">
+      <div class="item"><p class="n">01</p><h3>Papelería</h3><p>Tarjetas, hojas membrete, sobres, recetarios y talonarios numerados.</p></div>
+      <div class="item"><p class="n">02</p><h3>Comercial</h3><p>Folletos, volantes, catálogos, cartas de restaurante y afiches.</p></div>
+      <div class="item"><p class="n">03</p><h3>Gran formato</h3><p>Banners, roll ups, vinilos para vidriera y lonas para el frente.</p></div>
+      <div class="item"><p class="n">04</p><h3>Packaging</h3><p>Cajas, etiquetas, stickers troquelados y bolsas impresas.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="contacto" style="border-bottom:0">
+  <div class="wrap">
+    <div class="cab">
+      <p class="eyebrow">Dónde estamos</p>
+      <h2>Pasaje Colombres 340</h2>
+      <p>Boedo, CABA. Lunes a viernes de 9 a 18 h, sábados de 9 a 13 h. Estacionás en la puerta.</p>
+    </div>
+    <div class="items">
+      <div class="item"><p class="n">TEL</p><h3>011 4922 6070</h3><p>También por WhatsApp al 11 5533 9911.</p></div>
+      <div class="item"><p class="n">MAIL</p><h3>hola@graficasur.com.ar</h3><p>Mandá el archivo en PDF con 3 mm de demasía.</p></div>
+      <div class="item"><p class="n">ENVÍOS</p><h3>A todo el país</h3><p>Por transporte o correo, según el tamaño. Se cotiza aparte.</p></div>
+      <div class="item"><p class="n">PLAZO</p><h3>72 horas</h3><p>Desde que aprobás la prueba de color. Urgencias en 24 h con recargo.</p></div>
+    </div>
+  </div>
+</section>
+
+<div class="franja">
+  <div style="background:var(--cian)"></div>
+  <div style="background:var(--magenta)"></div>
+  <div style="background:var(--amarillo)"></div>
+  <div style="background:var(--tinta)"></div>
+</div>
+
+<div class="wrap">
+  <footer>
+    <span>© 2026 Gráfica Sur · Boedo, Buenos Aires</span>
+    <span class="mono">Offset · Digital · Gran formato</span>
+  </footer>
+</div>
+
+<script>
+/* El precio se arma con un valor de arranque más un costo por unidad que baja por escala:
+   una imprenta cobra casi lo mismo por preparar la máquina para 100 que para 1000, y eso
+   es justo lo que hace que el unitario se derrumbe cuando subís la cantidad. */
+const PRODUCTOS = [
+  {id:'tarjetas', nom:'Tarjetas personales', det:'9 × 5 cm', arranque:18000, unidad:38,
+   cants:[100,250,500,1000], papeles:['obra','ilustracion','opalina'], term:['sin','mate','brillo','uv']},
+  {id:'folletos', nom:'Folletos A5', det:'Doble faz', arranque:26000, unidad:95,
+   cants:[100,250,500,1000], papeles:['obra','ilustracion'], term:['sin','mate','brillo']},
+  {id:'stickers', nom:'Stickers troquelados', det:'Hasta 8 cm', arranque:22000, unidad:120,
+   cants:[50,100,250,500], papeles:['vinilo','papel'], term:['sin','mate','brillo']},
+  {id:'banner', nom:'Banner de lona', det:'Por metro cuadrado', arranque:14000, unidad:9800,
+   cants:[1,2,4,6], papeles:['lona','vinilo'], term:['sin','ojales','varilla']}
+];
+const PAPELES = {
+  obra:      {nom:'Obra 90 g',        det:'El común, económico',        factor:1},
+  ilustracion:{nom:'Ilustración 150 g', det:'Con brillo, más cuerpo',    factor:1.28},
+  opalina:   {nom:'Opalina 300 g',    det:'Rígida, la de las tarjetas', factor:1.55},
+  vinilo:    {nom:'Vinilo',           det:'Adhesivo, resiste agua',     factor:1.4},
+  papel:     {nom:'Papel adhesivo',   det:'Para interior',              factor:1},
+  lona:      {nom:'Lona 13 oz',       det:'Para intemperie',            factor:1}
+};
+const TERMINA = {
+  sin:     {nom:'Sin terminación', det:'Como sale de la máquina', extra:0},
+  mate:    {nom:'Laminado mate',   det:'No brilla, no se marca',  extra:.22},
+  brillo:  {nom:'Laminado brillo', det:'Levanta los colores',     extra:.2},
+  uv:      {nom:'UV sectorizado',  det:'Brillo solo en partes',   extra:.45},
+  ojales:  {nom:'Con ojales',      det:'Para colgar',             extra:.12},
+  varilla: {nom:'Con varilla',     det:'Arriba y abajo',          extra:.3}
+};
+
+const $ = s => document.querySelector(s);
+const plata = n => '$' + Math.round(n).toLocaleString('es-AR');
+let prod = PRODUCTOS[0], cant = prod.cants[1], papel = prod.papeles[0], term = 'sin';
+
+function botones(cont, lista, elegido, alClic){
+  /* siempre como texto: las cantidades son números y lo que vuelve del dataset no,
+     así que comparar de más cerca dejaba sin marcar la opción elegida */
+  $(cont).innerHTML = lista.map(o =>
+    `<button class="op" data-v="${o.v}" aria-pressed="${String(o.v) === String(elegido)}">
+       <b>${o.b}</b>${o.s ? `<span>${o.s}</span>` : ''}</button>`).join('');
+  $(cont).onclick = ev => {
+    const b = ev.target.closest('[data-v]'); if (!b) return;
+    alClic(b.dataset.v);
+  };
+}
+
+function pintarOpciones(){
+  botones('#producto', PRODUCTOS.map(p => ({v:p.id, b:p.nom, s:p.det})), prod.id, v => {
+    prod = PRODUCTOS.find(p => p.id === v);
+    cant = prod.cants[1];
+    papel = prod.papeles[0];
+    term = 'sin';
+    pintarOpciones(); calcular();
+  });
+  botones('#cantidad', prod.cants.map(c => ({v:c, b:c.toLocaleString('es-AR'),
+    s:prod.id === 'banner' ? (c === 1 ? 'metro' : 'metros') : 'unidades'})), String(cant), v => {
+    cant = +v; pintarOpciones(); calcular();
+  });
+  botones('#papel', prod.papeles.map(p => ({v:p, b:PAPELES[p].nom, s:PAPELES[p].det})), papel, v => {
+    papel = v; pintarOpciones(); calcular();
+  });
+  botones('#termina', prod.term.map(t => ({v:t, b:TERMINA[t].nom, s:TERMINA[t].det})), term, v => {
+    term = v; pintarOpciones(); calcular();
+  });
+}
+
+function calcular(){
+  const f = PAPELES[papel].factor;
+  /* la escala: cuanto más pedís, menos pesa el arranque en cada unidad */
+  const escala = cant >= 1000 ? .62 : cant >= 500 ? .74 : cant >= 250 ? .86 : 1;
+  const impresion = prod.unidad * cant * f * escala;
+  const extra = TERMINA[term].extra;
+  const acabado = impresion * extra;
+  const total = prod.arranque + impresion + acabado;
+
+  $('#tprod').textContent = prod.nom;
+  $('#tcant').textContent = cant.toLocaleString('es-AR') +
+    (prod.id === 'banner' ? (cant === 1 ? ' m²' : ' m²') : ' u.');
+
+  $('#detalle').innerHTML = `
+    <div class="renglon"><span>Preparación de máquina</span><span>${plata(prod.arranque)}</span></div>
+    <div class="renglon"><span>Impresión en ${PAPELES[papel].nom.toLowerCase()}</span><span>${plata(impresion)}</span></div>
+    ${extra ? `<div class="renglon"><span>${TERMINA[term].nom}</span><span>${plata(acabado)}</span></div>` : ''}
+    ${escala < 1 ? `<div class="renglon ahorro"><span>Descuento por cantidad</span><span>−${Math.round((1-escala)*100)}%</span></div>` : ''}`;
+
+  $('#ttotal').textContent = plata(total);
+  $('#tunit').textContent = prod.id === 'banner'
+    ? plata(total / cant) + ' el m²'
+    : plata(total / cant) + ' cada una';
+
+  const siguiente = prod.cants[prod.cants.indexOf(cant) + 1];
+  $('#tplazo').textContent = siguiente
+    ? `Listo en 72 horas. Llevando ${siguiente.toLocaleString('es-AR')} el unitario baja bastante: probá.`
+    : 'Listo en 72 horas. Es la mayor cantidad de la lista; para más, escribinos y lo cotizamos aparte.';
+}
+
+$('#form').addEventListener('submit', ev => {
+  ev.preventDefault();
+  const nom = $('#nom'), mail = $('#mail'), ok = $('#ok');
+  if (!nom.value.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(mail.value)) {
+    ok.textContent = 'Nos falta tu nombre y un email válido para mandarte el presupuesto.';
+    ok.classList.add('ver'); return;
+  }
+  /* el banner se mide en metros, no en unidades: "2 banner de lona" no se dice */
+  const loQue = prod.id === 'banner'
+    ? `${cant} m² de ${prod.nom.toLowerCase()}`
+    : `${cant.toLocaleString('es-AR')} ${prod.nom.toLowerCase()}`;
+  ok.innerHTML = `Listo, ${nom.value.trim().split(' ')[0]}. Te guardamos el presupuesto de
+    <b>${loQue}</b> por <b>${$('#ttotal').textContent}</b>
+    y te lo mandamos a ${mail.value}. El precio te lo respetamos por 15 días.`;
+  ok.classList.add('ver');
+  ev.target.querySelector('.btn').textContent = 'Presupuesto pedido';
+});
+
+pintarOpciones();
+calcular();
+</script>
+</body>
+</html>
