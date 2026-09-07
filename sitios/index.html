@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Sitios web · Nico Guerrero</title>
-<meta name="description" content="Sitios web por rubro: gastronomía, servicios profesionales, salud, turismo, inmobiliaria, e-commerce, eventos y más. Diseño y desarrollo a medida.">
+<meta name="description" content="Turnos, reservas, pedidos y ventas desde tu propia web. Doce sitios de ejemplo, uno por rubro: gastronomía, salud, turismo, inmobiliaria, e-commerce, eventos y más.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -30,8 +30,10 @@
   .kicker{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--acento);
           display:flex;align-items:center;gap:13px;margin-bottom:24px}
   .kicker::before{content:"";width:32px;height:1px;background:var(--acento)}
-  h1{font-size:clamp(42px,6vw,72px);line-height:1.05;max-width:17ch}
+  h1{font-size:clamp(38px,5.4vw,66px);line-height:1.05;max-width:19ch}
   h1 em{font-style:italic;color:var(--acento)}
+  /* la segunda frase baja entera en vez de dejar "Desde" colgando al final de la linea */
+  h1 .junto{display:inline-block}
   header p{color:var(--gris);font-size:19px;max-width:60ch;margin-top:26px;font-weight:300}
 
   /* filtros por lo que resuelve cada uno, no por rubro: el que mira quiere saber si
@@ -98,8 +100,9 @@
   <header>
     <a class="volver" href="../">← El taller de Nico</a>
     <p class="kicker">Diseño y desarrollo web</p>
-    <h1 class="serif">Cada rubro, su <em>manera</em> de resolverlo</h1>
-    <p>Cada sitio está pensado para un rubro distinto y resuelto con un lenguaje visual propio. No son plantillas con el color cambiado: cambian la tipografía, la estructura, el ritmo y —sobre todo— lo que el visitante tiene que poder hacer.</p>
+    <h1 class="serif">Turnos, reservas, pedidos y ventas.
+      <span class="junto">Desde <em>tu propia</em> web.</span></h1>
+    <p>No alcanza con que se vea linda. Cada rubro necesita que el visitante pueda hacer algo distinto: sacar un turno, armar un pedido, pedir un presupuesto. Mirá los ejemplos y encontrá el tuyo.</p>
   </header>
 
   <div class="filtros" id="filtros"></div>
