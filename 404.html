@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Esta página no existe · El taller de Nico</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,800&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  :root{--bg:#0B0F14;--ink:#C6D3DE;--tenue:#7C8B99;--acento:#7FE3C0;--linea:#1E2731}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink);min-height:100vh;
+       display:grid;place-items:center;padding:32px;
+       font:400 16px/1.7 "IBM Plex Mono",ui-monospace,monospace}
+  .caja{max-width:560px;width:100%}
+  .codigo{font-family:"Bricolage Grotesque",system-ui,sans-serif;font-weight:800;
+          font-size:clamp(72px,18vw,140px);line-height:.9;letter-spacing:-.04em;
+          color:var(--acento);margin-bottom:8px}
+  h1{font-family:"Bricolage Grotesque",system-ui,sans-serif;font-weight:400;
+     font-size:clamp(21px,4vw,27px);line-height:1.25;margin-bottom:16px}
+  p{color:var(--tenue);font-size:15px;margin-bottom:30px}
+  .links{display:flex;gap:10px;flex-wrap:wrap}
+  a{display:inline-block;color:var(--bg);background:var(--acento);text-decoration:none;
+    padding:13px 22px;border-radius:6px;font-size:14.5px;font-weight:500;
+    transition:transform .18s,opacity .18s}
+  a:hover{transform:translateY(-2px)}
+  a.suave{background:transparent;color:var(--ink);border:1px solid var(--linea)}
+  a.suave:hover{border-color:var(--acento);color:var(--acento)}
+  a:focus-visible{outline:2px solid var(--acento);outline-offset:3px}
+  .pie{margin-top:34px;padding-top:20px;border-top:1px solid var(--linea);
+       font-size:13px;color:var(--tenue)}
+  .pie code{color:var(--acento);word-break:break-all}
+</style>
+</head>
+<body>
+  <div class="caja">
+    <p class="codigo">404</p>
+    <h1>Esta página no existe</h1>
+    <p>O nunca existió, o se mudó de lugar. Las dos cosas pasan seguido por acá.</p>
+    <div class="links">
+      <a href="/taller/">Ir al taller</a>
+      <a class="suave" href="/sitios/">Ver los sitios web</a>
+    </div>
+    <p class="pie">Buscabas: <code id="donde"></code></p>
+  </div>
+<script>
+  // Sirve para darse cuenta de qué link quedó roto, sin tener que adivinar
+  document.getElementById('donde').textContent = location.pathname + location.search;
+</script>
+</body>
+</html>

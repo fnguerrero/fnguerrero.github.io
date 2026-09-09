@@ -130,6 +130,16 @@
     section,header{padding:52px 0}
   }
 </style>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%23E0218A'/></svg>">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://fnguerrero.github.io/sitios/grafica/">
+<meta property="og:title" content="Gráfica Sur · Imprenta">
+<meta property="og:description" content="Imprenta offset y digital. Cotizá tarjetas, folletos y banners al instante.">
+<meta property="og:image" content="https://fnguerrero.github.io/img/sitio-grafica.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Gráfica Sur · Imprenta">
+<meta name="twitter:description" content="Imprenta offset y digital. Cotizá tarjetas, folletos y banners al instante.">
+<meta name="twitter:image" content="https://fnguerrero.github.io/img/sitio-grafica.jpg">
 </head>
 <body>
 
@@ -375,5 +385,22 @@ $('#form').addEventListener('submit', ev => {
 pintarOpciones();
 calcular();
 </script>
+
+<a class="volver-portfolio" href="/sitios/">
+  <span aria-hidden="true">←</span> Ver todos los sitios
+</a>
+<style>
+  .volver-portfolio{position:fixed;left:16px;bottom:16px;z-index:9999;
+    display:inline-flex;align-items:center;gap:8px;
+    background:rgba(18,18,20,.88);color:#F4F4F2;text-decoration:none;
+    font:500 14px/1 system-ui,-apple-system,"Segoe UI",sans-serif;
+    padding:12px 16px;border-radius:100px;border:1px solid rgba(244,244,242,.18);
+    backdrop-filter:blur(8px);box-shadow:0 6px 22px rgba(0,0,0,.28);
+    transition:background .2s,transform .2s}
+  .volver-portfolio:hover{background:rgba(18,18,20,.97);transform:translateY(-2px)}
+  .volver-portfolio:focus-visible{outline:2px solid #7FA9DC;outline-offset:3px}
+  @media(max-width:520px){.volver-portfolio{left:12px;bottom:12px;padding:11px 14px;font-size:13px}}
+  @media print{.volver-portfolio{display:none}}
+</style>
 </body>
 </html>

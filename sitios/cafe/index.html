@@ -117,6 +117,16 @@
   }
 </style>
 <script>document.documentElement.className="js"</script>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%23B4522F'/></svg>">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://fnguerrero.github.io/sitios/cafe/">
+<meta property="og:title" content="Origen · Café de especialidad">
+<meta property="og:description" content="Café de especialidad con tostado propio en Villa Ortúzar. Carta, fotos y reserva de mesa.">
+<meta property="og:image" content="https://fnguerrero.github.io/img/sitio-cafe.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Origen · Café de especialidad">
+<meta name="twitter:description" content="Café de especialidad con tostado propio en Villa Ortúzar. Carta, fotos y reserva de mesa.">
+<meta name="twitter:image" content="https://fnguerrero.github.io/img/sitio-cafe.jpg">
 </head>
 <body>
 
@@ -276,5 +286,22 @@
     form.querySelector('button').textContent = 'Pedido enviado';
   });
 </script>
+
+<a class="volver-portfolio" href="/sitios/">
+  <span aria-hidden="true">←</span> Ver todos los sitios
+</a>
+<style>
+  .volver-portfolio{position:fixed;left:16px;bottom:16px;z-index:9999;
+    display:inline-flex;align-items:center;gap:8px;
+    background:rgba(18,18,20,.88);color:#F4F4F2;text-decoration:none;
+    font:500 14px/1 system-ui,-apple-system,"Segoe UI",sans-serif;
+    padding:12px 16px;border-radius:100px;border:1px solid rgba(244,244,242,.18);
+    backdrop-filter:blur(8px);box-shadow:0 6px 22px rgba(0,0,0,.28);
+    transition:background .2s,transform .2s}
+  .volver-portfolio:hover{background:rgba(18,18,20,.97);transform:translateY(-2px)}
+  .volver-portfolio:focus-visible{outline:2px solid #7FA9DC;outline-offset:3px}
+  @media(max-width:520px){.volver-portfolio{left:12px;bottom:12px;padding:11px 14px;font-size:13px}}
+  @media print{.volver-portfolio{display:none}}
+</style>
 </body>
 </html>

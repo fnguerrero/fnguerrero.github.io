@@ -180,6 +180,10 @@ var Taller = (function () {
       img.src = fotos[0];
       img.alt = "Portada de " + p.nombre;
       img.loading = "lazy";
+      // Las portadas son todas 16:9. Declararlo evita que el navegador tenga que esperar
+      // a la imagen para saber cuánto alto reservar, y que la grilla salte al cargar.
+      img.width = 1600;
+      img.height = 900;
       marco.appendChild(img);
     } else {
       // Sin portada (las APIs, por ejemplo): la sigla sobre el color del proyecto.
