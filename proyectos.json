@@ -1,6 +1,6 @@
 {
   "_comentario": "Proyectos que se muestran en https://fnguerrero.github.io. Los privados NO estan aca: viven en privados.json, que no se publica. Para agregar o cambiar algo se edita este archivo y se pushea.",
-  "actualizado": "2026-09-06",
+  "actualizado": "2026-09-09",
   "grupos": [
     {
       "titulo": "Aplicaciones",
@@ -508,21 +508,24 @@
           "nombre": "El segundo de más",
           "sigla": "Sm",
           "color": "#3B3E7A",
-          "tag": "Un sueño de Bel, con tarot",
-          "que": "Jugás un arcano y eso transforma lo que tenés delante: esa cosa nueva es donde estás ahora. Mientras las piezas vuelan hay un instante para mirar, y lo que llegues a ver decide cómo termina. Continúa la historia de Bel, la de Kermés. En desarrollo.",
+          "tag": "Arcanos que transforman el lugar",
+          "que": "Tenés un mazo de arcanos y te reparten tres. La carta que jugás transforma el lugar donde estás, y ese lugar nuevo es el próximo: por eso el recorrido se abre solo y dos partidas no se parecen. Mientras se transforma, el lugar deja ver lo que esconde, pero solo si te quedás mirando: mantenés apretado y un anillo se va llenando. Nadie te apura y podés seguir de largo. Ocho pasos, y cuántas veces te quedaste a mirar decide el final. En desarrollo.",
           "chips": [
             "Canvas",
             "HTML + JS puro",
-            "Audio sintetizado"
+            "Audio sintetizado",
+            "Cuatro finales"
           ],
           "url": "https://fnguerrero.github.io/el-segundo-de-mas/",
           "repo": "https://github.com/fnguerrero/el-segundo-de-mas",
-          "img": "img/el-segundo-de-mas.jpg?v=1788136399",
+          "img": "img/el-segundo-de-mas.jpg?v=1788926326",
           "imgs": [
-            "img/el-segundo-de-mas.jpg?v=1788136399",
-            "img/el-segundo-de-mas-2.jpg?v=1788135111",
-            "img/el-segundo-de-mas-3.jpg?v=1788135111"
-          ]
+            "img/el-segundo-de-mas.jpg?v=1788926326",
+            "img/el-segundo-de-mas-2.jpg?v=1788926326",
+            "img/el-segundo-de-mas-3.jpg?v=1788926326",
+            "img/el-segundo-de-mas-4.jpg?v=1788926326"
+          ],
+          "tocado": "2026-09-09"
         },
         {
           "nombre": "Dragon Ball — El Ki de Paozu",

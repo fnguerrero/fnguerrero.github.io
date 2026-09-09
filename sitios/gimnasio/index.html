@@ -14,7 +14,10 @@
     --lima:#C9FF3D; --gris:#8B8B93; --blanco:#F4F4F2;
   }
   *{box-sizing:border-box;margin:0;padding:0}
-  html{scroll-behavior:smooth}
+  /* La marquesina es más ancha que la pantalla a propósito. Recortarla solo en el body
+     dejaba igual un píxel de scroll horizontal en el celular, porque el desborde se
+     propaga a la raíz: hay que cortarlo también acá. */
+  html{scroll-behavior:smooth;overflow-x:clip}
   body{background:var(--negro);color:var(--blanco);
        font:400 16.5px/1.6 Archivo,system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
   img{max-width:100%;display:block}
@@ -147,6 +150,16 @@
   }
 </style>
 <script>document.documentElement.className="js"</script>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%23C9FF3D'/></svg>">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://fnguerrero.github.io/sitios/gimnasio/">
+<meta property="og:title" content="VÉRTICE · Entrenamiento funcional">
+<meta property="og:description" content="Gimnasio de entrenamiento funcional en grupos de 12. Planes sin permanencia y primera clase gratis.">
+<meta property="og:image" content="https://fnguerrero.github.io/img/sitio-gimnasio.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="VÉRTICE · Entrenamiento funcional">
+<meta name="twitter:description" content="Gimnasio de entrenamiento funcional en grupos de 12. Planes sin permanencia y primera clase gratis.">
+<meta name="twitter:image" content="https://fnguerrero.github.io/img/sitio-gimnasio.jpg">
 </head>
 <body>
 
@@ -317,5 +330,22 @@
     form.querySelector('.btn').textContent = 'Clase reservada';
   });
 </script>
+
+<a class="volver-portfolio" href="/sitios/">
+  <span aria-hidden="true">←</span> Ver todos los sitios
+</a>
+<style>
+  .volver-portfolio{position:fixed;left:16px;bottom:16px;z-index:9999;
+    display:inline-flex;align-items:center;gap:8px;
+    background:rgba(18,18,20,.88);color:#F4F4F2;text-decoration:none;
+    font:500 14px/1 system-ui,-apple-system,"Segoe UI",sans-serif;
+    padding:12px 16px;border-radius:100px;border:1px solid rgba(244,244,242,.18);
+    backdrop-filter:blur(8px);box-shadow:0 6px 22px rgba(0,0,0,.28);
+    transition:background .2s,transform .2s}
+  .volver-portfolio:hover{background:rgba(18,18,20,.97);transform:translateY(-2px)}
+  .volver-portfolio:focus-visible{outline:2px solid #7FA9DC;outline-offset:3px}
+  @media(max-width:520px){.volver-portfolio{left:12px;bottom:12px;padding:11px 14px;font-size:13px}}
+  @media print{.volver-portfolio{display:none}}
+</style>
 </body>
 </html>

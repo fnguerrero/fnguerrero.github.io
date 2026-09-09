@@ -48,7 +48,9 @@
   .grilla{display:grid;grid-template-columns:repeat(2,1fr);gap:26px;padding:26px 0 40px}
   .sitio{background:var(--blanco);border:1px solid var(--linea);border-radius:10px;overflow:hidden;
          display:flex;flex-direction:column;transition:box-shadow .3s,transform .3s}
+  .sitio{cursor:pointer}
   .sitio:hover{box-shadow:0 18px 44px rgba(21,23,26,.1);transform:translateY(-3px)}
+  .sitio:focus-within{outline:2px solid var(--acento);outline-offset:3px}
   .captura{position:relative;aspect-ratio:16/10;overflow:hidden;background:#EDECE8;
            border-bottom:1px solid var(--linea)}
   .captura img{width:100%;height:100%;object-fit:cover;object-position:top center;
@@ -93,6 +95,17 @@
   }
 </style>
 <script>document.documentElement.className="js"</script>
+<link rel="icon" href="/favicon.ico" sizes="any">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://fnguerrero.github.io/sitios/">
+<meta property="og:title" content="Sitios web · Nico Guerrero">
+<meta property="og:description" content="Turnos, reservas, pedidos y ventas desde tu propia web. Ejemplos reales por rubro, todos navegables.">
+<meta property="og:image" content="https://fnguerrero.github.io/img/sitios.jpg">
+<meta property="og:locale" content="es_AR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Sitios web · Nico Guerrero">
+<meta name="twitter:description" content="Turnos, reservas, pedidos y ventas desde tu propia web. Ejemplos reales por rubro, todos navegables.">
+<meta name="twitter:image" content="https://fnguerrero.github.io/img/sitios.jpg">
 </head>
 <body>
 
@@ -183,11 +196,26 @@ $('#filtros').innerHTML = HACE.map((h,i) =>
 
 $('#filtros').addEventListener('click', ev => {
   const b = ev.target.closest('[data-f]'); if (!b) return;
-  document.querySelectorAll('.filtro').forEach(x => x.setAttribute('aria-pressed','false'));
-  b.setAttribute('aria-pressed','true');
-  filtro = b.dataset.f;
-  pintar();
+  aplicar(b.dataset.f);
+  // queda en la URL: así se puede compartir el filtro ya puesto
+  history.replaceState(null, '', b.dataset.f === 'Todos' ? location.pathname : '#' + slug(b.dataset.f));
 });
+
+const slug = t => t.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
+
+function aplicar(f){
+  filtro = HACE.includes(f) ? f : 'Todos';
+  document.querySelectorAll('.filtro').forEach(x =>
+    x.setAttribute('aria-pressed', String(x.dataset.f === filtro)));
+  pintar();
+}
+
+// /sitios/#turnos abre con ese filtro puesto
+function desdeLaUrl(){
+  const h = decodeURIComponent(location.hash.slice(1));
+  aplicar(h ? (HACE.find(x => slug(x) === slug(h)) || 'Todos') : 'Todos');
+}
+addEventListener('hashchange', desdeLaUrl);
 
 function pintar(){
   const lista = filtro === 'Todos' ? SITIOS : SITIOS.filter(s => s.hace.includes(filtro));
@@ -199,7 +227,7 @@ function pintar(){
   /* Las tarjetas no llevan aparición progresiva: como la grilla se vuelve a dibujar en cada
      filtro, arrancarían invisibles y con `loading="lazy"` ni siquiera se pedirían las fotos. */
   $('#grilla').innerHTML = lista.map(s => `
-    <article class="sitio">
+    <article class="sitio" data-ir="${s.slug}/">
       <div class="captura"><img src="../img/sitio-${s.slug}.jpg" alt="Sitio de ${s.nom}"></div>
       <div class="texto">
         <p class="rubro">${s.rubro}</p>
@@ -217,7 +245,15 @@ const io = new IntersectionObserver(es => {
 }, {threshold:.06});
 function observar(){ document.querySelectorAll('.rev:not(.on)').forEach(el => io.observe(el)); }
 
-pintar();
+desdeLaUrl();
+
+/* Toda la tarjeta lleva al sitio, no solo el botón: en el celular apuntarle a un botón
+   chico es incómodo. El botón sigue estando porque es lo que se ve como acción. */
+$('#grilla').addEventListener('click', ev => {
+  if (ev.target.closest('a')) return;          // el botón ya navega solo
+  const t = ev.target.closest('[data-ir]');
+  if (t) location.href = t.dataset.ir;
+});
 </script>
 </body>
 </html>
