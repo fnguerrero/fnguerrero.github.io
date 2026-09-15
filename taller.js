@@ -47,6 +47,27 @@ var Taller = (function () {
     return null;
   }
 
+  /* Minusculas y sin acentos. Nadie escribe "Déficit" con tilde en un buscador, y sin
+     esto "deficit" no encontraba nada. */
+  function plano(s) {
+    return String(s || "").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "");
+  }
+
+  /* El nombre como pedazo de URL: "Dragon Ball — El Ki de Paozu" -> dragon-ball-el-ki-de-paozu.
+     Es la misma regla con la que se nombran las portadas en img/. */
+  function slug(nombre) {
+    return plano(nombre).replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
+  }
+
+  // Para compartir desde la home local no sirve un link a localhost: se comparte la
+  // pagina publica, que tiene los mismos proyectos.
+  var PUBLICA = "https://fnguerrero.github.io/taller/";
+
+  function linkDeFicha(p) {
+    var aca = location.protocol === "https:" ? location.origin + location.pathname : PUBLICA;
+    return aca + "#" + slug(p.nombre);
+  }
+
   /* "hace 3 dias" a partir de la fecha del ultimo commit.
 
      Se muestra en la tarjeta porque distingue de un vistazo lo que esta vivo de lo que
@@ -77,6 +98,14 @@ var Taller = (function () {
   /* ───────── ficha ───────── */
 
   var dlg, gal, grande, puntos, izq, der, fotos = [], actual = 0;
+  var abierta = null;      // slug de la ficha abierta
+  var empujada = false;    // si la ficha agrego una entrada al historial
+  var precargadas = {};
+
+  // Cerrar la ficha vuelve una entrada en el historial, y el navegador aprovechaba para
+  // "restaurar" un scroll viejo: la pagina saltaba a otra seccion. Las entradas de la
+  // ficha no cambian de pagina, asi que el scroll se deja quieto.
+  if ("scrollRestoration" in history) history.scrollRestoration = "manual";
 
   function armarDialogo() {
     dlg = document.getElementById("detalle");
@@ -88,8 +117,8 @@ var Taller = (function () {
       '<div class="ficha">' +
         '<div class="galeria">' +
           '<img class="grande" alt="">' +
-          '<button class="paso izq" type="button" title="Anterior">‹</button>' +
-          '<button class="paso der" type="button" title="Siguiente">›</button>' +
+          '<button class="paso izq" type="button" title="Anterior" aria-label="Captura anterior">‹</button>' +
+          '<button class="paso der" type="button" title="Siguiente" aria-label="Captura siguiente">›</button>' +
           '<div class="puntos"></div>' +
         '</div>' +
         '<div class="texto">' +
@@ -113,6 +142,53 @@ var Taller = (function () {
       if (ev.key === "ArrowRight") mostrar(actual + 1);
       if (ev.key === "ArrowLeft") mostrar(actual - 1);
     });
+
+    // En el celular las flechas quedan chicas: la galeria se pasa deslizando. Solo
+    // cuenta un gesto claramente horizontal, para no robarle el scroll vertical a nadie.
+    var desde = null;
+    gal.addEventListener("pointerdown", function (ev) {
+      if (ev.target.closest("button")) return;
+      desde = {x: ev.clientX, y: ev.clientY};
+    });
+    gal.addEventListener("pointerup", function (ev) {
+      if (!desde || fotos.length < 2) { desde = null; return; }
+      var dx = ev.clientX - desde.x, dy = ev.clientY - desde.y;
+      desde = null;
+      if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy) * 1.5) {
+        mostrar(actual + (dx < 0 ? 1 : -1));
+      }
+    });
+    gal.addEventListener("pointercancel", function () { desde = null; });
+
+    /* La ficha vive en el historial: tiene link propio (#slug) y el boton atras del
+       celular la cierra en vez de sacarte de la pagina. */
+    dlg.addEventListener("close", function () {
+      var eraLaDelLink = location.hash === "#" + abierta;
+      abierta = null;
+      if (!eraLaDelLink) { empujada = false; return; }
+      if (empujada) {
+        empujada = false;
+        history.back();
+      } else {
+        history.replaceState(null, "", location.pathname + location.search);
+      }
+    });
+    window.addEventListener("popstate", function () {
+      var h = decodeURIComponent(location.hash.slice(1));
+      if (dlg.open && h !== abierta) {
+        empujada = false;
+        dlg.close();
+      } else if (!dlg.open && indice[h]) {
+        ficha(indice[h].p, indice[h].verbo, true);
+      }
+    });
+  }
+
+  function precargar(i) {
+    var src = fotos[(i + fotos.length) % fotos.length];
+    if (!src || precargadas[src]) return;
+    precargadas[src] = new Image();
+    precargadas[src].src = src;
   }
 
   function mostrar(i) {
@@ -121,10 +197,50 @@ var Taller = (function () {
     grande.src = fotos[actual];
     Array.prototype.forEach.call(puntos.children, function (b, n) {
       b.classList.toggle("activo", n === actual);
+      if (n === actual) b.setAttribute("aria-current", "true");
+      else b.removeAttribute("aria-current");
     });
+    // Las vecinas se piden antes de que las pidan: en el celular, pasar a una captura
+    // que todavia no bajo dejaba el marco en blanco un momento.
+    if (fotos.length > 1) { precargar(actual + 1); precargar(actual - 1); }
   }
 
-  function ficha(p, verbo) {
+  /* Compartir: en el telefono, la hoja de compartir del sistema (WhatsApp y compania);
+     en la compu, copiar el link, que es lo que uno quiere para pegarlo en otro lado. */
+  function compartir(p, boton) {
+    var url = linkDeFicha(p);
+    var tactil = window.matchMedia && matchMedia("(pointer:coarse)").matches;
+    if (tactil && navigator.share) {
+      navigator.share({title: p.nombre, text: p.tag || p.nombre, url: url}).catch(function () {});
+      return;
+    }
+    function avisar(texto) {
+      boton.textContent = texto;
+      clearTimeout(boton.t);
+      boton.t = setTimeout(function () { boton.textContent = "Compartir"; }, 1800);
+    }
+    function aMano() {
+      var t = document.createElement("textarea");
+      t.value = url;
+      t.style.cssText = "position:fixed;opacity:0";
+      dlg.appendChild(t);
+      t.select();
+      var ok = false;
+      try { ok = document.execCommand("copy"); } catch (e) {}
+      t.remove();
+      if (ok) { avisar("Link copiado"); return; }
+      // Ultimo recurso (navegadores que no dejan tocar el portapapeles): el link a la
+      // vista, ya seleccionado, para copiarlo a mano.
+      window.prompt("Copiá el link:", url);
+    }
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(url).then(function () { avisar("Link copiado"); }, aMano);
+    } else {
+      aMano();
+    }
+  }
+
+  function ficha(p, verbo, desdeHistorial) {
     armarDialogo();
 
     fotos = imagenes(p);
@@ -135,7 +251,9 @@ var Taller = (function () {
     puntos.textContent = "";
     if (varias) {
       fotos.forEach(function (_, n) {
-        var b = document.createElement("b");
+        var b = document.createElement("button");
+        b.type = "button";
+        b.setAttribute("aria-label", "Captura " + (n + 1) + " de " + fotos.length);
         b.addEventListener("click", function () { mostrar(n); });
         puntos.appendChild(b);
       });
@@ -157,11 +275,24 @@ var Taller = (function () {
     if (url) acc.appendChild(enlace("btn", url, verbo || "Abrir"));
     var repo = linkSeguro(p.repo);
     if (repo) acc.appendChild(enlace("btn suave", repo, "Código"));
+    // Lo privado no tiene pagina publica a la que llevar el link.
+    if (!p.privado) {
+      var comp = el("button", "btn suave", "Compartir");
+      comp.type = "button";
+      comp.addEventListener("click", function () { compartir(p, comp); });
+      acc.appendChild(comp);
+    }
     var x = el("button", "cerrar", "cerrar");
     x.addEventListener("click", function () { dlg.close(); });
     acc.appendChild(x);
 
-    dlg.showModal();
+    var s = slug(p.nombre);
+    if (!desdeHistorial && !p.privado && location.hash !== "#" + s) {
+      history.pushState({ficha: s}, "", "#" + s);
+      empujada = true;
+    }
+    abierta = s;
+    if (!dlg.open) dlg.showModal();
   }
 
   /* ───────── tarjetas y filas ───────── */
@@ -177,7 +308,9 @@ var Taller = (function () {
     var fotos = imagenes(p);
     if (fotos.length) {
       var img = document.createElement("img");
-      img.src = fotos[0];
+      // "img" es la portada de la tarjeta e "imgs" la galeria de la ficha. Cuando estan
+      // las dos, la tarjeta puede ir con una version mas liviana que la de la ficha.
+      img.src = p.img && p.imgs ? imagenes({img: p.img})[0] : fotos[0];
       img.alt = "Portada de " + p.nombre;
       img.loading = "lazy";
       // Las portadas son todas 16:9. Declararlo evita que el navegador tenga que esperar
@@ -265,14 +398,16 @@ var Taller = (function () {
   // Las secciones dibujadas, para que el buscador pueda esconder y volver a mostrar sin
   // repintar nada.
   var secciones = [];
+  var indice = {};         // slug -> {p, verbo}, para abrir fichas desde el link
+  var vacio = null, inputBuscar = null;
 
   /* Todo el texto por el que se puede encontrar un proyecto. */
   function buscable(p) {
-    return [p.nombre, p.tag, p.que].concat(p.chips || []).join(" ").toLowerCase();
+    return plano([p.nombre, p.tag, p.que].concat(p.chips || []).join(" "));
   }
 
   function filtrar(texto) {
-    var q = (texto || "").trim().toLowerCase();
+    var q = plano((texto || "").trim());
     var total = 0;
     secciones.forEach(function (s) {
       var visibles = 0;
@@ -285,7 +420,22 @@ var Taller = (function () {
       s.contador.textContent = visibles;
       total += visibles;
     });
+    // Sin esto, una busqueda sin resultados dejaba la pagina en blanco, como rota.
+    if (vacio) {
+      vacio.hidden = !(q && total === 0);
+      vacio.firstChild.textContent = "Nada con «" + (texto || "").trim() + "». ";
+    }
     return total;
+  }
+
+  function limpiarBusqueda() {
+    if (inputBuscar) {
+      inputBuscar.value = "";
+      inputBuscar.dispatchEvent(new Event("input"));
+      inputBuscar.focus();
+    } else {
+      filtrar("");
+    }
   }
 
   /* El buscador. Se arma solo, para no repetir el markup en las dos paginas. */
@@ -296,6 +446,7 @@ var Taller = (function () {
     input.placeholder = "Buscar…";
     input.setAttribute("aria-label", "Buscar entre los proyectos");
     var cuenta = el("span", "cuenta-busqueda", "");
+    inputBuscar = input;
 
     input.addEventListener("input", function () {
       var n = filtrar(input.value);
@@ -373,6 +524,7 @@ var Taller = (function () {
     if (opciones.base) base = opciones.base;
     cont.textContent = "";
     secciones = [];
+    indice = {};
 
     var conLuz = [];
 
@@ -380,6 +532,7 @@ var Taller = (function () {
       var items = g.items;
       if (opciones.filtrar) items = items.filter(function (p) { return opciones.filtrar(p, g); });
       if (!items.length) return;
+      items.forEach(function (p) { indice[slug(p.nombre)] = {p: p, verbo: g.verbo}; });
       var sec = fila(g.titulo, items, g.verbo);
       cont.appendChild(sec);
       secciones.push({sec: sec, items: items, cartas: sec.cartas,
@@ -397,8 +550,26 @@ var Taller = (function () {
     if (solapas) cont.insertBefore(solapas.barra, cont.firstChild);
     if (cuantos >= 10) cont.insertBefore(armarBuscador(solapas), cont.firstChild);
 
+    vacio = el("p", "aviso vacio");
+    vacio.appendChild(document.createTextNode(""));
+    var limpiar = el("button", "btn suave", "Limpiar búsqueda");
+    limpiar.type = "button";
+    limpiar.addEventListener("click", limpiarBusqueda);
+    vacio.appendChild(limpiar);
+    vacio.hidden = true;
+    cont.appendChild(vacio);
+
+    // Entrar por un link a una ficha (/taller/#nimbo). Primero se deja la pagina sin el
+    // hash y despues se vuelve a poner desde la ficha: asi atras cierra la ficha y no
+    // saca de la pagina, igual que cuando se abre con un clic.
+    var h = decodeURIComponent(location.hash.slice(1));
+    if (indice[h]) {
+      history.replaceState(null, "", location.pathname + location.search);
+      ficha(indice[h].p, indice[h].verbo);
+    }
+
     return conLuz;
   }
 
-  return {filas: filas, ficha: ficha, filtrar: filtrar, linkSeguro: linkSeguro};
+  return {filas: filas, ficha: ficha, filtrar: filtrar, linkSeguro: linkSeguro, slug: slug};
 })();

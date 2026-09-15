@@ -141,7 +141,8 @@ dialog::backdrop{background:rgba(6,10,14,.7);backdrop-filter:blur(3px)}
   display:flex;flex-direction:column;max-height:90vh}
 
 .galeria{position:relative;background:var(--surface-2)}
-.galeria{flex:none}
+/* pan-y: el scroll vertical sigue siendo del navegador, el gesto horizontal es de la galeria */
+.galeria{flex:none;touch-action:pan-y}
 .galeria .grande{width:100%;display:block;aspect-ratio:16/9;object-fit:cover;max-height:40vh}
 .galeria .paso{position:absolute;top:50%;transform:translateY(-50%);
   width:26px;height:26px;border-radius:6px;border:1px solid rgba(220,230,238,.22);cursor:pointer;
@@ -152,9 +153,12 @@ dialog::backdrop{background:rgba(6,10,14,.7);backdrop-filter:blur(3px)}
 .galeria .paso.der{right:9px}
 .galeria .puntos{position:absolute;bottom:9px;left:0;right:0;
   display:flex;justify-content:center;gap:5px}
-.galeria .puntos b{width:16px;height:3px;border-radius:1px;background:rgba(220,230,238,.4);
-  cursor:pointer;transition:background .15s}
-.galeria .puntos b.activo{background:var(--accent)}
+.galeria .puntos button{position:relative;width:16px;height:3px;border-radius:1px;border:0;padding:0;
+  background:rgba(220,230,238,.4);cursor:pointer;transition:background .15s}
+/* la raya se ve de 3 px, pero el dedo tiene un blanco bastante mas grande */
+.galeria .puntos button::after{content:"";position:absolute;inset:-12px -3px}
+.galeria .puntos button.activo{background:var(--accent)}
+.galeria .puntos button:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
 
 .ficha .texto{padding:14px 16px 16px;overflow:auto}
 .ficha h2{font-family:var(--fm);font-weight:500;font-size:.98rem;margin:0 0 2px;color:var(--ink)}
@@ -182,6 +186,7 @@ dialog::backdrop{background:rgba(6,10,14,.7);backdrop-filter:blur(3px)}
 .nota b{color:var(--ink-soft);font-weight:500}
 .nota .viejo{color:var(--cadena)}
 .aviso{font-size:12px;color:var(--ink-faint);padding:40px 0}
+.aviso.vacio{display:flex;align-items:center;gap:12px;flex-wrap:wrap;font-size:13px}
 
 @media (max-width:640px){
   .wrap{padding:0 18px}
