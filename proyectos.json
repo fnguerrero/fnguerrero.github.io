@@ -18,12 +18,12 @@
           ],
           "url": "https://fnguerrero.github.io/deficit/",
           "repo": "https://github.com/fnguerrero/deficit",
-          "img": "img/deficit.jpg?v=1787954410",
+          "img": "img/deficit.jpg?v=85f391f2",
           "imgs": [
-            "img/deficit.jpg?v=1787954410",
-            "img/deficit-2.jpg?v=1787954410",
-            "img/deficit-3.jpg?v=1787954410",
-            "img/deficit-4.jpg?v=1787954410"
+            "img/deficit.jpg?v=85f391f2",
+            "img/deficit-2.jpg?v=04c7dd1f",
+            "img/deficit-3.jpg?v=13fecf11",
+            "img/deficit-4.jpg?v=33d9fb8c"
           ],
           "tocado": "2026-08-31"
         },
@@ -40,10 +40,10 @@
           ],
           "url": "https://fnguerrero.github.io/album-panini-2026/",
           "repo": "https://github.com/fnguerrero/album-panini-2026",
-          "img": "img/album-panini-2026.jpg?v=1787954411",
+          "img": "img/album-panini-2026.jpg?v=5d81e222",
           "imgs": [
-            "img/album-panini-2026.jpg?v=1787954411",
-            "img/album-panini-2026-2.jpg?v=1787954411"
+            "img/album-panini-2026.jpg?v=5d81e222",
+            "img/album-panini-2026-2.jpg?v=4f9ad597"
           ],
           "tocado": "2026-08-26"
         },
@@ -58,10 +58,10 @@
             "Scraping",
             "8 tiendas"
           ],
-          "img": "img/multimarket.jpg?v=1787949962",
+          "img": "img/multimarket.jpg?v=d46e8ed3",
           "imgs": [
-            "img/multimarket.jpg?v=1787949962",
-            "img/multimarket-2.jpg?v=1787949963"
+            "img/multimarket.jpg?v=d46e8ed3",
+            "img/multimarket-2.jpg?v=5dbbcf5c"
           ],
           "tocado": "2026-08-28"
         },
@@ -75,7 +75,7 @@
             "Windows",
             "Hosts"
           ],
-          "img": "img/focus.jpg?v=1788694750",
+          "img": "img/focus.jpg?v=e016b41d",
           "tocado": "2026-08-31"
         },
         {
@@ -89,7 +89,7 @@
             "Portable",
             "Single file"
           ],
-          "img": "img/flash.jpg?v=1788694750",
+          "img": "img/flash.jpg?v=2dc3db47",
           "tocado": "2026-08-26"
         },
         {
@@ -103,7 +103,7 @@
             "SQLite",
             "React + Vite"
           ],
-          "img": "img/devatlas.jpg?v=1788694750",
+          "img": "img/devatlas.jpg?v=48f327f9",
           "tocado": "2026-08-26"
         },
         {
@@ -118,10 +118,10 @@
           ],
           "url": "https://fnguerrero.github.io/azarium/",
           "repo": "https://github.com/fnguerrero/azarium",
-          "img": "img/azarium.jpg?v=1787954411",
+          "img": "img/azarium.jpg?v=bee55025",
           "imgs": [
-            "img/azarium.jpg?v=1787954411",
-            "img/azarium-2.jpg?v=1787954411"
+            "img/azarium.jpg?v=bee55025",
+            "img/azarium-2.jpg?v=914c7447"
           ],
           "tocado": "2026-08-26"
         },
@@ -136,10 +136,10 @@
             "React",
             "PostgreSQL"
           ],
-          "img": "img/figumatch.jpg?v=1787953808",
+          "img": "img/figumatch.jpg?v=4d70075e",
           "imgs": [
-            "img/figumatch.jpg?v=1787953808",
-            "img/figumatch-2.jpg?v=1787951500"
+            "img/figumatch.jpg?v=4d70075e",
+            "img/figumatch-2.jpg?v=37d0ac82"
           ],
           "tocado": "2026-08-26"
         },
@@ -154,11 +154,11 @@
             "Offline",
             "Sin backend"
           ],
-          "img": "img/paid.jpg?v=1788694750",
+          "img": "img/paid.jpg?v=70c55c0f",
           "imgs": [
-            "img/paid.jpg?v=1788694750",
-            "img/paid-2.jpg?v=1788694751",
-            "img/paid-3.jpg?v=1788694751"
+            "img/paid.jpg?v=70c55c0f",
+            "img/paid-2.jpg?v=245880dd",
+            "img/paid-3.jpg?v=e8e749fb"
           ],
           "url": "https://fnguerrero.github.io/paid/",
           "tocado": "2026-08-29"
@@ -179,7 +179,7 @@
             "Filtro por lo que hace"
           ],
           "url": "https://fnguerrero.github.io/sitios/",
-          "img": "img/el-apartado-completo.jpg?v=1788694726",
+          "img": "img/el-apartado-completo.jpg?v=d1b228a1",
           "tocado": "2026-09-06"
         },
         {
@@ -194,7 +194,7 @@
             "Carta"
           ],
           "url": "https://fnguerrero.github.io/sitios/cafe/",
-          "img": "img/origen.jpg?v=1788694726",
+          "img": "img/origen.jpg?v=646fb04b",
           "tocado": "2026-09-06"
         },
         {
@@ -209,7 +209,7 @@
             "Formulario"
           ],
           "url": "https://fnguerrero.github.io/sitios/estudio/",
-          "img": "img/vidal-asociados.jpg?v=1788694726",
+          "img": "img/vidal-asociados.jpg?v=ae1d2769",
           "tocado": "2026-09-06"
         },
         {
@@ -224,7 +224,7 @@
             "Reserva de clase"
           ],
           "url": "https://fnguerrero.github.io/sitios/gimnasio/",
-          "img": "img/vertice.jpg?v=1788694726",
+          "img": "img/vertice.jpg?v=0e9ddae7",
           "tocado": "2026-09-06"
         },
         {
@@ -239,7 +239,7 @@
             "Ficha en ventana"
           ],
           "url": "https://fnguerrero.github.io/sitios/inmobiliaria/",
-          "img": "img/norte-propiedades.jpg?v=1788694726",
+          "img": "img/norte-propiedades.jpg?v=c3d71fca",
           "tocado": "2026-09-06"
         },
         {
@@ -254,7 +254,7 @@
             "Ficha técnica"
           ],
           "url": "https://fnguerrero.github.io/sitios/producto/",
-          "img": "img/nodo-one.jpg?v=1788694726",
+          "img": "img/nodo-one.jpg?v=9ab1117b",
           "tocado": "2026-09-06"
         },
         {
@@ -269,8 +269,11 @@
             "Obras sociales"
           ],
           "url": "https://fnguerrero.github.io/sitios/odontologia/",
-          "img": "img/sitio-odontologia.jpg",
-          "tocado": "2026-09-06"
+          "img": "img/min/sitio-odontologia.jpg?v=537cb0e2",
+          "tocado": "2026-09-06",
+          "imgs": [
+            "img/sitio-odontologia.jpg?v=359d8715"
+          ]
         },
         {
           "nombre": "Cabañas del Manso",
@@ -284,8 +287,11 @@
             "Rústico"
           ],
           "url": "https://fnguerrero.github.io/sitios/cabanias/",
-          "img": "img/sitio-cabanias.jpg",
-          "tocado": "2026-09-06"
+          "img": "img/min/sitio-cabanias.jpg?v=9a4cba26",
+          "tocado": "2026-09-06",
+          "imgs": [
+            "img/sitio-cabanias.jpg?v=94ec010b"
+          ]
         },
         {
           "nombre": "Bodega Alto Verde",
@@ -299,8 +305,11 @@
             "Etiquetas en CSS"
           ],
           "url": "https://fnguerrero.github.io/sitios/bodega/",
-          "img": "img/sitio-bodega.jpg",
-          "tocado": "2026-09-06"
+          "img": "img/min/sitio-bodega.jpg?v=568bd2a0",
+          "tocado": "2026-09-06",
+          "imgs": [
+            "img/sitio-bodega.jpg?v=e8a4f94b"
+          ]
         },
         {
           "nombre": "Mota Arquitectura",
@@ -314,8 +323,11 @@
             "Editorial"
           ],
           "url": "https://fnguerrero.github.io/sitios/arquitectura/",
-          "img": "img/sitio-arquitectura.jpg",
-          "tocado": "2026-09-06"
+          "img": "img/min/sitio-arquitectura.jpg?v=e2a1095c",
+          "tocado": "2026-09-06",
+          "imgs": [
+            "img/sitio-arquitectura.jpg?v=37c0375b"
+          ]
         },
         {
           "nombre": "Juli & Tomás",
@@ -329,8 +341,11 @@
             "Formulario que cambia"
           ],
           "url": "https://fnguerrero.github.io/sitios/casamiento/",
-          "img": "img/sitio-casamiento.jpg",
-          "tocado": "2026-09-06"
+          "img": "img/min/sitio-casamiento.jpg?v=396c6f39",
+          "tocado": "2026-09-06",
+          "imgs": [
+            "img/sitio-casamiento.jpg?v=834be1c9"
+          ]
         },
         {
           "nombre": "El Fogón",
@@ -344,8 +359,11 @@
             "Abierto ahora"
           ],
           "url": "https://fnguerrero.github.io/sitios/rotiseria/",
-          "img": "img/sitio-rotiseria.jpg",
-          "tocado": "2026-09-06"
+          "img": "img/min/sitio-rotiseria.jpg?v=244d287f",
+          "tocado": "2026-09-06",
+          "imgs": [
+            "img/sitio-rotiseria.jpg?v=9ba83b08"
+          ]
         },
         {
           "nombre": "Gráfica Sur",
@@ -359,8 +377,11 @@
             "Sin fotos"
           ],
           "url": "https://fnguerrero.github.io/sitios/grafica/",
-          "img": "img/sitio-grafica.jpg",
-          "tocado": "2026-09-06"
+          "img": "img/min/sitio-grafica.jpg?v=0dcde199",
+          "tocado": "2026-09-06",
+          "imgs": [
+            "img/sitio-grafica.jpg?v=f2e25e8f"
+          ]
         }
       ]
     },
@@ -382,7 +403,7 @@
           "url": "https://fnguerrero.github.io/teacordas/",
           "repo": "https://github.com/fnguerrero/teacordas",
           "tocado": "2026-09-06",
-          "img": "img/te-acordas.jpg?v=1788694751"
+          "img": "img/te-acordas.jpg?v=726b8e4d"
         },
         {
           "nombre": "La Previa",
@@ -398,11 +419,11 @@
           "url": "https://fnguerrero.github.io/la-previa/",
           "repo": "https://github.com/fnguerrero/la-previa",
           "tocado": "2026-09-06",
-          "img": "img/la-previa.jpg?v=1788694751",
+          "img": "img/la-previa.jpg?v=7e6d3e98",
           "imgs": [
-            "img/la-previa.jpg?v=1788694751",
-            "img/la-previa-2.jpg?v=1788694751",
-            "img/la-previa-3.jpg?v=1788694751"
+            "img/la-previa.jpg?v=7e6d3e98",
+            "img/la-previa-2.jpg?v=2de093dd",
+            "img/la-previa-3.jpg?v=a7c7e5e7"
           ]
         },
         {
@@ -418,7 +439,7 @@
           ],
           "url": "https://fnguerrero.github.io/juegos-familia/",
           "repo": "https://github.com/fnguerrero/juegos-familia",
-          "img": "img/los-juegos-de-la-familia.jpg?v=1788694726",
+          "img": "img/los-juegos-de-la-familia.jpg?v=2b1a086c",
           "tocado": "2026-09-06"
         },
         {
@@ -434,11 +455,11 @@
           ],
           "url": "https://fnguerrero.github.io/juegos-valentin/",
           "repo": "https://github.com/fnguerrero/juegos-valentin",
-          "img": "img/los-juegos-de-valen.jpg?v=1788694751",
+          "img": "img/los-juegos-de-valen.jpg?v=47c0eec7",
           "imgs": [
-            "img/los-juegos-de-valen.jpg?v=1788694751",
-            "img/los-juegos-de-valen-2.jpg?v=1788694751",
-            "img/los-juegos-de-valen-3.jpg?v=1788694751"
+            "img/los-juegos-de-valen.jpg?v=47c0eec7",
+            "img/los-juegos-de-valen-2.jpg?v=d18b2619",
+            "img/los-juegos-de-valen-3.jpg?v=5453dc7a"
           ],
           "tocado": "2026-08-30"
         },
@@ -454,11 +475,11 @@
           ],
           "url": "https://fnguerrero.github.io/sima7/",
           "repo": "https://github.com/fnguerrero/sima7",
-          "img": "img/sima-7.jpg?v=1787954411",
+          "img": "img/sima-7.jpg?v=2f1909e1",
           "imgs": [
-            "img/sima-7.jpg?v=1787954411",
-            "img/sima-7-2.jpg?v=1787954411",
-            "img/sima-7-3.jpg?v=1787954411"
+            "img/sima-7.jpg?v=2f1909e1",
+            "img/sima-7-2.jpg?v=b1b6359b",
+            "img/sima-7-3.jpg?v=d43b0273"
           ],
           "tocado": "2026-08-31"
         },
@@ -475,11 +496,11 @@
           ],
           "url": "https://fnguerrero.github.io/nimbo/",
           "repo": "https://github.com/fnguerrero/nimbo",
-          "img": "img/nimbo.jpg?v=1787954411",
+          "img": "img/nimbo.jpg?v=2f5b2c22",
           "imgs": [
-            "img/nimbo.jpg?v=1787954411",
-            "img/nimbo-2.jpg?v=1787954411",
-            "img/nimbo-3.jpg?v=1787954411"
+            "img/nimbo.jpg?v=2f5b2c22",
+            "img/nimbo-2.jpg?v=32bf9231",
+            "img/nimbo-3.jpg?v=dd4f1a21"
           ],
           "tocado": "2026-08-31"
         },
@@ -496,11 +517,11 @@
           ],
           "url": "https://fnguerrero.github.io/kermes/",
           "repo": "https://github.com/fnguerrero/kermes",
-          "img": "img/kermes.jpg?v=1787954411",
+          "img": "img/kermes.jpg?v=921a9cbe",
           "imgs": [
-            "img/kermes.jpg?v=1787954411",
-            "img/kermes-2.jpg?v=1787954411",
-            "img/kermes-3.jpg?v=1787954412"
+            "img/kermes.jpg?v=921a9cbe",
+            "img/kermes-2.jpg?v=8c1ded29",
+            "img/kermes-3.jpg?v=fb6a2499"
           ],
           "tocado": "2026-08-31"
         },
@@ -518,12 +539,12 @@
           ],
           "url": "https://fnguerrero.github.io/el-segundo-de-mas/",
           "repo": "https://github.com/fnguerrero/el-segundo-de-mas",
-          "img": "img/el-segundo-de-mas.jpg?v=1788926326",
+          "img": "img/min/el-segundo-de-mas.jpg?v=a6331849",
           "imgs": [
-            "img/el-segundo-de-mas.jpg?v=1788926326",
-            "img/el-segundo-de-mas-2.jpg?v=1788926326",
-            "img/el-segundo-de-mas-3.jpg?v=1788926326",
-            "img/el-segundo-de-mas-4.jpg?v=1788926326"
+            "img/el-segundo-de-mas.jpg?v=b8f41a35",
+            "img/el-segundo-de-mas-2.jpg?v=342cc15d",
+            "img/el-segundo-de-mas-3.jpg?v=97c3d56e",
+            "img/el-segundo-de-mas-4.jpg?v=4b705b5b"
           ],
           "tocado": "2026-09-09"
         },
@@ -540,11 +561,11 @@
           ],
           "url": "https://fnguerrero.github.io/el-ki-de-paozu/",
           "repo": "https://github.com/fnguerrero/el-ki-de-paozu",
-          "img": "img/dragon-ball-el-ki-de-paozu.jpg?v=1787954412",
+          "img": "img/dragon-ball-el-ki-de-paozu.jpg?v=1e98154a",
           "imgs": [
-            "img/dragon-ball-el-ki-de-paozu.jpg?v=1787954412",
-            "img/dragon-ball-el-ki-de-paozu-2.jpg?v=1787954412",
-            "img/dragon-ball-el-ki-de-paozu-3.jpg?v=1787954412"
+            "img/dragon-ball-el-ki-de-paozu.jpg?v=1e98154a",
+            "img/dragon-ball-el-ki-de-paozu-2.jpg?v=074baf89",
+            "img/dragon-ball-el-ki-de-paozu-3.jpg?v=c6746cca"
           ],
           "tocado": "2026-08-31"
         },
@@ -561,7 +582,7 @@
           ],
           "url": "https://fnguerrero.github.io/via-combusta/",
           "repo": "https://github.com/fnguerrero/via-combusta",
-          "img": "img/via-combusta.jpg?v=1787954412",
+          "img": "img/via-combusta.jpg?v=e8b0945b",
           "tocado": "2026-08-27"
         },
         {
@@ -577,11 +598,11 @@
           ],
           "url": "https://fnguerrero.github.io/tetris/",
           "repo": "https://github.com/fnguerrero/tetris",
-          "img": "img/tetris.jpg?v=1787954412",
+          "img": "img/tetris.jpg?v=02e89373",
           "imgs": [
-            "img/tetris.jpg?v=1787954412",
-            "img/tetris-2.jpg?v=1787954412",
-            "img/tetris-3.jpg?v=1787954412"
+            "img/tetris.jpg?v=02e89373",
+            "img/tetris-2.jpg?v=5245377d",
+            "img/tetris-3.jpg?v=bbcbfe8a"
           ],
           "tocado": "2026-08-31"
         },
@@ -598,11 +619,11 @@
           ],
           "url": "https://fnguerrero.github.io/pacman/",
           "repo": "https://github.com/fnguerrero/pacman",
-          "img": "img/pac-man.jpg?v=1787954412",
+          "img": "img/pac-man.jpg?v=a6b93f1c",
           "imgs": [
-            "img/pac-man.jpg?v=1787954412",
-            "img/pac-man-2.jpg?v=1787954412",
-            "img/pac-man-3.jpg?v=1787954413"
+            "img/pac-man.jpg?v=a6b93f1c",
+            "img/pac-man-2.jpg?v=ac316dba",
+            "img/pac-man-3.jpg?v=c99468bf"
           ],
           "tocado": "2026-08-27"
         }
@@ -624,10 +645,10 @@
           ],
           "url": "https://fnguerrero.github.io/visor-nonstop/",
           "repo": "https://github.com/fnguerrero/visor-nonstop",
-          "img": "img/visor-nonstop.jpg?v=1787954413",
+          "img": "img/visor-nonstop.jpg?v=34771b39",
           "imgs": [
-            "img/visor-nonstop.jpg?v=1787954413",
-            "img/visor-nonstop-2.jpg?v=1787954413"
+            "img/visor-nonstop.jpg?v=34771b39",
+            "img/visor-nonstop-2.jpg?v=5e390d07"
           ],
           "tocado": "2026-08-26"
         },
@@ -641,7 +662,7 @@
             "scrcpy",
             "PowerShell"
           ],
-          "img": "img/celconnect.jpg?v=1788694751"
+          "img": "img/celconnect.jpg?v=781bd8cc"
         }
       ]
     }
