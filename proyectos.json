@@ -509,7 +509,7 @@
           "sigla": "Sm",
           "color": "#3B3E7A",
           "tag": "Arcanos que transforman el lugar",
-          "que": "Tenés un mazo de arcanos y te reparten tres. La carta que jugás transforma el lugar donde estás, y ese lugar nuevo es el próximo: por eso el recorrido se abre solo y dos partidas no se parecen. Mientras se transforma, el lugar deja ver lo que esconde, pero solo si te quedás mirando: mantenés apretado y un anillo se va llenando. Nadie te apura y podés seguir de largo. Ocho pasos, y cuántas veces te quedaste a mirar decide el final. En desarrollo.",
+          "que": "La carta que jugás transforma el lugar donde estás. Mientras cambia, deja ver lo que esconde, pero solo si te quedás mirando. Ocho pasos, y cuántas veces te quedaste a mirar decide el final.",
           "chips": [
             "Canvas",
             "HTML + JS puro",
