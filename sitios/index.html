@@ -43,6 +43,9 @@
           color:var(--gris);background:var(--blanco);transition:all .18s}
   .filtro:hover{border-color:var(--tinta);color:var(--tinta)}
   .filtro[aria-pressed="true"]{background:var(--tinta);border-color:var(--tinta);color:var(--blanco)}
+  /* cuántos trae cada filtro, para no apretar uno y encontrarse con un solo ejemplo */
+  .filtro s{text-decoration:none;font-size:12px;opacity:.6;margin-left:7px;
+            font-variant-numeric:tabular-nums}
   .cuenta{color:var(--gris);font-size:14px;margin:18px 0 0}
 
   .grilla{display:grid;grid-template-columns:repeat(2,1fr);gap:26px;padding:26px 0 40px}
@@ -68,6 +71,11 @@
        padding:12px 22px;border-radius:4px;font-size:14.5px;font-weight:500;
        transition:background .22s;align-self:flex-start;margin-top:auto}
   .btn:hover{background:var(--acento)}
+  .acciones{display:flex;align-items:center;gap:18px;flex-wrap:wrap;margin-top:auto}
+  .acciones .btn{margin-top:0}
+  .pedir{font-size:14.5px;color:var(--acento);text-decoration:none;font-weight:500;
+         border-bottom:1px solid transparent;transition:border-color .2s}
+  .pedir:hover{border-bottom-color:var(--acento)}
 
   .cierre{background:var(--tinta);color:#fff;border-radius:10px;padding:64px 56px;margin:20px 0 80px;
           display:grid;grid-template-columns:1.1fr .9fr;gap:60px;align-items:center}
@@ -92,6 +100,15 @@
     .cierre{grid-template-columns:1fr;gap:38px;padding:44px 30px}
     .texto{padding:22px 22px 24px}
     header{padding:44px 0 28px}
+  }
+
+  /* Quien pidió menos movimiento en el sistema no ve deslizarse nada. Las transiciones se
+     acortan en vez de sacarse, así lo que aparece al hacer scroll igual llega a verse. */
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;
+                         transition-duration:.01ms!important}
+    .sitio:hover,.sitio:hover .captura img{transform:none}
   }
 </style>
 <script>document.documentElement.className="js"</script>
@@ -191,8 +208,13 @@ const $ = s => document.querySelector(s);
 const HACE = ['Todos'].concat([...new Set(SITIOS.flatMap(s => s.hace))]);
 let filtro = 'Todos';
 
+const cuantos = h => h === 'Todos' ? SITIOS.length : SITIOS.filter(s => s.hace.includes(h)).length;
 $('#filtros').innerHTML = HACE.map((h,i) =>
-  `<button class="filtro" data-f="${h}" aria-pressed="${i === 0}">${h}</button>`).join('');
+  `<button class="filtro" data-f="${h}" aria-pressed="${i === 0}">${h}<s>${cuantos(h)}</s></button>`).join('');
+
+// El pedido llega con el ejemplo en el asunto: así se sabe de entrada qué le gustó.
+const MAIL = 'nass.ia9000@gmail.com';
+const pedido = s => `mailto:${MAIL}?subject=${encodeURIComponent('Quiero un sitio como ' + s.nom.split(' · ')[0])}`;
 
 $('#filtros').addEventListener('click', ev => {
   const b = ev.target.closest('[data-f]'); if (!b) return;
@@ -226,15 +248,25 @@ function pintar(){
     : `${lista.length} ${lista.length === 1 ? 'sitio' : 'sitios'} con ${filtro.toLowerCase()}`;
   /* Las tarjetas no llevan aparición progresiva: como la grilla se vuelve a dibujar en cada
      filtro, arrancarían invisibles y con `loading="lazy"` ni siquiera se pedirían las fotos. */
-  $('#grilla').innerHTML = lista.map(s => `
+  /* Las capturas miden 1100×756 y hay una versión de 640 (tools/capturas-sitios.py): el
+     navegador elige según el ancho real. Las dos primeras se piden ya, porque son las que
+     se ven al abrir; el resto, recién cuando se acerca el scroll. */
+  $('#grilla').innerHTML = lista.map((s, i) => `
     <article class="sitio" data-ir="${s.slug}/">
-      <div class="captura"><img src="../img/sitio-${s.slug}.jpg" alt="Sitio de ${s.nom}"></div>
+      <div class="captura"><img src="../img/sitio-${s.slug}.jpg"
+        srcset="../img/sitios-640/sitio-${s.slug}.jpg 640w, ../img/sitio-${s.slug}.jpg 1100w"
+        sizes="(max-width:920px) calc(100vw - 64px), 590px"
+        width="1100" height="756" loading="${i < 2 ? 'eager' : 'lazy'}" decoding="async"
+        alt="Sitio de ${s.nom}"></div>
       <div class="texto">
         <p class="rubro">${s.rubro}</p>
         <h2 class="serif">${s.nom}</h2>
         <p>${s.des}</p>
         <div class="tags">${s.tags.map(t => `<span class="tag">${t}</span>`).join('')}</div>
-        <a class="btn" href="${s.slug}/">Ver el sitio</a>
+        <div class="acciones">
+          <a class="btn" href="${s.slug}/">Ver el sitio</a>
+          <a class="pedir" href="${pedido(s)}">Quiero uno así</a>
+        </div>
       </div>
     </article>`).join('');
   observar();

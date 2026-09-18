@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
-<link rel="stylesheet" href="/taller.css?v=24">
+<link rel="stylesheet" href="/taller.css?v=25">
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#0B0F14">
 <meta property="og:type" content="website">
@@ -47,14 +47,44 @@
 
 </div>
 
-<script src="/temas.js?v=24"></script>
-<script src="/taller.js?v=24"></script>
-<script src="/franja.js?v=24"></script>
+<script src="/temas.js?v=25"></script>
+<script src="/taller.js?v=25"></script>
+<script src="/franja.js?v=25"></script>
 <script>
 "use strict";
 
 // Los proyectos viven en proyectos.json: la misma fuente que usa la home local.
 // Para agregar o cambiar algo se edita ese archivo, no este.
+
+/* Datos estructurados (schema.org) para los buscadores: la lista de proyectos que se
+   pueden abrir, cada uno con su tipo. Salen del mismo proyectos.json, así no se
+   desactualizan cuando entra uno nuevo. */
+function datosEstructurados(grupos) {
+  var TIPO = {"Juegos": "VideoGame", "Sitios web": "WebSite"};
+  var items = [];
+  grupos.forEach(function (g) {
+    g.items.forEach(function (p) {
+      var url = Taller.linkSeguro(p.url);
+      if (!url || !/^https:/.test(url)) return;
+      var cosa = {"@type": TIPO[g.titulo] || "SoftwareApplication", name: p.nombre, url: url};
+      if (p.tag) cosa.description = p.tag;
+      if (cosa["@type"] === "SoftwareApplication") cosa.applicationCategory = "WebApplication";
+      items.push({"@type": "ListItem", position: items.length + 1, item: cosa});
+    });
+  });
+  var s = document.createElement("script");
+  s.type = "application/ld+json";
+  s.textContent = JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: "El taller de Nico",
+    url: "https://fnguerrero.github.io/taller/",
+    inLanguage: "es-AR",
+    author: {"@type": "Person", name: "Nico Guerrero", url: "https://fnguerrero.github.io/taller/"},
+    mainEntity: {"@type": "ItemList", numberOfItems: items.length, itemListElement: items}
+  });
+  document.head.appendChild(s);
+}
 
 fetch("/proyectos.json", {cache: "no-cache"})
   .then(function (r) {
@@ -63,6 +93,7 @@ fetch("/proyectos.json", {cache: "no-cache"})
   })
   .then(function (datos) {
     Taller.filas(document.getElementById("filas"), datos.grupos, {base: "/"});
+    datosEstructurados(datos.grupos);
   })
   .catch(function () {
     var p = document.createElement("p");
