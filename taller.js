@@ -495,6 +495,9 @@ var Taller = (function () {
       var b = document.createElement("button");
       b.type = "button";
       b.setAttribute("role", "tab");
+      b.id = "solapa-" + slug(s.titulo);
+      s.sec.id = "grupo-" + slug(s.titulo);
+      b.setAttribute("aria-controls", s.sec.id);
       b.appendChild(document.createTextNode(s.titulo));
       var n = el("s", null, String(s.cartas.length));
       b.appendChild(n);
@@ -503,11 +506,27 @@ var Taller = (function () {
       return b;
     });
 
+    // Como cualquier lista de pestañas: Tab entra a la elegida y las flechas pasan de una
+    // a otra (Inicio y Fin van a la primera y a la última). Solo la elegida es tabulable,
+    // así Tab no obliga a recorrer las cuatro para llegar a las tarjetas.
+    barra.addEventListener("keydown", function (ev) {
+      var n = botones.length, a = elegida;
+      if (ev.key === "ArrowRight") a = (elegida + 1) % n;
+      else if (ev.key === "ArrowLeft") a = (elegida - 1 + n) % n;
+      else if (ev.key === "Home") a = 0;
+      else if (ev.key === "End") a = n - 1;
+      else return;
+      ev.preventDefault();
+      activar(a);
+      botones[a].focus();
+    });
+
     function activar(i) {
       elegida = i;
       secciones.forEach(function (s, k) {
         s.sec.classList.toggle("sin-solapa", k !== i);
         botones[k].setAttribute("aria-selected", k === i ? "true" : "false");
+        botones[k].tabIndex = k === i ? 0 : -1;
       });
       try { localStorage.setItem("taller.solapa", secciones[i].titulo); } catch (e) {}
       botones[i].scrollIntoView({block: "nearest", inline: "nearest"});

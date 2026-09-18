@@ -34,6 +34,10 @@
   .pie{margin-top:34px;padding-top:20px;border-top:1px solid var(--linea);
        font-size:13px;color:var(--tenue)}
   .pie code{color:var(--acento);word-break:break-all}
+  .quizas{margin:-8px 0 30px;padding:18px 20px;border:1px solid var(--linea);border-radius:8px}
+  .quizas .q{color:var(--ink);margin-bottom:14px}
+  .quizas .q b{color:var(--acento);font-weight:500}
+  @media (prefers-reduced-motion:reduce){a{transition:none}a:hover{transform:none}}
 </style>
 </head>
 <body>
@@ -41,6 +45,10 @@
     <p class="codigo">404</p>
     <h1>Esta página no existe</h1>
     <p>O nunca existió, o se mudó de lugar. Las dos cosas pasan seguido por acá.</p>
+    <div class="quizas" id="quizas" hidden>
+      <p class="q">¿Buscabas <b id="q-nombre"></b>?</p>
+      <div class="links" id="q-links"></div>
+    </div>
     <div class="links">
       <a href="/taller/">Ir al taller</a>
       <a class="suave" href="/sitios/">Ver los sitios web</a>
@@ -48,8 +56,87 @@
     <p class="pie">Buscabas: <code id="donde"></code></p>
   </div>
 <script>
-  // Sirve para darse cuenta de qué link quedó roto, sin tener que adivinar
-  document.getElementById('donde').textContent = location.pathname + location.search;
+  // Sirve para darse cuenta de qué link quedó roto, sin tener que adivinar.
+  // ?ruta=/algo/ simula una ruta: el servidor local no sirve esta página para lo que no existe.
+  const simulada = location.pathname.endsWith('/404.html') && new URLSearchParams(location.search).get('ruta');
+  const ruta = simulada || location.pathname;
+  document.getElementById('donde').textContent = simulada || (location.pathname + location.search);
+
+  /* Si la ruta se parece a algún proyecto, se ofrece. Cubre los errores de tipeo
+     (/nimbos/), lo que sobra al final (/pacman-3/) y los nombres viejos de cosas que se
+     renombraron, que siguen dando vueltas en links viejos. */
+  const VIEJOS = {
+    'duermevela': 'El segundo de más', 'el-instante-antes': 'El segundo de más',
+    'elinstante': 'El segundo de más', 'plataformero': 'NIMBO', 'foco': 'Focus',
+    'comprobantes': 'Paid', 'dragonball': 'Dragon Ball — El Ki de Paozu',
+    'dragon-ball': 'Dragon Ball — El Ki de Paozu', 'celconn': 'CelConnect',
+    'juegos-de-valen': 'Los juegos de Valen', 'teacordas': 'Te acordás'
+  };
+  const plano = t => t.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
+  const slug = t => plano(t).replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+
+  function distancia(a, b) {
+    const d = Array.from({length: b.length + 1}, (_, i) => i);
+    for (let i = 1; i <= a.length; i++) {
+      let prev = d[0]; d[0] = i;
+      for (let j = 1; j <= b.length; j++) {
+        const t = d[j];
+        d[j] = Math.min(d[j] + 1, d[j - 1] + 1, prev + (a[i - 1] === b[j - 1] ? 0 : 1));
+        prev = t;
+      }
+    }
+    return d[b.length];
+  }
+
+  // Cuánto se parece lo tipeado a una clave: 1 es igual, 0 nada que ver.
+  function parecido(tipeado, clave) {
+    if (!tipeado || !clave) return 0;
+    if (tipeado === clave) return 1;
+    // /pacman-3/ empieza con pacman. Vale más cuanto más del camino cubre: si no,
+    // /sitios/cafee/ terminaba sugiriendo "sitios" en vez de "sitios/cafe".
+    if (clave.length >= 4 && tipeado.startsWith(clave)) return 0.8 + 0.2 * clave.length / tipeado.length;
+    return 1 - distancia(tipeado, clave) / Math.max(tipeado.length, clave.length);
+  }
+
+  function sugerir(datos) {
+    const tipeado = plano(decodeURIComponent(ruta)).replace(/^\/+|\/+$/g, '').replace(/\/index\.html$/, '');
+    if (!tipeado || tipeado === 'taller' || tipeado === 'sitios') return null;
+    const primero = tipeado.split('/')[0];
+    let mejor = null;
+    datos.grupos.forEach(g => g.items.forEach(p => {
+      const claves = [slug(p.nombre)];
+      try {
+        const u = new URL(p.url);
+        if (u.hostname === 'fnguerrero.github.io') claves.push(u.pathname.replace(/^\/+|\/+$/g, ''));
+      } catch (e) {}
+      Object.keys(VIEJOS).forEach(k => { if (VIEJOS[k] === p.nombre) claves.push(k); });
+      claves.forEach(c => {
+        // El primer tramo solo (/nimbo/lo-que-sea) cuenta, pero un poco menos que el camino entero.
+        const n = Math.max(parecido(tipeado, c), c.includes('/') ? 0 : 0.95 * parecido(primero, c));
+        if (n >= 0.7 && (!mejor || n > mejor.n)) mejor = {p, n};
+      });
+    }));
+    return mejor && mejor.p;
+  }
+
+  fetch('/proyectos.json', {cache: 'no-cache'}).then(r => r.json()).then(datos => {
+    const p = sugerir(datos);
+    if (!p) return;
+    document.getElementById('q-nombre').textContent = p.nombre;
+    const links = document.getElementById('q-links');
+    if (p.url) {
+      const a = document.createElement('a');
+      a.href = p.url;
+      a.textContent = 'Abrir ' + p.nombre;
+      links.appendChild(a);
+    }
+    const f = document.createElement('a');
+    f.className = 'suave';
+    f.href = '/taller/#' + slug(p.nombre);
+    f.textContent = 'Ver la ficha';
+    links.appendChild(f);
+    document.getElementById('quizas').hidden = false;
+  }).catch(() => {});
 </script>
 </body>
 </html>
