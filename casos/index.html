@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nicolás Guerrero · Desarrollador .NET Senior · IA aplicada</title>
+<meta name="description" content="Desarrollador .NET Senior con 13 años de experiencia y foco en IA aplicada: APIs en ASP.NET Core, React, agentes y Claude Code. Cuatro casos de proyectos propios.">
+<meta property="og:title" content="Nicolás Guerrero · Desarrollador .NET Senior · IA aplicada">
+<meta property="og:description" content="Cuatro casos: Multimarket, DevAtlas, Déficit y un kit de agentes para desarrollo.">
+<meta property="og:image" content="https://fnguerrero.github.io/img/multimarket.jpg">
+<meta property="og:url" content="https://fnguerrero.github.io/casos/">
+<meta property="og:type" content="profile">
+<link rel="icon" href="../favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f7f7f5;
+    --surface: #ffffff;
+    --text: #1c1f24;
+    --muted: #5b6270;
+    --line: #e3e4e8;
+    --accent: #2457c5;
+    --accent-soft: #e8eefb;
+    --chip: #f0f1f4;
+    --ok: #1f7a4d;
+    --shadow: 0 1px 2px rgba(20, 24, 33, .06), 0 8px 24px rgba(20, 24, 33, .06);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #111318;
+      --surface: #181b22;
+      --text: #e8eaef;
+      --muted: #a0a7b4;
+      --line: #2a2f3a;
+      --accent: #7ea3ff;
+      --accent-soft: #1d2740;
+      --chip: #222733;
+      --ok: #5fd39a;
+      --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 8px 24px rgba(0, 0, 0, .25);
+    }
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font: 16px/1.6 "IBM Plex Sans", system-ui, sans-serif;
+  }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .wrap { max-width: 980px; margin: 0 auto; padding: 0 16px; }
+
+  header { padding: 64px 0 40px; }
+  .eyebrow {
+    font: 500 13px/1 "IBM Plex Mono", monospace;
+    color: var(--muted);
+    letter-spacing: .04em;
+    text-transform: uppercase;
+  }
+  h1 { font-size: clamp(32px, 6vw, 48px); line-height: 1.1; margin: 12px 0 8px; letter-spacing: -.02em; }
+  .rol { font-size: clamp(18px, 3vw, 22px); color: var(--accent); font-weight: 600; margin: 0 0 20px; }
+  .intro { max-width: 680px; color: var(--muted); font-size: 17px; margin: 0 0 24px; }
+  .links { display: flex; flex-wrap: wrap; gap: 10px; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 9px 16px; border-radius: 8px;
+    border: 1px solid var(--line); background: var(--surface);
+    color: var(--text); font-weight: 500; font-size: 15px;
+  }
+  .btn:hover { border-color: var(--accent); text-decoration: none; }
+  .btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+  @media (prefers-color-scheme: dark) { .btn.primary { color: #0d1220; } }
+
+  .nota {
+    border-left: 3px solid var(--accent);
+    background: var(--accent-soft);
+    padding: 12px 16px; border-radius: 0 8px 8px 0;
+    color: var(--text); font-size: 15px; margin: 0 0 40px;
+  }
+
+  .caso {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    box-shadow: var(--shadow);
+    margin: 0 0 32px;
+    overflow: hidden;
+  }
+  .caso-top { display: grid; grid-template-columns: 1fr; }
+  .caso img { width: 100%; height: auto; display: block; border-bottom: 1px solid var(--line); aspect-ratio: 16 / 9; object-fit: cover; }
+  .caso-body { padding: 24px; }
+  .caso-top + .caso-body { padding-top: 0; }
+  .num { font: 500 13px/1 "IBM Plex Mono", monospace; color: var(--muted); }
+  .caso h2 { font-size: 26px; line-height: 1.2; margin: 8px 0 4px; letter-spacing: -.01em; }
+  .bajada { color: var(--muted); margin: 0 0 16px; font-size: 17px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 20px; padding: 0; list-style: none; }
+  .chips li {
+    font: 500 12.5px/1 "IBM Plex Mono", monospace;
+    background: var(--chip); color: var(--text);
+    padding: 6px 9px; border-radius: 6px;
+  }
+  .caso h3 {
+    font: 600 13px/1 "IBM Plex Mono", monospace;
+    text-transform: uppercase; letter-spacing: .05em;
+    color: var(--muted); margin: 20px 0 8px;
+  }
+  .caso p { margin: 0 0 8px; }
+  .caso ul.puntos { margin: 0; padding-left: 20px; }
+  .caso ul.puntos li { margin: 0 0 6px; }
+  .resultado {
+    display: grid; gap: 12px; margin: 20px 0 0;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  }
+  .dato { border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; }
+  .dato b { display: block; font-size: 22px; line-height: 1.2; color: var(--ok); }
+  .dato span { font-size: 14px; color: var(--muted); }
+  .caso-links { display: flex; flex-wrap: wrap; gap: 10px; margin: 24px 0 0; }
+  .privado { font-size: 14px; color: var(--muted); align-self: center; }
+
+  @media (min-width: 860px) {
+    .caso-top { grid-template-columns: 1.05fr 1fr; }
+    .caso img {
+      align-self: center;
+      width: calc(100% - 28px); margin: 28px 0 28px 28px;
+      border: 1px solid var(--line); border-radius: 10px;
+    }
+    .caso-body { padding: 28px 32px; }
+  }
+
+  footer { border-top: 1px solid var(--line); padding: 28px 0 48px; color: var(--muted); font-size: 15px; }
+  footer .wrap { display: flex; flex-wrap: wrap; gap: 8px 24px; justify-content: space-between; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="eyebrow">Portfolio · casos</div>
+    <h1>Nicolás Guerrero</h1>
+    <p class="rol">Desarrollador .NET Senior · IA aplicada</p>
+    <p class="intro">13 años de .NET en YPF, Techint, Telecom Personal y, hoy, la receta electrónica de Farmalink. Backend en C# y ASP.NET Core, front en React, y la IA aplicada como diferencial: agentes, Claude Code y servidores MCP.</p>
+    <div class="links">
+      <a class="btn primary" href="mailto:f.nicolas.guerrero@gmail.com">f.nicolas.guerrero@gmail.com</a>
+      <a class="btn" href="https://github.com/fnguerrero">GitHub</a>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <p class="nota">El trabajo para clientes es confidencial. Estos son cuatro proyectos propios, construidos con el mismo estándar: problema real, decisiones explícitas y tests.</p>
+
+  <article class="caso" id="multimarket">
+    <div class="caso-top">
+      <img src="../img/multimarket.jpg" alt="Multimarket: búsqueda de una heladera con el precio real en cuotas comparado entre tiendas" loading="lazy" width="640" height="360">
+      <div class="caso-body">
+        <div class="num">01 · .NET + IA</div>
+        <h2>Multimarket</h2>
+        <p class="bajada">Cuánto sale de verdad una compra, en todas las tiendas a la vez.</p>
+        <ul class="chips"><li>.NET 10</li><li>C#</li><li>SQLite</li><li>React</li><li>Vite</li><li>Claude API</li></ul>
+        <h3>Problema</h3>
+        <p>El precio de vidriera no sirve para decidir: el mismo producto sale distinto al contado que en cuotas, y lo que conviene depende de la inflación y de la tarjeta.</p>
+      </div>
+    </div>
+    <div class="caso-body">
+      <h3>Qué construí</h3>
+      <p>Una API en .NET 10 con SQLite y un front en React. Un único conector VTEX cubre 13 tiendas. Lleva cuotas y promociones a valor presente con la tasa del usuario, y vigila a diario los productos que sigue.</p>
+      <h3>Decisiones</h3>
+      <ul class="puntos">
+        <li>La relevancia de los resultados la decide un LLM, con una sola llamada por búsqueda. Las reglas de texto tenían techo y cada categoría nueva pedía otra.</li>
+        <li>El monitoreo diario no usa modelo: comparar precios es aritmética. Así operar sale gratis.</li>
+        <li>Ninguna tienda entra sin comparar su precio contra la página real. Así aparecieron precios de lista inflados 80 veces, productos fantasma y fichas sin stock con precios viejos.</li>
+      </ul>
+      <div class="resultado">
+        <div class="dato"><b>14,5 %</b><span>más barato de verdad: mismo TV y mismo precio en 3 cadenas, pero solo una con 12 cuotas sin interés</span></div>
+        <div class="dato"><b>13</b><span>tiendas con un solo conector</span></div>
+        <div class="dato"><b>47</b><span>tests automatizados</span></div>
+      </div>
+      <div class="caso-links"><span class="privado">Código privado, disponible a pedido.</span></div>
+    </div>
+  </article>
+
+  <article class="caso" id="devatlas">
+    <div class="caso-top">
+      <img src="../img/devatlas.jpg" alt="DevAtlas: catálogo de aplicaciones con stack, repositorio y ambiente" loading="lazy" width="640" height="360">
+      <div class="caso-body">
+        <div class="num">02 · .NET full stack</div>
+        <h2>DevAtlas</h2>
+        <p class="bajada">Catálogo de aplicaciones de desarrollo: qué hay, dónde está y dónde corre.</p>
+        <ul class="chips"><li>ASP.NET Core</li><li>EF Core</li><li>SQLite</li><li>React</li><li>TypeScript</li><li>Vite</li></ul>
+        <h3>Problema</h3>
+        <p>Con muchos proyectos, recordar el repo, el stack y la URL de cada ambiente termina siendo trabajo de memoria.</p>
+      </div>
+    </div>
+    <div class="caso-body">
+      <h3>Qué construí</h3>
+      <p>Una API REST en ASP.NET Core con EF Core sobre SQLite, con migraciones, y un front en React y TypeScript. Cada aplicación guarda stack, repo, notas, URLs por ambiente (dev, QA y producción) y etiquetas.</p>
+      <h3>Decisiones</h3>
+      <ul class="puntos">
+        <li>SQLite: cero infraestructura para una herramienta personal, con EF Core para poder cambiar de motor sin tocar el dominio.</li>
+        <li>Etiquetas como relación muchos a muchos con tabla intermedia, y URLs por ambiente como entidad propia.</li>
+        <li>Cliente de la API tipado en TypeScript, separado de las pantallas.</li>
+      </ul>
+      <div class="caso-links"><span class="privado">Código privado, disponible a pedido.</span></div>
+    </div>
+  </article>
+
+  <article class="caso" id="deficit">
+    <div class="caso-top">
+      <img src="../img/deficit.jpg" alt="Déficit: app de control calórico que analiza fotos de comida" loading="lazy" width="640" height="360">
+      <div class="caso-body">
+        <div class="num">03 · IA + front</div>
+        <h2>Déficit</h2>
+        <p class="bajada">Calorías y macros a partir de una foto del plato o de la etiqueta.</p>
+        <ul class="chips"><li>JavaScript</li><li>PWA</li><li>Claude Vision</li><li>Cloudflare Workers</li><li>Supabase</li></ul>
+        <h3>Problema</h3>
+        <p>Anotar cada comida a mano es lo que hace abandonar cualquier plan de alimentación.</p>
+      </div>
+    </div>
+    <div class="caso-body">
+      <h3>Qué construí</h3>
+      <p>Una PWA instalable que funciona sin conexión, en JavaScript sin build ni dependencias. Le sacás una foto a la comida y un LLM con visión devuelve calorías y macros.</p>
+      <h3>Decisiones</h3>
+      <ul class="puntos">
+        <li>La clave de la API nunca llega al cliente: un Worker de Cloudflare la guarda como secreto y hace de proxy, con límite de 30 pedidos por minuto por IP.</li>
+        <li>Sincronización entre dispositivos con Supabase, protegida con Row Level Security.</li>
+        <li>Núcleo de cálculo puro, en módulos, testeado sin llamar a ninguna API.</li>
+      </ul>
+      <div class="resultado">
+        <div class="dato"><b>455</b><span>tests: 442 en el navegador y 13 del Worker</span></div>
+        <div class="dato"><b>8 de 8</b><span>valores exactos al leer una etiqueta, en 9,5 s</span></div>
+        <div class="dato"><b>US$ 0,018</b><span>por análisis</span></div>
+      </div>
+      <div class="caso-links">
+        <a class="btn primary" href="https://fnguerrero.github.io/deficit/">Ver la app</a>
+        <a class="btn" href="https://github.com/fnguerrero/deficit">Código</a>
+      </div>
+    </div>
+  </article>
+
+  <article class="caso" id="agentes">
+    <div class="caso-top">
+      <img src="../img/visor-nonstop.jpg" alt="Visor /nonstop: spec, checklist y bitácora de un trabajo largo de un agente" loading="lazy" width="640" height="360">
+      <div class="caso-body">
+        <div class="num">04 · IA aplicada</div>
+        <h2>Kit de agentes para desarrollo</h2>
+        <p class="bajada">Claude Code adaptado al trabajo diario: skills, hooks, subagentes y MCP.</p>
+        <ul class="chips"><li>Claude Code</li><li>MCP</li><li>Hooks</li><li>Subagentes</li><li>Python</li><li>PowerShell</li></ul>
+        <h3>Problema</h3>
+        <p>Probar endpoints, preparar pasajes a producción o revisar seguridad se lleva horas de tareas repetitivas. Y un agente sin estructura rinde poco en trabajos largos.</p>
+      </div>
+    </div>
+    <div class="caso-body">
+      <h3>Qué construí</h3>
+      <p>Más de 25 skills y comandos propios, con hooks y subagentes, conectados por MCP a GitLab, Postman, bases de datos y gestión de tareas. Incluye /nonstop: el agente arma su propia spec y un checklist en archivo, y trabaja horas solo, retomando si el turno se corta. El Visor /nonstop muestra el avance en una sola vista.</p>
+      <h3>Decisiones</h3>
+      <ul class="puntos">
+        <li>El estado del trabajo vive en archivos (spec, checklist y bitácora), no en la memoria del modelo. Así sobrevive a los cortes y se puede auditar.</li>
+        <li>Límites explícitos: el agente no pushea, no mergea, no despliega ni escribe en bases sin confirmación.</li>
+        <li>Configuración versionada y sincronizada entre máquinas.</li>
+      </ul>
+      <div class="caso-links">
+        <a class="btn primary" href="https://fnguerrero.github.io/visor-nonstop/">Ver el visor</a>
+        <a class="btn" href="https://github.com/fnguerrero/visor-nonstop">Código del visor</a>
+      </div>
+    </div>
+  </article>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Nicolás Guerrero · San Martín, Buenos Aires · Disponible para trabajo remoto</span>
+    <span><a href="mailto:f.nicolas.guerrero@gmail.com">f.nicolas.guerrero@gmail.com</a> · <a href="https://github.com/fnguerrero">GitHub</a></span>
+  </div>
+</footer>
+
+</body>
+</html>
