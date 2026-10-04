@@ -144,8 +144,8 @@
     <div>
       <h2 class="serif">¿Querés uno para lo tuyo?</h2>
       <p>Arrancamos con una charla de media hora para entender qué tiene que lograr el sitio. De ahí sale una propuesta con alcance, plazo y precio cerrado.</p>
-      <div style="margin-top:26px">
-        <a class="btn" href="mailto:nass.ia9000@gmail.com?subject=Consulta%20por%20un%20sitio%20web">Escribime</a>
+      <div style="margin-top:26px" id="contacto">
+        <a class="btn" id="escribime" href="#">Escribime</a>
       </div>
     </div>
     <ul class="incluye">
@@ -213,7 +213,11 @@ $('#filtros').innerHTML = HACE.map((h,i) =>
   `<button class="filtro" data-f="${h}" aria-pressed="${i === 0}">${h}<s>${cuantos(h)}</s></button>`).join('');
 
 // El pedido llega con el ejemplo en el asunto: así se sabe de entrada qué le gustó.
-const MAIL = 'nass.ia9000@gmail.com';
+// Vacío en El taller (fnguerrero.github.io), que no lleva contacto: las vitrinas que se arman
+// desde esta carpeta lo completan con su propio mail al copiarla.
+const MAIL = '';
+if (MAIL) $('#escribime').href = `mailto:${MAIL}?subject=${encodeURIComponent('Consulta por un sitio web')}`;
+else $('#contacto').remove();
 const pedido = s => `mailto:${MAIL}?subject=${encodeURIComponent('Quiero un sitio como ' + s.nom.split(' · ')[0])}`;
 
 $('#filtros').addEventListener('click', ev => {
@@ -265,7 +269,7 @@ function pintar(){
         <div class="tags">${s.tags.map(t => `<span class="tag">${t}</span>`).join('')}</div>
         <div class="acciones">
           <a class="btn" href="${s.slug}/">Ver el sitio</a>
-          <a class="pedir" href="${pedido(s)}">Quiero uno así</a>
+          ${MAIL ? `<a class="pedir" href="${pedido(s)}">Quiero uno así</a>` : ''}
         </div>
       </div>
     </article>`).join('');

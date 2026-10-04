@@ -8,14 +8,22 @@ sitios/index.html), así un sitio nuevo entra en la ronda con solo volver a corr
 
 Correrlo dos veces no cambia nada la segunda.
 
-Uso:  py -3 tools/cinta.py
+Uso:  py -3 tools/cinta.py                      (El taller: sin botón de contacto)
+      py -3 tools/cinta.py --mail=x@y --raiz=DIR (una copia, por ej. una vitrina, con su mail)
 """
 import io, os, re, sys
 from urllib.parse import quote
 
-RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+def _opcion(nombre, defecto):
+    pre = '--%s=' % nombre
+    return next((a[len(pre):] for a in sys.argv[1:] if a.startswith(pre)), defecto)
+
+
+RAIZ = _opcion('raiz', os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 PORTADA = os.path.join(RAIZ, 'sitios', 'index.html')
-MAIL = 'nass.ia9000@gmail.com'
+# Vacío = sin el botón "Quiero uno así". El taller no lleva contacto; las vitrinas pasan el suyo.
+MAIL = _opcion('mail', '')
 
 INICIO = '<!-- cinta del portfolio: la genera tools/cinta.py, no editar a mano -->'
 FIN = '<!-- /cinta del portfolio -->'
@@ -68,16 +76,18 @@ def sitios():
 
 def bloque(nombre, sig_slug, sig_nombre):
     asunto = quote('Quiero un sitio como ' + nombre)
+    pedir = ('  <a class="cinta-pedir" href="mailto:%s?subject=%s">Quiero uno así</a>\n' % (MAIL, asunto)
+             if MAIL else '')
     return (
         INICIO + '\n'
         '<div class="cinta-portfolio" role="navigation" aria-label="Portfolio">\n'
         '  <a class="cinta-volver" href="/sitios/"><span aria-hidden="true">←</span> '
         '<span class="largo">Ver todos los sitios</span><span class="corto">Sitios</span></a>\n'
         '  <a class="cinta-sig" href="/sitios/%s/" aria-label="Siguiente sitio: %s" title="Siguiente: %s">'
-        'Siguiente <span aria-hidden="true">→</span></a>\n'
-        '  <a class="cinta-pedir" href="mailto:%s?subject=%s">Quiero uno así</a>\n'
+        'Siguiente <span aria-hidden="true">→</span></a>\n' % (sig_slug, sig_nombre, sig_nombre)
+        + pedir +
         '</div>\n'
-        '<style>%s</style>\n' % (sig_slug, sig_nombre, sig_nombre, MAIL, asunto, CSS)
+        '<style>%s</style>\n' % CSS
         + FIN)
 
 
