@@ -67,7 +67,7 @@ def main():
     dr = ImageDraw.Draw(lienzo)
     titulo = ImageFont.truetype(os.path.join(FUENTES, 'segoeuib.ttf'), 76)
     bajada = ImageFont.truetype(os.path.join(FUENTES, 'segoeui.ttf'), 32)
-    dr.text((margen + 4, H - 170), 'El taller de Nico', font=titulo, fill=(236, 242, 247))
+    dr.text((margen + 4, H - 170), 'Mi taller', font=titulo, fill=(236, 242, 247))
     dr.text((margen + 6, H - 76), 'Apps, juegos y sitios web que se pueden probar ahora',
             font=bajada, fill=(150, 165, 178))
     # una raya del color de acento del tema neon, para que no sea solo texto gris

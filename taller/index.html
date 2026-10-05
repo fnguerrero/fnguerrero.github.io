@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>El taller de Nico</title>
+<title>Mi taller</title>
 <meta name="description" content="Herramientas, apps y juegos que construyo con IA: qué hace cada uno y cuáles se pueden probar ahora.">
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -15,7 +15,7 @@
 <meta name="theme-color" content="#0B0F14">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://fnguerrero.github.io/taller/">
-<meta property="og:title" content="El taller de Nico">
+<meta property="og:title" content="Mi taller">
 <meta property="og:description" content="Herramientas, apps, juegos y sitios web propios: qué hace cada uno y cuáles se pueden probar ahora.">
 <meta property="og:image" content="https://fnguerrero.github.io/img/taller-compartir.jpg">
 <meta property="og:image:width" content="1200">
@@ -23,7 +23,7 @@
 <meta property="og:image:alt" content="Portadas de apps, juegos y sitios web del taller">
 <meta property="og:locale" content="es_AR">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="El taller de Nico">
+<meta name="twitter:title" content="Mi taller">
 <meta name="twitter:description" content="Herramientas, apps, juegos y sitios web propios: qué hace cada uno y cuáles se pueden probar ahora.">
 <meta name="twitter:image" content="https://fnguerrero.github.io/img/taller-compartir.jpg">
 </head>
@@ -77,10 +77,9 @@ function datosEstructurados(grupos) {
   s.textContent = JSON.stringify({
     "@context": "https://schema.org",
     "@type": "CollectionPage",
-    name: "El taller de Nico",
+    name: "Mi taller",
     url: "https://fnguerrero.github.io/taller/",
     inLanguage: "es-AR",
-    author: {"@type": "Person", name: "Nico Guerrero", url: "https://fnguerrero.github.io/taller/"},
     mainEntity: {"@type": "ItemList", numberOfItems: items.length, itemListElement: items}
   });
   document.head.appendChild(s);
