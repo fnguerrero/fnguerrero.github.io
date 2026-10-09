@@ -20,7 +20,7 @@ import subprocess
 import sys
 
 BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-APP = os.path.join(os.path.dirname(BASE), "Paid")
+APP = os.path.join(os.path.dirname(os.path.dirname(BASE)), "Apps", "Paid")
 DESTINO = os.path.join(BASE, "paid")
 
 

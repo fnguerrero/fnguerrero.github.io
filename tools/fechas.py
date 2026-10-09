@@ -18,11 +18,21 @@ import re
 import subprocess
 
 BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-RAIZ = os.path.dirname(BASE)
+RAIZ = os.path.dirname(os.path.dirname(BASE))
+# Los proyectos viven un nivel abajo, en su carpeta de grupo.
+GRUPOS = ("Apps", "Juegos", "Emprendimientos", "Personal", "_archivo")
 
 # Carpetas que no son proyectos.
-SALTEAR = {"_archivo", "_backups", "_tools", "Archivos", "Iconos", "Pruebas", "Pendrive",
+SALTEAR = {"_backups", "_tools", "Archivos", "Iconos", "Pruebas", "Pendrive",
            "Nueva carpeta", "Seguridad", "Cerca"}
+
+
+def carpetas_de_proyectos():
+    for grupo in GRUPOS:
+        base = os.path.join(RAIZ, grupo)
+        if os.path.isdir(base):
+            for nombre in os.listdir(base):
+                yield nombre, os.path.join(base, nombre)
 
 
 def git(carpeta, *args):
@@ -46,8 +56,7 @@ def normalizar(texto):
 def fechas_del_disco():
     """Ultimo commit de cada repositorio local, indexado por repo y por nombre de carpeta."""
     salida = {}
-    for nombre in os.listdir(RAIZ):
-        carpeta = os.path.join(RAIZ, nombre)
+    for nombre, carpeta in carpetas_de_proyectos():
         if nombre in SALTEAR or nombre.startswith(".") or not os.path.isdir(carpeta):
             continue
         if not os.path.isdir(os.path.join(carpeta, ".git")):
