@@ -1,6 +1,6 @@
 {
   "_comentario": "Proyectos que se muestran en https://fnguerrero.github.io. Los privados NO estan aca: viven en privados.json, que no se publica. Para agregar o cambiar algo se edita este archivo y se pushea.",
-  "actualizado": "2026-09-09",
+  "actualizado": "2026-10-23",
   "grupos": [
     {
       "titulo": "Aplicaciones",
@@ -162,6 +162,89 @@
           ],
           "url": "https://fnguerrero.github.io/paid/",
           "tocado": "2026-08-29"
+        },
+        {
+          "nombre": "VendeloYa",
+          "sigla": "VY",
+          "color": "#FFE600",
+          "tag": "Publicar en MercadoLibre con fotos",
+          "que": "Sacás entre una y seis fotos de lo que querés vender y la publicación se arma sola: título, categoría, ficha técnica, descripción y un precio sugerido mirando lo que hay publicado. Queda para revisar antes de que salga.",
+          "chips": [
+            "IA",
+            "API de MercadoLibre",
+            "Cloudflare Workers"
+          ],
+          "tocado": "2026-10-21",
+          "img": "img/vendeloya.jpg?v=3ee06de8"
+        },
+        {
+          "nombre": "Machete",
+          "sigla": "Ma",
+          "color": "#3F6B52",
+          "tag": "Tus datos a mano, en Windows",
+          "que": "Vive al lado del reloj y se abre con un atajo: un clic y te copia el DNI, el CUIT, el domicilio, la patente o el número de afiliado. Lo delicado va en un baúl cifrado que se abre con un PIN.",
+          "chips": [
+            "Windows",
+            "C#",
+            "Baúl cifrado"
+          ],
+          "tocado": "2026-10-10",
+          "img": "img/machete.jpg?v=955e702b"
+        },
+        {
+          "nombre": "Heraldo",
+          "sigla": "He",
+          "color": "#1E7A8C",
+          "tag": "Avisos por Telegram y WhatsApp",
+          "que": "Avisa lo que se viene sin que haya que entrar a mirar: turnos médicos, facturas por vencer, visitas al departamento. Manda por Telegram; por WhatsApp espera un trámite.",
+          "chips": [
+            "Python",
+            "Telegram",
+            "Tareas programadas"
+          ],
+          "tocado": "2026-10-05",
+          "img": "img/heraldo.jpg?v=95b9ca7b"
+        },
+        {
+          "nombre": "Cartelera",
+          "sigla": "Ca",
+          "color": "#B3312E",
+          "tag": "Toda la cartelera de cine junta",
+          "que": "Junta las funciones de varias cadenas en una sola página, con idioma, formato y hasta butacas libres. Sirve para elegir película y horario sin abrir cuatro sitios.",
+          "chips": [
+            "Python",
+            "Sin API oficial",
+            "Una página"
+          ],
+          "tocado": "2026-10-14",
+          "img": "img/cartelera.jpg?v=6ac6d25a"
+        },
+        {
+          "nombre": "Remarca",
+          "sigla": "Re",
+          "color": "#2F5D8C",
+          "tag": "Listas de precios al día",
+          "que": "Para una distribuidora chica: lee las listas en Excel o PDF que manda cada proveedor, cada una con su formato, y deja los precios actualizados sin cargarlos a mano. En prueba, buscando el primer cliente con listas reales.",
+          "chips": [
+            "Windows",
+            "WPF",
+            "Excel y PDF"
+          ],
+          "tocado": "2026-10-21",
+          "img": "img/remarca.jpg?v=3d0c5b85"
+        },
+        {
+          "nombre": "Modo Broma",
+          "sigla": "MB",
+          "color": "#E0218A",
+          "tag": "Extensión para joder",
+          "que": "Cuatro bromas para el navegador de otro, cada una con su interruptor: letras gigantes, un gol a destiempo, palabras cambiadas y botones que se corren. Arranca siempre apagada, así no sorprende a quien no sabe.",
+          "chips": [
+            "Chrome, Edge y Firefox",
+            "Sin permisos de más"
+          ],
+          "tocado": "2026-10-21",
+          "img": "img/modo-broma.jpg?v=145c45eb"
         }
       ]
     },
@@ -179,7 +262,7 @@
             "Filtro por lo que hace"
           ],
           "url": "https://fnguerrero.github.io/sitios/",
-          "img": "img/el-apartado-completo.jpg?v=d1b228a1",
+          "img": "img/todos-los-sitios.jpg?v=73cce2d8",
           "tocado": "2026-09-06"
         },
         {
@@ -269,11 +352,8 @@
             "Obras sociales"
           ],
           "url": "https://fnguerrero.github.io/sitios/odontologia/",
-          "img": "img/min/sitio-odontologia.jpg?v=537cb0e2",
-          "tocado": "2026-09-06",
-          "imgs": [
-            "img/sitio-odontologia.jpg?v=359d8715"
-          ]
+          "img": "img/nordelta-odontologia.jpg?v=a161545c",
+          "tocado": "2026-09-06"
         },
         {
           "nombre": "Cabañas del Manso",
@@ -287,11 +367,8 @@
             "Rústico"
           ],
           "url": "https://fnguerrero.github.io/sitios/cabanias/",
-          "img": "img/min/sitio-cabanias.jpg?v=9a4cba26",
-          "tocado": "2026-09-06",
-          "imgs": [
-            "img/sitio-cabanias.jpg?v=94ec010b"
-          ]
+          "img": "img/cabanas-del-manso.jpg?v=a164c481",
+          "tocado": "2026-09-06"
         },
         {
           "nombre": "Bodega Alto Verde",
@@ -305,11 +382,8 @@
             "Etiquetas en CSS"
           ],
           "url": "https://fnguerrero.github.io/sitios/bodega/",
-          "img": "img/min/sitio-bodega.jpg?v=568bd2a0",
-          "tocado": "2026-09-06",
-          "imgs": [
-            "img/sitio-bodega.jpg?v=e8a4f94b"
-          ]
+          "img": "img/bodega-alto-verde.jpg?v=f83d9529",
+          "tocado": "2026-09-06"
         },
         {
           "nombre": "Mota Arquitectura",
@@ -323,11 +397,8 @@
             "Editorial"
           ],
           "url": "https://fnguerrero.github.io/sitios/arquitectura/",
-          "img": "img/min/sitio-arquitectura.jpg?v=e2a1095c",
-          "tocado": "2026-09-06",
-          "imgs": [
-            "img/sitio-arquitectura.jpg?v=37c0375b"
-          ]
+          "img": "img/mota-arquitectura.jpg?v=1eac4e36",
+          "tocado": "2026-09-06"
         },
         {
           "nombre": "Juli & Tomás",
@@ -341,11 +412,8 @@
             "Formulario que cambia"
           ],
           "url": "https://fnguerrero.github.io/sitios/casamiento/",
-          "img": "img/min/sitio-casamiento.jpg?v=396c6f39",
-          "tocado": "2026-09-06",
-          "imgs": [
-            "img/sitio-casamiento.jpg?v=834be1c9"
-          ]
+          "img": "img/juli-tomas.jpg?v=0acae884",
+          "tocado": "2026-09-06"
         },
         {
           "nombre": "El Fogón",
@@ -359,11 +427,8 @@
             "Abierto ahora"
           ],
           "url": "https://fnguerrero.github.io/sitios/rotiseria/",
-          "img": "img/min/sitio-rotiseria.jpg?v=244d287f",
-          "tocado": "2026-09-06",
-          "imgs": [
-            "img/sitio-rotiseria.jpg?v=9ba83b08"
-          ]
+          "img": "img/el-fogon.jpg?v=d48d2d06",
+          "tocado": "2026-09-06"
         },
         {
           "nombre": "Gráfica Sur",
@@ -377,11 +442,53 @@
             "Sin fotos"
           ],
           "url": "https://fnguerrero.github.io/sitios/grafica/",
-          "img": "img/min/sitio-grafica.jpg?v=0dcde199",
-          "tocado": "2026-09-06",
-          "imgs": [
-            "img/sitio-grafica.jpg?v=f2e25e8f"
-          ]
+          "img": "img/grafica-sur.jpg?v=95d30028",
+          "tocado": "2026-09-06"
+        },
+        {
+          "nombre": "Mercado Atalaya",
+          "sigla": "MA",
+          "color": "#1F7A4C",
+          "tag": "Pedidos del almacén",
+          "que": "Tienda de barrio con pedido online: se arma el carrito, se elige envío o retiro y el pedido llega listo para preparar. Está andando con pedidos reales.",
+          "chips": [
+            "Carrito",
+            "Envío o retiro",
+            "En uso"
+          ],
+          "url": "https://mercadoatalaya.pages.dev/",
+          "tocado": "2026-10-14",
+          "img": "img/mercado-atalaya.jpg?v=5ef69fc5"
+        },
+        {
+          "nombre": "Q.Q Decohogar",
+          "sigla": "QQ",
+          "color": "#8A5A2B",
+          "tag": "Muebles, con catálogo propio",
+          "que": "Sitio para una fábrica de muebles de melamina: catálogo con fotos, ficha de cada modelo y el paso a la compra. Trabajo real, hecho para reemplazar una tienda alquilada.",
+          "chips": [
+            "Catálogo",
+            "Ficha de producto",
+            "Trabajo real"
+          ],
+          "url": "https://qqdecohogar.pages.dev/",
+          "tocado": "2026-10-21",
+          "img": "img/q-q-decohogar.jpg?v=1861b396"
+        },
+        {
+          "nombre": "Q.Q Cotizador",
+          "sigla": "Qc",
+          "color": "#A8763C",
+          "tag": "Mueble a medida, precio en el momento",
+          "que": "Elegís medidas, terminación y extras, y el precio se arma solo mientras cambiás las opciones. El pedido sale por WhatsApp con todo el detalle, así no hay que preguntar nada para presupuestar.",
+          "chips": [
+            "Cotizador en vivo",
+            "Pedido por WhatsApp",
+            "Trabajo real"
+          ],
+          "url": "https://qq-cotizador.pages.dev/",
+          "tocado": "2026-10-21",
+          "img": "img/q-q-cotizador.jpg?v=a5fecda3"
         }
       ]
     },
@@ -539,7 +646,7 @@
           ],
           "url": "https://fnguerrero.github.io/el-segundo-de-mas/",
           "repo": "https://github.com/fnguerrero/el-segundo-de-mas",
-          "img": "img/min/el-segundo-de-mas.jpg?v=a6331849",
+          "img": "img/el-segundo-de-mas.jpg?v=b8f41a35",
           "imgs": [
             "img/el-segundo-de-mas.jpg?v=b8f41a35",
             "img/el-segundo-de-mas-2.jpg?v=342cc15d",
@@ -626,6 +733,36 @@
             "img/pac-man-3.jpg?v=c99468bf"
           ],
           "tocado": "2026-08-27"
+        },
+        {
+          "nombre": "Pimpam",
+          "sigla": "Pp",
+          "color": "#F0A736",
+          "tag": "Juegos con el nombre de cada chico",
+          "que": "Juegos para los más chicos que se arman a pedido: se elige qué juegos entran y con qué nombre, y sale un link propio para esa familia. Sin puntaje ni forma de perder.",
+          "chips": [
+            "Canvas",
+            "Autoservicio",
+            "Sin cuentas"
+          ],
+          "url": "https://pimpam.pages.dev/",
+          "tocado": "2026-10-21",
+          "img": "img/pimpam.jpg?v=b194d9b7"
+        },
+        {
+          "nombre": "Abrime",
+          "sigla": "Ab",
+          "color": "#C4345E",
+          "tag": "Un regalo que se juega",
+          "que": "En vez de mandar un mensaje, mandás un link: del otro lado hay un juego corto y, al final, lo que querías decir. Pensado para una pareja, y para armarlo en un rato.",
+          "chips": [
+            "HTML + JS puro",
+            "Un link",
+            "Sin instalar"
+          ],
+          "url": "https://abrime.pages.dev/juego/",
+          "tocado": "2026-10-21",
+          "img": "img/abrime.jpg?v=dbea0e76"
         }
       ]
     },
