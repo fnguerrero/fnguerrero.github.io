@@ -1,6 +1,6 @@
 {
   "_comentario": "Proyectos que se muestran en https://fnguerrero.github.io. Los privados NO estan aca: viven en privados.json, que no se publica. Para agregar o cambiar algo se edita este archivo y se pushea.",
-  "actualizado": "2026-10-23",
+  "actualizado": "2026-10-25",
   "grupos": [
     {
       "titulo": "Aplicaciones",
@@ -489,6 +489,36 @@
           "url": "https://qq-cotizador.pages.dev/",
           "tocado": "2026-10-21",
           "img": "img/q-q-cotizador.jpg?v=a5fecda3"
+        },
+        {
+          "nombre": "TuMercado",
+          "sigla": "TM",
+          "color": "#1B2545",
+          "tag": "Tu tienda, armada en cinco minutos",
+          "que": "Cada comercio arma su propia tienda desde el celular: carga los productos, elige el color y la forma de entrega, y la prueba sin pagar. Los clientes piden por WhatsApp y la lista de compras se arma sola.",
+          "chips": [
+            "Autoservicio",
+            "Pedido por WhatsApp",
+            "Se prueba gratis"
+          ],
+          "url": "https://tumercado.pages.dev/",
+          "tocado": "2026-10-25",
+          "img": "img/tumercado.jpg?v=11c04957"
+        },
+        {
+          "nombre": "ATuMedida",
+          "sigla": "AM",
+          "color": "#2F6B57",
+          "tag": "Mueble a medida, probado en tu pared",
+          "que": "El cliente diseña el mueble eligiendo tipo, medidas y terminación, lo ve sobre una foto de su propia pared y manda el pedido por WhatsApp. Un solo motor para varias mueblerías: sumar una es cambiar un archivo.",
+          "chips": [
+            "Diseño en vivo",
+            "Sobre tu pared",
+            "Pedido por WhatsApp"
+          ],
+          "url": "https://amedida-demo.pages.dev/",
+          "tocado": "2026-10-25",
+          "img": "img/atumedida.jpg?v=f1c6709f"
         }
       ]
     },
@@ -646,7 +676,7 @@
           ],
           "url": "https://fnguerrero.github.io/el-segundo-de-mas/",
           "repo": "https://github.com/fnguerrero/el-segundo-de-mas",
-          "img": "img/el-segundo-de-mas.jpg?v=b8f41a35",
+          "img": "img/min/el-segundo-de-mas.jpg?v=a6331849",
           "imgs": [
             "img/el-segundo-de-mas.jpg?v=b8f41a35",
             "img/el-segundo-de-mas-2.jpg?v=342cc15d",
