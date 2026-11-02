@@ -56,6 +56,11 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://fnguerrero.github.io/sitios/mecanica/</loc>
+    <lastmod>2026-11-02</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://fnguerrero.github.io/sitios/odontologia/</loc>
     <lastmod>2026-11-02</lastmod>
     <priority>0.7</priority>
@@ -67,11 +72,6 @@
   </url>
   <url>
     <loc>https://fnguerrero.github.io/sitios/rotiseria/</loc>
-    <lastmod>2026-11-02</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://fnguerrero.github.io/sitios/taller/</loc>
     <lastmod>2026-11-02</lastmod>
     <priority>0.7</priority>
   </url>
