@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Taller Illia · Mecánica integral</title>
+<meta name="description" content="Taller mecánico en Villa Maipú, San Martín. Service, frenos, embrague y diagnóstico con scanner. Pedí turno por WhatsApp y te decimos el presupuesto antes de tocar nada.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Barlow+Condensed:wght@600;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --fondo:#F3F1EC; --papel:#FFFFFF; --tinta:#1B1B1F; --gris:#6B6B72; --linea:#E1DED6;
+    --naranja:#E8590C; --naranja-osc:#C44A08; --verde:#1E9E5A; --rojo:#C8322B; --negro:#15151A;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--fondo);color:var(--tinta);font:400 17px/1.6 Barlow,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  img{max-width:100%;display:block}
+  a{color:inherit}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+  .cond{font-family:"Barlow Condensed",Impact,sans-serif;font-weight:800;text-transform:uppercase;letter-spacing:.01em;line-height:.95}
+
+  nav{position:sticky;top:0;z-index:50;background:rgba(243,241,236,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--linea)}
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:68px;gap:14px}
+  .marca{font-family:"Barlow Condensed",sans-serif;font-weight:800;font-size:26px;text-transform:uppercase;letter-spacing:.02em}
+  .marca i{color:var(--naranja);font-style:normal}
+  .links{display:flex;gap:24px;font-size:14px;font-weight:600;letter-spacing:.06em;text-transform:uppercase}
+  .links a{text-decoration:none;color:var(--gris)}
+  .links a:hover{color:var(--tinta)}
+  .btn{display:inline-flex;align-items:center;gap:10px;background:var(--naranja);color:#fff;text-decoration:none;
+       padding:13px 22px;border-radius:8px;font:600 15px/1 Barlow;border:0;cursor:pointer;transition:background .2s,transform .2s;white-space:nowrap}
+  .btn:hover{background:var(--naranja-osc);transform:translateY(-1px)}
+  .btn.wsp{background:#25D366}
+  .btn.wsp:hover{background:#1DB954}
+  .btn.hueca{background:transparent;color:var(--tinta);border:1.5px solid var(--tinta)}
+  .btn.hueca:hover{background:var(--tinta);color:#fff}
+  .btn svg{width:18px;height:18px;fill:currentColor}
+
+  header{position:relative;color:#fff;background:var(--negro);overflow:hidden}
+  header::before{content:"";position:absolute;inset:0;
+    background:url("https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=1800&q=80") center/cover;
+    filter:brightness(.42) saturate(.7)}
+  header::after{content:"";position:absolute;inset:0;background:linear-gradient(100deg,rgba(21,21,26,.92) 30%,rgba(21,21,26,.35))}
+  .hero{position:relative;z-index:2;padding:96px 0 84px;max-width:640px}
+  .hero .tag{display:inline-block;border:1px solid rgba(255,255,255,.4);font-size:12px;letter-spacing:.2em;text-transform:uppercase;padding:7px 12px;margin-bottom:26px;color:rgba(255,255,255,.85)}
+  .hero h1{font-size:clamp(52px,9vw,104px)}
+  .hero h1 span{color:var(--naranja)}
+  .hero p.bajada{color:rgba(255,255,255,.8);font-size:19px;max-width:46ch;margin:24px 0 30px}
+  .acciones{display:flex;gap:12px;flex-wrap:wrap}
+  .abierto{display:inline-flex;align-items:center;gap:10px;margin-top:28px;font-size:15px;color:rgba(255,255,255,.85)}
+  .punto{width:10px;height:10px;border-radius:50%;background:var(--verde);box-shadow:0 0 0 4px rgba(30,158,90,.25)}
+  .punto.cerrado{background:var(--rojo);box-shadow:0 0 0 4px rgba(200,50,43,.25)}
+
+  .datos{background:var(--naranja);color:#fff}
+  .datos .wrap{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;padding:26px 24px}
+  .dato b{display:block;font-family:"Barlow Condensed",sans-serif;font-size:38px;font-weight:800;line-height:1}
+  .dato span{font-size:14px;opacity:.9}
+
+  section{padding:88px 0}
+  .eyebrow{color:var(--naranja);font-size:12.5px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;margin-bottom:12px}
+  h2{font-size:clamp(36px,5.5vw,60px);margin-bottom:14px}
+  .lead{color:var(--gris);font-size:18px;max-width:56ch}
+
+  .servicios{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:44px}
+  .serv{background:var(--papel);border:1px solid var(--linea);border-radius:12px;padding:26px 24px 22px;display:flex;flex-direction:column;gap:10px;transition:transform .2s,box-shadow .2s}
+  .serv:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(27,27,31,.08)}
+  .serv .ic{width:44px;height:44px;border-radius:10px;background:#FBE9DF;color:var(--naranja);display:grid;place-items:center}
+  .serv .ic svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+  .serv h3{font-family:"Barlow Condensed",sans-serif;font-size:24px;font-weight:800;text-transform:uppercase}
+  .serv p{color:var(--gris);font-size:15.5px;flex:1}
+  .serv .desde{font-weight:600;font-size:15px}
+  .serv .desde small{color:var(--gris);font-weight:400}
+
+  .turno{background:var(--negro);color:#fff}
+  .turno .cols{display:grid;grid-template-columns:1fr 1.1fr;gap:56px;align-items:start}
+  .turno .lead{color:rgba(255,255,255,.72)}
+  .pasos{margin-top:30px;display:grid;gap:18px}
+  .paso{display:flex;gap:16px;align-items:flex-start}
+  .paso b{flex:none;width:34px;height:34px;border-radius:50%;background:var(--naranja);display:grid;place-items:center;font-family:"Barlow Condensed",sans-serif;font-size:19px}
+  .paso p{color:rgba(255,255,255,.8);font-size:15.5px}
+  form{background:#fff;color:var(--tinta);border-radius:14px;padding:28px}
+  form h3{font-family:"Barlow Condensed",sans-serif;font-size:28px;font-weight:800;text-transform:uppercase;margin-bottom:18px}
+  .campos{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .campos .ancho{grid-column:1/-1}
+  label{display:block;font-size:12.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--gris);margin-bottom:6px}
+  input,select,textarea{width:100%;border:1.5px solid var(--linea);border-radius:8px;padding:12px 13px;font:inherit;font-size:16px;background:#FAFAF8;color:var(--tinta)}
+  input:focus,select:focus,textarea:focus{outline:2px solid var(--naranja);outline-offset:1px;border-color:transparent}
+  textarea{min-height:84px;resize:vertical}
+  .franjas{display:flex;gap:8px}
+  .franjas button{flex:1;border:1.5px solid var(--linea);background:#FAFAF8;border-radius:8px;padding:12px;font:600 15px Barlow;cursor:pointer}
+  .franjas button[aria-pressed=true]{border-color:var(--naranja);background:#FBE9DF;color:var(--naranja-osc)}
+  .mensaje{display:none;margin-top:16px;background:#F3F1EC;border-left:4px solid var(--naranja);padding:14px 16px;white-space:pre-wrap;font-size:15px;border-radius:6px}
+  .mensaje.ver{display:block}
+  .nota{font-size:13.5px;color:var(--gris);margin-top:12px}
+
+  .donde .cols{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+  .horas{background:var(--papel);border:1px solid var(--linea);border-radius:12px;padding:24px;display:grid;gap:10px}
+  .horas div{display:flex;justify-content:space-between;border-bottom:1px dashed var(--linea);padding:8px 0;font-size:16px}
+  .horas div:last-child{border:0}
+  .horas .hoy{color:var(--naranja-osc);font-weight:600}
+  .plano{background:var(--papel);border:1px solid var(--linea);border-radius:12px;padding:24px}
+  .plano svg{width:100%;height:auto;display:block;margin-top:10px}
+  .plano p{font-size:15.5px;color:var(--gris)}
+
+  details{background:var(--papel);border:1px solid var(--linea);border-radius:10px;padding:0 20px;margin-top:10px}
+  summary{cursor:pointer;padding:18px 0;font-weight:600;font-size:17px;list-style:none;display:flex;justify-content:space-between;align-items:center}
+  summary::after{content:"+";font-family:"Barlow Condensed",sans-serif;font-size:26px;color:var(--naranja)}
+  details[open] summary::after{content:"–"}
+  details p{color:var(--gris);padding-bottom:18px;font-size:15.5px}
+
+  footer{padding:40px 0;border-top:1px solid var(--linea);font-size:14px;color:var(--gris);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+
+  @media(max-width:920px){
+    .servicios{grid-template-columns:1fr 1fr}
+    .turno .cols,.donde .cols{grid-template-columns:1fr;gap:32px}
+  }
+  @media(max-width:640px){
+    .links{display:none}
+    .hero{padding:72px 0 60px}
+    .datos .wrap{grid-template-columns:1fr;gap:14px}
+    .servicios{grid-template-columns:1fr}
+    .campos{grid-template-columns:1fr}
+    section{padding:64px 0}
+  }
+</style>
+<meta property="og:type" content="website">
+<meta property="og:title" content="Taller Illia · Mecánica integral">
+<meta property="og:description" content="Taller mecánico en Villa Maipú, San Martín. Pedí turno por WhatsApp y te decimos el presupuesto antes de tocar nada.">
+<meta property="og:url" content="https://fnguerrero.github.io/sitios/taller/">
+<meta property="og:image" content="https://fnguerrero.github.io/img/sitio-taller.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Taller Illia · Mecánica integral">
+<meta name="twitter:description" content="Taller mecánico en Villa Maipú, San Martín. Pedí turno por WhatsApp y te decimos el presupuesto antes de tocar nada.">
+<meta name="twitter:image" content="https://fnguerrero.github.io/img/sitio-taller.jpg">
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="marca">Taller <i>Illia</i></div>
+    <div class="links">
+      <a href="#servicios">Servicios</a>
+      <a href="#turno">Turnos</a>
+      <a href="#donde">Dónde</a>
+    </div>
+    <a class="btn wsp" href="#turno"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.6.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 2.9 2.9 0 0 0-.9 2.2 5 5 0 0 0 1.1 2.7 11.4 11.4 0 0 0 4.4 3.9c1.6.7 2.2.7 3 .6a2.6 2.6 0 0 0 1.7-1.2 2.1 2.1 0 0 0 .1-1.2c0-.1-.2-.2-.4-.3z"/></svg>WhatsApp</a>
+  </div>
+</nav>
+
+<header>
+  <div class="wrap">
+    <div class="hero">
+      <span class="tag">Villa Maipú · San Martín · desde 2009</span>
+      <h1 class="cond">Tu auto,<br>listo <span>el mismo día</span></h1>
+      <p class="bajada">Service, frenos, embrague y diagnóstico con scanner. Te pasamos el presupuesto por WhatsApp antes de tocar nada, y si no lo hacés, no se cobra la revisión.</p>
+      <div class="acciones">
+        <a class="btn" href="#turno">Pedir turno</a>
+        <a class="btn hueca" style="color:#fff;border-color:rgba(255,255,255,.5)" href="#servicios">Ver precios</a>
+      </div>
+      <p class="abierto"><span class="punto" id="luz"></span> <span id="estado">Cargando…</span></p>
+    </div>
+  </div>
+</header>
+
+<div class="datos">
+  <div class="wrap">
+    <div class="dato"><b>15 años</b><span>en la misma esquina de Villa Maipú</span></div>
+    <div class="dato"><b>4 mecánicos</b><span>y un scanner para todas las marcas</span></div>
+    <div class="dato"><b>$0</b><span>la revisión, si no hacés el arreglo</span></div>
+  </div>
+</div>
+
+<section id="servicios">
+  <div class="wrap">
+    <p class="eyebrow">Qué hacemos</p>
+    <h2 class="cond">Servicios y precios de referencia</h2>
+    <p class="lead">Los precios son «desde», para un auto chico, con mano de obra incluida. El repuesto lo elegís vos: original o alternativo, te mostramos la diferencia.</p>
+    <div class="servicios" id="lista-servicios"></div>
+  </div>
+</section>
+
+<section class="turno" id="turno">
+  <div class="wrap cols">
+    <div>
+      <p class="eyebrow">Turnos</p>
+      <h2 class="cond">Pedí turno sin llamar</h2>
+      <p class="lead">Completás esto y te queda el mensaje de WhatsApp armado. Te contestamos en el día con el horario confirmado y el presupuesto estimado.</p>
+      <div class="pasos">
+        <div class="paso"><b>1</b><p>Elegís el servicio y el día que te viene bien. Si no sabés qué tiene el auto, poné «Diagnóstico».</p></div>
+        <div class="paso"><b>2</b><p>Te confirmamos por WhatsApp. Si hay que pedir un repuesto, te decimos cuánto tarda.</p></div>
+        <div class="paso"><b>3</b><p>Traés el auto a la mañana y, salvo embrague o distribución, lo retirás a la tarde.</p></div>
+      </div>
+    </div>
+    <form id="form" autocomplete="off">
+      <h3>Tu turno</h3>
+      <div class="campos">
+        <div class="ancho"><label for="serv">Servicio</label><select id="serv"></select></div>
+        <div><label for="auto">Auto</label><input id="auto" placeholder="Marca y modelo"></div>
+        <div><label for="anio">Año</label><input id="anio" inputmode="numeric" placeholder="2015"></div>
+        <div><label for="dia">Día</label><select id="dia"></select></div>
+        <div><label>Franja</label>
+          <div class="franjas"><button type="button" data-franja="mañana" aria-pressed="true">Mañana</button><button type="button" data-franja="tarde" aria-pressed="false">Tarde</button></div>
+        </div>
+        <div><label for="nom">Tu nombre</label><input id="nom" placeholder="Cómo te anotamos"></div>
+        <div><label for="tel">Tu WhatsApp</label><input id="tel" type="tel" placeholder="11 5555 5555"></div>
+        <div class="ancho"><label for="obs">Qué le pasa (opcional)</label><textarea id="obs" placeholder="Hace un ruido al frenar, se prende la luz del motor…"></textarea></div>
+      </div>
+      <button class="btn wsp" type="submit" style="width:100%;justify-content:center;margin-top:18px">Armar el mensaje de WhatsApp</button>
+      <div class="mensaje" id="mensaje"></div>
+      <p class="nota">No guardamos nada: el mensaje te queda a vos y lo mandás desde tu WhatsApp.</p>
+    </form>
+  </div>
+</section>
+
+<section class="donde" id="donde">
+  <div class="wrap">
+    <p class="eyebrow">Dónde y cuándo</p>
+    <h2 class="cond">Av. Illia 3400, Villa Maipú</h2>
+    <p class="lead">A dos cuadras de la estación Villa Maipú del Mitre. Entrada para autos por el portón naranja; si está cerrado, tocá timbre.</p>
+    <div class="cols" style="margin-top:36px">
+      <div class="horas" id="horas"></div>
+      <div class="plano">
+        <p><b>Cómo llegar.</b> Desde la Av. San Martín, doblás en Illia hacia la estación: estamos sobre la mano derecha, antes de la vía.</p>
+        <svg viewBox="0 0 520 300" aria-hidden="true">
+          <rect width="520" height="300" fill="#F3F1EC" rx="10"/>
+          <path d="M0 150 H520" stroke="#D8D4CB" stroke-width="34"/>
+          <path d="M0 150 H520" stroke="#fff" stroke-width="2" stroke-dasharray="14 12"/>
+          <path d="M120 0 V300" stroke="#D8D4CB" stroke-width="26"/>
+          <path d="M400 0 V300" stroke="#D8D4CB" stroke-width="26"/>
+          <path d="M470 0 V300" stroke="#8F8A80" stroke-width="6"/>
+          <path d="M466 0 V300 M474 0 V300" stroke="#F3F1EC" stroke-width="1.5" stroke-dasharray="6 10"/>
+          <text x="14" y="140" font-family="Barlow,sans-serif" font-size="14" fill="#6B6B72">Av. Illia</text>
+          <text x="128" y="24" font-family="Barlow,sans-serif" font-size="13" fill="#6B6B72">Av. San Martín</text>
+          <text x="482" y="24" font-family="Barlow,sans-serif" font-size="13" fill="#6B6B72" transform="rotate(90 482 24)">vías del Mitre</text>
+          <rect x="300" y="166" width="70" height="46" rx="6" fill="#E8590C"/>
+          <text x="335" y="195" text-anchor="middle" font-family="Barlow Condensed,sans-serif" font-weight="800" font-size="16" fill="#fff">TALLER</text>
+          <circle cx="440" cy="130" r="9" fill="#1B1B1F"/>
+          <text x="440" y="112" text-anchor="middle" font-family="Barlow,sans-serif" font-size="12" fill="#1B1B1F">Estación</text>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="preguntas" style="padding-top:0">
+  <div class="wrap">
+    <p class="eyebrow">Antes de venir</p>
+    <h2 class="cond">Lo que siempre preguntan</h2>
+    <details><summary>¿Cobran la revisión?</summary><p>No, si después hacés el arreglo con nosotros. Si solo querés el diagnóstico con scanner para llevarte el informe, son $12.000.</p></details>
+    <details><summary>¿Tengo que dejar el auto todo el día?</summary><p>Para service, frenos y alineación, no: lo traés a la mañana y lo retirás a la tarde. Embrague y distribución llevan uno o dos días según el repuesto.</p></details>
+    <details><summary>¿Trabajan con repuestos originales?</summary><p>Con los dos. Te pasamos el presupuesto con original y con alternativo de primera marca, y elegís vos. Siempre te devolvemos la pieza que sacamos.</p></details>
+    <details><summary>¿Puedo pagar con tarjeta?</summary><p>Sí, débito, crédito en hasta 3 cuotas y transferencia. La factura va a tu nombre o al de tu empresa.</p></details>
+  </div>
+</section>
+
+<div class="wrap">
+  <footer>
+    <span>© 2026 Taller Illia · Av. Illia 3400, Villa Maipú, San Martín</span>
+    <span>11 6000 1234 · Lun a vie 8 a 18 · Sáb 8 a 13</span>
+  </footer>
+</div>
+
+<script>
+const SERVICIOS = [
+  {n:'Service completo', d:'Aceite, filtros, revisión de niveles, frenos y luces. Con el sello en la libreta.', p:65000, ic:'M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8'},
+  {n:'Frenos', d:'Pastillas, discos y purgado. Te mostramos cuánto les queda antes de cambiarlos.', p:48000, ic:'M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18zM12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8z'},
+  {n:'Embrague', d:'Kit completo, con el volante revisado. Uno o dos días según el repuesto.', p:180000, ic:'M3 12h4l3-8 4 16 3-8h4'},
+  {n:'Distribución', d:'Correa o cadena, tensor y bomba de agua. Antes de que se corte.', p:150000, ic:'M12 3v18M3 12h18M5.6 5.6l12.8 12.8M18.4 5.6 5.6 18.4'},
+  {n:'Diagnóstico con scanner', d:'Lectura de fallas de todas las marcas. Te llevás el informe aunque no hagas el arreglo.', p:12000, ic:'M4 6h16v10H4zM8 20h8M12 16v4'},
+  {n:'Tren delantero y alineación', d:'Amortiguadores, bujes, rótulas y alineación computarizada.', p:38000, ic:'M12 2 2 7v10l10 5 10-5V7zM12 12v10M2 7l10 5 10-5'},
+];
+const $ = s => document.querySelector(s);
+const plata = n => '$' + n.toLocaleString('es-AR');
+
+$('#lista-servicios').innerHTML = SERVICIOS.map(s => `
+  <article class="serv">
+    <div class="ic"><svg viewBox="0 0 24 24"><path d="${s.ic}"/></svg></div>
+    <h3>${s.n}</h3><p>${s.d}</p>
+    <span class="desde">${plata(s.p)} <small>desde, con mano de obra</small></span>
+  </article>`).join('');
+$('#serv').innerHTML = SERVICIOS.map(s => `<option>${s.n}</option>`).join('') + '<option>Otra cosa / no sé qué tiene</option>';
+
+/* Lunes a viernes de 8 a 18, sábados de 8 a 13. */
+const HORARIO = {1:[8,18],2:[8,18],3:[8,18],4:[8,18],5:[8,18],6:[8,13]};
+const DIAS = ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'];
+function abierto(){
+  const a = new Date(), h = HORARIO[a.getDay()];
+  if (!h) return false;
+  const min = a.getHours() * 60 + a.getMinutes();
+  return min >= h[0] * 60 && min < h[1] * 60;
+}
+(function estado(){
+  const si = abierto();
+  $('#luz').classList.toggle('cerrado', !si);
+  $('#estado').textContent = si ? 'Abierto ahora — podés traer el auto' : 'Cerrado en este momento — pedí turno igual, te contestamos mañana';
+})();
+$('#horas').innerHTML = DIAS.map((d, i) => {
+  const h = HORARIO[i], hoy = new Date().getDay() === i;
+  return `<div class="${hoy ? 'hoy' : ''}"><span>${d}${hoy ? ' (hoy)' : ''}</span><span>${h ? `${h[0]} a ${h[1]} h` : 'Cerrado'}</span></div>`;
+}).join('');
+
+/* Los próximos días hábiles, desde mañana. */
+(function dias(){
+  const ops = [], f = new Date();
+  while (ops.length < 8) {
+    f.setDate(f.getDate() + 1);
+    if (!HORARIO[f.getDay()]) continue;
+    ops.push(`<option>${DIAS[f.getDay()]} ${f.getDate()}/${f.getMonth() + 1}</option>`);
+  }
+  $('#dia').innerHTML = ops.join('');
+})();
+
+let franja = 'mañana';
+document.querySelector('.franjas').addEventListener('click', ev => {
+  const b = ev.target.closest('[data-franja]'); if (!b) return;
+  document.querySelectorAll('.franjas button').forEach(x => x.setAttribute('aria-pressed', 'false'));
+  b.setAttribute('aria-pressed', 'true');
+  franja = b.dataset.franja;
+});
+
+$('#form').addEventListener('submit', ev => {
+  ev.preventDefault();
+  const msj = $('#mensaje'), nom = $('#nom').value.trim(), tel = $('#tel').value.trim(), auto = $('#auto').value.trim();
+  if (!nom || !tel) { msj.textContent = 'Necesitamos tu nombre y un WhatsApp para confirmarte el turno.'; msj.classList.add('ver'); return; }
+  if (!auto) { msj.textContent = 'Decinos qué auto es, así sabemos qué repuesto pedir.'; msj.classList.add('ver'); return; }
+  const anio = $('#anio').value.trim(), obs = $('#obs').value.trim();
+  msj.textContent =
+    `Hola Taller Illia, quiero un turno:\n\n` +
+    `• ${$('#serv').value}\n• ${auto}${anio ? ' ' + anio : ''}\n• ${$('#dia').value}, a la ${franja}\n` +
+    (obs ? `• ${obs}\n` : '') +
+    `\nSoy ${nom}, mi WhatsApp es ${tel}.`;
+  msj.classList.add('ver');
+  ev.target.querySelector('[type=submit]').textContent = 'Mensaje listo para enviar';
+});
+</script>
+
+<!-- cinta del portfolio: la genera tools/cinta.py, no editar a mano -->
+<div class="cinta-portfolio" role="navigation" aria-label="Portfolio">
+  <a class="cinta-volver" href="/sitios/"><span aria-hidden="true">←</span> <span class="largo">Ver todos los sitios</span><span class="corto">Sitios</span></a>
+  <a class="cinta-sig" href="/sitios/cafe/" aria-label="Siguiente sitio: Origen" title="Siguiente: Origen">Siguiente <span aria-hidden="true">→</span></a>
+</div>
+<style>
+  /* Va por debajo de carrito, visor y ventanas de cada sitio (90) y por encima de sus
+     barras de navegación (50-60): antes, con 9999, tapaba el botón de pagar. */
+  /* Es un div y no un <nav>, y fija top/right/ancho/alto: varios sitios estilan su propio
+     nav (fixed, inset 0 0 auto) y la cinta heredaba eso y se estiraba a todo el ancho. */
+  .cinta-portfolio{position:fixed;left:16px;bottom:16px;top:auto;right:auto;z-index:80;display:flex;
+    width:auto;height:auto;margin:0;padding:0;
+    background:rgba(18,18,20,.9);border:1px solid rgba(244,244,242,.18);border-radius:100px;
+    backdrop-filter:blur(8px);box-shadow:0 6px 22px rgba(0,0,0,.28);overflow:hidden;
+    font:500 14px/1 system-ui,-apple-system,"Segoe UI",sans-serif}
+  .cinta-portfolio a{display:inline-flex;align-items:center;gap:7px;padding:12px 15px;margin:0;
+    color:#F4F4F2;text-decoration:none;white-space:nowrap;transition:background .2s;
+    letter-spacing:normal;text-transform:none;font:inherit}
+  .cinta-portfolio a + a{border-left:1px solid rgba(244,244,242,.16)}
+  .cinta-portfolio a:hover{background:rgba(244,244,242,.1)}
+  .cinta-portfolio a:focus-visible{outline:2px solid #7FA9DC;outline-offset:-3px}
+  .cinta-portfolio .cinta-pedir{background:#F4F4F2;color:#121214}
+  .cinta-portfolio .cinta-pedir:hover{background:#fff}
+  .cinta-portfolio .corto{display:none}
+  @media(max-width:520px){
+    .cinta-portfolio{left:12px;bottom:12px;font-size:13px}
+    .cinta-portfolio a{padding:11px 12px}
+    .cinta-portfolio .largo{display:none}
+    .cinta-portfolio .corto{display:inline}
+  }
+  @media print{.cinta-portfolio{display:none}}
+
+  /* Quien pidió menos movimiento en el sistema no ve deslizarse nada. Se acorta en vez de
+     sacarse: lo que aparece al hacer scroll igual llega a su estado final. */
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto!important}
+    *,*::before,*::after{animation-duration:.01ms!important;animation-delay:0s!important;
+      animation-iteration-count:1!important;transition-duration:.01ms!important;
+      transition-delay:0s!important}
+  }
+</style>
+<!-- /cinta del portfolio -->
+</body>
+</html>

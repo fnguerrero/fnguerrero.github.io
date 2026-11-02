@@ -1,6 +1,6 @@
 {
   "_comentario": "Proyectos que se muestran en https://fnguerrero.github.io. Los privados NO estan aca: viven en privados.json, que no se publica. Para agregar o cambiar algo se edita este archivo y se pushea.",
-  "actualizado": "2026-10-25",
+  "actualizado": "2026-11-02",
   "grupos": [
     {
       "titulo": "Aplicaciones",
@@ -444,6 +444,21 @@
           "url": "https://fnguerrero.github.io/sitios/grafica/",
           "img": "img/grafica-sur.jpg?v=95d30028",
           "tocado": "2026-09-06"
+        },
+        {
+          "nombre": "Taller Illia",
+          "sigla": "Ti",
+          "color": "#E8590C",
+          "tag": "Turnos por WhatsApp",
+          "que": "Sitio para un taller mecánico, pensado para el celular: precios de referencia a la vista, horario que dice si está abierto ahora, cómo llegar sin mapa de Google y un turno que se arma en seis campos y sale como mensaje de WhatsApp.",
+          "chips": [
+            "Turno por WhatsApp",
+            "Abierto ahora",
+            "Precios desde"
+          ],
+          "url": "https://fnguerrero.github.io/sitios/taller/",
+          "img": "img/taller-illia.jpg?v=1c7b1521",
+          "tocado": "2026-11-02"
         },
         {
           "nombre": "Mercado Atalaya",
