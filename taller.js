@@ -275,6 +275,11 @@ var Taller = (function () {
     if (url) acc.appendChild(enlace("btn", url, verbo || "Abrir"));
     var repo = linkSeguro(p.repo);
     if (repo) acc.appendChild(enlace("btn suave", repo, "Código"));
+    // Links extra opcionales, por ejemplo la página en itch.io: [{texto, url}].
+    (p.links || []).forEach(function (l) {
+      var u = linkSeguro(l && l.url);
+      if (u) acc.appendChild(enlace("btn suave", u, l.texto || "Ver"));
+    });
     // Lo privado no tiene pagina publica a la que llevar el link.
     if (!p.privado) {
       var comp = el("button", "btn suave", "Compartir");

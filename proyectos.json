@@ -627,13 +627,19 @@
           ],
           "url": "https://fnguerrero.github.io/sima7/",
           "repo": "https://github.com/fnguerrero/sima7",
+          "links": [
+            {
+              "texto": "itch.io",
+              "url": "https://nass-arcade.itch.io/sima7"
+            }
+          ],
           "img": "img/sima-7.jpg?v=2f1909e1",
           "imgs": [
             "img/sima-7.jpg?v=2f1909e1",
             "img/sima-7-2.jpg?v=b1b6359b",
             "img/sima-7-3.jpg?v=d43b0273"
           ],
-          "tocado": "2026-08-31"
+          "tocado": "2026-11-13"
         },
         {
           "nombre": "NIMBO",
